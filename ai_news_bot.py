@@ -68,9 +68,13 @@ def is_relevant(title, description=""):
 # STEP 3: FETCH RSS FEEDS - Get latest articles from each source
 # ============================================================================
 FEEDS = [
-    "https://feeds.arstechnica.com/arstechnica/index",  # ArsTechnica tech news
-    "https://news.ycombinator.com/rss",                   # HackerNews
-    "https://arxiv.org/rss/cs.AI",                       # ArXiv AI papers
+    "https://feeds.arstechnica.com/arstechnica/index",
+    "https://news.ycombinator.com/rss",
+    "https://arxiv.org/rss/cs.AI",
+    "https://www.reddit.com/r/MachineLearning/.rss",
+    "https://www.reddit.com/r/artificial/.rss",
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",
 ]
 
 def fetch_feed(feed_url):
@@ -79,7 +83,7 @@ def fetch_feed(feed_url):
     Think: Open a newspaper and read the headline list
     """
     try:
-        feed = feedparser.parse(feed_url)
+        feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
         articles = []
         for entry in feed.entries[:20]:  # Only grab the 20 most recent
             title = entry.get("title", "No title")
