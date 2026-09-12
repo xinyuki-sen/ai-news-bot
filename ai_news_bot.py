@@ -206,6 +206,9 @@ def build_webpage(articles):
     align-items: center;
     padding: 20px 0;
     gap: 24px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
   }}
   .sidebar .logo {{ font-size: 1.6em; margin-bottom: 10px; }}
   .sidebar .icon {{ font-size: 1.2em; opacity: 0.5; cursor: default; }}
@@ -252,19 +255,39 @@ def build_webpage(articles):
     padding: 16px;
     cursor: pointer;
     transition: transform 0.15s, border-color 0.15s;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
   }}
   .card:hover {{ transform: translateY(-3px); border-color: #58a6ff; }}
-  .card .title {{ color: #e6edf3; font-weight: 600; font-size: 0.95em; line-height: 1.4; }}
+  .card .title {{
+    color: #e6edf3;
+    font-weight: 600;
+    font-size: 0.95em;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }}
   .badge {{
     display: inline-block; margin-top: 10px; padding: 3px 10px;
     border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em;
+    width: fit-content;
   }}
-  /* DETAIL PANEL */
+  /* DETAIL PANEL - stays visible while page scrolls */
   .panel {{
     width: 320px;
     background: #161b22;
     border-left: 1px solid #30363d;
     padding: 30px 24px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    align-self: flex-start;
   }}
   .panel h3 {{ color: #e6edf3; font-size: 1.1em; margin-bottom: 12px; line-height: 1.4; }}
   .panel .src {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
