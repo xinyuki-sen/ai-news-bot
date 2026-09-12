@@ -120,6 +120,45 @@ def filter_articles(articles):
     return relevant
 
 # ============================================================================
+# STEP 4.5: RANK - Score each article so we know what's most important
+# ============================================================================
+# Some sources are more reliable/significant than others
+SOURCE_WEIGHT = {
+    "cs.AI updates on arXiv.org": 3,   # Research papers - high value for students
+    "Hacker News": 2,
+    "Ars Technica - All content": 2,
+}
+
+# High-impact words score extra points (bigger news = more of these)
+HIGH_IMPACT_WORDS = [
+    "breakthrough", "release", "launch", "new model", "state-of-the-art",
+    "open source", "outperforms", "announces", "unveils"
+]
+
+def score_article(article):
+    """
+    Give each article a score - higher score = more important
+    Think: A teacher grading how newsworthy each article is
+    """
+    text = (article["title"] + " " + article.get("description", "")).lower()
+    score = 0
+
+    # +1 point for each keyword match (more AI-relevant terms = more relevant)
+    score += sum(1 for k in KEYWORDS if k.lower() in text)
+
+    # Extra points for high-impact words (signals big news)
+    score += sum(2 for w in HIGH_IMPACT_WORDS if w.lower() in text)
+
+    # Extra points based on source reliability/significance
+    score += SOURCE_WEIGHT.get(article["source"], 1)
+
+    return score
+
+def rank_articles(articles):
+    """Sort articles from most to least important"""
+    return sorted(articles, key=score_article, reverse=True)
+
+# ============================================================================
 # STEP 5: DEDUPE - Remove duplicates (same article from multiple sources)
 # ============================================================================
 def dedupe_articles(articles):
@@ -299,6 +338,19 @@ def build_webpage(articles):
   }}
   .panel .empty {{ color: #6e7681; font-size: 0.9em; }}
   .empty-state {{ text-align: center; color: #8b949e; padding: 60px 0; }}
+  .top-picks {{ margin-bottom: 28px; }}
+  .top-picks h2 {{ font-size: 1.1em; color: #e6edf3; margin-bottom: 12px; }}
+  .top-card {{
+    background: linear-gradient(135deg, #1c2333, #161b22);
+    border: 1px solid #58a6ff;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }}
+  .top-card:hover {{ border-color: #a371f7; }}
+  .top-card .rank {{ color: #58a6ff; font-weight: 700; font-size: 0.8em; margin-right: 6px; }}
+  .top-card .title {{ color: #e6edf3; font-weight: 600; display: inline; }}
 </style>
 </head>
 <body>
@@ -312,7 +364,8 @@ def build_webpage(articles):
 
   <div class="main">
     <h1>AI News Digest</h1>
-    <p class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST · Refreshes hourly</p>
+    <div class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST · Refreshes hourly</div>
+    <div id="topPicks"></div>
     <div class="topbar">
       <input class="search" id="search" placeholder="Search title or source...">
     </div>
@@ -328,6 +381,23 @@ def build_webpage(articles):
 const articles = {articles_json};
 const sources = {json.dumps(sources)};
 let activeSource = "All";
+
+function renderTopPicks() {{
+  const topEl = document.getElementById('topPicks');
+  if (articles.length === 0) {{ topEl.innerHTML = ''; return; }}
+  const top3 = articles.slice(0, 3);
+  topEl.innerHTML = `
+    <div class="top-picks">
+      <h2>🔥 Top Picks</h2>
+      ${{top3.map((a, i) =>
+        `<div class="top-card" onclick="showDetail(${{i}})">
+           <span class="rank">#${{i+1}}</span><span class="title">${{escapeHtml(a.title)}}</span>
+           <div class="badge">${{escapeHtml(a.source)}}</div>
+         </div>`
+      ).join('')}}
+    </div>
+  `;
+}}
 
 function renderTabs() {{
   const tabsEl = document.getElementById('tabs');
@@ -381,6 +451,7 @@ function showDetail(idx) {{
 }}
 
 document.getElementById('search').addEventListener('input', renderGrid);
+renderTopPicks();
 renderTabs();
 renderGrid();
 </script>
@@ -416,6 +487,10 @@ def main():
     # Remove duplicates
     new_articles = dedupe_articles(relevant)
     print(f"Found {len(new_articles)} new articles")
+    
+    # Rank by importance (most relevant first)
+    relevant = rank_articles(relevant)
+    new_articles = rank_articles(new_articles)
     
     # Post to Discord
     post_to_discord(new_articles)
