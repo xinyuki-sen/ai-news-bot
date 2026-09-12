@@ -178,7 +178,9 @@ def build_webpage(articles):
     Think: Turning our Discord message into a simple website
     """
     # Build a JSON array of articles for the frontend JS to use
-    articles_json = json.dumps(articles[:40])
+    # Only send title/link/source (not raw description - Reddit's HTML/quotes broke the page before)
+    clean_articles = [{"title": a["title"], "link": a["link"], "source": a["source"]} for a in articles[:40]]
+    articles_json = json.dumps(clean_articles)
     sources = sorted(set(a['source'] for a in articles[:40]))
 
     html = f"""<!DOCTYPE html>
@@ -341,31 +343,39 @@ function setSource(s) {{
   renderGrid();
 }}
 
+function escapeHtml(text) {{
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}}
+
 function renderGrid() {{
   const query = document.getElementById('search').value.toLowerCase();
   const gridEl = document.getElementById('grid');
-  const filtered = articles.filter(a => {{
-    const matchesSource = activeSource === "All" || a.source === activeSource;
-    const matchesQuery = a.title.toLowerCase().includes(query) || a.source.toLowerCase().includes(query);
-    return matchesSource && matchesQuery;
-  }});
+  const filtered = articles
+    .map((a, i) => ({{ ...a, _idx: i }}))
+    .filter(a => {{
+      const matchesSource = activeSource === "All" || a.source === activeSource;
+      const matchesQuery = a.title.toLowerCase().includes(query) || a.source.toLowerCase().includes(query);
+      return matchesSource && matchesQuery;
+    }});
   if (filtered.length === 0) {{
     gridEl.innerHTML = '<div class="empty-state">No articles match.</div>';
     return;
   }}
-  gridEl.innerHTML = filtered.map((a, i) =>
-    `<div class="card" onclick='showDetail(${{JSON.stringify(JSON.stringify(a))}})'>
-       <div class="title">${{a.title}}</div>
-       <div class="badge">${{a.source}}</div>
+  gridEl.innerHTML = filtered.map(a =>
+    `<div class="card" onclick="showDetail(${{a._idx}})">
+       <div class="title">${{escapeHtml(a.title)}}</div>
+       <div class="badge">${{escapeHtml(a.source)}}</div>
      </div>`
   ).join('');
 }}
 
-function showDetail(articleStr) {{
-  const a = JSON.parse(articleStr);
+function showDetail(idx) {{
+  const a = articles[idx];
   document.getElementById('panel').innerHTML = `
-    <h3>${{a.title}}</h3>
-    <div class="src">Source: ${{a.source}}</div>
+    <h3>${{escapeHtml(a.title)}}</h3>
+    <div class="src">Source: ${{escapeHtml(a.source)}}</div>
     <a class="open" href="${{a.link}}" target="_blank">Open Article →</a>
   `;
 }}
