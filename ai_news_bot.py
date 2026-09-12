@@ -7,9 +7,11 @@ import feedparser
 import sqlite3
 import requests
 import hashlib
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import os
 import json
+
+IST = timezone(timedelta(hours=5, minutes=30))
 
 # ============================================================================
 # STEP 1: SETUP - Create database file to remember what we've already seen
@@ -68,12 +70,14 @@ def is_relevant(title, description=""):
 # STEP 3: FETCH RSS FEEDS - Get latest articles from each source
 # ============================================================================
 FEEDS = [
-    "https://feeds.arstechnica.com/arstechnica/index",
-    "https://news.ycombinator.com/rss",
-    "https://arxiv.org/rss/cs.AI",
-    "https://www.reddit.com/r/MachineLearning/.rss",
-    "https://www.reddit.com/r/artificial/.rss",
+    "https://feeds.arstechnica.com/arstechnica/index",  # ArsTechnica tech news
+    "https://news.ycombinator.com/rss",                   # HackerNews
+    "https://arxiv.org/rss/cs.AI",                       # ArXiv AI papers
+    "https://www.reddit.com/r/MachineLearning/.rss",     # Reddit ML
+    "https://www.reddit.com/r/artificial/.rss",          # Reddit AI
+    # YouTube - Two Minute Papers
     "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
+    # YouTube - Yannic Kilcher
     "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",
 ]
 
@@ -83,6 +87,7 @@ def fetch_feed(feed_url):
     Think: Open a newspaper and read the headline list
     """
     try:
+        # Reddit blocks default bot user-agents, so we pretend to be a browser
         feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
         articles = []
         for entry in feed.entries[:20]:  # Only grab the 20 most recent
@@ -172,6 +177,10 @@ def build_webpage(articles):
     Create an index.html file showing today's articles
     Think: Turning our Discord message into a simple website
     """
+    # Build a JSON array of articles for the frontend JS to use
+    articles_json = json.dumps(articles[:40])
+    sources = sorted(set(a['source'] for a in articles[:40]))
+
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,29 +188,170 @@ def build_webpage(articles):
 <title>AI News Digest</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-  body {{ font-family: -apple-system, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; background: #0d1117; color: #c9d1d9; }}
-  h1 {{ color: #58a6ff; }}
-  .date {{ color: #8b949e; margin-bottom: 30px; }}
-  .article {{ border-bottom: 1px solid #30363d; padding: 15px 0; }}
-  .article a {{ color: #58a6ff; text-decoration: none; font-weight: 600; }}
-  .article a:hover {{ text-decoration: underline; }}
-  .source {{ color: #8b949e; font-size: 0.85em; }}
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    min-height: 100vh;
+  }}
+  /* SIDEBAR */
+  .sidebar {{
+    width: 70px;
+    background: #161b22;
+    border-right: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 24px;
+  }}
+  .sidebar .logo {{ font-size: 1.6em; margin-bottom: 10px; }}
+  .sidebar .icon {{ font-size: 1.2em; opacity: 0.5; cursor: default; }}
+  /* MAIN */
+  .main {{ flex: 1; padding: 30px 40px; max-width: 900px; }}
+  .topbar {{ display: flex; gap: 10px; margin-bottom: 24px; }}
+  .search {{
+    flex: 1;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #c9d1d9;
+    font-size: 0.95em;
+  }}
+  h1 {{
+    font-size: 1.8em;
+    background: linear-gradient(90deg, #58a6ff, #a371f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }}
+  .date {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
+  .tabs {{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }}
+  .tab {{
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #8b949e;
+    font-size: 0.8em;
+    cursor: pointer;
+  }}
+  .tab.active {{ background: #58a6ff; color: #0d1117; border-color: #58a6ff; }}
+  .grid {{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }}
+  .card {{
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 16px;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+  }}
+  .card:hover {{ transform: translateY(-3px); border-color: #58a6ff; }}
+  .card .title {{ color: #e6edf3; font-weight: 600; font-size: 0.95em; line-height: 1.4; }}
+  .badge {{
+    display: inline-block; margin-top: 10px; padding: 3px 10px;
+    border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em;
+  }}
+  /* DETAIL PANEL */
+  .panel {{
+    width: 320px;
+    background: #161b22;
+    border-left: 1px solid #30363d;
+    padding: 30px 24px;
+  }}
+  .panel h3 {{ color: #e6edf3; font-size: 1.1em; margin-bottom: 12px; line-height: 1.4; }}
+  .panel .src {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
+  .panel a.open {{
+    display: block; text-align: center; background: #58a6ff; color: #0d1117;
+    padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600;
+  }}
+  .panel .empty {{ color: #6e7681; font-size: 0.9em; }}
+  .empty-state {{ text-align: center; color: #8b949e; padding: 60px 0; }}
 </style>
 </head>
 <body>
-<h1>🤖 AI News Digest</h1>
-<p class="date">Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}</p>
-"""
-    if not articles:
-        html += "<p>No new articles today. Check back tomorrow.</p>"
-    else:
-        for article in articles[:15]:
-            html += f"""<div class="article">
-  <a href="{article['link']}" target="_blank">{article['title']}</a>
-  <div class="source">Source: {article['source']}</div>
-</div>
-"""
-    html += "</body></html>"
+  <div class="sidebar">
+    <div class="logo">🤖</div>
+    <div class="icon">🏠</div>
+    <div class="icon">📚</div>
+    <div class="icon">🔖</div>
+    <div class="icon">⚙️</div>
+  </div>
+
+  <div class="main">
+    <h1>AI News Digest</h1>
+    <p class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST · Refreshes hourly</p>
+    <div class="topbar">
+      <input class="search" id="search" placeholder="Search title or source...">
+    </div>
+    <div class="tabs" id="tabs"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="panel" id="panel">
+    <p class="empty">Click an article to preview it here.</p>
+  </div>
+
+<script>
+const articles = {articles_json};
+const sources = {json.dumps(sources)};
+let activeSource = "All";
+
+function renderTabs() {{
+  const tabsEl = document.getElementById('tabs');
+  const all = ["All", ...sources];
+  tabsEl.innerHTML = all.map(s =>
+    `<div class="tab ${{s === activeSource ? 'active' : ''}}" onclick="setSource('${{s.replace(/'/g, "\\\\'")}}')">${{s}}</div>`
+  ).join('');
+}}
+
+function setSource(s) {{
+  activeSource = s;
+  renderTabs();
+  renderGrid();
+}}
+
+function renderGrid() {{
+  const query = document.getElementById('search').value.toLowerCase();
+  const gridEl = document.getElementById('grid');
+  const filtered = articles.filter(a => {{
+    const matchesSource = activeSource === "All" || a.source === activeSource;
+    const matchesQuery = a.title.toLowerCase().includes(query) || a.source.toLowerCase().includes(query);
+    return matchesSource && matchesQuery;
+  }});
+  if (filtered.length === 0) {{
+    gridEl.innerHTML = '<div class="empty-state">No articles match.</div>';
+    return;
+  }}
+  gridEl.innerHTML = filtered.map((a, i) =>
+    `<div class="card" onclick='showDetail(${{JSON.stringify(JSON.stringify(a))}})'>
+       <div class="title">${{a.title}}</div>
+       <div class="badge">${{a.source}}</div>
+     </div>`
+  ).join('');
+}}
+
+function showDetail(articleStr) {{
+  const a = JSON.parse(articleStr);
+  document.getElementById('panel').innerHTML = `
+    <h3>${{a.title}}</h3>
+    <div class="src">Source: ${{a.source}}</div>
+    <a class="open" href="${{a.link}}" target="_blank">Open Article →</a>
+  `;
+}}
+
+document.getElementById('search').addEventListener('input', renderGrid);
+renderTabs();
+renderGrid();
+</script>
+</body></html>"""
 
     with open("index.html", "w") as f:
         f.write(html)
