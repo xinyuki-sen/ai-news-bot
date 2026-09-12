@@ -488,6 +488,20 @@ def categorize_tool(title, description=""):
             return category
     return "Other"
 
+def fetch_hn_tools():
+    tools = []
+    try:
+        url = "https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&query=AI&hitsPerPage=30"
+        response = requests.get(url, timeout=10)
+        data = response.json()
+        for hit in data.get("hits", []):
+            title = hit.get("title", "No title")
+            link = hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
+            tools.append({"title": title, "link": link, "category": categorize_tool(title)})
+    except Exception as e:
+        print(f"Error fetching HN tools: {e}")
+    return tools
+
 def fetch_tools():
     """Get latest AI tools from Product Hunt and sort into categories"""
     tools = []
@@ -505,8 +519,9 @@ def fetch_tools():
                 })
         except Exception as e:
             print(f"Error fetching tools feed: {e}")
+    tools.extend(fetch_hn_tools())
     return tools
-
+    
 def build_tools_page(tools):
     """Create a tools.html page, grouped by category"""
     grouped = {}
