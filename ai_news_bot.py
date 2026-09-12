@@ -461,8 +461,9 @@ renderGrid();
         f.write(html)
     print("✓ Webpage generated (index.html)")
 
+
 TOOL_FEEDS = [
-    "https://www.producthunt.com/topics/artificial-intelligence.rss",
+    "https://www.producthunt.com/feed?category=ai",
 ]
 
 TOOL_CATEGORIES = {
