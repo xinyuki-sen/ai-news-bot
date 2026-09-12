@@ -2,10 +2,9 @@ name: Daily AI News Scrape
 
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
-# Needed so this workflow is allowed to publish to GitHub Pages
 permissions:
   contents: write
   pages: write
@@ -15,6 +14,7 @@ jobs:
   scrape:
     runs-on: ubuntu-latest
     steps:
+      # Get your code (from main - this never gets modified by the bot)
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -26,25 +26,31 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Try to grab yesterday's memory notebook from gh-pages branch
+      # (so we don't repeat old news). If it doesn't exist yet, that's fine.
+      - name: Restore previous database
+        run: |
+          git fetch origin gh-pages || true
+          git show origin/gh-pages:seen_posts.db > seen_posts.db 2>/dev/null || echo "No previous database found, starting fresh"
+
       - name: Run AI News Bot
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python ai_news_bot.py
 
-      # Save database + the new index.html back to the repo
-      - name: Commit updated files
+      # Put the bot's output (webpage + notebook) into their own folder
+      - name: Prepare output folder
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add seen_posts.db index.html
-          git diff --staged --quiet || git commit -m "Daily update"
-          git push
+          mkdir -p site
+          cp index.html site/
+          cp tools.html site/
+          cp seen_posts.db site/
 
-      # Publish index.html as a live webpage
+      # Publish that folder to gh-pages branch ONLY - never touches main
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          publish_dir: ./site
           publish_branch: gh-pages
           keep_files: false

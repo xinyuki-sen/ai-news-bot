@@ -356,8 +356,8 @@ def build_webpage(articles):
 <body>
   <div class="sidebar">
     <div class="logo">🤖</div>
-    <div class="icon">🏠</div>
-    <div class="icon">📚</div>
+    <a href="index.html" class="icon" style="text-decoration:none;">🏠</a>
+    <a href="tools.html" class="icon" style="text-decoration:none;">🛠️</a>
     <div class="icon">🔖</div>
     <div class="icon">⚙️</div>
   </div>
@@ -461,6 +461,129 @@ renderGrid();
         f.write(html)
     print("✓ Webpage generated (index.html)")
 
+TOOL_FEEDS = [
+    "https://www.producthunt.com/topics/artificial-intelligence.rss",
+]
+
+TOOL_CATEGORIES = {
+    "Writing": ["writing", "copywriting", "content", "blog", "essay", "grammar"],
+    "Coding": ["code", "coding", "developer", "programming", "IDE", "debug"],
+    "Image": ["image", "photo", "design", "art", "avatar", "graphic"],
+    "Video": ["video", "editing", "animation", "clip"],
+    "Audio": ["audio", "voice", "music", "speech", "podcast"],
+    "Productivity": ["productivity", "workflow", "automation", "task", "notes"],
+    "Research": ["research", "search", "data", "analysis", "summarize"],
+    "Chatbot/Assistant": ["chatbot", "assistant", "agent", "companion"],
+}
+
+def categorize_tool(title, description=""):
+    """
+    Figure out which 'bucket' a tool belongs in based on its name/description
+    Think: Sorting laundry into piles by type
+    """
+    text = (title + " " + description).lower()
+    for category, words in TOOL_CATEGORIES.items():
+        if any(w in text for w in words):
+            return category
+    return "Other"
+
+def fetch_tools():
+    """Get latest AI tools from Product Hunt and sort into categories"""
+    tools = []
+    for feed_url in TOOL_FEEDS:
+        try:
+            feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
+            for entry in feed.entries[:30]:
+                title = entry.get("title", "No title")
+                link = entry.get("link", "")
+                description = entry.get("description", "")
+                tools.append({
+                    "title": title,
+                    "link": link,
+                    "category": categorize_tool(title, description)
+                })
+        except Exception as e:
+            print(f"Error fetching tools feed: {e}")
+    return tools
+
+def build_tools_page(tools):
+    """Create a tools.html page, grouped by category"""
+    grouped = {}
+    for tool in tools:
+        grouped.setdefault(tool["category"], []).append(tool)
+
+    tools_json = json.dumps(tools)
+    categories = sorted(grouped.keys())
+
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Tools Directory</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+  body {{ font-family: 'Segoe UI', -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; padding: 30px 40px; max-width: 1000px; margin: 0 auto; }}
+  h1 {{ font-size: 1.8em; background: linear-gradient(90deg, #58a6ff, #a371f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }}
+  .date {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
+  nav {{ margin-bottom: 10px; }}
+  nav a {{ color: #58a6ff; text-decoration: none; font-size: 0.9em; }}
+  .tabs {{ display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0; }}
+  .tab {{ padding: 6px 14px; border-radius: 20px; background: #21262d; border: 1px solid #30363d; color: #8b949e; font-size: 0.8em; cursor: pointer; }}
+  .tab.active {{ background: #58a6ff; color: #0d1117; border-color: #58a6ff; }}
+  .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }}
+  .card {{ background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; height: 100px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }}
+  .card a {{ color: #e6edf3; text-decoration: none; font-weight: 600; font-size: 0.95em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }}
+  .card a:hover {{ color: #58a6ff; }}
+  .badge {{ padding: 3px 10px; border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em; width: fit-content; }}
+  .empty-state {{ text-align: center; color: #8b949e; padding: 60px 0; }}
+</style>
+</head>
+<body>
+  <nav><a href="index.html">← Back to News</a></nav>
+  <h1>🛠️ AI Tools Directory</h1>
+  <div class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST</div>
+  <div class="tabs" id="tabs"></div>
+  <div class="grid" id="grid"></div>
+
+<script>
+const tools = {tools_json};
+const categories = {json.dumps(categories)};
+let activeCat = "All";
+
+function renderTabs() {{
+  const all = ["All", ...categories];
+  document.getElementById('tabs').innerHTML = all.map(c =>
+    `<div class="tab ${{c === activeCat ? 'active' : ''}}" onclick="setCat('${{c}}')">${{c}}</div>`
+  ).join('');
+}}
+
+function setCat(c) {{ activeCat = c; renderTabs(); renderGrid(); }}
+
+function renderGrid() {{
+  const filtered = activeCat === "All" ? tools : tools.filter(t => t.category === activeCat);
+  const gridEl = document.getElementById('grid');
+  if (filtered.length === 0) {{
+    gridEl.innerHTML = '<div class="empty-state">No tools in this category yet.</div>';
+    return;
+  }}
+  gridEl.innerHTML = filtered.map(t =>
+    `<div class="card">
+       <a href="${{t.link}}" target="_blank">${{t.title}}</a>
+       <div class="badge">${{t.category}}</div>
+     </div>`
+  ).join('');
+}}
+
+renderTabs();
+renderGrid();
+</script>
+</body></html>"""
+
+    with open("tools.html", "w") as f:
+        f.write(html)
+    print("✓ Tools page generated (tools.html)")
+
 # ============================================================================
 # STEP 7: MAIN - Run everything in order
 # ============================================================================
@@ -495,9 +618,14 @@ def main():
     # Post to Discord
     post_to_discord(new_articles)
     
-    # Build webpage (uses ALL relevant articles seen today, not just new ones,
-    # so the page always shows a full recent list, not just what's new)
+    # Build webpage
     build_webpage(relevant)
+    
+    # Build tools directory page
+    print("Fetching AI tools...")
+    tools = fetch_tools()
+    print(f"Found {len(tools)} tools")
+    build_tools_page(tools)
     
     print("Done!")
 
