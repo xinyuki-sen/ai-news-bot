@@ -38,12 +38,14 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python ai_news_bot.py
 
-      # Put the bot's output (webpage + notebook) into their own folder
+      # Put the bot's output (webpage + data + memory) into their own folder
       - name: Prepare output folder
         run: |
           mkdir -p site
           cp index.html site/
           cp tools.html site/
+          cp news.json site/
+          cp tools.json site/
           cp seen_posts.db site/
 
       # Publish that folder to gh-pages branch ONLY - never touches main
