@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-13T12:53:59.955908+05:30",
+  "last_updated": "2026-09-13T13:11:15.155849+05:30",
   "top_pick_ids": [
     1,
     2,
@@ -13,7 +13,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "I trained a 210M-parameter text-to-image diffusion transformer from scratch (3.5 days, one RTX PRO 6000, 4.2M images at 256²) mainly to understand the recipe end to end. Three measurements came out of it that I have not seen stated plainly elsewhere, so I'm posting those rather than the samples. 1. ",
-      "published_at": "2026-09-13T12:53:59.955191+05:30"
+      "published_at": "2026-09-13T13:11:15.155111+05:30"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hello this is my fifth small language model I've made and apart of my third series and it has been a lot of work but it payed off: **348M parameters, 22.7B tokens**, then fine-tuned into a math model that solves arithmetic by *showing the work* — column addition with carries, borrow chains, partial-",
-      "published_at": "2026-09-13T12:53:59.955316+05:30"
+      "published_at": "2026-09-13T13:11:15.155245+05:30"
     },
     {
       "id": 3,
@@ -31,7 +31,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I have a few web projects with pretty good UI/UX and I’m wondering if there’s any tool or workflow that can turn an existing codebase into a dataset for fine tuning. For example, given a React/Next.js project with components, pages, styling, etc. or a static html site, I’d like to turn it into somet",
-      "published_at": "2026-09-13T12:53:59.955347+05:30"
+      "published_at": "2026-09-13T13:11:15.155276+05:30"
     },
     {
       "id": 4,
@@ -40,7 +40,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "I'm an undergrad student who got a taste of research. I love it. I currently have a draft, which me and my mentor have planned for TMLR, and plan to submit it by next month for the first round of review. It was some work on self explanation methods of LLM models. We are confident that it'll get acce",
-      "published_at": "2026-09-13T12:53:59.955399+05:30"
+      "published_at": "2026-09-13T13:11:15.155312+05:30"
     },
     {
       "id": 5,
@@ -49,7 +49,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "You've probably seen the fly-brain-plays-Doom / Minecraft / Beat Saber clips going around this week, from the new MaleCNS v1.0 connectome release (166k neurons, real EM reconstruction, not a toy model). Cool clips. Nobody seemed to be checking whether any of it works though, versus just producing mo",
-      "published_at": "2026-09-13T12:53:59.955473+05:30"
+      "published_at": "2026-09-13T13:11:15.155389+05:30"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "https://preview.redd.it/xv2epabu6ioh1.png?width=1171&amp;format=png&amp;auto=webp&amp;s=4e22c69855ec509bd63a038a24f765caeaafa59c Ant Ling reports 83.83 on DiagnosisArena-MCQ for Ling-3.0-flash-Sante, its new medical reasoning model. The suffix matters: the task provides case information, examination",
-      "published_at": "2026-09-13T12:53:59.955492+05:30"
+      "published_at": "2026-09-13T13:11:15.155410+05:30"
     },
     {
       "id": 7,
@@ -67,7 +67,7 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "\"I didn't know that AI could hallucinate facts,\" New Mexico defense lawyer says.",
-      "published_at": "2026-09-13T12:53:59.955506+05:30"
+      "published_at": "2026-09-13T13:11:15.155426+05:30"
     },
     {
       "id": 8,
@@ -76,7 +76,7 @@
       "source": "Hacker News",
       "category": "Products",
       "summary": "Comments",
-      "published_at": "2026-09-13T12:53:59.955516+05:30"
+      "published_at": "2026-09-13T13:11:15.155436+05:30"
     },
     {
       "id": 9,
@@ -85,7 +85,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hi r/machinelearning. Nice to meet you! My name is Chris Piech and I'm a professor at Stanford University in the AI lab. I built a class called Probability for AI: pai.stanford.edu. It starts Oct 9th and applications are due end of Sept. Its (hopefully) cool for a few reasons:  The plan is to have o",
-      "published_at": "2026-09-13T12:53:59.955542+05:30"
+      "published_at": "2026-09-13T13:11:15.155463+05:30"
     },
     {
       "id": 10,
@@ -94,7 +94,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "So want to switch to macbook after running epochs on my run down vivobook which still works pretty well thanks to its rtx 3050. Now my budget us nearly 80,000-1lac rupees(800-1000$) and buying it second hand is also an option. I could have asked this in any apple Reddit pages but most of my work inc",
-      "published_at": "2026-09-13T12:53:59.955569+05:30"
+      "published_at": "2026-09-13T13:11:15.155491+05:30"
     },
     {
       "id": 11,
@@ -103,7 +103,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi, I’m working on generating ~128×128 pixel art and trying to generate different poses of the same character. My current approach is roughly: Start with a reference image and preprocess it into cleaner/more pixel-art-like data (often removing transparency or setting up fixed number of pallets or de",
-      "published_at": "2026-09-13T12:53:59.955612+05:30"
+      "published_at": "2026-09-13T13:11:15.155535+05:30"
     },
     {
       "id": 12,
@@ -112,7 +112,7 @@
       "source": "Machine Learning",
       "category": "Other",
       "summary": "The title, by tech reports I don't mean arXiv submissions, but reports of a large model, like say Kimi K3, DeepSeek, Gemini, Mistral Leanstral, etc. Is it much above, above, much below, below or equal to a first author A* paper?  &#32; submitted by &#32;  /u/simple-Flat0263   [link] &#32; [comments]",
-      "published_at": "2026-09-13T12:53:59.955640+05:30"
+      "published_at": "2026-09-13T13:11:15.155565+05:30"
     },
     {
       "id": 13,
@@ -121,7 +121,7 @@
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Hi, I posted some months ago and got some very helpful responses (for another conference), but I have some confusions regarding EMNLP (and the way registration works here). To give some context, I used to work as an intern during my undergrads at an Indian uni (final year), and managed to write a pa",
-      "published_at": "2026-09-13T12:53:59.955710+05:30"
+      "published_at": "2026-09-13T13:11:15.155640+05:30"
     },
     {
       "id": 14,
@@ -130,7 +130,7 @@
       "source": "Machine Learning",
       "category": "Other",
       "summary": "A final-year PhD student here. A few months back, I submitted a solo-authored paper to TMLR. The reviewers were on time and extremely positive, with some minor revisions. After submitting the revised version, there was absolute silence from the reviewers, with just one acknowledging that their conce",
-      "published_at": "2026-09-13T12:53:59.955756+05:30"
+      "published_at": "2026-09-13T13:11:15.155690+05:30"
     },
     {
       "id": 15,
@@ -139,7 +139,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "ACL just announced on X how they are planning to handle the increased submission numbers. Interestingly enough, they call it &quot;the proposal&quot;. My understanding is that, in a nutshell, each submission should come with someone who can review, otherwise it may only get a slot through a lottery.",
-      "published_at": "2026-09-13T12:53:59.955789+05:30"
+      "published_at": "2026-09-13T13:11:15.155726+05:30"
     },
     {
       "id": 16,
@@ -148,7 +148,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "edit: confound Hello all, I am working on a object classification with a automotive radar point clouds. I compared many models and feature vectors. Once i used range as feature, all models scored higher f1 in all K validation sets and on the final test set. One particular artifact of a radar, is tha",
-      "published_at": "2026-09-13T12:53:59.955809+05:30"
+      "published_at": "2026-09-13T13:11:15.155749+05:30"
     },
     {
       "id": 17,
@@ -157,7 +157,7 @@
       "source": "Two Minute Papers",
       "category": "Research",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\nLinks / sources:\nHoney sim: search for \"Variational Stokes: A Unified Pressure-Viscosity Solver for Accurate Viscous Liquids\" here: https://cs.uwaterloo.ca/~c2batty/\nhttps://x.com/mindblown_ai/status/2095661874037813",
-      "published_at": "2026-09-13T12:53:59.955860+05:30"
+      "published_at": "2026-09-13T13:11:15.155803+05:30"
     },
     {
       "id": 18,
@@ -166,7 +166,7 @@
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Weights & Biases and sign up for a free demo here: https://wandb.me/papers\n\n📝 The paper and Qwen3.8-Flash-Next are available here:\nhttps://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf\nhttps://qwen.ai/blog?id=qwen3.8-flash-next\n\nSources:\nhttps://x.com/analogalok/status/",
-      "published_at": "2026-09-13T12:53:59.955875+05:30"
+      "published_at": "2026-09-13T13:11:15.155817+05:30"
     },
     {
       "id": 19,
@@ -175,7 +175,7 @@
       "source": "Two Minute Papers",
       "category": "Coding",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 The Qwen3.8-27b is available here:\nhttps://huggingface.co/Qwen/Qwen3.8-27B\n\nSources:\nhttps://www.reddit.com/r/unsloth/comments/1vogva0/share_your_results_from_qwen3827b/\nhttps://www.reddit.com/r/LocalLLaMA/comments",
-      "published_at": "2026-09-13T12:53:59.955892+05:30"
+      "published_at": "2026-09-13T13:11:15.155835+05:30"
     },
     {
       "id": 20,
@@ -184,7 +184,7 @@
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 More reports are available here:\nhttps://openai.com/index/hugging-face-model-evaluation-security-incident/\nhttps://huggingface.co/blog/security-incident-july-2026\nhttps://huggingface.co/blog/agent-intrusion-technic",
-      "published_at": "2026-09-13T12:53:59.955904+05:30"
+      "published_at": "2026-09-13T13:11:15.155846+05:30"
     }
   ]
 }

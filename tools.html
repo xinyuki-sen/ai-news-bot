@@ -56,51 +56,58 @@
 
     /* ── Sidebar ─────────────────────────────────────────────────────── */
     .sidebar {
-      width: 70px;
-      background: var(--surface);
+      width: 76px;
+      background: rgba(22, 27, 34, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 0;
-      gap: 6px;
+      padding: 24px 0;
+      gap: 12px;
       position: sticky;
       top: 0;
       height: 100vh;
       flex-shrink: 0;
       z-index: 10;
     }
+    [data-theme="light"] .sidebar { background: rgba(246, 248, 250, 0.7); }
     .sidebar .logo {
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       user-select: none;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .logo-img {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
       object-fit: cover;
       background: var(--surface2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
+    .logo-img:hover { transform: scale(1.05) rotate(-3deg); }
     .sidebar .spacer { flex: 1; }
     .sb-btn {
-      width: 44px; height: 44px;
+      width: 48px; height: 48px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 10px;
-      font-size: 1.2em;
+      border-radius: 14px;
+      font-size: 1.3em;
       background: transparent;
       border: none;
       color: var(--text-muted);
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
     .sb-btn:hover, .sb-btn.active {
       background: var(--surface2);
-      color: var(--text-strong);
+      color: var(--accent);
+      transform: translateY(-2px);
     }
     .sb-btn[data-tooltip]::after {
       content: attr(data-tooltip);
@@ -186,22 +193,45 @@
     .tab.active .tab-count { background: rgba(0,0,0,0.2); }
 
     /* ── Grid ───────────────────────────────────────────────────────── */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      min-height: 110px;
+      border-radius: 14px;
+      padding: 20px;
+      min-height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.15s, border-color 0.15s;
+      position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .card:hover { transform: translateY(-3px); border-color: var(--accent); }
-    .card.selected { border-color: var(--accent2); }
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(88,166,255,0.12);
+      background: linear-gradient(180deg, var(--surface2) 0%, var(--surface) 100%);
+    }
+    .card.selected { border-color: var(--accent2); box-shadow: 0 4px 20px rgba(163,113,247,0.15); }
+    
+    .card-bookmark {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85em;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.15s, color 0.15s;
+      padding: 2px;
+      border-radius: 4px;
+    }
+    .card:hover .card-bookmark,
+    .card-bookmark.bookmarked { opacity: 1; }
+    .card-bookmark.bookmarked { color: var(--accent); }
     .card a {
       color: var(--text-strong);
       text-decoration: none;
@@ -318,6 +348,41 @@
     [data-theme="light"] .panel a.open-btn { color: #fff; }
     .panel a.open-btn:hover { opacity: 0.85; }
 
+    .panel .bm-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--surface2);
+      color: var(--text);
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .panel .bm-btn:hover { border-color: var(--accent); }
+    .panel .bm-btn.bookmarked { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Bookmarks overlay ──────────────────────────────────────────── */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; z-index: 50; backdrop-filter: blur(4px);
+    }
+    .overlay.show { display: flex; align-items: center; justify-content: center; }
+    .overlay-box {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; width: 480px; max-width: 95vw; max-height: 80vh; overflow-y: auto;
+    }
+    .overlay-box h2 { color: var(--text-strong); font-size: 1.1em; margin-bottom: 16px; }
+    .bm-item { padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .bm-item:last-child { border-bottom: none; }
+    .bm-item:hover .bm-item-title { color: var(--accent); }
+    .bm-item-title { color: var(--text-strong); font-size: 0.9em; font-weight: 600; margin-bottom: 4px; }
+    .bm-item-meta { color: var(--text-muted); font-size: 0.78em; }
+    .bm-empty { color: var(--text-muted); font-size: 0.9em; text-align: center; padding: 30px 0; }
+    .overlay-close { float: right; background: none; border: none; color: var(--text-muted); font-size: 1.2em; cursor: pointer; }
+
     /* ── Responsive ─────────────────────────────────────────────────── */
     @media (max-width: 900px) {
       .panel { display: none; }
@@ -339,6 +404,10 @@
     </div>
     <a href="index.html" class="sb-btn" aria-label="Return to News" data-tooltip="Back to News">🏠</a>
     <a href="tools.html" class="sb-btn active" aria-label="AI Tools Directory" data-tooltip="Tools">🛠️</a>
+    <button class="sb-btn" id="btnBookmarks" aria-label="Open bookmarks" data-tooltip="Bookmarks">
+      🔖
+      <span class="sb-badge" id="bmBadge" style="display:none;" aria-hidden="true"></span>
+    </button>
     <div class="spacer"></div>
     <button class="sb-btn" id="btnTheme" aria-label="Toggle light/dark mode" data-tooltip="Theme">🌙</button>
   </nav>
@@ -374,6 +443,15 @@
     </div>
   </aside>
 
+  <!-- ── Bookmarks Overlay ──────────────────────────────────────────── -->
+  <div class="overlay" id="bmOverlay" role="dialog" aria-modal="true" aria-label="Bookmarks">
+    <div class="overlay-box">
+      <button class="overlay-close" id="bmClose" aria-label="Close bookmarks">✕</button>
+      <h2>🔖 Bookmarks</h2>
+      <div id="bmList"></div>
+    </div>
+  </div>
+
 <script>
 /* ── Theme ────────────────────────────────────────────────────────────── */
 const savedTheme = localStorage.getItem('aind_theme') || 'dark';
@@ -392,6 +470,38 @@ btnTheme.addEventListener('click', () => {
 let allTools = [];
 let activeCategory = 'All';
 let selectedId = null;
+let bookmarks = JSON.parse(localStorage.getItem('aind_tools_bookmarks') || '[]');
+
+/* ── Bookmarks Logic ──────────────────────────────────────────────────── */
+function isBookmarked(id) { return bookmarks.includes(id); }
+
+function toggleBookmark(id) {
+  if (isBookmarked(id)) {
+    bookmarks = bookmarks.filter(b => b !== id);
+  } else {
+    bookmarks = [...bookmarks, id];
+  }
+  localStorage.setItem('aind_tools_bookmarks', JSON.stringify(bookmarks));
+  refreshBookmarkUI();
+}
+
+function refreshBookmarkUI() {
+  const badge = document.getElementById('bmBadge');
+  if(badge) badge.style.display = bookmarks.length ? '' : 'none';
+
+  document.querySelectorAll('[data-bm-id]').forEach(btn => {
+    const id = btn.dataset.bmId;
+    btn.classList.toggle('bookmarked', isBookmarked(id));
+    btn.textContent = isBookmarked(id) ? '🔖' : '🔖';
+    btn.setAttribute('aria-label', isBookmarked(id) ? 'Remove bookmark' : 'Bookmark this tool');
+  });
+
+  const panelBm = document.getElementById('panelBmBtn');
+  if (panelBm && selectedId !== null) {
+    panelBm.textContent = isBookmarked(selectedId) ? '🔖 Bookmarked' : '🔖 Bookmark';
+    panelBm.classList.toggle('bookmarked', isBookmarked(selectedId));
+  }
+}
 
 /* ── Skeleton ─────────────────────────────────────────────────────────── */
 function renderSkeletons(n = 12) {
@@ -427,13 +537,18 @@ function renderGrid() {
     return;
   }
   grid.innerHTML = tools.map(t => {
-    // Generate a quick ID from link/title for selection tracking
     const _id = btoa(unescape(encodeURIComponent(t.title + t.link))).slice(0, 16);
     t._id = _id;
     return `
       <article class="card ${selectedId === _id ? 'selected' : ''}" role="listitem" tabindex="0" data-id="${_id}">
+        <button
+          class="card-bookmark${isBookmarked(_id) ? ' bookmarked' : ''}"
+          data-bm-id="${_id}"
+          aria-label="${isBookmarked(_id) ? 'Remove bookmark' : 'Bookmark this tool'}"
+          title="${isBookmarked(_id) ? 'Remove bookmark' : 'Bookmark'}"
+        >🔖</button>
         <div>
-          <div style="color:var(--text-strong); font-weight:600; font-size:0.95em; margin-bottom:4px;">${t.title}</div>
+          <div style="color:var(--text-strong); font-weight:600; font-size:0.95em; margin-bottom:4px; padding-right:20px;">${t.title}</div>
           ${t.description ? `<div class="card-desc">${t.description}</div>` : ''}
         </div>
         <span class="badge">${t.category}</span>
@@ -442,13 +557,21 @@ function renderGrid() {
   }).join('');
 
   grid.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', e => {
+      if (e.target.classList.contains('card-bookmark')) return;
       selectedId = card.dataset.id;
       openPanel(selectedId);
       grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', c.dataset.id === selectedId));
     });
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+
+  grid.querySelectorAll('.card-bookmark').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleBookmark(btn.dataset.bmId);
     });
   });
 }
@@ -463,8 +586,49 @@ function openPanel(id) {
     </div>
     <p class="panel-summary">${t.description || 'No description available.'}</p>
     <a class="open-btn" href="${t.link}" target="_blank" rel="noopener noreferrer">Visit Website ↗</a>
+    <button class="bm-btn${isBookmarked(id) ? ' bookmarked' : ''}" id="panelBmBtn">
+      ${isBookmarked(id) ? '🔖 Bookmarked' : '🔖 Bookmark'}
+    </button>
   `;
+
+  document.getElementById('panelBmBtn').addEventListener('click', () => {
+    toggleBookmark(id);
+  });
 }
+
+/* ── Bookmarks Overlay ────────────────────────────────────────────────── */
+document.getElementById('btnBookmarks').addEventListener('click', () => {
+  const overlay = document.getElementById('bmOverlay');
+  const list = document.getElementById('bmList');
+
+  if (bookmarks.length === 0) {
+    list.innerHTML = '<div class="bm-empty">No bookmarks yet. Click 🔖 on any tool to save it.</div>';
+  } else {
+    const saved = bookmarks.map(id => allTools.find(t => t._id === id)).filter(Boolean);
+    list.innerHTML = saved.map(t => `
+      <div class="bm-item" data-id="${t._id}" tabindex="0" role="button" aria-label="${t.title}">
+        <div class="bm-item-title">${t.title}</div>
+        <div class="bm-item-meta">${t.category}</div>
+      </div>
+    `).join('');
+    list.querySelectorAll('.bm-item').forEach(item => {
+      item.addEventListener('click', () => {
+        overlay.classList.remove('show');
+        selectedId = item.dataset.id;
+        openPanel(selectedId);
+        document.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', c.dataset.id === selectedId));
+      });
+    });
+  }
+  overlay.classList.add('show');
+});
+
+document.getElementById('bmClose').addEventListener('click', () => {
+  document.getElementById('bmOverlay').classList.remove('show');
+});
+document.getElementById('bmOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('show');
+});
 
 function renderTabs() {
   const counts = {};
@@ -509,6 +673,7 @@ async function loadTools() {
 
     renderTabs();
     renderGrid();
+    refreshBookmarkUI();
   } catch (err) {
     console.error('Failed to load tools:', err);
     document.getElementById('grid').innerHTML = '';
