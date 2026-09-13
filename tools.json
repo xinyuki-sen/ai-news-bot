@@ -1,17 +1,27 @@
 [
   {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "category": "Other"
+  },
+  {
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
+  },
+  {
     "title": "Perplexity Hybrid Compute",
     "link": "https://www.producthunt.com/products/perplexity-ai",
     "category": "Productivity"
   },
   {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
+    "category": "Video"
   },
   {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
     "category": "Other"
   },
   {
@@ -30,24 +40,9 @@
     "category": "Other"
   },
   {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
-  },
-  {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
     "category": "Other"
-  },
-  {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
-    "category": "Productivity"
   },
   {
     "title": "Kirokune",
@@ -55,13 +50,18 @@
     "category": "Productivity"
   },
   {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
+    "title": "Epilude Notetaker",
+    "link": "https://www.producthunt.com/products/epilude",
+    "category": "Productivity"
+  },
+  {
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
     "category": "Other"
   },
   {
-    "title": "Cortex",
-    "link": "https://www.producthunt.com/products/cortex-25",
+    "title": "Youkti",
+    "link": "https://www.producthunt.com/products/youkti",
     "category": "Other"
   },
   {
@@ -70,19 +70,19 @@
     "category": "Coding"
   },
   {
-    "title": "Marked Share",
-    "link": "https://www.producthunt.com/products/marked-share",
-    "category": "Video"
-  },
-  {
-    "title": "Calerto for Mac",
-    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
-    "category": "Other"
-  },
-  {
     "title": "SUDARI",
     "link": "https://www.producthunt.com/products/sudari",
     "category": "Other"
+  },
+  {
+    "title": "Wokyintosh",
+    "link": "https://www.producthunt.com/products/wokyintosh",
+    "category": "Other"
+  },
+  {
+    "title": "Marked Share",
+    "link": "https://www.producthunt.com/products/marked-share",
+    "category": "Video"
   },
   {
     "title": "LinkFlick",
@@ -90,8 +90,18 @@
     "category": "Other"
   },
   {
+    "title": "Work Life Panda",
+    "link": "https://www.producthunt.com/products/work-life-panda",
+    "category": "Productivity"
+  },
+  {
     "title": "Pascal’s Pager",
     "link": "https://www.producthunt.com/products/pascal-s-pager",
+    "category": "Other"
+  },
+  {
+    "title": "Calerto for Mac",
+    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
     "category": "Other"
   },
   {
@@ -100,9 +110,9 @@
     "category": "Audio"
   },
   {
-    "title": "Work Life Panda",
-    "link": "https://www.producthunt.com/products/work-life-panda",
-    "category": "Productivity"
+    "title": "ABrush",
+    "link": "https://www.producthunt.com/products/abrush-ai-2",
+    "category": "Image"
   },
   {
     "title": "Relic",
@@ -115,18 +125,8 @@
     "category": "Other"
   },
   {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
-    "category": "Other"
-  },
-  {
-    "title": "ABrush",
-    "link": "https://www.producthunt.com/products/abrush-ai-2",
-    "category": "Image"
-  },
-  {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
+    "title": "Cortex",
+    "link": "https://www.producthunt.com/products/cortex-25",
     "category": "Other"
   },
   {
