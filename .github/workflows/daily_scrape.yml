@@ -38,10 +38,11 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python ai_news_bot.py
 
-      # Put the bot's output (webpage + data + memory) into their own folder
+      # Put the bot's output (webpage + data + memory + assets) into their own folder
       - name: Prepare output folder
         run: |
           mkdir -p site
+          cp -r assets site/ || true
           cp index.html site/
           cp tools.html site/
           cp news.json site/

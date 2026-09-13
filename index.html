@@ -15,8 +15,8 @@
   <meta name="twitter:title" content="AI News Digest">
   <meta name="twitter:description" content="Daily AI news digest — curated automatically, updated hourly.">
 
-  <!-- Emoji favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+  <!-- Image favicon -->
+  <link rel="icon" href="assets/robot_icon.png">
 
   <style>
     /* ── CSS Variables (theming) ───────────────────────────────────── */
@@ -74,9 +74,18 @@
       z-index: 10;
     }
     .sidebar .logo {
-      font-size: 1.6em;
       margin-bottom: 14px;
       user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--surface2);
     }
     .sidebar .spacer { flex: 1; }
     .sb-btn {
@@ -476,7 +485,9 @@
 
   <!-- ── Sidebar ─────────────────────────────────────────────────── -->
   <nav class="sidebar" aria-label="Main navigation">
-    <div class="logo" aria-hidden="true">🤖</div>
+    <div class="logo">
+      <img src="assets/sidebar_logo.png" alt="AI News Digest Logo" class="logo-img">
+    </div>
 
     <a href="index.html" class="sb-btn active" aria-label="Home — News Digest" data-tooltip="News">🏠</a>
     <a href="tools.html" class="sb-btn" aria-label="AI Tools Directory" data-tooltip="Tools">🛠️</a>
