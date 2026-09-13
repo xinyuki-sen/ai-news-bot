@@ -1,234 +1,846 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<title>AI News Digest</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', -apple-system, sans-serif;
-    background: #0d1117;
-    color: #c9d1d9;
-    display: flex;
-    min-height: 100vh;
-  }
-  /* SIDEBAR */
-  .sidebar {
-    width: 70px;
-    background: #161b22;
-    border-right: 1px solid #30363d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    gap: 24px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }
-  .sidebar .logo { font-size: 1.6em; margin-bottom: 10px; }
-  .sidebar .icon { font-size: 1.2em; opacity: 0.5; cursor: default; }
-  /* MAIN */
-  .main { flex: 1; padding: 30px 40px; max-width: 900px; }
-  .topbar { display: flex; gap: 10px; margin-bottom: 24px; }
-  .search {
-    flex: 1;
-    background: #21262d;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
-    color: #c9d1d9;
-    font-size: 0.95em;
-  }
-  h1 {
-    font-size: 1.8em;
-    background: linear-gradient(90deg, #58a6ff, #a371f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 4px;
-  }
-  .date { color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }
-  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
-  .tab {
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: #21262d;
-    border: 1px solid #30363d;
-    color: #8b949e;
-    font-size: 0.8em;
-    cursor: pointer;
-  }
-  .tab.active { background: #58a6ff; color: #0d1117; border-color: #58a6ff; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-  }
-  .card {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 16px;
-    cursor: pointer;
-    transition: transform 0.15s, border-color 0.15s;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  }
-  .card:hover { transform: translateY(-3px); border-color: #58a6ff; }
-  .card .title {
-    color: #e6edf3;
-    font-weight: 600;
-    font-size: 0.95em;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .badge {
-    display: inline-block; margin-top: 10px; padding: 3px 10px;
-    border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em;
-    width: fit-content;
-  }
-  /* DETAIL PANEL - stays visible while page scrolls */
-  .panel {
-    width: 320px;
-    background: #161b22;
-    border-left: 1px solid #30363d;
-    padding: 30px 24px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    align-self: flex-start;
-  }
-  .panel h3 { color: #e6edf3; font-size: 1.1em; margin-bottom: 12px; line-height: 1.4; }
-  .panel .src { color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }
-  .panel a.open {
-    display: block; text-align: center; background: #58a6ff; color: #0d1117;
-    padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600;
-  }
-  .panel .empty { color: #6e7681; font-size: 0.9em; }
-  .empty-state { text-align: center; color: #8b949e; padding: 60px 0; }
-  .top-picks { margin-bottom: 28px; }
-  .top-picks h2 { font-size: 1.1em; color: #e6edf3; margin-bottom: 12px; }
-  .top-card {
-    background: linear-gradient(135deg, #1c2333, #161b22);
-    border: 1px solid #58a6ff;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-  .top-card:hover { border-color: #a371f7; }
-  .top-card .rank { color: #58a6ff; font-weight: 700; font-size: 0.8em; margin-right: 6px; }
-  .top-card .title { color: #e6edf3; font-weight: 600; display: inline; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI News Digest</title>
+  <meta name="description" content="Daily AI news digest — top stories, research tools, and breakthroughs curated automatically. Refreshes hourly.">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI News Digest">
+  <meta property="og:description" content="Daily AI news digest — top stories, research, tools, and breakthroughs curated automatically.">
+  <meta property="og:url" content="https://xinyuki-sen.github.io/ai-news-bot/index.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI News Digest">
+  <meta name="twitter:description" content="Daily AI news digest — curated automatically, updated hourly.">
+
+  <!-- Emoji favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+
+  <style>
+    /* ── CSS Variables (theming) ───────────────────────────────────── */
+    :root {
+      --bg:           #0d1117;
+      --surface:      #161b22;
+      --surface2:     #21262d;
+      --border:       #30363d;
+      --text:         #c9d1d9;
+      --text-strong:  #e6edf3;
+      --text-muted:   #8b949e;
+      --accent:       #58a6ff;
+      --accent2:      #a371f7;
+      --danger:       #f85149;
+      --success:      #3fb950;
+    }
+    [data-theme="light"] {
+      --bg:           #ffffff;
+      --surface:      #f6f8fa;
+      --surface2:     #eaeef2;
+      --border:       #d0d7de;
+      --text:         #24292f;
+      --text-strong:  #1f2328;
+      --text-muted:   #656d76;
+      --accent:       #0969da;
+      --accent2:      #8250df;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* ── Sidebar ────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 70px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 0;
+      gap: 6px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    .sidebar .logo {
+      font-size: 1.6em;
+      margin-bottom: 14px;
+      user-select: none;
+    }
+    .sidebar .spacer { flex: 1; }
+    .sb-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      font-size: 1.2em;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      position: relative;
+    }
+    .sb-btn:hover, .sb-btn.active {
+      background: var(--surface2);
+      color: var(--text-strong);
+    }
+    .sb-btn[data-tooltip]::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      left: calc(100% + 10px);
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--surface2);
+      color: var(--text-strong);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75em;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s;
+      z-index: 100;
+    }
+    .sb-btn[data-tooltip]:hover::after { opacity: 1; }
+    .sb-badge {
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ── Main content ───────────────────────────────────────────────── */
+    .main {
+      flex: 1;
+      padding: 30px 40px;
+      min-width: 0;
+      max-width: 900px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 4px;
+    }
+    .date { color: var(--text-muted); font-size: 0.85em; margin-bottom: 22px; }
+
+    /* ── Topbar / Search ────────────────────────────────────────────── */
+    .topbar { display: flex; gap: 10px; margin-bottom: 24px; align-items: center; }
+    .search-wrap { flex: 1; position: relative; }
+    .search-wrap label {
+      position: absolute;
+      width: 1px; height: 1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+    }
+    .search {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px 10px 38px;
+      color: var(--text);
+      font-size: 0.95em;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    .search:focus { border-color: var(--accent); }
+    .search-icon {
+      position: absolute;
+      left: 12px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      font-size: 0.95em;
+    }
+    .search::placeholder { color: var(--text-muted); }
+
+    /* ── Tabs ───────────────────────────────────────────────────────── */
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .tab {
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.8em;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      user-select: none;
+    }
+    .tab:hover { border-color: var(--accent); color: var(--text); }
+    .tab.active { background: var(--accent); color: #0d1117; border-color: var(--accent); font-weight: 600; }
+    [data-theme="light"] .tab.active { color: #fff; }
+    .tab-count {
+      display: inline-block;
+      background: rgba(0,0,0,0.15);
+      border-radius: 10px;
+      padding: 0 6px;
+      font-size: 0.85em;
+      margin-left: 4px;
+    }
+    .tab.active .tab-count { background: rgba(0,0,0,0.2); }
+
+    /* ── Top Picks ──────────────────────────────────────────────────── */
+    .top-picks { margin-bottom: 28px; }
+    .top-picks h2 { font-size: 1em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .top-card {
+      background: linear-gradient(135deg, var(--surface2), var(--surface));
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .top-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
+    .top-card .rank {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.8em;
+      min-width: 24px;
+      padding-top: 2px;
+    }
+    .top-card .tc-title { color: var(--text-strong); font-weight: 600; font-size: 0.93em; line-height: 1.4; }
+    .top-card .tc-meta { color: var(--text-muted); font-size: 0.78em; margin-top: 4px; }
+
+    /* ── Article Grid ───────────────────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 4px 16px rgba(88,166,255,0.08); }
+    .card.selected { border-color: var(--accent2); }
+    .card-bookmark {
+      position: absolute;
+      top: 10px; right: 10px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 0.85em;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.15s, color 0.15s;
+      padding: 2px;
+      border-radius: 4px;
+    }
+    .card:hover .card-bookmark,
+    .card-bookmark.bookmarked { opacity: 1; }
+    .card-bookmark.bookmarked { color: var(--accent); }
+    .card .card-title {
+      color: var(--text-strong);
+      font-weight: 600;
+      font-size: 0.93em;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      padding-right: 18px;
+    }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 6px; }
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 0.72em;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .card-time { color: var(--text-muted); font-size: 0.72em; flex-shrink: 0; }
+
+    /* ── Skeleton Loading ───────────────────────────────────────────── */
+    .skeleton-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .skel {
+      background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 6px;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* ── Error State ────────────────────────────────────────────────── */
+    .error-state {
+      text-align: center;
+      padding: 60px 20px;
+      display: none;
+    }
+    .error-state.show { display: block; }
+    .error-state .err-icon { font-size: 2.5em; margin-bottom: 12px; }
+    .error-state p { color: var(--text-muted); margin-bottom: 16px; }
+    .btn-retry {
+      background: var(--accent);
+      color: #0d1117;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    [data-theme="light"] .btn-retry { color: #fff; }
+
+    /* ── Empty search state ─────────────────────────────────────────── */
+    .empty-state {
+      grid-column: 1/-1;
+      text-align: center;
+      color: var(--text-muted);
+      padding: 60px 0;
+      display: none;
+    }
+    .empty-state.show { display: block; }
+
+    /* ── Detail Panel ───────────────────────────────────────────────── */
+    .panel {
+      width: 320px;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      padding: 30px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      align-self: flex-start;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .panel-empty { color: var(--text-muted); font-size: 0.9em; margin-top: 20px; }
+    .panel-empty .panel-hint { font-size: 2em; margin-bottom: 10px; }
+    .panel h3 {
+      color: var(--text-strong);
+      font-size: 1.05em;
+      margin-bottom: 10px;
+      line-height: 1.45;
+    }
+    .panel .panel-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .panel .panel-src { color: var(--text-muted); font-size: 0.82em; }
+    .panel .panel-time { color: var(--text-muted); font-size: 0.82em; }
+    .panel .panel-cat {
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 0.75em;
+      border: 1px solid var(--border);
+    }
+    .panel-summary {
+      color: var(--text);
+      font-size: 0.88em;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+    .panel a.open-btn {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: #0d1117;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: opacity 0.15s;
+      margin-bottom: 10px;
+    }
+    [data-theme="light"] .panel a.open-btn { color: #fff; }
+    .panel a.open-btn:hover { opacity: 0.85; }
+    .panel .bm-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: var(--surface2);
+      color: var(--text);
+      padding: 8px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.85em;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .panel .bm-btn:hover { border-color: var(--accent); }
+    .panel .bm-btn.bookmarked { color: var(--accent); border-color: var(--accent); }
+
+    /* ── Bookmarks overlay ──────────────────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      z-index: 50;
+      backdrop-filter: blur(4px);
+    }
+    .overlay.show { display: flex; align-items: center; justify-content: center; }
+    .overlay-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      width: 480px;
+      max-width: 95vw;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .overlay-box h2 { color: var(--text-strong); font-size: 1.1em; margin-bottom: 16px; }
+    .bm-item {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .bm-item:last-child { border-bottom: none; }
+    .bm-item:hover .bm-item-title { color: var(--accent); }
+    .bm-item-title { color: var(--text-strong); font-size: 0.9em; font-weight: 600; margin-bottom: 4px; }
+    .bm-item-meta { color: var(--text-muted); font-size: 0.78em; }
+    .bm-empty { color: var(--text-muted); font-size: 0.9em; text-align: center; padding: 30px 0; }
+    .overlay-close {
+      float: right;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2em;
+      cursor: pointer;
+      padding: 0 0 0 10px;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .panel { display: none; }
+      .main { max-width: none; }
+    }
+    @media (max-width: 600px) {
+      .main { padding: 20px 16px; }
+      .sidebar { width: 52px; }
+      .sb-btn { width: 36px; height: 36px; font-size: 1em; }
+    }
+  </style>
 </head>
 <body>
-  <div class="sidebar">
-    <div class="logo">🤖</div>
-    <a href="index.html" class="icon" style="text-decoration:none;">🏠</a>
-    <a href="tools.html" class="icon" style="text-decoration:none;">🛠️</a>
-    <div class="icon">🔖</div>
-    <div class="icon">⚙️</div>
-  </div>
 
-  <div class="main">
+  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <nav class="sidebar" aria-label="Main navigation">
+    <div class="logo" aria-hidden="true">🤖</div>
+
+    <a href="index.html" class="sb-btn active" aria-label="Home — News Digest" data-tooltip="News">🏠</a>
+    <a href="tools.html" class="sb-btn" aria-label="AI Tools Directory" data-tooltip="Tools">🛠️</a>
+    <button class="sb-btn" id="btnBookmarks" aria-label="Open bookmarks" data-tooltip="Bookmarks">
+      🔖
+      <span class="sb-badge" id="bmBadge" style="display:none;" aria-hidden="true"></span>
+    </button>
+
+    <div class="spacer"></div>
+
+    <button class="sb-btn" id="btnTheme" aria-label="Toggle light/dark mode" data-tooltip="Theme">🌙</button>
+  </nav>
+
+  <!-- ── Main ──────────────────────────────────────────────────────── -->
+  <main class="main" id="main">
     <h1>AI News Digest</h1>
-    <div class="date">Last updated: 2026-09-13 12:34 IST · Refreshes hourly</div>
-    <div id="topPicks"></div>
-    <div class="topbar">
-      <input class="search" id="search" placeholder="Search title or source...">
-    </div>
-    <div class="tabs" id="tabs"></div>
-    <div class="grid" id="grid"></div>
-  </div>
+    <div class="date" id="dateBar">Loading…</div>
 
-  <div class="panel" id="panel">
-    <p class="empty">Click an article to preview it here.</p>
+    <!-- Top picks -->
+    <section class="top-picks" id="topPicksSection" aria-label="Editor's top picks" style="display:none;">
+      <h2>⭐ Top Picks</h2>
+      <div id="topPicks"></div>
+    </section>
+
+    <!-- Search -->
+    <div class="topbar">
+      <div class="search-wrap">
+        <label for="search">Search articles</label>
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input class="search" id="search" type="search" placeholder="Search title, source, or category…" autocomplete="off">
+      </div>
+    </div>
+
+    <!-- Category tabs -->
+    <div class="tabs" id="tabs" role="tablist" aria-label="Filter by category"></div>
+
+    <!-- Article grid -->
+    <div class="grid" id="grid" role="list" aria-live="polite" aria-label="News articles"></div>
+
+    <!-- Error state -->
+    <div class="error-state" id="errorState" role="alert">
+      <div class="err-icon">⚠️</div>
+      <p>Could not load news. Please check your connection and try again.</p>
+      <button class="btn-retry" id="btnRetry">Retry</button>
+    </div>
+  </main>
+
+  <!-- ── Detail Panel ───────────────────────────────────────────────── -->
+  <aside class="panel" id="panel" aria-label="Article preview">
+    <div class="panel-empty">
+      <div class="panel-hint">👈</div>
+      Click an article to preview it here.
+    </div>
+  </aside>
+
+  <!-- ── Bookmarks Overlay ──────────────────────────────────────────── -->
+  <div class="overlay" id="bmOverlay" role="dialog" aria-modal="true" aria-label="Bookmarks">
+    <div class="overlay-box">
+      <button class="overlay-close" id="bmClose" aria-label="Close bookmarks">✕</button>
+      <h2>🔖 Bookmarks</h2>
+      <div id="bmList"></div>
+    </div>
   </div>
 
 <script>
-const articles = [{"title": "Training a 210M text-to-image DiT from scratch on one GPU: what I measured [P]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wdfmvq/training_a_210m_texttoimage_dit_from_scratch_on/", "source": "Machine Learning"}, {"title": "I trained a 348M model trained from scratch on 22.7B tokens that does 14 digit arithmetic [P]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wc7hmu/i_trained_a_348m_model_trained_from_scratch_on/", "source": "Machine Learning"}, {"title": "Any tools to turn a codebase into a fine tuning dataset? [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wd5zkk/any_tools_to_turn_a_codebase_into_a_fine_tuning/", "source": "Machine Learning"}, {"title": "Anybody working on Test Time Training over here? Lemme work with u pls [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wcjn2b/anybody_working_on_test_time_training_over_here/", "source": "Machine Learning"}, {"title": "I tried to make a real fly connectome learn to play Pong. It didn't \u2014 and auditing why turned out to be way more interesting than if it had worked [p]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wc67ci/i_tried_to_make_a_real_fly_connectome_learn_to/", "source": "Machine Learning"}, {"title": "What Sante's 83.83 on DiagnosisArena-MCQ actually measures [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wbkxsa/what_santes_8383_on_diagnosisarenamcq_actually/", "source": "Machine Learning"}, {"title": "ChatGPT-using lawyer punished for citing fake testimony from made-up witnesses", "link": "https://arstechnica.com/tech-policy/2026/09/chatgpt-using-lawyer-punished-for-citing-fake-testimony-from-made-up-witnesses/", "source": "Ars Technica - All content"}, {"title": "Real-SWE: Benchmarking AI models on private, real-world, enterprise codebases", "link": "https://withspecific.com/benchmarks/real-swe", "source": "Hacker News"}, {"title": "Teach ML! Community service project from Stanford [N]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wbf3ox/teach_ml_community_service_project_from_stanford_n/", "source": "Machine Learning"}, {"title": "Getting Mac Air m2/m3/m4 is it good [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wewuw5/getting_mac_air_m2m3m4_is_it_good_d/", "source": "Machine Learning"}, {"title": "How do you control different character pose in SDXL when using a reference image? [R][D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wep88z/how_do_you_control_different_character_pose_in/", "source": "Machine Learning"}, {"title": "How much do tech reports matter for a PhD application? [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1weedmk/how_much_do_tech_reports_matter_for_a_phd/", "source": "Machine Learning"}, {"title": "Confusion regarding EMNLP registration [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wdw5o0/confusion_regarding_emnlp_registration_d/", "source": "Machine Learning"}, {"title": "Why is TMLR so slow in recent times [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wd5mki/why_is_tmlr_so_slow_in_recent_times_d/", "source": "Machine Learning"}, {"title": "ACL Sustainable Reviewing Policy [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wd7b83/acl_sustainable_reviewing_policy_d/", "source": "Machine Learning"}, {"title": "How to handle cofound variables? [D]", "link": "https://www.reddit.com/r/MachineLearning/comments/1wdpat4/how_to_handle_cofound_variables_d/", "source": "Machine Learning"}, {"title": "GPT-6 Astra Changes Everything", "link": "https://www.youtube.com/watch?v=eVBJIUxv8N8", "source": "Two Minute Papers"}, {"title": "The Billion Dollar AI Gap Is Collapsing", "link": "https://www.youtube.com/watch?v=LBiNcdGNgrg", "source": "Two Minute Papers"}, {"title": "This Small AI Will Change Everything", "link": "https://www.youtube.com/watch?v=wMl6c_r0ubw", "source": "Two Minute Papers"}, {"title": "OpenAI\u2019s AI Agents Just Crossed A Line", "link": "https://www.youtube.com/watch?v=JQ97GiDwPxc", "source": "Two Minute Papers"}];
-const sources = ["Ars Technica - All content", "Hacker News", "Machine Learning", "Two Minute Papers"];
-let activeSource = "All";
+/* ── State ───────────────────────────────────────────────────────────── */
+let allArticles = [];
+let activeCategory = 'All';
+let selectedId = null;
+let bookmarks = JSON.parse(localStorage.getItem('aind_bookmarks') || '[]');
 
-function renderTopPicks() {
-  const topEl = document.getElementById('topPicks');
-  if (articles.length === 0) { topEl.innerHTML = ''; return; }
-  const top3 = articles.slice(0, 3);
-  topEl.innerHTML = `
-    <div class="top-picks">
-      <h2>🔥 Top Picks</h2>
-      ${top3.map((a, i) =>
-        `<div class="top-card" onclick="showDetail(${i})">
-           <span class="rank">#${i+1}</span><span class="title">${escapeHtml(a.title)}</span>
-           <div class="badge">${escapeHtml(a.source)}</div>
-         </div>`
-      ).join('')}
+/* ── Theme ───────────────────────────────────────────────────────────── */
+const savedTheme = localStorage.getItem('aind_theme') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+const btnTheme = document.getElementById('btnTheme');
+btnTheme.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+btnTheme.addEventListener('click', () => {
+  const cur = document.documentElement.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('aind_theme', next);
+  btnTheme.textContent = next === 'dark' ? '🌙' : '☀️';
+});
+
+/* ── Helpers ─────────────────────────────────────────────────────────── */
+function timeAgo(isoString) {
+  const diff = Date.now() - new Date(isoString).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1)  return 'just now';
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m / 60);
+  if (h < 24) return `${h}h ago`;
+  const d = Math.floor(h / 24);
+  return `${d}d ago`;
+}
+
+function formatDate(isoString) {
+  return new Date(isoString).toLocaleString('en-IN', {
+    dateStyle: 'medium', timeStyle: 'short'
+  });
+}
+
+function isBookmarked(id) { return bookmarks.includes(id); }
+
+function toggleBookmark(id) {
+  if (isBookmarked(id)) {
+    bookmarks = bookmarks.filter(b => b !== id);
+  } else {
+    bookmarks = [...bookmarks, id];
+  }
+  localStorage.setItem('aind_bookmarks', JSON.stringify(bookmarks));
+  refreshBookmarkUI();
+}
+
+function refreshBookmarkUI() {
+  const badge = document.getElementById('bmBadge');
+  badge.style.display = bookmarks.length ? '' : 'none';
+
+  // Update all bookmark buttons in cards
+  document.querySelectorAll('[data-bm-id]').forEach(btn => {
+    const id = +btn.dataset.bmId;
+    btn.classList.toggle('bookmarked', isBookmarked(id));
+    btn.textContent = isBookmarked(id) ? '🔖' : '🔖';
+    btn.style.color = isBookmarked(id) ? 'var(--accent)' : '';
+    btn.setAttribute('aria-label', isBookmarked(id) ? 'Remove bookmark' : 'Bookmark this article');
+  });
+
+  // Update panel bm button
+  const panelBm = document.getElementById('panelBmBtn');
+  if (panelBm && selectedId !== null) {
+    panelBm.textContent = isBookmarked(selectedId) ? '🔖 Bookmarked' : '🔖 Bookmark';
+    panelBm.classList.toggle('bookmarked', isBookmarked(selectedId));
+  }
+}
+
+/* ── Skeleton ─────────────────────────────────────────────────────────── */
+function renderSkeletons(n = 9) {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = Array.from({ length: n }, () => `
+    <div class="skeleton-card" aria-hidden="true">
+      <div class="skel" style="height:14px; width:90%;"></div>
+      <div class="skel" style="height:14px; width:75%;"></div>
+      <div class="skel" style="height:14px; width:60%;"></div>
+      <div style="flex:1;"></div>
+      <div class="skel" style="height:22px; width:70px; border-radius:20px;"></div>
     </div>
-  `;
+  `).join('');
 }
 
-function renderTabs() {
-  const tabsEl = document.getElementById('tabs');
-  const all = ["All", ...sources];
-  tabsEl.innerHTML = all.map(s =>
-    `<div class="tab ${s === activeSource ? 'active' : ''}" onclick="setSource('${s.replace(/'/g, "\\'")}')">${s}</div>`
-  ).join('');
-}
-
-function setSource(s) {
-  activeSource = s;
-  renderTabs();
-  renderGrid();
-}
-
-function escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
+/* ── Render articles ─────────────────────────────────────────────────── */
+function getFiltered() {
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  return allArticles.filter(a => {
+    const matchCat = activeCategory === 'All' || a.category === activeCategory;
+    const matchQ = !q || a.title.toLowerCase().includes(q) || a.source.toLowerCase().includes(q) || a.category.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
 }
 
 function renderGrid() {
-  const query = document.getElementById('search').value.toLowerCase();
-  const gridEl = document.getElementById('grid');
-  const filtered = articles
-    .map((a, i) => ({ ...a, _idx: i }))
-    .filter(a => {
-      const matchesSource = activeSource === "All" || a.source === activeSource;
-      const matchesQuery = a.title.toLowerCase().includes(query) || a.source.toLowerCase().includes(query);
-      return matchesSource && matchesQuery;
-    });
-  if (filtered.length === 0) {
-    gridEl.innerHTML = '<div class="empty-state">No articles match.</div>';
+  const grid = document.getElementById('grid');
+  const articles = getFiltered();
+  const emptyState = document.querySelector('.empty-state');
+
+  if (articles.length === 0) {
+    grid.innerHTML = '<div class="empty-state show">No articles found. Try a different search or category.</div>';
     return;
   }
-  gridEl.innerHTML = filtered.map(a =>
-    `<div class="card" onclick="showDetail(${a._idx})">
-       <div class="title">${escapeHtml(a.title)}</div>
-       <div class="badge">${escapeHtml(a.source)}</div>
-     </div>`
-  ).join('');
+
+  grid.innerHTML = articles.map(a => `
+    <article
+      class="card${selectedId === a.id ? ' selected' : ''}"
+      role="listitem"
+      tabindex="0"
+      data-id="${a.id}"
+      aria-label="${a.title}"
+    >
+      <button
+        class="card-bookmark${isBookmarked(a.id) ? ' bookmarked' : ''}"
+        data-bm-id="${a.id}"
+        aria-label="${isBookmarked(a.id) ? 'Remove bookmark' : 'Bookmark this article'}"
+        title="${isBookmarked(a.id) ? 'Remove bookmark' : 'Bookmark'}"
+      >🔖</button>
+      <div class="card-title">${a.title}</div>
+      <div class="card-footer">
+        <span class="badge">${a.category}</span>
+        <span class="card-time">${timeAgo(a.published_at)}</span>
+      </div>
+    </article>
+  `).join('');
+
+  // Card click → open panel
+  grid.querySelectorAll('.card').forEach(card => {
+    const id = +card.dataset.id;
+    card.addEventListener('click', e => {
+      if (e.target.classList.contains('card-bookmark')) return;
+      selectedId = id;
+      openPanel(id);
+      grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === id));
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+
+  // Bookmark button clicks
+  grid.querySelectorAll('.card-bookmark').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      toggleBookmark(+btn.dataset.bmId);
+    });
+  });
 }
 
-function showDetail(idx) {
-  const a = articles[idx];
+/* ── Tabs ─────────────────────────────────────────────────────────────── */
+function renderTabs() {
+  const counts = {};
+  allArticles.forEach(a => { counts[a.category] = (counts[a.category] || 0) + 1; });
+  const cats = ['All', ...Object.keys(counts).sort()];
+
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = cats.map(cat => {
+    const count = cat === 'All' ? allArticles.length : counts[cat];
+    return `
+      <button
+        class="tab${activeCategory === cat ? ' active' : ''}"
+        role="tab"
+        aria-selected="${activeCategory === cat}"
+        data-cat="${cat}"
+      >${cat}<span class="tab-count">${count}</span></button>
+    `;
+  }).join('');
+
+  tabs.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeCategory = tab.dataset.cat;
+      renderTabs();
+      renderGrid();
+    });
+  });
+}
+
+/* ── Top Picks ────────────────────────────────────────────────────────── */
+function renderTopPicks(topIds) {
+  const picks = topIds.map(id => allArticles.find(a => a.id === id)).filter(Boolean);
+  if (!picks.length) return;
+
+  document.getElementById('topPicksSection').style.display = '';
+  document.getElementById('topPicks').innerHTML = picks.map((a, i) => `
+    <div class="top-card" data-id="${a.id}" tabindex="0" role="button" aria-label="Top pick: ${a.title}">
+      <span class="rank">#${i + 1}</span>
+      <div>
+        <div class="tc-title">${a.title}</div>
+        <div class="tc-meta">${a.source} · ${timeAgo(a.published_at)}</div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('topPicks').querySelectorAll('.top-card').forEach(card => {
+    const onClick = () => { selectedId = +card.dataset.id; openPanel(selectedId); };
+    card.addEventListener('click', onClick);
+    card.addEventListener('keydown', e => { if (e.key === 'Enter') onClick(); });
+  });
+}
+
+/* ── Panel ────────────────────────────────────────────────────────────── */
+function openPanel(id) {
+  const a = allArticles.find(x => x.id === id);
+  if (!a) return;
+
   document.getElementById('panel').innerHTML = `
-    <h3>${escapeHtml(a.title)}</h3>
-    <div class="src">Source: ${escapeHtml(a.source)}</div>
-    <a class="open" href="${a.link}" target="_blank">Open Article →</a>
+    <h3>${a.title}</h3>
+    <div class="panel-meta">
+      <span class="panel-cat">${a.category}</span>
+      <span class="panel-src">📰 ${a.source}</span>
+      <span class="panel-time">🕐 ${timeAgo(a.published_at)}</span>
+    </div>
+    <p class="panel-summary">${a.summary || 'No summary available.'}</p>
+    <a class="open-btn" href="${a.url}" target="_blank" rel="noopener noreferrer">Open Article ↗</a>
+    <button class="bm-btn${isBookmarked(id) ? ' bookmarked' : ''}" id="panelBmBtn">
+      ${isBookmarked(id) ? '🔖 Bookmarked' : '🔖 Bookmark'}
+    </button>
+    <p style="color:var(--text-muted); font-size:0.75em; margin-top:14px;">Published: ${formatDate(a.published_at)}</p>
   `;
+
+  document.getElementById('panelBmBtn').addEventListener('click', () => {
+    toggleBookmark(id);
+  });
 }
 
-document.getElementById('search').addEventListener('input', renderGrid);
-renderTopPicks();
-renderTabs();
-renderGrid();
+/* ── Bookmarks Overlay ────────────────────────────────────────────────── */
+document.getElementById('btnBookmarks').addEventListener('click', () => {
+  const overlay = document.getElementById('bmOverlay');
+  const list = document.getElementById('bmList');
+
+  if (bookmarks.length === 0) {
+    list.innerHTML = '<div class="bm-empty">No bookmarks yet. Click 🔖 on any article to save it.</div>';
+  } else {
+    const saved = bookmarks.map(id => allArticles.find(a => a.id === id)).filter(Boolean);
+    list.innerHTML = saved.map(a => `
+      <div class="bm-item" data-id="${a.id}" tabindex="0" role="button" aria-label="${a.title}">
+        <div class="bm-item-title">${a.title}</div>
+        <div class="bm-item-meta">${a.source} · ${a.category} · ${timeAgo(a.published_at)}</div>
+      </div>
+    `).join('');
+    list.querySelectorAll('.bm-item').forEach(item => {
+      item.addEventListener('click', () => {
+        overlay.classList.remove('show');
+        selectedId = +item.dataset.id;
+        openPanel(selectedId);
+        document.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === selectedId));
+      });
+    });
+  }
+  overlay.classList.add('show');
+});
+
+document.getElementById('bmClose').addEventListener('click', () => {
+  document.getElementById('bmOverlay').classList.remove('show');
+});
+document.getElementById('bmOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('show');
+});
+
+/* ── Search ───────────────────────────────────────────────────────────── */
+let searchTimeout;
+document.getElementById('search').addEventListener('input', () => {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(renderGrid, 200);
+});
+
+/* ── Fetch + Bootstrap ────────────────────────────────────────────────── */
+async function loadNews() {
+  renderSkeletons();
+  document.getElementById('errorState').classList.remove('show');
+
+  try {
+    const res = await fetch('news.json?v=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    allArticles = data.articles || [];
+
+    // Date bar
+    const d = new Date(data.last_updated);
+    document.getElementById('dateBar').textContent =
+      `Last updated: ${d.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })} · Refreshes hourly`;
+
+    renderTopPicks(data.top_pick_ids || []);
+    renderTabs();
+    renderGrid();
+    refreshBookmarkUI();
+
+  } catch (err) {
+    console.error('Failed to load news:', err);
+    document.getElementById('grid').innerHTML = '';
+    document.getElementById('errorState').classList.add('show');
+  }
+}
+
+document.getElementById('btnRetry').addEventListener('click', loadNews);
+
+loadNews();
 </script>
-</body></html>
+</body>
+</html>
