@@ -15,8 +15,8 @@
   <meta name="twitter:title" content="AI Tools Directory">
   <meta name="twitter:description" content="Curated AI tools — coding, image, audio, video, productivity, and more.">
 
-  <!-- Emoji favicon -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛠️</text></svg>">
+  <!-- Image favicon -->
+  <link rel="icon" href="assets/robot_icon.png">
 
   <style>
     /* ── CSS Variables ──────────────────────────────────────────────── */
@@ -70,7 +70,20 @@
       flex-shrink: 0;
       z-index: 10;
     }
-    .sidebar .logo { font-size: 1.6em; margin-bottom: 14px; user-select: none; }
+    .sidebar .logo {
+      margin-bottom: 14px;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--surface2);
+    }
     .sidebar .spacer { flex: 1; }
     .sb-btn {
       width: 44px; height: 44px;
@@ -184,9 +197,11 @@
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      cursor: pointer;
       transition: transform 0.15s, border-color 0.15s;
     }
     .card:hover { transform: translateY(-3px); border-color: var(--accent); }
+    .card.selected { border-color: var(--accent2); }
     .card a {
       color: var(--text-strong);
       text-decoration: none;
@@ -253,7 +268,61 @@
     .empty-state { grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 60px 0; display: none; }
     .empty-state.show { display: block; }
 
+    /* ── Detail Panel ───────────────────────────────────────────────── */
+    .panel {
+      width: 320px;
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      padding: 30px 24px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      align-self: flex-start;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .panel-empty { color: var(--text-muted); font-size: 0.9em; margin-top: 20px; }
+    .panel-empty .panel-hint { font-size: 2em; margin-bottom: 10px; }
+    .panel h3 { color: var(--text-strong); font-size: 1.1em; margin-bottom: 10px; line-height: 1.45; }
+    .panel .panel-meta { margin-bottom: 14px; }
+    .panel .panel-cat {
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: var(--surface2);
+      color: var(--text);
+      font-size: 0.75em;
+      border: 1px solid var(--border);
+      display: inline-block;
+    }
+    .panel-summary {
+      color: var(--text);
+      font-size: 0.88em;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      border-left: 3px solid var(--accent);
+      padding-left: 12px;
+    }
+    .panel a.open-btn {
+      display: block;
+      text-align: center;
+      background: var(--accent);
+      color: #0d1117;
+      padding: 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: opacity 0.15s;
+    }
+    [data-theme="light"] .panel a.open-btn { color: #fff; }
+    .panel a.open-btn:hover { opacity: 0.85; }
+
     /* ── Responsive ─────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .panel { display: none; }
+      .main { max-width: none; }
+    }
     @media (max-width: 600px) {
       .main { padding: 20px 16px; }
       .sidebar { width: 52px; }
@@ -265,8 +334,10 @@
 
   <!-- ── Sidebar ─────────────────────────────────────────────────────── -->
   <nav class="sidebar" aria-label="Main navigation">
-    <div class="logo" aria-hidden="true">🤖</div>
-    <a href="index.html" class="sb-btn" aria-label="Home — News Digest" data-tooltip="News">🏠</a>
+    <div class="logo">
+      <img src="assets/sidebar_logo.png" alt="AI News Digest Logo" class="logo-img">
+    </div>
+    <a href="index.html" class="sb-btn" aria-label="Return to News" data-tooltip="Back to News">🏠</a>
     <a href="tools.html" class="sb-btn active" aria-label="AI Tools Directory" data-tooltip="Tools">🛠️</a>
     <div class="spacer"></div>
     <button class="sb-btn" id="btnTheme" aria-label="Toggle light/dark mode" data-tooltip="Theme">🌙</button>
@@ -274,6 +345,7 @@
 
   <!-- ── Main ──────────────────────────────────────────────────────────── -->
   <main class="main">
+    <a href="index.html" style="display:inline-block; margin-bottom: 12px; color: var(--accent); text-decoration: none; font-size: 0.9em; font-weight: 600;">← Return to Main Page</a>
     <h1>🛠️ AI Tools Directory</h1>
     <div class="date" id="dateBar">Loading…</div>
 
@@ -294,6 +366,14 @@
     </div>
   </main>
 
+  <!-- ── Detail Panel ───────────────────────────────────────────────── -->
+  <aside class="panel" id="panel" aria-label="Tool preview">
+    <div class="panel-empty">
+      <div class="panel-hint">👈</div>
+      Click a tool to preview it here.
+    </div>
+  </aside>
+
 <script>
 /* ── Theme ────────────────────────────────────────────────────────────── */
 const savedTheme = localStorage.getItem('aind_theme') || 'dark';
@@ -311,6 +391,7 @@ btnTheme.addEventListener('click', () => {
 /* ── State ────────────────────────────────────────────────────────────── */
 let allTools = [];
 let activeCategory = 'All';
+let selectedId = null;
 
 /* ── Skeleton ─────────────────────────────────────────────────────────── */
 function renderSkeletons(n = 12) {
@@ -345,15 +426,44 @@ function renderGrid() {
     grid.innerHTML = '<div class="empty-state show">No tools found. Try a different search or category.</div>';
     return;
   }
-  grid.innerHTML = tools.map(t => `
-    <article class="card" role="listitem">
-      <div>
-        <a href="${t.link}" target="_blank" rel="noopener noreferrer" aria-label="${t.title} — opens in new tab">${t.title}</a>
-        ${t.description ? `<div class="card-desc">${t.description}</div>` : ''}
-      </div>
-      <span class="badge">${t.category}</span>
-    </article>
-  `).join('');
+  grid.innerHTML = tools.map(t => {
+    // Generate a quick ID from link/title for selection tracking
+    const _id = btoa(unescape(encodeURIComponent(t.title + t.link))).slice(0, 16);
+    t._id = _id;
+    return `
+      <article class="card ${selectedId === _id ? 'selected' : ''}" role="listitem" tabindex="0" data-id="${_id}">
+        <div>
+          <div style="color:var(--text-strong); font-weight:600; font-size:0.95em; margin-bottom:4px;">${t.title}</div>
+          ${t.description ? `<div class="card-desc">${t.description}</div>` : ''}
+        </div>
+        <span class="badge">${t.category}</span>
+      </article>
+    `;
+  }).join('');
+
+  grid.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      selectedId = card.dataset.id;
+      openPanel(selectedId);
+      grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', c.dataset.id === selectedId));
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+}
+
+function openPanel(id) {
+  const t = allTools.find(x => x._id === id);
+  if (!t) return;
+  document.getElementById('panel').innerHTML = `
+    <h3>${t.title}</h3>
+    <div class="panel-meta">
+      <span class="panel-cat">${t.category}</span>
+    </div>
+    <p class="panel-summary">${t.description || 'No description available.'}</p>
+    <a class="open-btn" href="${t.link}" target="_blank" rel="noopener noreferrer">Visit Website ↗</a>
+  `;
 }
 
 function renderTabs() {

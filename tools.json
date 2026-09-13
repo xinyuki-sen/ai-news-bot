@@ -1,23 +1,13 @@
 [
   {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
-    "category": "Productivity"
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
   },
   {
     "title": "Perplexity Hybrid Compute",
     "link": "https://www.producthunt.com/products/perplexity-ai",
     "category": "Productivity"
-  },
-  {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
-  },
-  {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
-    "category": "Other"
   },
   {
     "title": "DemoTV",
@@ -30,9 +20,34 @@
     "category": "Other"
   },
   {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
+    "title": "Kirokune",
+    "link": "https://www.producthunt.com/products/kirokune",
+    "category": "Productivity"
+  },
+  {
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
+    "category": "Other"
+  },
+  {
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
+    "category": "Video"
+  },
+  {
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "category": "Other"
+  },
+  {
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
+    "category": "Other"
+  },
+  {
+    "title": "Visiby",
+    "link": "https://www.producthunt.com/products/visiby",
+    "category": "Research"
   },
   {
     "title": "Resurf",
@@ -45,19 +60,9 @@
     "category": "Productivity"
   },
   {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
-    "category": "Other"
-  },
-  {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
+    "title": "QApilot MCP for Android",
+    "link": "https://www.producthunt.com/products/qapilot",
+    "category": "Coding"
   },
   {
     "title": "Marked Share",
@@ -65,18 +70,8 @@
     "category": "Video"
   },
   {
-    "title": "Kabza",
-    "link": "https://www.producthunt.com/products/kabza",
-    "category": "Other"
-  },
-  {
-    "title": "Work Life Panda",
-    "link": "https://www.producthunt.com/products/work-life-panda",
-    "category": "Productivity"
-  },
-  {
-    "title": "DockFix 5.0",
-    "link": "https://www.producthunt.com/products/dockfix",
+    "title": "Wokyintosh",
+    "link": "https://www.producthunt.com/products/wokyintosh",
     "category": "Other"
   },
   {
@@ -85,39 +80,14 @@
     "category": "Other"
   },
   {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
-    "category": "Other"
-  },
-  {
-    "title": "Stackness",
-    "link": "https://www.producthunt.com/products/stackness",
-    "category": "Other"
-  },
-  {
-    "title": "LinkFlick",
-    "link": "https://www.producthunt.com/products/linkflick",
+    "title": "Kabza",
+    "link": "https://www.producthunt.com/products/kabza",
     "category": "Other"
   },
   {
     "title": "Relic",
     "link": "https://www.producthunt.com/products/relic-copy-vault",
     "category": "Other"
-  },
-  {
-    "title": "QApilot MCP for Android",
-    "link": "https://www.producthunt.com/products/qapilot",
-    "category": "Coding"
-  },
-  {
-    "title": "Cortex",
-    "link": "https://www.producthunt.com/products/cortex-25",
-    "category": "Other"
-  },
-  {
-    "title": "ABrush",
-    "link": "https://www.producthunt.com/products/abrush-ai-2",
-    "category": "Image"
   },
   {
     "title": "Pascal’s Pager",
@@ -130,13 +100,43 @@
     "category": "Audio"
   },
   {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
+    "title": "Stackness",
+    "link": "https://www.producthunt.com/products/stackness",
     "category": "Other"
+  },
+  {
+    "title": "ABrush",
+    "link": "https://www.producthunt.com/products/abrush-ai-2",
+    "category": "Image"
   },
   {
     "title": "SUDARI",
     "link": "https://www.producthunt.com/products/sudari",
+    "category": "Other"
+  },
+  {
+    "title": "Work Life Panda",
+    "link": "https://www.producthunt.com/products/work-life-panda",
+    "category": "Productivity"
+  },
+  {
+    "title": "Cortex",
+    "link": "https://www.producthunt.com/products/cortex-25",
+    "category": "Other"
+  },
+  {
+    "title": "Youkti",
+    "link": "https://www.producthunt.com/products/youkti",
+    "category": "Other"
+  },
+  {
+    "title": "DockFix 5.0",
+    "link": "https://www.producthunt.com/products/dockfix",
+    "category": "Other"
+  },
+  {
+    "title": "LinkFlick",
+    "link": "https://www.producthunt.com/products/linkflick",
     "category": "Other"
   },
   {
