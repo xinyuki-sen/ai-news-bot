@@ -1,0 +1,168 @@
+{
+  "last_updated": "2026-09-13T09:26:00+05:30",
+  "top_pick_ids": [1, 4, 9],
+  "articles": [
+    {
+      "id": 1,
+      "title": "OpenAI Releases o3-mini with Record-Breaking Math and Coding Benchmarks",
+      "source": "The Verge",
+      "url": "https://theverge.com",
+      "category": "LLMs",
+      "summary": "OpenAI's o3-mini achieves state-of-the-art scores on AIME math competitions and SWE-bench coding tasks, outperforming o1 at a fraction of the inference cost. The model uses a chain-of-thought reasoning approach and is now available to all ChatGPT Plus users.",
+      "published_at": "2026-09-13T07:15:00+05:30"
+    },
+    {
+      "id": 2,
+      "title": "Google DeepMind Publishes AlphaFold 3 Extension Supporting RNA and Small Molecules",
+      "source": "Nature",
+      "url": "https://nature.com",
+      "category": "Research",
+      "summary": "AlphaFold 3's latest update extends structure prediction to RNA, DNA, and small molecule ligands in addition to proteins. Researchers report significant improvements in drug-target binding affinity predictions, with potential implications for antibiotic and oncology research.",
+      "published_at": "2026-09-13T06:00:00+05:30"
+    },
+    {
+      "id": 3,
+      "title": "Anthropic Launches Claude 3.7 Sonnet with Extended Thinking at 200K Context",
+      "source": "TechCrunch",
+      "url": "https://techcrunch.com",
+      "category": "LLMs",
+      "summary": "Claude 3.7 Sonnet introduces extended thinking mode, allowing the model to reason through complex problems before responding. The model supports 200K token context windows and shows marked improvements on legal and scientific document analysis tasks.",
+      "published_at": "2026-09-13T05:30:00+05:30"
+    },
+    {
+      "id": 4,
+      "title": "Meta Releases Llama 4 Scout: A Sparse Mixture-of-Experts Model with 17B Active Parameters",
+      "source": "Meta AI Blog",
+      "url": "https://ai.meta.com",
+      "category": "LLMs",
+      "summary": "Meta's Llama 4 Scout uses a 16-expert sparse MoE architecture activating only 17B parameters per token from 109B total. The model matches GPT-4o on most benchmarks while being significantly cheaper to serve, and is fully open-weight under a permissive license.",
+      "published_at": "2026-09-13T04:00:00+05:30"
+    },
+    {
+      "id": 5,
+      "title": "Stability AI Open-Sources Stable Diffusion 3.5 Large Turbo",
+      "source": "Stability AI",
+      "url": "https://stability.ai",
+      "category": "Vision",
+      "summary": "SD 3.5 Large Turbo uses adversarial diffusion distillation to generate high-quality 1024×1024 images in 4 steps instead of 50, cutting inference time by 12×. The model weights are freely available for commercial use under the Stability Community License.",
+      "published_at": "2026-09-13T03:45:00+05:30"
+    },
+    {
+      "id": 6,
+      "title": "Microsoft Copilot Now Generates Full PowerPoint Decks from a Single Sentence",
+      "source": "The Register",
+      "url": "https://theregister.com",
+      "category": "Products",
+      "summary": "Microsoft's updated Copilot for Microsoft 365 can now scaffold entire PowerPoint presentations including slide layouts, speaker notes, and suggested charts from a brief natural-language prompt, integrating with SharePoint data sources for enterprise context.",
+      "published_at": "2026-09-13T03:00:00+05:30"
+    },
+    {
+      "id": 7,
+      "title": "New Paper: Constitutional AI Doesn't Fully Prevent Jailbreaks, Researchers Warn",
+      "source": "arXiv",
+      "url": "https://arxiv.org",
+      "category": "Research",
+      "summary": "A team from MIT and Stanford published findings showing that many Constitutional AI-trained models remain vulnerable to structured multi-turn jailbreaks that gradually shift the conversation context. The paper proposes improved reward modeling techniques as a countermeasure.",
+      "published_at": "2026-09-13T02:30:00+05:30"
+    },
+    {
+      "id": 8,
+      "title": "ElevenLabs Launches Voice Design V2: Clone Any Voice in Under 10 Seconds",
+      "source": "VentureBeat",
+      "url": "https://venturebeat.com",
+      "category": "Audio",
+      "summary": "ElevenLabs' new Voice Design V2 requires just 10 seconds of reference audio to create a high-fidelity voice clone with accurate prosody and emotion. The update also introduces multilingual cloning that preserves accent characteristics across 30 languages.",
+      "published_at": "2026-09-13T02:00:00+05:30"
+    },
+    {
+      "id": 9,
+      "title": "GitHub Copilot Now Edits Entire Codebases Autonomously with Copilot Workspace GA",
+      "source": "GitHub Blog",
+      "url": "https://github.blog",
+      "category": "Coding",
+      "summary": "GitHub Copilot Workspace exits beta and enters general availability. It can now plan, write, test, and open PRs for multi-file coding tasks from a single natural-language issue. The tool integrates directly with GitHub Actions for automated CI feedback loops.",
+      "published_at": "2026-09-13T01:30:00+05:30"
+    },
+    {
+      "id": 10,
+      "title": "Google Gemini 2.0 Flash Now Available Free to All Users with 1M Token Context",
+      "source": "Google Blog",
+      "url": "https://blog.google",
+      "category": "LLMs",
+      "summary": "Google has made Gemini 2.0 Flash freely available to all users via gemini.google.com, featuring a 1 million token context window. The model excels at document summarization, code generation, and multi-modal tasks involving images and audio.",
+      "published_at": "2026-09-12T22:00:00+05:30"
+    },
+    {
+      "id": 11,
+      "title": "Waymo Robotaxis Now Operating in Six US Cities After Austin Launch",
+      "source": "Reuters",
+      "url": "https://reuters.com",
+      "category": "Robotics",
+      "summary": "Waymo expanded its commercial robotaxi service to Austin, Texas, becoming the sixth US city in its network. The fleet runs 24/7 with no safety driver and has completed over 10 million paid rides since its San Francisco launch.",
+      "published_at": "2026-09-12T20:00:00+05:30"
+    },
+    {
+      "id": 12,
+      "title": "Mistral Releases Mistral Large 2 with 128K Context and Function Calling",
+      "source": "Mistral AI",
+      "url": "https://mistral.ai",
+      "category": "LLMs",
+      "summary": "Mistral Large 2 upgrades its flagship model with 128K context support and vastly improved function calling for agentic workflows. Benchmarks show it outperforming GPT-4o-mini on reasoning tasks at a significantly lower cost per million tokens.",
+      "published_at": "2026-09-12T18:00:00+05:30"
+    },
+    {
+      "id": 13,
+      "title": "Runway Gen-3 Alpha Adds Real-Time Motion Brush for Video Object Control",
+      "source": "Runway ML",
+      "url": "https://runwayml.com",
+      "category": "Vision",
+      "summary": "Runway's Gen-3 Alpha now includes a Motion Brush tool that lets creators draw directional motion paths on individual objects within a generated video clip. The feature supports granular control over camera motion separately from subject motion.",
+      "published_at": "2026-09-12T16:30:00+05:30"
+    },
+    {
+      "id": 14,
+      "title": "DeepSeek R2 Reported to Match o1 on Reasoning at 20× Lower Cost",
+      "source": "CNBC",
+      "url": "https://cnbc.com",
+      "category": "LLMs",
+      "summary": "Chinese AI lab DeepSeek reportedly trained R2 for under \$6M while matching OpenAI o1's performance on MATH, GPQA, and LiveCodeBench. The model is expected to be open-sourced in the coming weeks, potentially disrupting inference pricing across the industry.",
+      "published_at": "2026-09-12T14:00:00+05:30"
+    },
+    {
+      "id": 15,
+      "title": "EU AI Act Enforcement Begins: First Prohibited-Use Notices Issued to Three Firms",
+      "source": "Politico",
+      "url": "https://politico.eu",
+      "category": "Policy",
+      "summary": "The European AI Office issued formal prohibited-use notices to three companies for deploying social scoring and biometric categorization systems banned under the EU AI Act. Companies have 30 days to comply or face fines up to 7% of global annual turnover.",
+      "published_at": "2026-09-12T12:00:00+05:30"
+    },
+    {
+      "id": 16,
+      "title": "Amazon Bedrock Adds Support for Custom Fine-Tuned Models via LoRA",
+      "source": "AWS Blog",
+      "url": "https://aws.amazon.com/blogs",
+      "category": "Products",
+      "summary": "Amazon Bedrock now supports low-rank adaptation (LoRA) fine-tuning for Titan, Llama 3, and Mistral models. Enterprises can now fine-tune domain-specific models entirely within Bedrock without managing GPU infrastructure.",
+      "published_at": "2026-09-12T10:00:00+05:30"
+    },
+    {
+      "id": 17,
+      "title": "Researchers Train 1-Bit LLM That Runs on a Raspberry Pi 5",
+      "source": "arXiv",
+      "url": "https://arxiv.org",
+      "category": "Research",
+      "summary": "A team from Microsoft Research published BitNet b1.58, a 1-bit quantized language model that achieves 7B-parameter-class quality while running at 6 tokens/second on a Raspberry Pi 5. The approach uses ternary weights {-1, 0, 1} and eliminates most floating-point operations.",
+      "published_at": "2026-09-12T08:00:00+05:30"
+    },
+    {
+      "id": 18,
+      "title": "OpenAI Acquires Rockset to Build Real-Time Retrieval Into ChatGPT",
+      "source": "Bloomberg",
+      "url": "https://bloomberg.com",
+      "category": "Products",
+      "summary": "OpenAI completed its acquisition of Rockset, a real-time analytics database startup. The technology is expected to power live knowledge retrieval in ChatGPT and the Assistants API, potentially replacing the need for external RAG pipelines.",
+      "published_at": "2026-09-12T06:00:00+05:30"
+    }
+  ]
+}
