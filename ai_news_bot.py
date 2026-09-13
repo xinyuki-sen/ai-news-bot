@@ -213,253 +213,48 @@ def post_to_discord(articles):
 # ============================================================================
 def build_webpage(articles):
     """
-    Create an index.html file showing today's articles
-    Think: Turning our Discord message into a simple website
+    Writes news.json for the enhanced frontend to consume.
+    The index.html is a static template in the repo — the bot
+    just updates the data file, not the HTML.
     """
-    # Build a JSON array of articles for the frontend JS to use
-    # Only send title/link/source (not raw description - Reddit's HTML/quotes broke the page before)
-    clean_articles = [{"title": a["title"], "link": a["link"], "source": a["source"]} for a in articles[:40]]
-    articles_json = json.dumps(clean_articles)
-    sources = sorted(set(a['source'] for a in articles[:40]))
+    SOURCE_CATEGORY = {
+        "cs.AI updates on arXiv.org": "Research",
+        "Hacker News": "Products",
+        "Ars Technica - All content": "LLMs",
+    }
 
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>AI News Digest</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    font-family: 'Segoe UI', -apple-system, sans-serif;
-    background: #0d1117;
-    color: #c9d1d9;
-    display: flex;
-    min-height: 100vh;
-  }}
-  /* SIDEBAR */
-  .sidebar {{
-    width: 70px;
-    background: #161b22;
-    border-right: 1px solid #30363d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    gap: 24px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-  }}
-  .sidebar .logo {{ font-size: 1.6em; margin-bottom: 10px; }}
-  .sidebar .icon {{ font-size: 1.2em; opacity: 0.5; cursor: default; }}
-  /* MAIN */
-  .main {{ flex: 1; padding: 30px 40px; max-width: 900px; }}
-  .topbar {{ display: flex; gap: 10px; margin-bottom: 24px; }}
-  .search {{
-    flex: 1;
-    background: #21262d;
-    border: 1px solid #30363d;
-    border-radius: 8px;
-    padding: 10px 14px;
-    color: #c9d1d9;
-    font-size: 0.95em;
-  }}
-  h1 {{
-    font-size: 1.8em;
-    background: linear-gradient(90deg, #58a6ff, #a371f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 4px;
-  }}
-  .date {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
-  .tabs {{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }}
-  .tab {{
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: #21262d;
-    border: 1px solid #30363d;
-    color: #8b949e;
-    font-size: 0.8em;
-    cursor: pointer;
-  }}
-  .tab.active {{ background: #58a6ff; color: #0d1117; border-color: #58a6ff; }}
-  .grid {{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 14px;
-  }}
-  .card {{
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 10px;
-    padding: 16px;
-    cursor: pointer;
-    transition: transform 0.15s, border-color 0.15s;
-    height: 140px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    overflow: hidden;
-  }}
-  .card:hover {{ transform: translateY(-3px); border-color: #58a6ff; }}
-  .card .title {{
-    color: #e6edf3;
-    font-weight: 600;
-    font-size: 0.95em;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }}
-  .badge {{
-    display: inline-block; margin-top: 10px; padding: 3px 10px;
-    border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em;
-    width: fit-content;
-  }}
-  /* DETAIL PANEL - stays visible while page scrolls */
-  .panel {{
-    width: 320px;
-    background: #161b22;
-    border-left: 1px solid #30363d;
-    padding: 30px 24px;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    align-self: flex-start;
-  }}
-  .panel h3 {{ color: #e6edf3; font-size: 1.1em; margin-bottom: 12px; line-height: 1.4; }}
-  .panel .src {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
-  .panel a.open {{
-    display: block; text-align: center; background: #58a6ff; color: #0d1117;
-    padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 600;
-  }}
-  .panel .empty {{ color: #6e7681; font-size: 0.9em; }}
-  .empty-state {{ text-align: center; color: #8b949e; padding: 60px 0; }}
-  .top-picks {{ margin-bottom: 28px; }}
-  .top-picks h2 {{ font-size: 1.1em; color: #e6edf3; margin-bottom: 12px; }}
-  .top-card {{
-    background: linear-gradient(135deg, #1c2333, #161b22);
-    border: 1px solid #58a6ff;
-    border-radius: 10px;
-    padding: 16px;
-    margin-bottom: 10px;
-    cursor: pointer;
-  }}
-  .top-card:hover {{ border-color: #a371f7; }}
-  .top-card .rank {{ color: #58a6ff; font-weight: 700; font-size: 0.8em; margin-right: 6px; }}
-  .top-card .title {{ color: #e6edf3; font-weight: 600; display: inline; }}
-</style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="logo">🤖</div>
-    <a href="index.html" class="icon" style="text-decoration:none;">🏠</a>
-    <a href="tools.html" class="icon" style="text-decoration:none;">🛠️</a>
-    <div class="icon">🔖</div>
-    <div class="icon">⚙️</div>
-  </div>
+    clean_articles = []
+    for i, a in enumerate(articles[:40], 1):
+        cat = SOURCE_CATEGORY.get(a["source"], categorize_tool(a["title"], a.get("description", "")))
+        summary = a.get("description", "")
+        if summary:
+            # Strip basic HTML tags from RSS descriptions
+            import re
+            summary = re.sub(r'<[^>]+>', '', summary).strip()[:300]
+        clean_articles.append({
+            "id": i,
+            "title": a["title"],
+            "url": a["link"],
+            "source": a["source"],
+            "category": cat,
+            "summary": summary or "No summary available.",
+            "published_at": datetime.now(IST).isoformat(),
+        })
 
-  <div class="main">
-    <h1>AI News Digest</h1>
-    <div class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST · Refreshes hourly</div>
-    <div id="topPicks"></div>
-    <div class="topbar">
-      <input class="search" id="search" placeholder="Search title or source...">
-    </div>
-    <div class="tabs" id="tabs"></div>
-    <div class="grid" id="grid"></div>
-  </div>
+    top_pick_ids = [a["id"] for a in clean_articles[:3]]
 
-  <div class="panel" id="panel">
-    <p class="empty">Click an article to preview it here.</p>
-  </div>
+    data = {
+        "last_updated": datetime.now(IST).isoformat(),
+        "top_pick_ids": top_pick_ids,
+        "articles": clean_articles,
+    }
 
-<script>
-const articles = {articles_json};
-const sources = {json.dumps(sources)};
-let activeSource = "All";
+    with open("news.json", "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
+    print("✓ news.json generated")
 
-function renderTopPicks() {{
-  const topEl = document.getElementById('topPicks');
-  if (articles.length === 0) {{ topEl.innerHTML = ''; return; }}
-  const top3 = articles.slice(0, 3);
-  topEl.innerHTML = `
-    <div class="top-picks">
-      <h2>🔥 Top Picks</h2>
-      ${{top3.map((a, i) =>
-        `<div class="top-card" onclick="showDetail(${{i}})">
-           <span class="rank">#${{i+1}}</span><span class="title">${{escapeHtml(a.title)}}</span>
-           <div class="badge">${{escapeHtml(a.source)}}</div>
-         </div>`
-      ).join('')}}
-    </div>
-  `;
-}}
 
-function renderTabs() {{
-  const tabsEl = document.getElementById('tabs');
-  const all = ["All", ...sources];
-  tabsEl.innerHTML = all.map(s =>
-    `<div class="tab ${{s === activeSource ? 'active' : ''}}" onclick="setSource('${{s.replace(/'/g, "\\\\'")}}')">${{s}}</div>`
-  ).join('');
-}}
 
-function setSource(s) {{
-  activeSource = s;
-  renderTabs();
-  renderGrid();
-}}
-
-function escapeHtml(text) {{
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}}
-
-function renderGrid() {{
-  const query = document.getElementById('search').value.toLowerCase();
-  const gridEl = document.getElementById('grid');
-  const filtered = articles
-    .map((a, i) => ({{ ...a, _idx: i }}))
-    .filter(a => {{
-      const matchesSource = activeSource === "All" || a.source === activeSource;
-      const matchesQuery = a.title.toLowerCase().includes(query) || a.source.toLowerCase().includes(query);
-      return matchesSource && matchesQuery;
-    }});
-  if (filtered.length === 0) {{
-    gridEl.innerHTML = '<div class="empty-state">No articles match.</div>';
-    return;
-  }}
-  gridEl.innerHTML = filtered.map(a =>
-    `<div class="card" onclick="showDetail(${{a._idx}})">
-       <div class="title">${{escapeHtml(a.title)}}</div>
-       <div class="badge">${{escapeHtml(a.source)}}</div>
-     </div>`
-  ).join('');
-}}
-
-function showDetail(idx) {{
-  const a = articles[idx];
-  document.getElementById('panel').innerHTML = `
-    <h3>${{escapeHtml(a.title)}}</h3>
-    <div class="src">Source: ${{escapeHtml(a.source)}}</div>
-    <a class="open" href="${{a.link}}" target="_blank">Open Article →</a>
-  `;
-}}
-
-document.getElementById('search').addEventListener('input', renderGrid);
-renderTopPicks();
-renderTabs();
-renderGrid();
-</script>
-</body></html>"""
-
-    with open("index.html", "w") as f:
-        f.write(html)
-    print("✓ Webpage generated (index.html)")
 
 
 TOOL_FEEDS = [
@@ -523,82 +318,13 @@ def fetch_tools():
     return tools
     
 def build_tools_page(tools):
-    """Create a tools.html page, grouped by category"""
-    grouped = {}
-    for tool in tools:
-        grouped.setdefault(tool["category"], []).append(tool)
-
-    tools_json = json.dumps(tools)
-    categories = sorted(grouped.keys())
-
-    html = f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>AI Tools Directory</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{ font-family: 'Segoe UI', -apple-system, sans-serif; background: #0d1117; color: #c9d1d9; padding: 30px 40px; max-width: 1000px; margin: 0 auto; }}
-  h1 {{ font-size: 1.8em; background: linear-gradient(90deg, #58a6ff, #a371f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }}
-  .date {{ color: #8b949e; font-size: 0.85em; margin-bottom: 20px; }}
-  nav {{ margin-bottom: 10px; }}
-  nav a {{ color: #58a6ff; text-decoration: none; font-size: 0.9em; }}
-  .tabs {{ display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0; }}
-  .tab {{ padding: 6px 14px; border-radius: 20px; background: #21262d; border: 1px solid #30363d; color: #8b949e; font-size: 0.8em; cursor: pointer; }}
-  .tab.active {{ background: #58a6ff; color: #0d1117; border-color: #58a6ff; }}
-  .grid {{ display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }}
-  .card {{ background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 16px; height: 100px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }}
-  .card a {{ color: #e6edf3; text-decoration: none; font-weight: 600; font-size: 0.95em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }}
-  .card a:hover {{ color: #58a6ff; }}
-  .badge {{ padding: 3px 10px; border-radius: 20px; background: #21262d; color: #8b949e; font-size: 0.72em; width: fit-content; }}
-  .empty-state {{ text-align: center; color: #8b949e; padding: 60px 0; }}
-</style>
-</head>
-<body>
-  <nav><a href="index.html">← Back to News</a></nav>
-  <h1>🛠️ AI Tools Directory</h1>
-  <div class="date">Last updated: {datetime.now(IST).strftime('%Y-%m-%d %H:%M')} IST</div>
-  <div class="tabs" id="tabs"></div>
-  <div class="grid" id="grid"></div>
-
-<script>
-const tools = {tools_json};
-const categories = {json.dumps(categories)};
-let activeCat = "All";
-
-function renderTabs() {{
-  const all = ["All", ...categories];
-  document.getElementById('tabs').innerHTML = all.map(c =>
-    `<div class="tab ${{c === activeCat ? 'active' : ''}}" onclick="setCat('${{c}}')">${{c}}</div>`
-  ).join('');
-}}
-
-function setCat(c) {{ activeCat = c; renderTabs(); renderGrid(); }}
-
-function renderGrid() {{
-  const filtered = activeCat === "All" ? tools : tools.filter(t => t.category === activeCat);
-  const gridEl = document.getElementById('grid');
-  if (filtered.length === 0) {{
-    gridEl.innerHTML = '<div class="empty-state">No tools in this category yet.</div>';
-    return;
-  }}
-  gridEl.innerHTML = filtered.map(t =>
-    `<div class="card">
-       <a href="${{t.link}}" target="_blank">${{t.title}}</a>
-       <div class="badge">${{t.category}}</div>
-     </div>`
-  ).join('');
-}}
-
-renderTabs();
-renderGrid();
-</script>
-</body></html>"""
-
-    with open("tools.html", "w") as f:
-        f.write(html)
-    print("✓ Tools page generated (tools.html)")
+    """
+    Writes tools.json for the enhanced frontend to consume.
+    The tools.html is a static template in the repo.
+    """
+    with open("tools.json", "w", encoding="utf-8") as f:
+        json.dump(tools, f, ensure_ascii=False, indent=2)
+    print("✓ tools.json generated")
 
 # ============================================================================
 # STEP 7: MAIN - Run everything in order
