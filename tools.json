@@ -1,17 +1,17 @@
 [
   {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
-    "category": "Other"
-  },
-  {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "category": "Productivity"
   },
   {
     "title": "Resurf",
     "link": "https://www.producthunt.com/products/resurf-2",
+    "category": "Other"
+  },
+  {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
     "category": "Other"
   },
   {
@@ -20,18 +20,28 @@
     "category": "Other"
   },
   {
+    "title": "Visiby",
+    "link": "https://www.producthunt.com/products/visiby",
+    "category": "Research"
+  },
+  {
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
+    "category": "Other"
+  },
+  {
     "title": "Clipwise",
     "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
     "category": "Video"
   },
   {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
-    "category": "Other"
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
   },
   {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
     "category": "Other"
   },
   {
@@ -40,24 +50,54 @@
     "category": "Productivity"
   },
   {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
-    "category": "Other"
-  },
-  {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
-  },
-  {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
-  },
-  {
     "title": "Kirokune",
     "link": "https://www.producthunt.com/products/kirokune",
     "category": "Productivity"
+  },
+  {
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
+    "category": "Other"
+  },
+  {
+    "title": "Cortex",
+    "link": "https://www.producthunt.com/products/cortex-25",
+    "category": "Other"
+  },
+  {
+    "title": "QApilot MCP for Android",
+    "link": "https://www.producthunt.com/products/qapilot",
+    "category": "Coding"
+  },
+  {
+    "title": "Marked Share",
+    "link": "https://www.producthunt.com/products/marked-share",
+    "category": "Video"
+  },
+  {
+    "title": "Calerto for Mac",
+    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
+    "category": "Other"
+  },
+  {
+    "title": "SUDARI",
+    "link": "https://www.producthunt.com/products/sudari",
+    "category": "Other"
+  },
+  {
+    "title": "LinkFlick",
+    "link": "https://www.producthunt.com/products/linkflick",
+    "category": "Other"
+  },
+  {
+    "title": "Pascal’s Pager",
+    "link": "https://www.producthunt.com/products/pascal-s-pager",
+    "category": "Other"
+  },
+  {
+    "title": "VoxelWall",
+    "link": "https://www.producthunt.com/products/voxelwall",
+    "category": "Audio"
   },
   {
     "title": "Work Life Panda",
@@ -65,13 +105,18 @@
     "category": "Productivity"
   },
   {
+    "title": "Relic",
+    "link": "https://www.producthunt.com/products/relic-copy-vault",
+    "category": "Other"
+  },
+  {
     "title": "Stackness",
     "link": "https://www.producthunt.com/products/stackness",
     "category": "Other"
   },
   {
-    "title": "Captain Kill Switch",
-    "link": "https://www.producthunt.com/products/captain-kill-switch",
+    "title": "Wokyintosh",
+    "link": "https://www.producthunt.com/products/wokyintosh",
     "category": "Other"
   },
   {
@@ -85,8 +130,13 @@
     "category": "Other"
   },
   {
-    "title": "Kabza",
-    "link": "https://www.producthunt.com/products/kabza",
+    "title": "FrameSketch",
+    "link": "https://www.producthunt.com/products/framesketch",
+    "category": "Other"
+  },
+  {
+    "title": "Captain Kill Switch",
+    "link": "https://www.producthunt.com/products/captain-kill-switch",
     "category": "Other"
   },
   {
@@ -95,59 +145,44 @@
     "category": "Other"
   },
   {
-    "title": "Relic",
-    "link": "https://www.producthunt.com/products/relic-copy-vault",
+    "title": "Kabza",
+    "link": "https://www.producthunt.com/products/kabza",
     "category": "Other"
   },
   {
-    "title": "VoxelWall",
-    "link": "https://www.producthunt.com/products/voxelwall",
-    "category": "Audio"
-  },
-  {
-    "title": "Pascal’s Pager",
-    "link": "https://www.producthunt.com/products/pascal-s-pager",
+    "title": "Show HN: Vehla – the AI command center for macOS",
+    "link": "https://vehla.app/",
     "category": "Other"
   },
   {
-    "title": "Cortex",
-    "link": "https://www.producthunt.com/products/cortex-25",
-    "category": "Other"
-  },
-  {
-    "title": "LinkFlick",
-    "link": "https://www.producthunt.com/products/linkflick",
-    "category": "Other"
-  },
-  {
-    "title": "FrameSketch",
-    "link": "https://www.producthunt.com/products/framesketch",
-    "category": "Other"
-  },
-  {
-    "title": "SUDARI",
-    "link": "https://www.producthunt.com/products/sudari",
-    "category": "Other"
-  },
-  {
-    "title": "QApilot MCP for Android",
-    "link": "https://www.producthunt.com/products/qapilot",
+    "title": "Show HN: ClientCoded – QA Platform for AI Agents",
+    "link": "https://clientcoded.com/environments",
     "category": "Coding"
   },
   {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
+    "title": "Show HN: Credit against tokenised stocks for agents. punish us please",
+    "link": "https://vaaya.ai/credit-against-securities-for-agents",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Kibble – a reader for AI news, tutorials, code and models",
+    "link": "https://www.kibblebites.com/app/",
+    "category": "Coding"
+  },
+  {
+    "title": "Show HN: Pinocchio: Harness for Verifiable Work",
+    "link": "https://pinocchio.goedelmachines.com",
     "category": "Other"
   },
   {
-    "title": "Marked Share",
-    "link": "https://www.producthunt.com/products/marked-share",
-    "category": "Video"
+    "title": "Show HN: sengi.ai — Verified candidate sourcing for hard-to-fill roles",
+    "link": "https://sengi.ai/",
+    "category": "Other"
   },
   {
-    "title": "Calerto for Mac",
-    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
-    "category": "Other"
+    "title": "Show HN: AgentSpork, Agents help agents, Humans touch grass",
+    "link": "https://agentspork.com/",
+    "category": "Chatbot/Assistant"
   },
   {
     "title": "Show HN: RunBoth, a behaviour diff for code an AI changed",
@@ -263,40 +298,5 @@
     "title": "Show HN: A C Compiler written with help of Claude",
     "link": "https://github.com/Javier-Barrio/myCC/tree/main",
     "category": "Other"
-  },
-  {
-    "title": "Show HN: Deviant, a feature-length sci-fi thriller about AI, made with AI",
-    "link": "https://deviantmovie.com/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: MCP that gives Codex/Claude your SEO and AI visibility data",
-    "link": "https://bloomiro.com/mcp",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: Liniora – Ever thought about replacing your project manager?",
-    "link": "https://liniora.com",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Rust-split – save your tokens on large Rust source files",
-    "link": "https://news.ycombinator.com/item?id=49671509",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: TattooPreview AI – a planning workflow for tattoo artist conversations",
-    "link": "https://tattoopreviewai.com",
-    "category": "Image"
-  },
-  {
-    "title": "Show HN: I wrote a book on using AI in game design production (free on GitHub)",
-    "link": "https://github.com/eremes81/game-design-ai-practice-en",
-    "category": "Image"
-  },
-  {
-    "title": "Show HN: Sharpniq – AI-powered tool to unblur images online",
-    "link": "https://unblurimage.me",
-    "category": "Image"
   }
 ]
