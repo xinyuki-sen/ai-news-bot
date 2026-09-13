@@ -1,5 +1,20 @@
 [
   {
+    "title": "Visiby",
+    "link": "https://www.producthunt.com/products/visiby",
+    "category": "Research"
+  },
+  {
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "category": "Productivity"
+  },
+  {
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
+  },
+  {
     "title": "Clipwise",
     "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
     "category": "Video"
@@ -10,13 +25,18 @@
     "category": "Other"
   },
   {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
+    "title": "Kirokune",
+    "link": "https://www.producthunt.com/products/kirokune",
     "category": "Productivity"
   },
   {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
+    "category": "Other"
+  },
+  {
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
     "category": "Other"
   },
   {
@@ -25,44 +45,39 @@
     "category": "Other"
   },
   {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
-  },
-  {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
-  },
-  {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
-    "category": "Other"
-  },
-  {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
-    "category": "Productivity"
-  },
-  {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
-  },
-  {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
-  },
-  {
     "title": "ScreenCursor",
     "link": "https://www.producthunt.com/products/screencursor",
     "category": "Other"
   },
   {
-    "title": "VoxelWall",
-    "link": "https://www.producthunt.com/products/voxelwall",
-    "category": "Audio"
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "category": "Other"
+  },
+  {
+    "title": "Epilude Notetaker",
+    "link": "https://www.producthunt.com/products/epilude",
+    "category": "Productivity"
+  },
+  {
+    "title": "Calerto for Mac",
+    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
+    "category": "Other"
+  },
+  {
+    "title": "Youkti",
+    "link": "https://www.producthunt.com/products/youkti",
+    "category": "Other"
+  },
+  {
+    "title": "ABrush",
+    "link": "https://www.producthunt.com/products/abrush-ai-2",
+    "category": "Image"
+  },
+  {
+    "title": "Relic",
+    "link": "https://www.producthunt.com/products/relic-copy-vault",
+    "category": "Other"
   },
   {
     "title": "Work Life Panda",
@@ -75,38 +90,13 @@
     "category": "Video"
   },
   {
-    "title": "Relic",
-    "link": "https://www.producthunt.com/products/relic-copy-vault",
-    "category": "Other"
-  },
-  {
-    "title": "FrameSketch",
-    "link": "https://www.producthunt.com/products/framesketch",
-    "category": "Other"
-  },
-  {
     "title": "SUDARI",
     "link": "https://www.producthunt.com/products/sudari",
     "category": "Other"
   },
   {
-    "title": "Stackness",
-    "link": "https://www.producthunt.com/products/stackness",
-    "category": "Other"
-  },
-  {
-    "title": "QApilot MCP for Android",
-    "link": "https://www.producthunt.com/products/qapilot",
-    "category": "Coding"
-  },
-  {
     "title": "Pascal’s Pager",
     "link": "https://www.producthunt.com/products/pascal-s-pager",
-    "category": "Other"
-  },
-  {
-    "title": "DockFix 5.0",
-    "link": "https://www.producthunt.com/products/dockfix",
     "category": "Other"
   },
   {
@@ -115,9 +105,9 @@
     "category": "Other"
   },
   {
-    "title": "Captain Kill Switch",
-    "link": "https://www.producthunt.com/products/captain-kill-switch",
-    "category": "Other"
+    "title": "VoxelWall",
+    "link": "https://www.producthunt.com/products/voxelwall",
+    "category": "Audio"
   },
   {
     "title": "Wokyintosh",
@@ -125,8 +115,23 @@
     "category": "Other"
   },
   {
+    "title": "QApilot MCP for Android",
+    "link": "https://www.producthunt.com/products/qapilot",
+    "category": "Coding"
+  },
+  {
     "title": "Cortex",
     "link": "https://www.producthunt.com/products/cortex-25",
+    "category": "Other"
+  },
+  {
+    "title": "Captain Kill Switch",
+    "link": "https://www.producthunt.com/products/captain-kill-switch",
+    "category": "Other"
+  },
+  {
+    "title": "FrameSketch",
+    "link": "https://www.producthunt.com/products/framesketch",
     "category": "Other"
   },
   {
@@ -135,18 +140,23 @@
     "category": "Other"
   },
   {
-    "title": "Calerto for Mac",
-    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
+    "title": "DockFix 5.0",
+    "link": "https://www.producthunt.com/products/dockfix",
     "category": "Other"
   },
   {
-    "title": "ABrush",
-    "link": "https://www.producthunt.com/products/abrush-ai-2",
-    "category": "Image"
+    "title": "Stackness",
+    "link": "https://www.producthunt.com/products/stackness",
+    "category": "Other"
   },
   {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
+    "title": "Show HN: I built a day-by-day timeline of the AI boom (2017–2026, 437 events)",
+    "link": "https://www.aihistory.live/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: I built ThreadShelf to reuse hard-to-export AI chats like OpenRouter",
+    "link": "https://github.com/ChrystianSchutz/ThreadShelf",
     "category": "Other"
   },
   {
@@ -287,16 +297,6 @@
   {
     "title": "Show HN: Don't Hit Send – the model answers while you type",
     "link": "https://github.com/scalattice/dont-hit-send",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Fog 2.0: I removed the AI auto-organizing I built my first app around",
-    "link": "https://apps.apple.com/us/app/smart-notes-folders-fog/id6760272134",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Claude Read Aloud – Hear Claude's Replies Instead of Reading",
-    "link": "https://github.com/MichaelPGifford/claude-read-aloud",
     "category": "Other"
   }
 ]
