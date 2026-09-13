@@ -59,54 +59,65 @@
 
     /* ── Sidebar ────────────────────────────────────────────────────── */
     .sidebar {
-      width: 70px;
-      background: var(--surface);
+      width: 76px;
+      background: rgba(22, 27, 34, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-right: 1px solid var(--border);
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 20px 0;
-      gap: 6px;
+      padding: 24px 0;
+      gap: 12px;
       position: sticky;
       top: 0;
       height: 100vh;
       flex-shrink: 0;
       z-index: 10;
     }
+    [data-theme="light"] .sidebar {
+      background: rgba(246, 248, 250, 0.7);
+    }
     .sidebar .logo {
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       user-select: none;
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .logo-img {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
       object-fit: cover;
       background: var(--surface2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .logo-img:hover {
+      transform: scale(1.05) rotate(-3deg);
     }
     .sidebar .spacer { flex: 1; }
     .sb-btn {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      font-size: 1.2em;
+      border-radius: 14px;
+      font-size: 1.3em;
       background: transparent;
       border: none;
       color: var(--text-muted);
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.15s, color 0.15s;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
     }
     .sb-btn:hover, .sb-btn.active {
       background: var(--surface2);
-      color: var(--text-strong);
+      color: var(--accent);
+      transform: translateY(-2px);
     }
     .sb-btn[data-tooltip]::after {
       content: attr(data-tooltip);
@@ -240,25 +251,30 @@
     /* ── Article Grid ───────────────────────────────────────────────── */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
     }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
+      border-radius: 14px;
+      padding: 20px;
       cursor: pointer;
-      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
-      min-height: 140px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 150px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
       position: relative;
     }
-    .card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 4px 16px rgba(88,166,255,0.08); }
-    .card.selected { border-color: var(--accent2); }
+    .card:hover {
+      transform: translateY(-4px) scale(1.01);
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px rgba(88,166,255,0.12);
+      background: linear-gradient(180deg, var(--surface2) 0%, var(--surface) 100%);
+    }
+    .card.selected { border-color: var(--accent2); box-shadow: 0 4px 20px rgba(163,113,247,0.15); }
     .card-bookmark {
       position: absolute;
       top: 10px; right: 10px;
