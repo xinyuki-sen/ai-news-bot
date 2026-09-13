@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-13T19:40:40.757580+05:30",
+  "last_updated": "2026-09-13T23:29:37.328311+05:30",
   "top_pick_ids": [
     1,
     2,
@@ -13,7 +13,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "I trained a 210M-parameter text-to-image diffusion transformer from scratch (3.5 days, one RTX PRO 6000, 4.2M images at 256²) mainly to understand the recipe end to end. Three measurements came out of it that I have not seen stated plainly elsewhere, so I'm posting those rather than the samples. 1. ",
-      "published_at": "2026-09-13T19:40:40.757004+05:30"
+      "published_at": "2026-09-13T23:29:37.327605+05:30"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hello this is my fifth small language model I've made and apart of my third series and it has been a lot of work but it payed off: **348M parameters, 22.7B tokens**, then fine-tuned into a math model that solves arithmetic by *showing the work* — column addition with carries, borrow chains, partial-",
-      "published_at": "2026-09-13T19:40:40.757109+05:30"
+      "published_at": "2026-09-13T23:29:37.327725+05:30"
     },
     {
       "id": 3,
@@ -31,7 +31,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I have a few web projects with pretty good UI/UX and I’m wondering if there’s any tool or workflow that can turn an existing codebase into a dataset for fine tuning. For example, given a React/Next.js project with components, pages, styling, etc. or a static html site, I’d like to turn it into somet",
-      "published_at": "2026-09-13T19:40:40.757145+05:30"
+      "published_at": "2026-09-13T23:29:37.327757+05:30"
     },
     {
       "id": 4,
@@ -40,7 +40,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "I'm an undergrad student who got a taste of research. I love it. I currently have a draft, which me and my mentor have planned for TMLR, and plan to submit it by next month for the first round of review. It was some work on self explanation methods of LLM models. We are confident that it'll get acce",
-      "published_at": "2026-09-13T19:40:40.757173+05:30"
+      "published_at": "2026-09-13T23:29:37.327791+05:30"
     },
     {
       "id": 5,
@@ -49,133 +49,142 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "\"I didn't know that AI could hallucinate facts,\" New Mexico defense lawyer says.",
-      "published_at": "2026-09-13T19:40:40.757187+05:30"
+      "published_at": "2026-09-13T23:29:37.327807+05:30"
     },
     {
       "id": 6,
-      "title": "AI models don't kill people – people kill people",
-      "url": "https://www.theregister.com/ai-and-ml/2026/09/09/ai-models-dont-kill-people-people-kill-people/5295368",
+      "title": "Garry Tan wants US open-weight AI labs to 'distill' frontier models, too",
+      "url": "https://techcrunch.com/2026/09/11/y-combinators-garry-tan-wants-u-s-open-weight-ai-labs-to-distill-frontier-models-too/",
       "source": "Hacker News",
       "category": "Products",
       "summary": "Comments",
-      "published_at": "2026-09-13T19:40:40.757198+05:30"
+      "published_at": "2026-09-13T23:29:37.327820+05:30"
     },
     {
       "id": 7,
+      "title": "David Sacks: OpenAI and Anthropic Don't Need Regulations to Pace Frontier Models",
+      "url": "https://twitter.com/DavidSacks/status/2098973625252708460",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-13T23:29:37.327833+05:30"
+    },
+    {
+      "id": 8,
       "title": "I trained an 825k-parameter model to generate drawing programs that execute exactly on an RP2040 [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf611v/i_trained_an_825kparameter_model_to_generate/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I’ve been working on a small research project about whether sub-million-parameter models can learn to generate executable drawing programs for constrained hardware. The current system is an 825k-parameter autoregressive transformer which generates ~100 bytes of drawing bytecode rather than pixels. T",
-      "published_at": "2026-09-13T19:40:40.757238+05:30"
+      "published_at": "2026-09-13T23:29:37.327888+05:30"
     },
     {
-      "id": 8,
+      "id": 9,
       "title": "Teach ML! Community service project from Stanford [N]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wbf3ox/teach_ml_community_service_project_from_stanford_n/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hi r/machinelearning. Nice to meet you! My name is Chris Piech and I'm a professor at Stanford University in the AI lab. I built a class called Probability for AI: pai.stanford.edu. It starts Oct 9th and applications are due end of Sept. Its (hopefully) cool for a few reasons:  The plan is to have o",
-      "published_at": "2026-09-13T19:40:40.757261+05:30"
+      "published_at": "2026-09-13T23:29:37.327916+05:30"
     },
     {
-      "id": 9,
+      "id": 10,
       "title": "Zachery Lipton: \"CS academia broke the system...perhaps all that it takes for the system to rebuild is for it to burn to the ground\" [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf4b5g/zachery_lipton_cs_academia_broke_the/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Sept 9, 2026 hits an all time daily high of 447 new machine learning papers uploaded to cs.LG (https://arxiv.org/list/cs.LG/recent?skip=0&amp;show=500).  This is many times more papers than what a human being or even a sizeable reading group could feasibly read and digest in a year.  This is precede",
-      "published_at": "2026-09-13T19:40:40.757307+05:30"
+      "published_at": "2026-09-13T23:29:37.327973+05:30"
     },
     {
-      "id": 10,
+      "id": 11,
       "title": "How do you control different character pose in SDXL when using a reference image? [R][D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wep88z/how_do_you_control_different_character_pose_in/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi, I’m working on generating ~128×128 pixel art and trying to generate different poses of the same character. My current approach is roughly: Start with a reference image and preprocess it into cleaner/more pixel-art-like data (often removing transparency or setting up fixed number of pallets or de",
-      "published_at": "2026-09-13T19:40:40.757341+05:30"
+      "published_at": "2026-09-13T23:29:37.328015+05:30"
     },
     {
-      "id": 11,
+      "id": 12,
       "title": "Confusion regarding EMNLP registration [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wdw5o0/confusion_regarding_emnlp_registration_d/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Hi, I posted some months ago and got some very helpful responses (for another conference), but I have some confusions regarding EMNLP (and the way registration works here). To give some context, I used to work as an intern during my undergrads at an Indian uni (final year), and managed to write a pa",
-      "published_at": "2026-09-13T19:40:40.757398+05:30"
+      "published_at": "2026-09-13T23:29:37.328082+05:30"
     },
     {
-      "id": 12,
+      "id": 13,
       "title": "How much do tech reports matter for a PhD application? [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1weedmk/how_much_do_tech_reports_matter_for_a_phd/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "The title, by tech reports I don't mean arXiv submissions, but reports of a large model, like say Kimi K3, DeepSeek, Gemini, Mistral Leanstral, etc. Is it much above, above, much below, below or equal to a first author A* paper?  &#32; submitted by &#32;  /u/simple-Flat0263   [link] &#32; [comments]",
-      "published_at": "2026-09-13T19:40:40.757420+05:30"
+      "published_at": "2026-09-13T23:29:37.328110+05:30"
     },
     {
-      "id": 13,
+      "id": 14,
       "title": "Why is TMLR so slow in recent times [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wd5mki/why_is_tmlr_so_slow_in_recent_times_d/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "A final-year PhD student here. A few months back, I submitted a solo-authored paper to TMLR. The reviewers were on time and extremely positive, with some minor revisions. After submitting the revised version, there was absolute silence from the reviewers, with just one acknowledging that their conce",
-      "published_at": "2026-09-13T19:40:40.757464+05:30"
+      "published_at": "2026-09-13T23:29:37.328158+05:30"
     },
     {
-      "id": 14,
+      "id": 15,
       "title": "ACL Sustainable Reviewing Policy [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wd7b83/acl_sustainable_reviewing_policy_d/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "ACL just announced on X how they are planning to handle the increased submission numbers. Interestingly enough, they call it &quot;the proposal&quot;. My understanding is that, in a nutshell, each submission should come with someone who can review, otherwise it may only get a slot through a lottery.",
-      "published_at": "2026-09-13T19:40:40.757491+05:30"
+      "published_at": "2026-09-13T23:29:37.328192+05:30"
     },
     {
-      "id": 15,
+      "id": 16,
       "title": "How to handle cofound variables? [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wdpat4/how_to_handle_cofound_variables_d/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "edit: confound Hello all, I am working on a object classification with a automotive radar point clouds. I compared many models and feature vectors. Once i used range as feature, all models scored higher f1 in all K validation sets and on the final test set. One particular artifact of a radar, is tha",
-      "published_at": "2026-09-13T19:40:40.757508+05:30"
+      "published_at": "2026-09-13T23:29:37.328213+05:30"
     },
     {
-      "id": 16,
+      "id": 17,
       "title": "GPT-6 Astra Changes Everything",
       "url": "https://www.youtube.com/watch?v=eVBJIUxv8N8",
       "source": "Two Minute Papers",
       "category": "Research",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\nLinks / sources:\nHoney sim: search for \"Variational Stokes: A Unified Pressure-Viscosity Solver for Accurate Viscous Liquids\" here: https://cs.uwaterloo.ca/~c2batty/\nhttps://x.com/mindblown_ai/status/2095661874037813",
-      "published_at": "2026-09-13T19:40:40.757546+05:30"
+      "published_at": "2026-09-13T23:29:37.328263+05:30"
     },
     {
-      "id": 17,
+      "id": 18,
       "title": "The Billion Dollar AI Gap Is Collapsing",
       "url": "https://www.youtube.com/watch?v=LBiNcdGNgrg",
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Weights & Biases and sign up for a free demo here: https://wandb.me/papers\n\n📝 The paper and Qwen3.8-Flash-Next are available here:\nhttps://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf\nhttps://qwen.ai/blog?id=qwen3.8-flash-next\n\nSources:\nhttps://x.com/analogalok/status/",
-      "published_at": "2026-09-13T19:40:40.757556+05:30"
+      "published_at": "2026-09-13T23:29:37.328278+05:30"
     },
     {
-      "id": 18,
+      "id": 19,
       "title": "This Small AI Will Change Everything",
       "url": "https://www.youtube.com/watch?v=wMl6c_r0ubw",
       "source": "Two Minute Papers",
       "category": "Coding",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 The Qwen3.8-27b is available here:\nhttps://huggingface.co/Qwen/Qwen3.8-27B\n\nSources:\nhttps://www.reddit.com/r/unsloth/comments/1vogva0/share_your_results_from_qwen3827b/\nhttps://www.reddit.com/r/LocalLLaMA/comments",
-      "published_at": "2026-09-13T19:40:40.757569+05:30"
+      "published_at": "2026-09-13T23:29:37.328296+05:30"
     },
     {
-      "id": 19,
+      "id": 20,
       "title": "OpenAI’s AI Agents Just Crossed A Line",
       "url": "https://www.youtube.com/watch?v=JQ97GiDwPxc",
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 More reports are available here:\nhttps://openai.com/index/hugging-face-model-evaluation-security-incident/\nhttps://huggingface.co/blog/security-incident-july-2026\nhttps://huggingface.co/blog/agent-intrusion-technic",
-      "published_at": "2026-09-13T19:40:40.757578+05:30"
+      "published_at": "2026-09-13T23:29:37.328307+05:30"
     }
   ]
 }
