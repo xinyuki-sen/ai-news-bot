@@ -1,13 +1,28 @@
 [
   {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "category": "Productivity"
+  },
+  {
+    "title": "Kirokune",
+    "link": "https://www.producthunt.com/products/kirokune",
+    "category": "Productivity"
+  },
+  {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
     "category": "Other"
   },
   {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
+    "category": "Other"
+  },
+  {
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
+    "category": "Other"
   },
   {
     "title": "Epilude Notetaker",
@@ -15,14 +30,14 @@
     "category": "Productivity"
   },
   {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
+    "category": "Other"
   },
   {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
+    "category": "Video"
   },
   {
     "title": "ScreenCursor",
@@ -35,83 +50,18 @@
     "category": "Other"
   },
   {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
-    "category": "Productivity"
+    "title": "Visiby",
+    "link": "https://www.producthunt.com/products/visiby",
+    "category": "Research"
   },
   {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
-    "category": "Other"
-  },
-  {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
-  },
-  {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
-    "category": "Other"
-  },
-  {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "Relic",
-    "link": "https://www.producthunt.com/products/relic-copy-vault",
-    "category": "Other"
-  },
-  {
-    "title": "Stackness",
-    "link": "https://www.producthunt.com/products/stackness",
-    "category": "Other"
-  },
-  {
-    "title": "Cortex",
-    "link": "https://www.producthunt.com/products/cortex-25",
-    "category": "Other"
-  },
-  {
-    "title": "FrameSketch",
-    "link": "https://www.producthunt.com/products/framesketch",
-    "category": "Other"
-  },
-  {
-    "title": "Captain Kill Switch",
-    "link": "https://www.producthunt.com/products/captain-kill-switch",
-    "category": "Other"
-  },
-  {
-    "title": "DockFix 5.0",
-    "link": "https://www.producthunt.com/products/dockfix",
-    "category": "Other"
-  },
-  {
-    "title": "Kabza",
-    "link": "https://www.producthunt.com/products/kabza",
-    "category": "Other"
-  },
-  {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
-    "category": "Other"
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
   },
   {
     "title": "Calerto for Mac",
     "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
-    "category": "Other"
-  },
-  {
-    "title": "LinkFlick",
-    "link": "https://www.producthunt.com/products/linkflick",
-    "category": "Other"
-  },
-  {
-    "title": "Pascal’s Pager",
-    "link": "https://www.producthunt.com/products/pascal-s-pager",
     "category": "Other"
   },
   {
@@ -120,8 +70,23 @@
     "category": "Image"
   },
   {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
+    "title": "Marked Share",
+    "link": "https://www.producthunt.com/products/marked-share",
+    "category": "Video"
+  },
+  {
+    "title": "Youkti",
+    "link": "https://www.producthunt.com/products/youkti",
+    "category": "Other"
+  },
+  {
+    "title": "VoxelWall",
+    "link": "https://www.producthunt.com/products/voxelwall",
+    "category": "Audio"
+  },
+  {
+    "title": "Pascal’s Pager",
+    "link": "https://www.producthunt.com/products/pascal-s-pager",
     "category": "Other"
   },
   {
@@ -130,14 +95,49 @@
     "category": "Other"
   },
   {
-    "title": "Marked Share",
-    "link": "https://www.producthunt.com/products/marked-share",
-    "category": "Video"
-  },
-  {
     "title": "QApilot MCP for Android",
     "link": "https://www.producthunt.com/products/qapilot",
     "category": "Coding"
+  },
+  {
+    "title": "Wokyintosh",
+    "link": "https://www.producthunt.com/products/wokyintosh",
+    "category": "Other"
+  },
+  {
+    "title": "LinkFlick",
+    "link": "https://www.producthunt.com/products/linkflick",
+    "category": "Other"
+  },
+  {
+    "title": "Relic",
+    "link": "https://www.producthunt.com/products/relic-copy-vault",
+    "category": "Other"
+  },
+  {
+    "title": "Kabza",
+    "link": "https://www.producthunt.com/products/kabza",
+    "category": "Other"
+  },
+  {
+    "title": "Captain Kill Switch",
+    "link": "https://www.producthunt.com/products/captain-kill-switch",
+    "category": "Other"
+  },
+  {
+    "title": "FrameSketch",
+    "link": "https://www.producthunt.com/products/framesketch",
+    "category": "Other"
+  },
+  {
+    "title": "Stackness",
+    "link": "https://www.producthunt.com/products/stackness",
+    "category": "Other"
+  },
+  {
+    "title": "DockFix 5.0",
+    "link": "https://www.producthunt.com/products/dockfix",
+    "category": "Other"
   },
   {
     "title": "Work Life Panda",
@@ -145,9 +145,39 @@
     "category": "Productivity"
   },
   {
-    "title": "VoxelWall",
-    "link": "https://www.producthunt.com/products/voxelwall",
-    "category": "Audio"
+    "title": "Cortex",
+    "link": "https://www.producthunt.com/products/cortex-25",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Kepil – passport, mandate and tamper-evident journal for AI agents",
+    "link": "https://github.com/oleg-vdv/kepil",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: I was frustrated with AI giving confident answer,Even when it was wrong",
+    "link": "https://demo.aqqai.in",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: 3dbae is changing the game of Real Time AI Renddering",
+    "link": "https://3dbae.com",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Replay – Audit silent prompt cache misses in AI agent transcripts",
+    "link": "https://replay.doctor/",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Imageaicraft] – GPT Image 2 Image Generator and Editor",
+    "link": "https://imageaicraft.com",
+    "category": "Image"
+  },
+  {
+    "title": "Show HN: I made a tiny MoE/Engram viz tool",
+    "link": "https://sw-ml-study.github.io/moe-microscope/",
+    "category": "Other"
   },
   {
     "title": "Show HN: Vehla – the AI command center for macOS",
@@ -268,35 +298,5 @@
     "title": "Show HN: Come prove the Berge Fulkerson conjecture with a swarm of agents",
     "link": "https://provetogether.ai/problems/15",
     "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: AI-Powered Word Guessing Game",
-    "link": "https://synapse.akshayr.xyz/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: I use AirPods as wireless IMUs to track discs, bowling balls and runs",
-    "link": "https://kinapod.com/technology",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Ember – a strategy game where everyone moves at once",
-    "link": "https://playember.gg/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Fugu Max and Fugu Ultra v2: Orchestrating the Pareto Frontier",
-    "link": "https://sakana.ai/fugu-max-release/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Determinstic LLM inference for lowest price Gemma 4, with Windows XP",
-    "link": "https://www.tokendelivery.ai/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: A C Compiler written with help of Claude",
-    "link": "https://github.com/Javier-Barrio/myCC/tree/main",
-    "category": "Other"
   }
 ]
