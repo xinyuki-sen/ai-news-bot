@@ -1,7 +1,7 @@
 [
   {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
     "category": "Other"
   },
   {
@@ -10,24 +10,14 @@
     "category": "Coding"
   },
   {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "title": "Epilude Notetaker",
+    "link": "https://www.producthunt.com/products/epilude",
     "category": "Productivity"
   },
   {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
-  },
-  {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "category": "Productivity"
   },
   {
     "title": "Visiby",
@@ -35,13 +25,13 @@
     "category": "Research"
   },
   {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
     "category": "Other"
   },
   {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
     "category": "Other"
   },
   {
@@ -50,69 +40,24 @@
     "category": "Productivity"
   },
   {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
-    "category": "Productivity"
-  },
-  {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
     "category": "Other"
   },
   {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
     "category": "Other"
   },
   {
-    "title": "QApilot MCP for Android",
-    "link": "https://www.producthunt.com/products/qapilot",
-    "category": "Coding"
-  },
-  {
-    "title": "SUDARI",
-    "link": "https://www.producthunt.com/products/sudari",
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
     "category": "Other"
   },
   {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
-    "category": "Other"
-  },
-  {
-    "title": "Marked Share",
-    "link": "https://www.producthunt.com/products/marked-share",
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
     "category": "Video"
-  },
-  {
-    "title": "LinkFlick",
-    "link": "https://www.producthunt.com/products/linkflick",
-    "category": "Other"
-  },
-  {
-    "title": "Work Life Panda",
-    "link": "https://www.producthunt.com/products/work-life-panda",
-    "category": "Productivity"
-  },
-  {
-    "title": "Pascal’s Pager",
-    "link": "https://www.producthunt.com/products/pascal-s-pager",
-    "category": "Other"
-  },
-  {
-    "title": "Calerto for Mac",
-    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
-    "category": "Other"
-  },
-  {
-    "title": "VoxelWall",
-    "link": "https://www.producthunt.com/products/voxelwall",
-    "category": "Audio"
-  },
-  {
-    "title": "ABrush",
-    "link": "https://www.producthunt.com/products/abrush-ai-2",
-    "category": "Image"
   },
   {
     "title": "Relic",
@@ -148,6 +93,61 @@
     "title": "Kabza",
     "link": "https://www.producthunt.com/products/kabza",
     "category": "Other"
+  },
+  {
+    "title": "Youkti",
+    "link": "https://www.producthunt.com/products/youkti",
+    "category": "Other"
+  },
+  {
+    "title": "Calerto for Mac",
+    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
+    "category": "Other"
+  },
+  {
+    "title": "LinkFlick",
+    "link": "https://www.producthunt.com/products/linkflick",
+    "category": "Other"
+  },
+  {
+    "title": "Pascal’s Pager",
+    "link": "https://www.producthunt.com/products/pascal-s-pager",
+    "category": "Other"
+  },
+  {
+    "title": "ABrush",
+    "link": "https://www.producthunt.com/products/abrush-ai-2",
+    "category": "Image"
+  },
+  {
+    "title": "Wokyintosh",
+    "link": "https://www.producthunt.com/products/wokyintosh",
+    "category": "Other"
+  },
+  {
+    "title": "SUDARI",
+    "link": "https://www.producthunt.com/products/sudari",
+    "category": "Other"
+  },
+  {
+    "title": "Marked Share",
+    "link": "https://www.producthunt.com/products/marked-share",
+    "category": "Video"
+  },
+  {
+    "title": "QApilot MCP for Android",
+    "link": "https://www.producthunt.com/products/qapilot",
+    "category": "Coding"
+  },
+  {
+    "title": "Work Life Panda",
+    "link": "https://www.producthunt.com/products/work-life-panda",
+    "category": "Productivity"
+  },
+  {
+    "title": "VoxelWall",
+    "link": "https://www.producthunt.com/products/voxelwall",
+    "category": "Audio"
   },
   {
     "title": "Show HN: Vehla – the AI command center for macOS",
