@@ -1,8 +1,43 @@
 [
   {
-    "title": "Web Search Agents by Nimble",
-    "link": "https://www.producthunt.com/products/nimbleway",
-    "category": "Research"
+    "title": "Hello Inbox",
+    "link": "https://www.producthunt.com/products/helloinbox",
+    "category": "Other"
+  },
+  {
+    "title": "Naoma AI Demo Agent V2",
+    "link": "https://www.producthunt.com/products/naoma",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Slashy Assistant",
+    "link": "https://www.producthunt.com/products/slashy-3",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "LLMagnet",
+    "link": "https://www.producthunt.com/products/llmagnet",
+    "category": "Other"
+  },
+  {
+    "title": "Image to ASCII",
+    "link": "https://www.producthunt.com/products/image-to-ascii-2",
+    "category": "Image"
+  },
+  {
+    "title": "OzBrain",
+    "link": "https://www.producthunt.com/products/ozbrain",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "OVO",
+    "link": "https://www.producthunt.com/products/ovo",
+    "category": "Audio"
+  },
+  {
+    "title": "Marqly 6.0",
+    "link": "https://www.producthunt.com/products/marqly",
+    "category": "Other"
   },
   {
     "title": "MemoryPet 2.0",
@@ -10,14 +45,29 @@
     "category": "Other"
   },
   {
+    "title": "Juggler",
+    "link": "https://www.producthunt.com/products/juggler",
+    "category": "Coding"
+  },
+  {
+    "title": "TryCase",
+    "link": "https://www.producthunt.com/products/trycase",
+    "category": "Video"
+  },
+  {
     "title": "appdesigns",
     "link": "https://www.producthunt.com/products/appdesigns",
     "category": "Image"
   },
   {
-    "title": "Slashy Assistant",
-    "link": "https://www.producthunt.com/products/slashy-3",
-    "category": "Chatbot/Assistant"
+    "title": "AppZapper 3000",
+    "link": "https://www.producthunt.com/products/appzapper",
+    "category": "Other"
+  },
+  {
+    "title": "Aside",
+    "link": "https://www.producthunt.com/products/aside-6",
+    "category": "Other"
   },
   {
     "title": "Elva",
@@ -30,59 +80,9 @@
     "category": "Other"
   },
   {
-    "title": "Hello Inbox",
-    "link": "https://www.producthunt.com/products/helloinbox",
-    "category": "Other"
-  },
-  {
-    "title": "Juggler",
-    "link": "https://www.producthunt.com/products/juggler",
-    "category": "Coding"
-  },
-  {
-    "title": "Naoma AI Demo Agent V2",
-    "link": "https://www.producthunt.com/products/naoma",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "OzBrain",
-    "link": "https://www.producthunt.com/products/ozbrain",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Aside",
-    "link": "https://www.producthunt.com/products/aside-6",
-    "category": "Other"
-  },
-  {
-    "title": "Image to ASCII",
-    "link": "https://www.producthunt.com/products/image-to-ascii-2",
-    "category": "Image"
-  },
-  {
-    "title": "LLMagnet",
-    "link": "https://www.producthunt.com/products/llmagnet",
-    "category": "Other"
-  },
-  {
-    "title": "Marqly 6.0",
-    "link": "https://www.producthunt.com/products/marqly",
-    "category": "Other"
-  },
-  {
-    "title": "OVO",
-    "link": "https://www.producthunt.com/products/ovo",
-    "category": "Audio"
-  },
-  {
-    "title": "AppZapper 3000",
-    "link": "https://www.producthunt.com/products/appzapper",
-    "category": "Other"
-  },
-  {
-    "title": "TryCase",
-    "link": "https://www.producthunt.com/products/trycase",
-    "category": "Video"
+    "title": "Web Search Agents by Nimble",
+    "link": "https://www.producthunt.com/products/nimbleway",
+    "category": "Research"
   },
   {
     "title": "Afterglow",
@@ -92,6 +92,36 @@
   {
     "title": "Deplo",
     "link": "https://www.producthunt.com/products/deplo-2",
+    "category": "Other"
+  },
+  {
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "category": "Other"
+  },
+  {
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
+    "category": "Other"
+  },
+  {
+    "title": "Kirokune",
+    "link": "https://www.producthunt.com/products/kirokune",
+    "category": "Productivity"
+  },
+  {
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
+    "category": "Other"
+  },
+  {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "category": "Other"
+  },
+  {
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
     "category": "Other"
   },
   {
@@ -110,33 +140,8 @@
     "category": "Productivity"
   },
   {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
-  },
-  {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
-    "category": "Other"
-  },
-  {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
-    "category": "Other"
-  },
-  {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
-    "category": "Other"
-  },
-  {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
-  },
-  {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
+    "title": "Epilude Notetaker",
+    "link": "https://www.producthunt.com/products/epilude",
     "category": "Productivity"
   },
   {
@@ -145,8 +150,33 @@
     "category": "Video"
   },
   {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "title": "Show HN: Nowdex – AI agent usage on your iPhone",
+    "link": "https://nowdex.app/",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Learn CRISPR in 3D in any language",
+    "link": "https://viewer.10k.science/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Free tool to check how ChatGPT and Perplexity rank your brand",
+    "link": "https://ukaiseoconsultant.co.uk/ai-driven-seo-audits/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Build2me – Prove2Me for software agent swarms build code",
+    "link": "https://github.com/shitianfang/build2me",
+    "category": "Coding"
+  },
+  {
+    "title": "Show HN: Slowave – local adaptive memory for coding agents",
+    "link": "https://github.com/slowave-ai/slowave",
+    "category": "Coding"
+  },
+  {
+    "title": "Show HN: CleverCrow, Get paid to work your backlog",
+    "link": "https://clevercrow.io",
     "category": "Other"
   },
   {
@@ -230,11 +260,6 @@
     "category": "Other"
   },
   {
-    "title": "Show HN: Slowave – local adaptive memory for coding agents",
-    "link": "https://github.com/slowave-ai/slowave",
-    "category": "Coding"
-  },
-  {
     "title": "Show HN: AI-Native dependency upgrades through codemods",
     "link": "https://apiweiser-cli-fe.vercel.app/",
     "category": "Coding"
@@ -273,30 +298,5 @@
     "title": "Show HN: Kepil – passport, mandate and tamper-evident journal for AI agents",
     "link": "https://github.com/oleg-vdv/kepil",
     "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: I was frustrated with AI giving confident answer,Even when it was wrong",
-    "link": "https://demo.aqqai.in",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: 3dbae is changing the game of Real Time AI Renddering",
-    "link": "https://3dbae.com",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Replay – Audit silent prompt cache misses in AI agent transcripts",
-    "link": "https://replay.doctor/",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Imageaicraft] – GPT Image 2 Image Generator and Editor",
-    "link": "https://imageaicraft.com",
-    "category": "Image"
-  },
-  {
-    "title": "Show HN: I made a tiny MoE/Engram viz tool",
-    "link": "https://sw-ml-study.github.io/moe-microscope/",
-    "category": "Other"
   }
 ]
