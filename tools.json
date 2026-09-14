@@ -1,27 +1,97 @@
 [
   {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
+    "title": "Slashy Assistant",
+    "link": "https://www.producthunt.com/products/slashy-3",
+    "category": "Chatbot/Assistant"
   },
   {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
-    "category": "Productivity"
-  },
-  {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "title": "Aside",
+    "link": "https://www.producthunt.com/products/aside-6",
     "category": "Other"
   },
   {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
+    "title": "Hello Inbox",
+    "link": "https://www.producthunt.com/products/helloinbox",
     "category": "Other"
   },
   {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
+    "title": "Juggler",
+    "link": "https://www.producthunt.com/products/juggler",
+    "category": "Coding"
+  },
+  {
+    "title": "AppZapper 3000",
+    "link": "https://www.producthunt.com/products/appzapper",
+    "category": "Other"
+  },
+  {
+    "title": "OVO",
+    "link": "https://www.producthunt.com/products/ovo",
+    "category": "Audio"
+  },
+  {
+    "title": "Web Search Agents by Nimble",
+    "link": "https://www.producthunt.com/products/nimbleway",
+    "category": "Research"
+  },
+  {
+    "title": "TryCase",
+    "link": "https://www.producthunt.com/products/trycase",
+    "category": "Video"
+  },
+  {
+    "title": "Oats",
+    "link": "https://www.producthunt.com/products/oats-2",
+    "category": "Other"
+  },
+  {
+    "title": "Image to ASCII",
+    "link": "https://www.producthunt.com/products/image-to-ascii-2",
+    "category": "Image"
+  },
+  {
+    "title": "OzBrain",
+    "link": "https://www.producthunt.com/products/ozbrain",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Naoma AI Demo Agent V2",
+    "link": "https://www.producthunt.com/products/naoma",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "appdesigns",
+    "link": "https://www.producthunt.com/products/appdesigns",
+    "category": "Image"
+  },
+  {
+    "title": "Marqly 6.0",
+    "link": "https://www.producthunt.com/products/marqly",
+    "category": "Other"
+  },
+  {
+    "title": "Afterglow",
+    "link": "https://www.producthunt.com/products/afterglow-4",
+    "category": "Other"
+  },
+  {
+    "title": "MemoryPet 2.0",
+    "link": "https://www.producthunt.com/products/memorypet",
+    "category": "Other"
+  },
+  {
+    "title": "Deplo",
+    "link": "https://www.producthunt.com/products/deplo-2",
+    "category": "Other"
+  },
+  {
+    "title": "LLMagnet",
+    "link": "https://www.producthunt.com/products/llmagnet",
+    "category": "Other"
+  },
+  {
+    "title": "Elva",
+    "link": "https://www.producthunt.com/products/elva",
     "category": "Other"
   },
   {
@@ -30,8 +100,18 @@
     "category": "Productivity"
   },
   {
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
+    "category": "Other"
+  },
+  {
     "title": "Resurf",
     "link": "https://www.producthunt.com/products/resurf-2",
+    "category": "Other"
+  },
+  {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
     "category": "Other"
   },
   {
@@ -45,11 +125,6 @@
     "category": "Other"
   },
   {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
-    "category": "Other"
-  },
-  {
     "title": "Visiby",
     "link": "https://www.producthunt.com/products/visiby",
     "category": "Research"
@@ -60,94 +135,79 @@
     "category": "Coding"
   },
   {
-    "title": "Calerto for Mac",
-    "link": "https://www.producthunt.com/products/calerto-meeting-alarms",
-    "category": "Other"
-  },
-  {
-    "title": "ABrush",
-    "link": "https://www.producthunt.com/products/abrush-ai-2",
-    "category": "Image"
-  },
-  {
-    "title": "Marked Share",
-    "link": "https://www.producthunt.com/products/marked-share",
-    "category": "Video"
-  },
-  {
-    "title": "Youkti",
-    "link": "https://www.producthunt.com/products/youkti",
-    "category": "Other"
-  },
-  {
-    "title": "VoxelWall",
-    "link": "https://www.producthunt.com/products/voxelwall",
-    "category": "Audio"
-  },
-  {
-    "title": "Pascal’s Pager",
-    "link": "https://www.producthunt.com/products/pascal-s-pager",
-    "category": "Other"
-  },
-  {
-    "title": "SUDARI",
-    "link": "https://www.producthunt.com/products/sudari",
-    "category": "Other"
-  },
-  {
-    "title": "QApilot MCP for Android",
-    "link": "https://www.producthunt.com/products/qapilot",
-    "category": "Coding"
-  },
-  {
-    "title": "Wokyintosh",
-    "link": "https://www.producthunt.com/products/wokyintosh",
-    "category": "Other"
-  },
-  {
-    "title": "LinkFlick",
-    "link": "https://www.producthunt.com/products/linkflick",
-    "category": "Other"
-  },
-  {
-    "title": "Relic",
-    "link": "https://www.producthunt.com/products/relic-copy-vault",
-    "category": "Other"
-  },
-  {
-    "title": "Kabza",
-    "link": "https://www.producthunt.com/products/kabza",
-    "category": "Other"
-  },
-  {
-    "title": "Captain Kill Switch",
-    "link": "https://www.producthunt.com/products/captain-kill-switch",
-    "category": "Other"
-  },
-  {
-    "title": "FrameSketch",
-    "link": "https://www.producthunt.com/products/framesketch",
-    "category": "Other"
-  },
-  {
-    "title": "Stackness",
-    "link": "https://www.producthunt.com/products/stackness",
-    "category": "Other"
-  },
-  {
-    "title": "DockFix 5.0",
-    "link": "https://www.producthunt.com/products/dockfix",
-    "category": "Other"
-  },
-  {
-    "title": "Work Life Panda",
-    "link": "https://www.producthunt.com/products/work-life-panda",
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
     "category": "Productivity"
   },
   {
-    "title": "Cortex",
-    "link": "https://www.producthunt.com/products/cortex-25",
+    "title": "DemoTV",
+    "link": "https://www.producthunt.com/products/demotv",
     "category": "Other"
+  },
+  {
+    "title": "Kirokune",
+    "link": "https://www.producthunt.com/products/kirokune",
+    "category": "Productivity"
+  },
+  {
+    "title": "Show HN: Self-hosted coffee app for tracking espresso shots, with AI assistance",
+    "link": "https://github.com/michidk/roastbook",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: I built Otis, a minimal AI agent that runs local models out of the box",
+    "link": "https://triangllabs.ai/otis",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Vigilator – human-in-the-loop layer for AI agents",
+    "link": "https://vigilator.ai/",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Bare-Metal AI – Zero-dependency, sub-millisecond AI engines",
+    "link": "https://github.com/eminsk/awesome-baremetal-ai",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Slowave – local adaptive memory for coding agents",
+    "link": "https://github.com/slowave-ai/slowave",
+    "category": "Coding"
+  },
+  {
+    "title": "Show HN: AI-Native dependency upgrades through codemods",
+    "link": "https://apiweiser-cli-fe.vercel.app/",
+    "category": "Coding"
+  },
+  {
+    "title": "Show HN: StemJSON – a language for LLMs to extend native mobile apps on the fly",
+    "link": "https://stemjson.com/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Socratix – update: the AI voice oral exam (Viva) is live",
+    "link": "https://socratix-nine.vercel.app",
+    "category": "Audio"
+  },
+  {
+    "title": "Show HN: Crypto portfolio risk and scenario analysis with AI agents on top",
+    "link": "https://sentralis.io/",
+    "category": "Research"
+  },
+  {
+    "title": "Show HN: I made an unlimited TikTok video generator to get views on the internet",
+    "link": "https://cloney.app",
+    "category": "Video"
+  },
+  {
+    "title": "Show HN: Anti-AI-slop: a 4 staged skill to detect and remove any AI writing slop",
+    "link": "https://github.com/misbahsy/anti-ai-slop",
+    "category": "Writing"
+  },
+  {
+    "title": "Show HN: Like LeetCode, but multi-file and multi-step",
+    "link": "https://loopprep.dev/",
+    "category": "Coding"
   },
   {
     "title": "Show HN: Kepil – passport, mandate and tamper-evident journal for AI agents",
@@ -238,65 +298,5 @@
     "title": "Show HN: I built a day-by-day timeline of the AI boom (2017–2026, 437 events)",
     "link": "https://www.aihistory.live/",
     "category": "Other"
-  },
-  {
-    "title": "Show HN: I built ThreadShelf to reuse hard-to-export AI chats like OpenRouter",
-    "link": "https://github.com/ChrystianSchutz/ThreadShelf",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: As-an-engineer – A skill to make AI treat you like an engineer",
-    "link": "https://github.com/mayooot/as-an-engineer",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: How LLMs work, explained through music, football or cricket analogies",
-    "link": "https://understand-ai.dev/",
-    "category": "Audio"
-  },
-  {
-    "title": "Show HN: AI Rendering in Realtime at 3dbae",
-    "link": "https://www.youtube.com/watch?v=Q9EZkVx-pws",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Astah Pro MCP – Enabling AI-Powered UML Modeling",
-    "link": "https://github.com/takaakit/astah-pro-mcp",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: A Technical Book for the Age of AI",
-    "link": "https://codeberg.org/juurej/p4cu",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Open-sourced solution to AI manage Playwright automations",
-    "link": "https://github.com/rakutentech/sorify",
-    "category": "Productivity"
-  },
-  {
-    "title": "Show HN: No_human – The AI coding factory that you can TRUST",
-    "link": "https://github.com/no-human-ai/no_human",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: AgentRuleBench, does AI agents violate inferred architecture rules?",
-    "link": "https://github.com/Tommkruix/agentrulebench",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: An independent directory of AI misalignment reports",
-    "link": "https://misalignment.xyz/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: SimTower, Decompiled, Rewritten, and in the Browser",
-    "link": "https://kvetch.io/conciliatower/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Come prove the Berge Fulkerson conjecture with a swarm of agents",
-    "link": "https://provetogether.ai/problems/15",
-    "category": "Chatbot/Assistant"
   }
 ]
