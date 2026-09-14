@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-14T19:15:39.873725+05:30",
+  "last_updated": "2026-09-15T00:36:35.883378+05:30",
   "top_pick_ids": [
     1,
     2,
@@ -13,7 +13,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "I trained a 210M-parameter text-to-image diffusion transformer from scratch (3.5 days, one RTX PRO 6000, 4.2M images at 256²) mainly to understand the recipe end to end. Three measurements came out of it that I have not seen stated plainly elsewhere, so I'm posting those rather than the samples. 1. ",
-      "published_at": "2026-09-14T19:15:39.872850+05:30"
+      "published_at": "2026-09-15T00:36:35.882562+05:30"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi 👋 long time lurker  It’s been a few years since the last post about Horse Racing within this sub.  A few years ago I was reading a popular science book and came across the story Bill Benter and the statistical models his team developed for Hong Kong racing.  What stayed with me wasn’t simply the ",
-      "published_at": "2026-09-14T19:15:39.872973+05:30"
+      "published_at": "2026-09-15T00:36:35.882687+05:30"
     },
     {
       "id": 3,
@@ -31,142 +31,142 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "Hi everyone, Inspired by tools like Chessvision.ai, I wanted to take a different architectural approach and build a browser extension (ChessInsights AI) that performs chessboard detection and piece recognition 100% client-side using local inference—with zero image data ever leaving the user's machin",
-      "published_at": "2026-09-14T19:15:39.873062+05:30"
+      "published_at": "2026-09-15T00:36:35.882750+05:30"
     },
     {
       "id": 4,
+      "title": "How to automatically find the batch size when using Accelerate with FSDP2? [D]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1wg9u62/how_to_automatically_find_the_batch_size_when/",
+      "source": "Machine Learning",
+      "category": "Image",
+      "summary": "Hi, For single-GPU training, I’m using Hugging Face SFTTrainer with auto_find_batch_size=True, which automatically reduces the batch size after a CUDA OOM until it finds a batch size that works. I would like to have similar behavior when training on multiple GPUs on a single node using accelerate la",
+      "published_at": "2026-09-15T00:36:35.882787+05:30"
+    },
+    {
+      "id": 5,
+      "title": "[P] Wine synthesis using VAE [P]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1wg5wxy/p_wine_synthesis_using_vae_p/",
+      "source": "Machine Learning",
+      "category": "Coding",
+      "summary": "I have created a VAE model using PyTorch on White Wine dataset. Basically, the main goal is to discover a brand-new white wine recipe. It puts all the wines into a latent space, finds the best part where higher bands are located, and then it makes 100 steps with a step size of 0.5, multiplying by 0.",
+      "published_at": "2026-09-15T00:36:35.882816+05:30"
+    },
+    {
+      "id": 6,
       "title": "Duplicating baseline benchmarks [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wg1tdn/duplicating_baseline_benchmarks_d/",
       "source": "Machine Learning",
       "category": "Productivity",
       "summary": "Suppose I create two machine learning models suppose tree and neural network for a task let's suppose regression problem, now suppose I am sending both of this paper to two different journals, now the thing is the baseline models I need to only run once because I have reported same baseline in both ",
-      "published_at": "2026-09-14T19:15:39.873100+05:30"
+      "published_at": "2026-09-15T00:36:35.882846+05:30"
     },
     {
-      "id": 5,
+      "id": 7,
       "title": "ChatGPT-using lawyer punished for citing fake testimony from made-up witnesses",
       "url": "https://arstechnica.com/tech-policy/2026/09/chatgpt-using-lawyer-punished-for-citing-fake-testimony-from-made-up-witnesses/",
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "\"I didn't know that AI could hallucinate facts,\" New Mexico defense lawyer says.",
-      "published_at": "2026-09-14T19:15:39.873116+05:30"
-    },
-    {
-      "id": 6,
-      "title": "Apple's Siri AI Can Be Swapped Out for Claude, ChatGPT, Code Shows",
-      "url": "https://www.macrumors.com/2026/09/14/siri-can-be-swapped-out-for-chatgpt-claude/",
-      "source": "Hacker News",
-      "category": "Products",
-      "summary": "Comments",
-      "published_at": "2026-09-14T19:15:39.873123+05:30"
-    },
-    {
-      "id": 7,
-      "title": "OpenArch – PyTorch implementations of modern LLM architectures",
-      "url": "https://github.com/anuj0456/OpenArch",
-      "source": "Hacker News",
-      "category": "Products",
-      "summary": "Comments",
-      "published_at": "2026-09-14T19:15:39.873138+05:30"
+      "published_at": "2026-09-15T00:36:35.882861+05:30"
     },
     {
       "id": 8,
+      "title": "Why don't machine learning research agents overfit?",
+      "url": "https://www.amazon.science/blog/why-dont-machine-learning-research-agents-overfit",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-15T00:36:35.882875+05:30"
+    },
+    {
+      "id": 9,
+      "title": "When LLM judges agree, should we believe them?",
+      "url": "https://www.amazon.science/blog/when-llm-judges-agree-should-we-believe-them",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-15T00:36:35.882887+05:30"
+    },
+    {
+      "id": 10,
       "title": "PhD branding question [R]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wfte3b/phd_branding_question_r/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "I'm starting a PhD where I will be doing Graph ML (somewhere along the lines of graph signal processing/ graph deep learning.)  My eventual goal is research scientist at big tech, or whichever company has a strong research division, where I can continue similar AI/ML work. I have concerns about the ",
-      "published_at": "2026-09-14T19:15:39.873162+05:30"
+      "published_at": "2026-09-15T00:36:35.882909+05:30"
     },
     {
-      "id": 9,
+      "id": 11,
       "title": "I trained an 825k-parameter model to generate drawing programs that execute exactly on an RP2040 [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf611v/i_trained_an_825kparameter_model_to_generate/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I’ve been working on a small research project about whether sub-million-parameter models can learn to generate executable drawing programs for constrained hardware. The current system is an 825k-parameter autoregressive transformer which generates ~100 bytes of drawing bytecode rather than pixels. T",
-      "published_at": "2026-09-14T19:15:39.873216+05:30"
+      "published_at": "2026-09-15T00:36:35.882962+05:30"
     },
     {
-      "id": 10,
+      "id": 12,
       "title": "Teach ML! Community service project from Stanford [N]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wbf3ox/teach_ml_community_service_project_from_stanford_n/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hi r/machinelearning. Nice to meet you! My name is Chris Piech and I'm a professor at Stanford University in the AI lab. I built a class called Probability for AI: pai.stanford.edu. It starts Oct 9th and applications are due end of Sept. Its (hopefully) cool for a few reasons:  The plan is to have o",
-      "published_at": "2026-09-14T19:15:39.873243+05:30"
+      "published_at": "2026-09-15T00:36:35.882989+05:30"
     },
     {
-      "id": 11,
+      "id": 13,
+      "title": "RSI is not happening [R]",
+      "url": "https://www.reddit.com/r/MachineLearning/comments/1wgazy4/rsi_is_not_happening_r/",
+      "source": "Machine Learning",
+      "category": "Coding",
+      "summary": "A new paper (I'm not a coauthor BTW -- I just found it interesting) argues, basically, that RSI is not on the horizon, because current (at the time the study was done) agents cannot do open-ended ML research. Specifically, they took some accepted, but unpublished papers from NeurIPS, and tried to ge",
+      "published_at": "2026-09-15T00:36:35.883003+05:30"
+    },
+    {
+      "id": 14,
       "title": "[Upcoming AMA] Waymo AI Team AMA – Drop Your Questions Early! [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wfesc0/upcoming_ama_waymo_ai_team_ama_drop_your/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi r/MachineLearning, Join our AI leads as they answer your questions on foundation models, simulation, and scaling the Waymo Driver. Our AMA thread is officially open, and you can start dropping your questions now. From multimodality and end-to-end architectures to the realities of validating model",
-      "published_at": "2026-09-14T19:15:39.873284+05:30"
+      "published_at": "2026-09-15T00:36:35.883049+05:30"
     },
     {
-      "id": 12,
+      "id": 15,
       "title": "Zachery Lipton: \"CS academia broke the system...perhaps all that it takes for the system to rebuild is for it to burn to the ground\" [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf4b5g/zachery_lipton_cs_academia_broke_the/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Sept 9, 2026 hits an all time daily high of 447 new machine learning papers uploaded to cs.LG (https://arxiv.org/list/cs.LG/recent?skip=0&amp;show=500).  This is many times more papers than what a human being or even a sizeable reading group could feasibly read and digest in a year.  This is precede",
-      "published_at": "2026-09-14T19:15:39.873338+05:30"
+      "published_at": "2026-09-15T00:36:35.883104+05:30"
     },
     {
-      "id": 13,
+      "id": 16,
       "title": "MS MARCO click-translation expansion tables (\"poor man's\" DSSM) [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wg3g03/ms_marco_clicktranslation_expansion_tables_poor/",
       "source": "Machine Learning",
       "category": "Research",
       "summary": "TLDR: I made &quot;poor man’s&quot; DSSM (Deep Structured Semantic Model) — the count-based translation table that can enrich the inverted index for full-text search. This trick can improve baseline BM25. So the idea is the following: - You have supervised pairs (query, relevant document), e.g., MS ",
-      "published_at": "2026-09-14T19:15:39.873411+05:30"
+      "published_at": "2026-09-15T00:36:35.883173+05:30"
     },
     {
-      "id": 14,
+      "id": 17,
       "title": "How do you control different character pose in SDXL when using a reference image? [R][D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wep88z/how_do_you_control_different_character_pose_in/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi, I’m working on generating ~128×128 pixel art and trying to generate different poses of the same character. My current approach is roughly: Start with a reference image and preprocess it into cleaner/more pixel-art-like data (often removing transparency or setting up fixed number of pallets or de",
-      "published_at": "2026-09-14T19:15:39.873453+05:30"
+      "published_at": "2026-09-15T00:36:35.883214+05:30"
     },
     {
-      "id": 15,
+      "id": 18,
       "title": "Confusion regarding EMNLP registration [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wdw5o0/confusion_regarding_emnlp_registration_d/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Hi, I posted some months ago and got some very helpful responses (for another conference), but I have some confusions regarding EMNLP (and the way registration works here). To give some context, I used to work as an intern during my undergrads at an Indian uni (final year), and managed to write a pa",
-      "published_at": "2026-09-14T19:15:39.873523+05:30"
-    },
-    {
-      "id": 16,
-      "title": "How much do tech reports matter for a PhD application? [D]",
-      "url": "https://www.reddit.com/r/MachineLearning/comments/1weedmk/how_much_do_tech_reports_matter_for_a_phd/",
-      "source": "Machine Learning",
-      "category": "Other",
-      "summary": "The title, by tech reports I don't mean arXiv submissions, but reports of a large model, like say Kimi K3, DeepSeek, Gemini, Mistral Leanstral, etc. Is it much above, above, much below, below or equal to a first author A* paper?  &#32; submitted by &#32;  /u/simple-Flat0263   [link] &#32; [comments]",
-      "published_at": "2026-09-14T19:15:39.873550+05:30"
-    },
-    {
-      "id": 17,
-      "title": "Why is TMLR so slow in recent times [D]",
-      "url": "https://www.reddit.com/r/MachineLearning/comments/1wd5mki/why_is_tmlr_so_slow_in_recent_times_d/",
-      "source": "Machine Learning",
-      "category": "Other",
-      "summary": "A final-year PhD student here. A few months back, I submitted a solo-authored paper to TMLR. The reviewers were on time and extremely positive, with some minor revisions. After submitting the revised version, there was absolute silence from the reviewers, with just one acknowledging that their conce",
-      "published_at": "2026-09-14T19:15:39.873595+05:30"
-    },
-    {
-      "id": 18,
-      "title": "ACL Sustainable Reviewing Policy [D]",
-      "url": "https://www.reddit.com/r/MachineLearning/comments/1wd7b83/acl_sustainable_reviewing_policy_d/",
-      "source": "Machine Learning",
-      "category": "Image",
-      "summary": "ACL just announced on X how they are planning to handle the increased submission numbers. Interestingly enough, they call it &quot;the proposal&quot;. My understanding is that, in a nutshell, each submission should come with someone who can review, otherwise it may only get a slot through a lottery.",
-      "published_at": "2026-09-14T19:15:39.873628+05:30"
+      "published_at": "2026-09-15T00:36:35.883281+05:30"
     },
     {
       "id": 19,
@@ -175,7 +175,7 @@
       "source": "Two Minute Papers",
       "category": "Research",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\nLinks / sources:\nHoney sim: search for \"Variational Stokes: A Unified Pressure-Viscosity Solver for Accurate Viscous Liquids\" here: https://cs.uwaterloo.ca/~c2batty/\nhttps://x.com/mindblown_ai/status/2095661874037813",
-      "published_at": "2026-09-14T19:15:39.873678+05:30"
+      "published_at": "2026-09-15T00:36:35.883331+05:30"
     },
     {
       "id": 20,
@@ -184,7 +184,7 @@
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Weights & Biases and sign up for a free demo here: https://wandb.me/papers\n\n📝 The paper and Qwen3.8-Flash-Next are available here:\nhttps://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf\nhttps://qwen.ai/blog?id=qwen3.8-flash-next\n\nSources:\nhttps://x.com/analogalok/status/",
-      "published_at": "2026-09-14T19:15:39.873693+05:30"
+      "published_at": "2026-09-15T00:36:35.883346+05:30"
     },
     {
       "id": 21,
@@ -193,7 +193,7 @@
       "source": "Two Minute Papers",
       "category": "Coding",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 The Qwen3.8-27b is available here:\nhttps://huggingface.co/Qwen/Qwen3.8-27B\n\nSources:\nhttps://www.reddit.com/r/unsloth/comments/1vogva0/share_your_results_from_qwen3827b/\nhttps://www.reddit.com/r/LocalLLaMA/comments",
-      "published_at": "2026-09-14T19:15:39.873710+05:30"
+      "published_at": "2026-09-15T00:36:35.883364+05:30"
     },
     {
       "id": 22,
@@ -202,7 +202,7 @@
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 More reports are available here:\nhttps://openai.com/index/hugging-face-model-evaluation-security-incident/\nhttps://huggingface.co/blog/security-incident-july-2026\nhttps://huggingface.co/blog/agent-intrusion-technic",
-      "published_at": "2026-09-14T19:15:39.873721+05:30"
+      "published_at": "2026-09-15T00:36:35.883375+05:30"
     }
   ]
 }

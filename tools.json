@@ -1,12 +1,32 @@
 [
   {
+    "title": "Web Search Agents by Nimble",
+    "link": "https://www.producthunt.com/products/nimbleway",
+    "category": "Research"
+  },
+  {
+    "title": "MemoryPet 2.0",
+    "link": "https://www.producthunt.com/products/memorypet",
+    "category": "Other"
+  },
+  {
+    "title": "appdesigns",
+    "link": "https://www.producthunt.com/products/appdesigns",
+    "category": "Image"
+  },
+  {
     "title": "Slashy Assistant",
     "link": "https://www.producthunt.com/products/slashy-3",
     "category": "Chatbot/Assistant"
   },
   {
-    "title": "Aside",
-    "link": "https://www.producthunt.com/products/aside-6",
+    "title": "Elva",
+    "link": "https://www.producthunt.com/products/elva",
+    "category": "Other"
+  },
+  {
+    "title": "Oats",
+    "link": "https://www.producthunt.com/products/oats-2",
     "category": "Other"
   },
   {
@@ -20,28 +40,18 @@
     "category": "Coding"
   },
   {
-    "title": "AppZapper 3000",
-    "link": "https://www.producthunt.com/products/appzapper",
-    "category": "Other"
+    "title": "Naoma AI Demo Agent V2",
+    "link": "https://www.producthunt.com/products/naoma",
+    "category": "Chatbot/Assistant"
   },
   {
-    "title": "OVO",
-    "link": "https://www.producthunt.com/products/ovo",
-    "category": "Audio"
+    "title": "OzBrain",
+    "link": "https://www.producthunt.com/products/ozbrain",
+    "category": "Chatbot/Assistant"
   },
   {
-    "title": "Web Search Agents by Nimble",
-    "link": "https://www.producthunt.com/products/nimbleway",
-    "category": "Research"
-  },
-  {
-    "title": "TryCase",
-    "link": "https://www.producthunt.com/products/trycase",
-    "category": "Video"
-  },
-  {
-    "title": "Oats",
-    "link": "https://www.producthunt.com/products/oats-2",
+    "title": "Aside",
+    "link": "https://www.producthunt.com/products/aside-6",
     "category": "Other"
   },
   {
@@ -50,19 +60,9 @@
     "category": "Image"
   },
   {
-    "title": "OzBrain",
-    "link": "https://www.producthunt.com/products/ozbrain",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Naoma AI Demo Agent V2",
-    "link": "https://www.producthunt.com/products/naoma",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "appdesigns",
-    "link": "https://www.producthunt.com/products/appdesigns",
-    "category": "Image"
+    "title": "LLMagnet",
+    "link": "https://www.producthunt.com/products/llmagnet",
+    "category": "Other"
   },
   {
     "title": "Marqly 6.0",
@@ -70,58 +70,28 @@
     "category": "Other"
   },
   {
+    "title": "OVO",
+    "link": "https://www.producthunt.com/products/ovo",
+    "category": "Audio"
+  },
+  {
+    "title": "AppZapper 3000",
+    "link": "https://www.producthunt.com/products/appzapper",
+    "category": "Other"
+  },
+  {
+    "title": "TryCase",
+    "link": "https://www.producthunt.com/products/trycase",
+    "category": "Video"
+  },
+  {
     "title": "Afterglow",
     "link": "https://www.producthunt.com/products/afterglow-4",
     "category": "Other"
   },
   {
-    "title": "MemoryPet 2.0",
-    "link": "https://www.producthunt.com/products/memorypet",
-    "category": "Other"
-  },
-  {
     "title": "Deplo",
     "link": "https://www.producthunt.com/products/deplo-2",
-    "category": "Other"
-  },
-  {
-    "title": "LLMagnet",
-    "link": "https://www.producthunt.com/products/llmagnet",
-    "category": "Other"
-  },
-  {
-    "title": "Elva",
-    "link": "https://www.producthunt.com/products/elva",
-    "category": "Other"
-  },
-  {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
-    "category": "Productivity"
-  },
-  {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
-  },
-  {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
-  },
-  {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
-    "category": "Other"
-  },
-  {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
     "category": "Other"
   },
   {
@@ -140,14 +110,104 @@
     "category": "Productivity"
   },
   {
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
+    "category": "Other"
+  },
+  {
     "title": "DemoTV",
     "link": "https://www.producthunt.com/products/demotv",
+    "category": "Other"
+  },
+  {
+    "title": "GhostWriter by MyHandler",
+    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "category": "Other"
+  },
+  {
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
+    "category": "Other"
+  },
+  {
+    "title": "Resurf",
+    "link": "https://www.producthunt.com/products/resurf-2",
     "category": "Other"
   },
   {
     "title": "Kirokune",
     "link": "https://www.producthunt.com/products/kirokune",
     "category": "Productivity"
+  },
+  {
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
+    "category": "Video"
+  },
+  {
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Kario – AI Native Motion Graphics Editor",
+    "link": "https://www.karioai.com/",
+    "category": "Image"
+  },
+  {
+    "title": "Show HN: Ringee – Open-source human and AI calling",
+    "link": "https://www.ringee.io",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Threshyr – An offline automatic time tracker with on-device AI",
+    "link": "https://threshyr.com",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Vedic Astrology Chart – free D1/D9 birth chart with AI insights",
+    "link": "https://vedicastrologychart.org/",
+    "category": "Image"
+  },
+  {
+    "title": "Show HN: MCP Harbor – An MCP Registry",
+    "link": "https://ai.mcpharbor.dev/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Rebuno - An open-source runtime for production agents",
+    "link": "https://github.com/rebuno/rebuno",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: AgentDrive – persistent, versioned file storage for AI agents",
+    "link": "https://tokencanopy.com/products/agentdrive",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Nari Qwen3-TTS and Qwen3-ASR – High accuracy, low latency and cost",
+    "link": "https://narilabs.com/blog/nari-labs-leads-coval-voice-ai-benchmarks/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Local catalog of 3k agent skills with a static risk scan",
+    "link": "https://github.com/xm1k3/ai-community-skills",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Push Notifications for Hacker News",
+    "link": "https://www.hazumi.news",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Botbin – A zero-login HTML pastebin for AI agents",
+    "link": "http://botbin.io/",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Show HN: Prmptree – AI email agent with a trust dial, not an on/off switch",
+    "link": "https://www.prmptree.com/",
+    "category": "Chatbot/Assistant"
   },
   {
     "title": "Show HN: Self-hosted coffee app for tracking espresso shots, with AI assistance",
@@ -237,66 +297,6 @@
   {
     "title": "Show HN: I made a tiny MoE/Engram viz tool",
     "link": "https://sw-ml-study.github.io/moe-microscope/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Vehla – the AI command center for macOS",
-    "link": "https://vehla.app/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: ClientCoded – QA Platform for AI Agents",
-    "link": "https://clientcoded.com/environments",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: Credit against tokenised stocks for agents. punish us please",
-    "link": "https://vaaya.ai/credit-against-securities-for-agents",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Kibble – a reader for AI news, tutorials, code and models",
-    "link": "https://www.kibblebites.com/app/",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: Pinocchio: Harness for Verifiable Work",
-    "link": "https://pinocchio.goedelmachines.com",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: sengi.ai — Verified candidate sourcing for hard-to-fill roles",
-    "link": "https://sengi.ai/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: AgentSpork, Agents help agents, Humans touch grass",
-    "link": "https://agentspork.com/",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: RunBoth, a behaviour diff for code an AI changed",
-    "link": "https://github.com/runboth/runboth",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: OSS Modal Alternative",
-    "link": "https://github.com/beam-cloud/beta9/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Directory of 28 AI crawlers – robots.txt rules, IP ranges, open data",
-    "link": "https://geoprompttracker.com/bots",
-    "category": "Research"
-  },
-  {
-    "title": "Show HN: I built my own knowledge graph from the code AI writes",
-    "link": "https://github.com/aeroscissorz/learnlance/",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: I built a day-by-day timeline of the AI boom (2017–2026, 437 events)",
-    "link": "https://www.aihistory.live/",
     "category": "Other"
   }
 ]
