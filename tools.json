@@ -1,33 +1,148 @@
 [
   {
-    "title": "Image to ASCII",
-    "link": "https://www.producthunt.com/products/image-to-ascii-2",
-    "category": "Image"
-  },
-  {
-    "title": "Oats",
-    "link": "https://www.producthunt.com/products/oats-2",
-    "category": "Other"
-  },
-  {
-    "title": "Aside",
-    "link": "https://www.producthunt.com/products/aside-6",
-    "category": "Other"
-  },
-  {
-    "title": "MemoryPet 2.0",
-    "link": "https://www.producthunt.com/products/memorypet",
-    "category": "Other"
-  },
-  {
-    "title": "Slashy Assistant",
-    "link": "https://www.producthunt.com/products/slashy-3",
+    "title": "is.team",
+    "link": "https://www.producthunt.com/products/is-team",
     "category": "Chatbot/Assistant"
   },
   {
-    "title": "Web Search Agents by Nimble",
-    "link": "https://www.producthunt.com/products/nimbleway",
+    "title": "Voiskey",
+    "link": "https://www.producthunt.com/products/voiskey",
+    "category": "Audio"
+  },
+  {
+    "title": "Narrative",
+    "link": "https://www.producthunt.com/products/narrative-3",
+    "category": "Video"
+  },
+  {
+    "title": "Kilo Code for iOS and Android",
+    "link": "https://www.producthunt.com/products/kilocode",
+    "category": "Coding"
+  },
+  {
+    "title": "tiun.",
+    "link": "https://www.producthunt.com/products/tiun-2",
+    "category": "Other"
+  },
+  {
+    "title": "Proofrr",
+    "link": "https://www.producthunt.com/products/proofrr",
+    "category": "Other"
+  },
+  {
+    "title": "Fifi",
+    "link": "https://www.producthunt.com/products/fifi-wake-up-call-alarm-clock",
+    "category": "Other"
+  },
+  {
+    "title": "Multimodal Agents by Sierra",
+    "link": "https://www.producthunt.com/products/sierra",
+    "category": "Audio"
+  },
+  {
+    "title": "Idlen",
+    "link": "https://www.producthunt.com/products/idlen",
+    "category": "Other"
+  },
+  {
+    "title": "siift",
+    "link": "https://www.producthunt.com/products/siift",
+    "category": "Other"
+  },
+  {
+    "title": "The Minimalist Entrepreneur Skills",
+    "link": "https://www.producthunt.com/products/the-minimalist-entrepreneur-skills",
+    "category": "Coding"
+  },
+  {
+    "title": "Thoughts for Mac",
+    "link": "https://www.producthunt.com/products/thoughts-for-mac",
+    "category": "Image"
+  },
+  {
+    "title": "Buddy AI Access (MCP)",
+    "link": "https://www.producthunt.com/products/buddy",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Mailyte",
+    "link": "https://www.producthunt.com/products/mailyte",
+    "category": "Other"
+  },
+  {
+    "title": "jurniti",
+    "link": "https://www.producthunt.com/products/jurniti",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "PortAura",
+    "link": "https://www.producthunt.com/products/portaura",
+    "category": "Other"
+  },
+  {
+    "title": "FATHER",
+    "link": "https://www.producthunt.com/products/father-web-monitoring",
+    "category": "Other"
+  },
+  {
+    "title": "Grimo AI",
+    "link": "https://www.producthunt.com/products/grimo-ai",
+    "category": "Productivity"
+  },
+  {
+    "title": "Anthropologic",
+    "link": "https://www.producthunt.com/products/anthropologic",
     "category": "Research"
+  },
+  {
+    "title": "Workshopy.io",
+    "link": "https://www.producthunt.com/products/workshopy-io",
+    "category": "Other"
+  },
+  {
+    "title": "Portfolio Frame",
+    "link": "https://www.producthunt.com/products/portfolio-frame",
+    "category": "Image"
+  },
+  {
+    "title": "Payflip",
+    "link": "https://www.producthunt.com/products/payflip",
+    "category": "Other"
+  },
+  {
+    "title": "Kodro",
+    "link": "https://www.producthunt.com/products/kodro",
+    "category": "Coding"
+  },
+  {
+    "title": "PeekPaste",
+    "link": "https://www.producthunt.com/products/lucidbit",
+    "category": "Video"
+  },
+  {
+    "title": "Axari",
+    "link": "https://www.producthunt.com/products/axari",
+    "category": "Other"
+  },
+  {
+    "title": "OpenAI Agents API",
+    "link": "https://www.producthunt.com/products/openai",
+    "category": "Coding"
+  },
+  {
+    "title": "Mac Duo",
+    "link": "https://www.producthunt.com/products/mac-duo",
+    "category": "Other"
+  },
+  {
+    "title": "DynamicLake 2.0",
+    "link": "https://www.producthunt.com/products/dynamiclake",
+    "category": "Other"
+  },
+  {
+    "title": "Tangerine",
+    "link": "https://www.producthunt.com/products/tangerine-zero-click-file-converter",
+    "category": "Other"
   },
   {
     "title": "Afterglow",
@@ -35,119 +150,34 @@
     "category": "Other"
   },
   {
-    "title": "OVO",
-    "link": "https://www.producthunt.com/products/ovo",
+    "title": "Show HN: Knecht, a tool for building software factories for agencies",
+    "link": "https://knecht.works",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Spec sheets for humans – who you are and how to work with you",
+    "link": "https://spec.md",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: A reader ranked Indian news platform powered by feed",
+    "link": "https://news.lokutu.com",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Jinfer – AI inference engine for the JVM. AI in a jar",
+    "link": "https://qxotic.ai/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Chronicle – Local-first, open-source authoring software for writers",
+    "link": "https://pazvanti.github.io/Chronicle/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: White-label AI voice and chat agent platform for resellers",
+    "link": "https://www.famulor.io/whitelabel",
     "category": "Audio"
-  },
-  {
-    "title": "OzBrain",
-    "link": "https://www.producthunt.com/products/ozbrain",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Hello Inbox",
-    "link": "https://www.producthunt.com/products/helloinbox",
-    "category": "Other"
-  },
-  {
-    "title": "Marqly 6.0",
-    "link": "https://www.producthunt.com/products/marqly",
-    "category": "Other"
-  },
-  {
-    "title": "TryCase",
-    "link": "https://www.producthunt.com/products/trycase",
-    "category": "Video"
-  },
-  {
-    "title": "Juggler",
-    "link": "https://www.producthunt.com/products/juggler",
-    "category": "Coding"
-  },
-  {
-    "title": "AppZapper 3000",
-    "link": "https://www.producthunt.com/products/appzapper",
-    "category": "Other"
-  },
-  {
-    "title": "Naoma AI Demo Agent V2",
-    "link": "https://www.producthunt.com/products/naoma",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "LLMagnet",
-    "link": "https://www.producthunt.com/products/llmagnet",
-    "category": "Other"
-  },
-  {
-    "title": "Elva",
-    "link": "https://www.producthunt.com/products/elva",
-    "category": "Other"
-  },
-  {
-    "title": "appdesigns",
-    "link": "https://www.producthunt.com/products/appdesigns",
-    "category": "Image"
-  },
-  {
-    "title": "Deplo",
-    "link": "https://www.producthunt.com/products/deplo-2",
-    "category": "Other"
-  },
-  {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
-  },
-  {
-    "title": "Resurf",
-    "link": "https://www.producthunt.com/products/resurf-2",
-    "category": "Other"
-  },
-  {
-    "title": "Kirokune",
-    "link": "https://www.producthunt.com/products/kirokune",
-    "category": "Productivity"
-  },
-  {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
-    "category": "Other"
-  },
-  {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
-  },
-  {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
-    "category": "Productivity"
-  },
-  {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
-  },
-  {
-    "title": "ScreenCursor",
-    "link": "https://www.producthunt.com/products/screencursor",
-    "category": "Other"
-  },
-  {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
-  },
-  {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
-    "category": "Other"
-  },
-  {
-    "title": "DemoTV",
-    "link": "https://www.producthunt.com/products/demotv",
-    "category": "Other"
   },
   {
     "title": "Show HN: Sunk Cost – How long until a local LLM rig pays for itself?",
@@ -268,35 +298,5 @@
     "title": "Show HN: Vigilator – human-in-the-loop layer for AI agents",
     "link": "https://vigilator.ai/",
     "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Bare-Metal AI – Zero-dependency, sub-millisecond AI engines",
-    "link": "https://github.com/eminsk/awesome-baremetal-ai",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: AI-Native dependency upgrades through codemods",
-    "link": "https://apiweiser-cli-fe.vercel.app/",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: StemJSON – a language for LLMs to extend native mobile apps on the fly",
-    "link": "https://stemjson.com/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Socratix – update: the AI voice oral exam (Viva) is live",
-    "link": "https://socratix-nine.vercel.app",
-    "category": "Audio"
-  },
-  {
-    "title": "Show HN: Crypto portfolio risk and scenario analysis with AI agents on top",
-    "link": "https://sentralis.io/",
-    "category": "Research"
-  },
-  {
-    "title": "Show HN: I made an unlimited TikTok video generator to get views on the internet",
-    "link": "https://cloney.app",
-    "category": "Video"
   }
 ]
