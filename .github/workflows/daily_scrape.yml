@@ -1,4 +1,4 @@
-name: Daily AI News Scrape
+name: Chrono Daily AI Scrape & Deploy
 
 on:
   schedule:

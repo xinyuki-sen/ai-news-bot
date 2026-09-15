@@ -17,19 +17,36 @@ from datetime import datetime, timezone, timedelta
 # ── Constants ────────────────────────────────────────────────────────────
 IST = timezone(timedelta(hours=5, minutes=30))
 DB_FILE = "seen_posts.db"
-USER_AGENT = "Mozilla/5.0 (AI-News-Bot/2.0)"
-MAX_NEWS_ARTICLES = 40
-MAX_TOOL_ENTRIES = 50
+USER_AGENT = "Mozilla/5.0 (Chrono-AI/3.0; +https://xinyuki-sen.github.io/chrono/)"
+MAX_NEWS_ARTICLES = 100
+MAX_TOOL_ENTRIES = 60
 
 # ── News Feeds ───────────────────────────────────────────────────────────
 NEWS_FEEDS = [
+    # Top Tech & Deep Tech
     "https://feeds.arstechnica.com/arstechnica/index",
     "https://news.ycombinator.com/rss",
+    "https://techcrunch.com/category/artificial-intelligence/feed/",
+    "https://venturebeat.com/category/ai/feed/",
+    "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    "https://www.technologyreview.com/topic/artificial-intelligence/feed/",
+    
+    # Frontier Research & Papers
     "https://arxiv.org/rss/cs.AI",
+    "https://arxiv.org/rss/cs.CL",   # Computation & Language (LLMs/NLP)
+    "https://arxiv.org/rss/cs.LG",   # Machine Learning
+    "https://huggingface.co/blog/feed.xml",
+    "https://deepmind.google/blog/rss.xml",
+    
+    # AI Engineering & Industry Analysis
+    "https://simonwillison.net/atom/everything/",
+    "https://www.latent.space/feed",
     "https://www.reddit.com/r/MachineLearning/.rss",
     "https://www.reddit.com/r/artificial/.rss",
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",
+    
+    # Video Briefs
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",  # Two Minute Papers
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",  # 3Blue1Brown
 ]
 
 # ── Tool Feeds ───────────────────────────────────────────────────────────
@@ -44,25 +61,46 @@ AI_KEYWORDS = [
     "diffusion", "CLIP", "vision", "NLP", "AI safety",
     "open source", "model", "training", "inference",
     "embedding", "attention", "fine-tune", "dataset",
+    "agent", "claude", "gemini", "deepseek", "reasoning",
 ]
 
 HIGH_IMPACT_WORDS = [
     "breakthrough", "release", "launch", "new model", "state-of-the-art",
-    "open source", "outperforms", "announces", "unveils",
+    "open source", "outperforms", "announces", "unveils", "frontier",
 ]
 
 SOURCE_WEIGHT = {
     "cs.AI updates on arXiv.org": 3,
+    "cs.CL updates on arXiv.org": 3,
+    "cs.LG updates on arXiv.org": 3,
+    "Google DeepMind": 3,
+    "Hugging Face Blog": 3,
     "GitHub Trending AI": 3,
     "Hacker News": 2,
     "Ars Technica - All content": 2,
+    "TechCrunch": 2,
+    "VentureBeat": 2,
+    "The Verge": 2,
+    "MIT Technology Review": 3,
+    "Simon Willison’s Weblog": 2,
+    "Latent Space": 2,
 }
 
 SOURCE_CATEGORY = {
     "cs.AI updates on arXiv.org": "Research",
+    "cs.CL updates on arXiv.org": "Research",
+    "cs.LG updates on arXiv.org": "Research",
+    "Google DeepMind": "Frontiers",
+    "Hugging Face Blog": "Open Source",
     "GitHub Trending AI": "Open Source",
     "Hacker News": "Products",
     "Ars Technica - All content": "LLMs",
+    "TechCrunch": "Industry",
+    "VentureBeat": "Enterprise AI",
+    "The Verge": "Products",
+    "MIT Technology Review": "Research",
+    "Simon Willison’s Weblog": "Coding",
+    "Latent Space": "Engineering",
 }
 
 # ── Tool Categories ──────────────────────────────────────────────────────
@@ -202,7 +240,7 @@ def post_to_discord(articles: list):
         return
 
     today = datetime.now(IST).strftime("%Y-%m-%d")
-    lines = [f"🤖 **AI News Update** — {today}\n"]
+    lines = [f"⚡ **Chrono AI Intelligence Brief** — {today}\n"]
     for i, a in enumerate(articles[:15], 1):
         lines.append(f"{i}. **{a['title']}**")
         lines.append(f"   {a['source']} — {a.get('link', '')}\n")
@@ -739,7 +777,7 @@ def build_models_json():
 def main():
     """Run the entire scrape → filter → rank → publish pipeline."""
     print("═" * 60)
-    print("  AI News Bot v2.0")
+    print("  Chrono AI v3.0 — Real-Time AI Intelligence Engine")
     print("═" * 60)
 
     # 1. Database
