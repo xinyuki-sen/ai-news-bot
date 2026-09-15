@@ -78,7 +78,7 @@
 
     /* ── Antigravity-Style Resizable Panel ───────────────────────────── */
     .panel-backdrop{display:none}
-    .panel{width:var(--panel-w);min-width:280px;max-width:650px;background:var(--surface);border-left:1px solid var(--border);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;flex-shrink:0;z-index:30;position:relative}
+    .panel{width:var(--panel-w);min-width:280px;max-width:650px;background:var(--surface);border-left:1px solid var(--border);position:relative;min-height:100vh;display:flex;flex-direction:column;flex-shrink:0;z-index:30}
     .panel-resizer{position:absolute;left:-3px;top:0;bottom:0;width:6px;cursor:col-resize;z-index:50;transition:background .15s}
     .panel-resizer:hover,.panel-resizer.dragging{background:var(--accent)}
     .panel-header{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--border);gap:10px}
