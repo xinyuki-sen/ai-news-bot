@@ -1,67 +1,12 @@
 [
   {
-    "title": "Hello Inbox",
-    "link": "https://www.producthunt.com/products/helloinbox",
-    "category": "Other"
-  },
-  {
-    "title": "Naoma AI Demo Agent V2",
-    "link": "https://www.producthunt.com/products/naoma",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Slashy Assistant",
-    "link": "https://www.producthunt.com/products/slashy-3",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "LLMagnet",
-    "link": "https://www.producthunt.com/products/llmagnet",
-    "category": "Other"
-  },
-  {
     "title": "Image to ASCII",
     "link": "https://www.producthunt.com/products/image-to-ascii-2",
     "category": "Image"
   },
   {
-    "title": "OzBrain",
-    "link": "https://www.producthunt.com/products/ozbrain",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "OVO",
-    "link": "https://www.producthunt.com/products/ovo",
-    "category": "Audio"
-  },
-  {
-    "title": "Marqly 6.0",
-    "link": "https://www.producthunt.com/products/marqly",
-    "category": "Other"
-  },
-  {
-    "title": "MemoryPet 2.0",
-    "link": "https://www.producthunt.com/products/memorypet",
-    "category": "Other"
-  },
-  {
-    "title": "Juggler",
-    "link": "https://www.producthunt.com/products/juggler",
-    "category": "Coding"
-  },
-  {
-    "title": "TryCase",
-    "link": "https://www.producthunt.com/products/trycase",
-    "category": "Video"
-  },
-  {
-    "title": "appdesigns",
-    "link": "https://www.producthunt.com/products/appdesigns",
-    "category": "Image"
-  },
-  {
-    "title": "AppZapper 3000",
-    "link": "https://www.producthunt.com/products/appzapper",
+    "title": "Oats",
+    "link": "https://www.producthunt.com/products/oats-2",
     "category": "Other"
   },
   {
@@ -70,14 +15,14 @@
     "category": "Other"
   },
   {
-    "title": "Elva",
-    "link": "https://www.producthunt.com/products/elva",
+    "title": "MemoryPet 2.0",
+    "link": "https://www.producthunt.com/products/memorypet",
     "category": "Other"
   },
   {
-    "title": "Oats",
-    "link": "https://www.producthunt.com/products/oats-2",
-    "category": "Other"
+    "title": "Slashy Assistant",
+    "link": "https://www.producthunt.com/products/slashy-3",
+    "category": "Chatbot/Assistant"
   },
   {
     "title": "Web Search Agents by Nimble",
@@ -90,14 +35,69 @@
     "category": "Other"
   },
   {
+    "title": "OVO",
+    "link": "https://www.producthunt.com/products/ovo",
+    "category": "Audio"
+  },
+  {
+    "title": "OzBrain",
+    "link": "https://www.producthunt.com/products/ozbrain",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Hello Inbox",
+    "link": "https://www.producthunt.com/products/helloinbox",
+    "category": "Other"
+  },
+  {
+    "title": "Marqly 6.0",
+    "link": "https://www.producthunt.com/products/marqly",
+    "category": "Other"
+  },
+  {
+    "title": "TryCase",
+    "link": "https://www.producthunt.com/products/trycase",
+    "category": "Video"
+  },
+  {
+    "title": "Juggler",
+    "link": "https://www.producthunt.com/products/juggler",
+    "category": "Coding"
+  },
+  {
+    "title": "AppZapper 3000",
+    "link": "https://www.producthunt.com/products/appzapper",
+    "category": "Other"
+  },
+  {
+    "title": "Naoma AI Demo Agent V2",
+    "link": "https://www.producthunt.com/products/naoma",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "LLMagnet",
+    "link": "https://www.producthunt.com/products/llmagnet",
+    "category": "Other"
+  },
+  {
+    "title": "Elva",
+    "link": "https://www.producthunt.com/products/elva",
+    "category": "Other"
+  },
+  {
+    "title": "appdesigns",
+    "link": "https://www.producthunt.com/products/appdesigns",
+    "category": "Image"
+  },
+  {
     "title": "Deplo",
     "link": "https://www.producthunt.com/products/deplo-2",
     "category": "Other"
   },
   {
-    "title": "SHIUI",
-    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
-    "category": "Other"
+    "title": "Perplexity Hybrid Compute",
+    "link": "https://www.producthunt.com/products/perplexity-ai",
+    "category": "Productivity"
   },
   {
     "title": "Resurf",
@@ -110,13 +110,38 @@
     "category": "Productivity"
   },
   {
-    "title": "Neopress",
-    "link": "https://www.producthunt.com/products/neopress",
+    "title": "SHIUI",
+    "link": "https://www.producthunt.com/products/shiui-hinomaru-ink-ui-kit",
     "category": "Other"
   },
   {
-    "title": "GhostWriter by MyHandler",
-    "link": "https://www.producthunt.com/products/ghostwriter-by-myhandler",
+    "title": "Clipwise",
+    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
+    "category": "Video"
+  },
+  {
+    "title": "Epilude Notetaker",
+    "link": "https://www.producthunt.com/products/epilude",
+    "category": "Productivity"
+  },
+  {
+    "title": "Visiby",
+    "link": "https://www.producthunt.com/products/visiby",
+    "category": "Research"
+  },
+  {
+    "title": "ScreenCursor",
+    "link": "https://www.producthunt.com/products/screencursor",
+    "category": "Other"
+  },
+  {
+    "title": "Cognition's SWE-2",
+    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
+    "category": "Coding"
+  },
+  {
+    "title": "Neopress",
+    "link": "https://www.producthunt.com/products/neopress",
     "category": "Other"
   },
   {
@@ -125,29 +150,19 @@
     "category": "Other"
   },
   {
-    "title": "Visiby",
-    "link": "https://www.producthunt.com/products/visiby",
-    "category": "Research"
+    "title": "Show HN: Sunk Cost – How long until a local LLM rig pays for itself?",
+    "link": "https://sunkcost.ai/",
+    "category": "Other"
   },
   {
-    "title": "Cognition's SWE-2",
-    "link": "https://www.producthunt.com/products/cognition-s-swe-2",
-    "category": "Coding"
+    "title": "Show HN: SuperOpt – Linux Shortcuts on Mac",
+    "link": "https://logonoff.co/superopt/",
+    "category": "Other"
   },
   {
-    "title": "Perplexity Hybrid Compute",
-    "link": "https://www.producthunt.com/products/perplexity-ai",
-    "category": "Productivity"
-  },
-  {
-    "title": "Epilude Notetaker",
-    "link": "https://www.producthunt.com/products/epilude",
-    "category": "Productivity"
-  },
-  {
-    "title": "Clipwise",
-    "link": "https://www.producthunt.com/products/clipwise-notion-web-clipper",
-    "category": "Video"
+    "title": "Show HN: An open-source control plane for your company's AI agents",
+    "link": "https://github.com/vstorm-co/agenticos",
+    "category": "Chatbot/Assistant"
   },
   {
     "title": "Show HN: Nowdex – AI agent usage on your iPhone",
@@ -283,20 +298,5 @@
     "title": "Show HN: I made an unlimited TikTok video generator to get views on the internet",
     "link": "https://cloney.app",
     "category": "Video"
-  },
-  {
-    "title": "Show HN: Anti-AI-slop: a 4 staged skill to detect and remove any AI writing slop",
-    "link": "https://github.com/misbahsy/anti-ai-slop",
-    "category": "Writing"
-  },
-  {
-    "title": "Show HN: Like LeetCode, but multi-file and multi-step",
-    "link": "https://loopprep.dev/",
-    "category": "Coding"
-  },
-  {
-    "title": "Show HN: Kepil – passport, mandate and tamper-evident journal for AI agents",
-    "link": "https://github.com/oleg-vdv/kepil",
-    "category": "Chatbot/Assistant"
   }
 ]
