@@ -2,67 +2,17 @@
   {
     "title": "Senior Code Reviewer",
     "category": "Coding",
-    "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements: [Paste Code]"
-  },
-  {
-    "title": "Explain Like I'm 5",
-    "category": "Learning",
-    "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies and avoid jargon."
-  },
-  {
-    "title": "Marketing Copywriter",
-    "category": "Marketing",
-    "description": "Write a highly converting, punchy landing page hero section and 3 feature bullet points for a product that does [Product Description]."
-  },
-  {
-    "title": "Interview Simulator",
-    "category": "Career",
-    "description": "Act as a strict technical interviewer for a [Role] position. Ask me one question at a time and wait for my response before continuing. Evaluate my answers."
-  },
-  {
-    "title": "Midjourney Cinematic Portrait",
-    "category": "Image Generation",
-    "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"
+    "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements with code examples:\n\n[Paste Code]"
   },
   {
     "title": "Regex Generator",
     "category": "Coding",
-    "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step."
-  },
-  {
-    "title": "Cold Email Outreach",
-    "category": "Marketing",
-    "description": "Write a concise, engaging cold email to a [Target Audience] offering [Your Service]. Keep it under 150 words and include a clear call to action."
-  },
-  {
-    "title": "Language Translation & Nuance",
-    "category": "Writing",
-    "description": "Translate the following text into [Language]. Provide 3 options ranging from formal to casual, and explain the cultural nuance of each choice: [Text]"
-  },
-  {
-    "title": "UX/UI Design Critic",
-    "category": "Design",
-    "description": "Act as a Lead Product Designer. I will describe a UI flow for my app: [Flow Description]. Critique it for usability, friction points, and accessibility."
+    "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step, and provide 3 test examples."
   },
   {
     "title": "System Architecture Planner",
     "category": "Coding",
-    "description": "I need to build a system that does [System Requirements]. Propose a high-level system architecture, including tech stack, database choices, and potential bottlenecks to watch out for."
-  },
-  {
-    "title": "Blog Post Outline",
-    "category": "Writing",
-    "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest keywords to target."
-  },
-  {
-    "title": "Data Analysis Guide",
-    "category": "Research",
-    "description": "I have a dataset containing [Data description]. Give me 5 interesting hypotheses I could test with this data, and suggest which Python libraries I should use."
-  },
-  {
-    "title": "Socratic Teacher",
-    "category": "Learning",
-    "description": "I want to learn about [Topic]. Do not explain it to me directly. Instead, act as a Socratic teacher and ask me guiding questions to help me figure it out myself."
+    "description": "I need to build a system that does [System Requirements]. Propose a high-level architecture diagram, tech stack, database choices, and potential bottlenecks."
   },
   {
     "title": "API Documentation Generator",
@@ -70,8 +20,108 @@
     "description": "Write clear, Markdown-formatted API documentation for a REST endpoint that accepts [Input] and returns [Output]. Include curl examples and error codes."
   },
   {
-    "title": "Midjourney Vector Logo",
+    "title": "Debug Detective",
+    "category": "Coding",
+    "description": "I'm getting this error: [Error Message]. Here's the relevant code: [Code]. Walk me through the most likely causes and provide a fix."
+  },
+  {
+    "title": "Git Commit Message Writer",
+    "category": "Coding",
+    "description": "Write a clear, conventional commit message for the following code change. Follow the format: type(scope): description. Here's the diff:\n\n[Paste Diff]"
+  },
+  {
+    "title": "Blog Post Outline",
+    "category": "Writing",
+    "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest 5 keywords to target."
+  },
+  {
+    "title": "Language Translation & Nuance",
+    "category": "Writing",
+    "description": "Translate the following text into [Language]. Provide 3 options (formal, neutral, casual) and explain the cultural nuance of each:\n\n[Text]"
+  },
+  {
+    "title": "Email Rewriter",
+    "category": "Writing",
+    "description": "Rewrite this email to be more [professional/friendly/concise]. Keep the core message but improve clarity and tone:\n\n[Paste Email]"
+  },
+  {
+    "title": "Marketing Copywriter",
+    "category": "Marketing",
+    "description": "Write a highly converting landing page hero section with a headline, subheadline, and 3 feature bullet points for: [Product Description]."
+  },
+  {
+    "title": "Cold Email Outreach",
+    "category": "Marketing",
+    "description": "Write a concise, engaging cold email to [Target Audience] offering [Service]. Keep it under 150 words with a clear call to action."
+  },
+  {
+    "title": "Social Media Thread",
+    "category": "Marketing",
+    "description": "Write a viral Twitter/X thread (8-10 tweets) explaining [Topic] in a way that's educational and shareable. Include a strong hook."
+  },
+  {
+    "title": "Explain Like I'm 5",
+    "category": "Learning",
+    "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies, no jargon, and a fun metaphor."
+  },
+  {
+    "title": "Socratic Teacher",
+    "category": "Learning",
+    "description": "I want to learn about [Topic]. Don't explain it directly — act as a Socratic teacher. Ask me guiding questions to help me figure it out myself."
+  },
+  {
+    "title": "Interview Simulator",
+    "category": "Learning",
+    "description": "Act as a strict technical interviewer for a [Role] position at a FAANG company. Ask one question at a time, wait for my answer, then evaluate it."
+  },
+  {
+    "title": "Flashcard Generator",
+    "category": "Learning",
+    "description": "Create 15 spaced-repetition flashcards (Q&A format) covering the key concepts of [Topic]. Order them from foundational to advanced."
+  },
+  {
+    "title": "Data Analysis Guide",
+    "category": "Research",
+    "description": "I have a dataset containing [Data description]. Suggest 5 interesting hypotheses to test and which Python libraries to use for each."
+  },
+  {
+    "title": "Paper Summarizer",
+    "category": "Research",
+    "description": "Summarize the following research paper in 3 sections: (1) What problem it solves, (2) How it works, (3) Why it matters. Write for a smart non-expert:\n\n[Paste Abstract]"
+  },
+  {
+    "title": "UX/UI Design Critic",
+    "category": "Design",
+    "description": "Act as a Lead Product Designer. I'll describe a UI flow: [Flow Description]. Critique it for usability, friction points, and accessibility issues."
+  },
+  {
+    "title": "Color Palette Generator",
+    "category": "Design",
+    "description": "Generate a cohesive color palette (primary, secondary, accent, background, text) for a [Type of App] with a [Mood] aesthetic. Provide hex codes."
+  },
+  {
+    "title": "Cinematic Portrait",
+    "category": "Image Generation",
+    "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"
+  },
+  {
+    "title": "Vector Logo",
     "category": "Image Generation",
     "description": "Flat vector logo of a [Subject], minimal, geometric, solid background, dribbble style, corporate identity --no shading --ar 1:1"
+  },
+  {
+    "title": "Isometric Illustration",
+    "category": "Image Generation",
+    "description": "Isometric 3D illustration of [Scene], pastel colors, clean lines, minimal detail, white background, modern tech style --ar 4:3"
+  },
+  {
+    "title": "Resume Bullet Rewriter",
+    "category": "Career",
+    "description": "Rewrite these resume bullet points using the XYZ formula (Accomplished X, as measured by Y, by doing Z). Make them impactful and quantified:\n\n[Paste Bullets]"
+  },
+  {
+    "title": "LinkedIn Post Creator",
+    "category": "Career",
+    "description": "Write an engaging LinkedIn post about [Topic/Achievement]. Keep it authentic, not salesy. Include a hook, story, and call to engage."
   }
 ]
