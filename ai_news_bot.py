@@ -444,11 +444,292 @@ PROMPTS = [
 ]
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# AI MODELS LEADERBOARD DATASET
+# ═══════════════════════════════════════════════════════════════════════════
+
+MODELS_LEADERBOARD = [
+    {
+        "id": "claude-3-7-sonnet",
+        "name": "Claude 3.7 Sonnet",
+        "provider": "Anthropic",
+        "category": "Reasoning",
+        "arena_elo": 1382,
+        "swe_bench": 70.3,
+        "math_score": 96.2,
+        "context_window": "200K tokens",
+        "context_tokens": 200000,
+        "price_input": 3.00,
+        "price_output": 15.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Hybrid reasoning (standard + extended thinking), state-of-the-art SWE-bench coding, front-end design, tool orchestration.",
+        "link": "https://www.anthropic.com/claude/sonnet",
+        "release_date": "2025-02"
+    },
+    {
+        "id": "openai-o3-mini",
+        "name": "OpenAI o3-mini",
+        "provider": "OpenAI",
+        "category": "Reasoning",
+        "arena_elo": 1375,
+        "swe_bench": 68.5,
+        "math_score": 96.8,
+        "context_window": "200K tokens",
+        "context_tokens": 200000,
+        "price_input": 1.10,
+        "price_output": 4.40,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": False,
+        "strengths": "Fast low-latency reasoning, competitive math (AIME), STEM problem solving, low inference price.",
+        "link": "https://openai.com/index/openai-o3-mini/",
+        "release_date": "2025-01"
+    },
+    {
+        "id": "gemini-2-5-flash",
+        "name": "Gemini 2.5 Flash",
+        "provider": "Google DeepMind",
+        "category": "Fast & Lightweight",
+        "arena_elo": 1370,
+        "swe_bench": 66.8,
+        "math_score": 95.0,
+        "context_window": "1M tokens",
+        "context_tokens": 1000000,
+        "price_input": 0.075,
+        "price_output": 0.30,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Ultra-fast response time, 1M context, exceptional cost efficiency, native multimodal audio/video/image.",
+        "link": "https://deepmind.google/technologies/gemini/",
+        "release_date": "2025-02"
+    },
+    {
+        "id": "deepseek-r1",
+        "name": "DeepSeek R1",
+        "provider": "DeepSeek AI",
+        "category": "Open Weights",
+        "arena_elo": 1364,
+        "swe_bench": 65.8,
+        "math_score": 90.8,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 0.55,
+        "price_output": 2.19,
+        "license_type": "MIT (Open Weights)",
+        "is_open": True,
+        "multimodal": False,
+        "strengths": "Open-weights reasoning model, pure RL chain-of-thought, highly affordable self-hosting and API pricing.",
+        "link": "https://github.com/deepseek-ai/DeepSeek-R1",
+        "release_date": "2025-01"
+    },
+    {
+        "id": "claude-3-5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "provider": "Anthropic",
+        "category": "Coding",
+        "arena_elo": 1365,
+        "swe_bench": 65.0,
+        "math_score": 94.0,
+        "context_window": "200K tokens",
+        "context_tokens": 200000,
+        "price_input": 3.00,
+        "price_output": 15.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Reliable coding and refactoring, computer use API, nuanced writing, fast execution.",
+        "link": "https://www.anthropic.com/claude",
+        "release_date": "2024-10"
+    },
+    {
+        "id": "openai-o1",
+        "name": "OpenAI o1",
+        "provider": "OpenAI",
+        "category": "Reasoning",
+        "arena_elo": 1378,
+        "swe_bench": 67.2,
+        "math_score": 96.4,
+        "context_window": "200K tokens",
+        "context_tokens": 200000,
+        "price_input": 15.00,
+        "price_output": 60.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Deep scientific reasoning, hard algorithmic math, full image analysis with thinking.",
+        "link": "https://openai.com/o1/",
+        "release_date": "2024-12"
+    },
+    {
+        "id": "gemini-2-0-pro",
+        "name": "Gemini 2.0 Pro Experimental",
+        "provider": "Google DeepMind",
+        "category": "Reasoning",
+        "arena_elo": 1374,
+        "swe_bench": 67.5,
+        "math_score": 95.5,
+        "context_window": "2M tokens",
+        "context_tokens": 2000000,
+        "price_input": 1.25,
+        "price_output": 5.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Massive 2 Million token context window, complex multi-file repo coding, advanced tool use.",
+        "link": "https://aistudio.google.com",
+        "release_date": "2025-02"
+    },
+    {
+        "id": "gpt-4-5",
+        "name": "GPT-4.5 Preview",
+        "provider": "OpenAI",
+        "category": "Reasoning",
+        "arena_elo": 1372,
+        "swe_bench": 63.5,
+        "math_score": 90.5,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 75.00,
+        "price_output": 150.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Massive scale model, unprecedented factual accuracy, nuanced emotional intelligence & writing.",
+        "link": "https://openai.com/index/introducing-gpt-4-5/",
+        "release_date": "2025-02"
+    },
+    {
+        "id": "gpt-4o",
+        "name": "GPT-4o (Omni)",
+        "provider": "OpenAI",
+        "category": "Vision / Multimodal",
+        "arena_elo": 1358,
+        "swe_bench": 58.2,
+        "math_score": 88.7,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 2.50,
+        "price_output": 10.00,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Real-time multimodal speech and vision, broad general knowledge, daily utility assistant.",
+        "link": "https://openai.com/index/hello-gpt-4o/",
+        "release_date": "2024-05"
+    },
+    {
+        "id": "deepseek-v3",
+        "name": "DeepSeek V3",
+        "provider": "DeepSeek AI",
+        "category": "Open Weights",
+        "arena_elo": 1335,
+        "swe_bench": 49.2,
+        "math_score": 88.5,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 0.14,
+        "price_output": 0.28,
+        "license_type": "MIT (Open Weights)",
+        "is_open": True,
+        "multimodal": False,
+        "strengths": "671B Mixture-of-Experts architecture, unbeatable price-to-performance ratio, multi-token prediction.",
+        "link": "https://github.com/deepseek-ai/DeepSeek-V3",
+        "release_date": "2024-12"
+    },
+    {
+        "id": "qwen-2-5-coder-32b",
+        "name": "Qwen 2.5 Coder 32B",
+        "provider": "Alibaba Cloud",
+        "category": "Coding",
+        "arena_elo": 1310,
+        "swe_bench": 51.6,
+        "math_score": 86.4,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 0.20,
+        "price_output": 0.20,
+        "license_type": "Apache 2.0 (Open Weights)",
+        "is_open": True,
+        "multimodal": False,
+        "strengths": "World-class open-source coding specialist, excels at code generation, code repair, and repo reasoning.",
+        "link": "https://github.com/QwenLM/Qwen2.5-Coder",
+        "release_date": "2024-11"
+    },
+    {
+        "id": "llama-3-3-70b",
+        "name": "Llama 3.3 70B Instruct",
+        "provider": "Meta AI",
+        "category": "Open Weights",
+        "arena_elo": 1318,
+        "swe_bench": 45.8,
+        "math_score": 86.9,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 0.20,
+        "price_output": 0.60,
+        "license_type": "Llama 3.3 Community License",
+        "is_open": True,
+        "multimodal": False,
+        "strengths": "Matches Llama 3.1 405B capabilities in a compact 70B parameter footprint, multilingual support.",
+        "link": "https://ai.meta.com/llama/",
+        "release_date": "2024-12"
+    },
+    {
+        "id": "qwen-2-5-max",
+        "name": "Qwen 2.5 Max",
+        "provider": "Alibaba Cloud",
+        "category": "Reasoning",
+        "arena_elo": 1345,
+        "swe_bench": 55.4,
+        "math_score": 89.2,
+        "context_window": "128K tokens",
+        "context_tokens": 128000,
+        "price_input": 1.60,
+        "price_output": 6.40,
+        "license_type": "Proprietary",
+        "is_open": False,
+        "multimodal": True,
+        "strengths": "Flagship MoE model from Alibaba, high multilingual fluency, web search integration, math.",
+        "link": "https://chat.qwenlm.ai/",
+        "release_date": "2025-01"
+    },
+    {
+        "id": "codestral-2501",
+        "name": "Codestral 2501",
+        "provider": "Mistral AI",
+        "category": "Coding",
+        "arena_elo": 1300,
+        "swe_bench": 52.0,
+        "math_score": 84.5,
+        "context_window": "256K tokens",
+        "context_tokens": 256000,
+        "price_input": 0.30,
+        "price_output": 0.90,
+        "license_type": "Mistral Commercial / Free Research",
+        "is_open": False,
+        "multimodal": False,
+        "strengths": "Supports 80+ programming languages, 256K context window with Fill-in-the-Middle (FIM) support.",
+        "link": "https://mistral.ai/news/codestral-2501/",
+        "release_date": "2025-01"
+    }
+]
+
+
 def build_prompts_json():
     """Generate prompts.json for the frontend."""
     with open("prompts.json", "w", encoding="utf-8") as f:
         json.dump(PROMPTS, f, ensure_ascii=False, indent=2)
     print(f"  ✓ prompts.json — {len(PROMPTS)} prompts")
+
+
+def build_models_json():
+    """Generate models.json for the frontend leaderboard."""
+    with open("models.json", "w", encoding="utf-8") as f:
+        json.dump(MODELS_LEADERBOARD, f, ensure_ascii=False, indent=2)
+    print(f"  ✓ models.json — {len(MODELS_LEADERBOARD)} models")
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -506,6 +787,9 @@ def main():
     # 8. Build prompts JSON
     build_prompts_json()
 
+    # 9. Build models JSON
+    build_models_json()
+
     print("\n" + "═" * 60)
     print("  ✅ All done!")
     print("═" * 60)
@@ -513,3 +797,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
