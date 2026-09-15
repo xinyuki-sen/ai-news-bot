@@ -1,237 +1,226 @@
 #!/usr/bin/env python3
 """
-AI News Bot - Scrapes RSS feeds for AI news, filters, dedupes, posts to Discord
+AI News Bot — Scrapes RSS feeds for AI news, filters, dedupes, ranks,
+posts to Discord, and generates JSON data files for the static frontend.
 """
 
+# ── Imports ──────────────────────────────────────────────────────────────
 import feedparser
 import sqlite3
 import requests
 import hashlib
-from datetime import datetime, timezone, timedelta
-import os
+import re
 import json
+import os
+from datetime import datetime, timezone, timedelta
 
+# ── Constants ────────────────────────────────────────────────────────────
 IST = timezone(timedelta(hours=5, minutes=30))
-
-# ============================================================================
-# STEP 1: SETUP - Create database file to remember what we've already seen
-# ============================================================================
 DB_FILE = "seen_posts.db"
+USER_AGENT = "Mozilla/5.0 (AI-News-Bot/2.0)"
+MAX_NEWS_ARTICLES = 40
+MAX_TOOL_ENTRIES = 50
 
-def init_db():
-    """Create database table if it doesn't exist - think of this as a notebook to track what we've seen"""
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS posts
-                 (post_hash TEXT PRIMARY KEY, title TEXT, date_added TEXT)''')
-    conn.commit()
-    conn.close()
+# ── News Feeds ───────────────────────────────────────────────────────────
+NEWS_FEEDS = [
+    "https://feeds.arstechnica.com/arstechnica/index",
+    "https://news.ycombinator.com/rss",
+    "https://arxiv.org/rss/cs.AI",
+    "https://www.reddit.com/r/MachineLearning/.rss",
+    "https://www.reddit.com/r/artificial/.rss",
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
+    "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",
+]
 
-def is_seen(title):
-    """Check if we've already posted this before - prevents posting the same news twice"""
-    post_hash = hashlib.md5(title.encode()).hexdigest()  # Convert title to a short code
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute('SELECT * FROM posts WHERE post_hash = ?', (post_hash,))
-    result = c.fetchone()
-    conn.close()
-    return result is not None
+# ── Tool Feeds ───────────────────────────────────────────────────────────
+TOOL_FEEDS = [
+    "https://www.producthunt.com/feed?category=ai",
+]
 
-def mark_seen(title):
-    """Write this post to our notebook so we don't post it again tomorrow"""
-    post_hash = hashlib.md5(title.encode()).hexdigest()
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute('INSERT OR IGNORE INTO posts VALUES (?, ?, ?)',
-              (post_hash, title, datetime.now().isoformat()))
-    conn.commit()
-    conn.close()
-
-# ============================================================================
-# STEP 2: KEYWORDS - Words that make something "AI-relevant" for students
-# ============================================================================
-KEYWORDS = [
+# ── AI Relevance Keywords ────────────────────────────────────────────────
+AI_KEYWORDS = [
     "LLM", "large language model", "GPT", "transformer",
     "neural network", "deep learning", "machine learning",
     "diffusion", "CLIP", "vision", "NLP", "AI safety",
     "open source", "model", "training", "inference",
-    "embedding", "attention", "fine-tune", "dataset"
+    "embedding", "attention", "fine-tune", "dataset",
 ]
 
-def is_relevant(title, description=""):
-    """
-    Check if title/description contains AI keywords
-    Think: Does this article talk about AI stuff students should know?
-    """
-    text = (title + " " + description).lower()
-    return any(keyword.lower() in text for keyword in KEYWORDS)
-
-# ============================================================================
-# STEP 3: FETCH RSS FEEDS - Get latest articles from each source
-# ============================================================================
-FEEDS = [
-    "https://feeds.arstechnica.com/arstechnica/index",  # ArsTechnica tech news
-    "https://news.ycombinator.com/rss",                   # HackerNews
-    "https://arxiv.org/rss/cs.AI",                       # ArXiv AI papers
-    "https://www.reddit.com/r/MachineLearning/.rss",     # Reddit ML
-    "https://www.reddit.com/r/artificial/.rss",          # Reddit AI
-    # YouTube - Two Minute Papers
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCbfYPyITQ-7l4upoX8nvctg",
-    # YouTube - Yannic Kilcher
-    "https://www.youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfKw",
+HIGH_IMPACT_WORDS = [
+    "breakthrough", "release", "launch", "new model", "state-of-the-art",
+    "open source", "outperforms", "announces", "unveils",
 ]
 
-def fetch_feed(feed_url):
-    """
-    Download an RSS feed and extract articles
-    Think: Open a newspaper and read the headline list
-    """
-    try:
-        # Reddit blocks default bot user-agents, so we pretend to be a browser
-        feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
-        articles = []
-        for entry in feed.entries[:20]:  # Only grab the 20 most recent
-            title = entry.get("title", "No title")
-            link = entry.get("link", "")
-            description = entry.get("description", "")
-            articles.append({
-                "title": title,
-                "link": link,
-                "description": description,
-                "source": feed.feed.get("title", "Unknown")
-            })
-        return articles
-    except Exception as e:
-        print(f"Error fetching {feed_url}: {e}")
-        return []
-
-# ============================================================================
-# STEP 4: FILTER - Keep only relevant articles
-# ============================================================================
-def filter_articles(articles):
-    """
-    Go through all articles and keep only the AI-related ones
-    Think: Flipping through a newspaper and tearing out only the tech pages
-    """
-    relevant = []
-    for article in articles:
-        if is_relevant(article["title"], article["description"]):
-            relevant.append(article)
-    return relevant
-
-# ============================================================================
-# STEP 4.5: RANK - Score each article so we know what's most important
-# ============================================================================
-# Some sources are more reliable/significant than others
 SOURCE_WEIGHT = {
-    "cs.AI updates on arXiv.org": 3,   # Research papers - high value for students
+    "cs.AI updates on arXiv.org": 3,
     "Hacker News": 2,
     "Ars Technica - All content": 2,
 }
 
-# High-impact words score extra points (bigger news = more of these)
-HIGH_IMPACT_WORDS = [
-    "breakthrough", "release", "launch", "new model", "state-of-the-art",
-    "open source", "outperforms", "announces", "unveils"
-]
+SOURCE_CATEGORY = {
+    "cs.AI updates on arXiv.org": "Research",
+    "Hacker News": "Products",
+    "Ars Technica - All content": "LLMs",
+}
 
-def score_article(article):
-    """
-    Give each article a score - higher score = more important
-    Think: A teacher grading how newsworthy each article is
-    """
-    text = (article["title"] + " " + article.get("description", "")).lower()
-    score = 0
+# ── Tool Categories ──────────────────────────────────────────────────────
+TOOL_CATEGORIES = {
+    "Writing":            ["writing", "copywriting", "content", "blog", "essay", "grammar"],
+    "Coding":             ["code", "coding", "developer", "programming", "ide", "debug", "github", "api"],
+    "Image":              ["image", "photo", "design", "art", "avatar", "graphic", "midjourney", "dalle"],
+    "Video":              ["video", "editing", "animation", "clip", "youtube"],
+    "Audio":              ["audio", "voice", "music", "speech", "podcast", "text-to-speech"],
+    "Productivity":       ["productivity", "workflow", "automation", "task", "notes", "notion", "calendar"],
+    "Research":           ["research", "search", "data", "analysis", "summarize", "paper", "arxiv"],
+    "Chatbot/Assistant":  ["chatbot", "assistant", "agent", "companion", "copilot"],
+}
 
-    # +1 point for each keyword match (more AI-relevant terms = more relevant)
-    score += sum(1 for k in KEYWORDS if k.lower() in text)
 
-    # Extra points for high-impact words (signals big news)
+# ═══════════════════════════════════════════════════════════════════════════
+# DATABASE — Dedupe memory using SQLite
+# ═══════════════════════════════════════════════════════════════════════════
+
+def init_db():
+    """Create the seen-posts table if it doesn't exist."""
+    conn = sqlite3.connect(DB_FILE)
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS posts "
+        "(post_hash TEXT PRIMARY KEY, title TEXT, date_added TEXT)"
+    )
+    conn.commit()
+    conn.close()
+
+
+def is_seen(title: str) -> bool:
+    """Check if we've already processed this title."""
+    post_hash = hashlib.md5(title.encode()).hexdigest()
+    conn = sqlite3.connect(DB_FILE)
+    result = conn.execute(
+        "SELECT 1 FROM posts WHERE post_hash = ?", (post_hash,)
+    ).fetchone()
+    conn.close()
+    return result is not None
+
+
+def mark_seen(title: str):
+    """Record a title so we skip it next time."""
+    post_hash = hashlib.md5(title.encode()).hexdigest()
+    conn = sqlite3.connect(DB_FILE)
+    conn.execute(
+        "INSERT OR IGNORE INTO posts VALUES (?, ?, ?)",
+        (post_hash, title, datetime.now(IST).isoformat()),
+    )
+    conn.commit()
+    conn.close()
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# HELPERS
+# ═══════════════════════════════════════════════════════════════════════════
+
+def strip_html(text: str) -> str:
+    """Remove HTML tags from a string."""
+    return re.sub(r"<[^>]+>", "", text).strip()
+
+
+def is_relevant(title: str, description: str = "") -> bool:
+    """Check if title/description contains AI keywords."""
+    text = f"{title} {description}".lower()
+    return any(kw.lower() in text for kw in AI_KEYWORDS)
+
+
+def categorize_tool(title: str, description: str = "") -> str:
+    """Assign a category to a tool based on keyword matching."""
+    text = f"{title} {description}".lower()
+    for category, keywords in TOOL_CATEGORIES.items():
+        if any(kw in text for kw in keywords):
+            return category
+    return "Other"
+
+
+def score_article(article: dict) -> int:
+    """Score an article for ranking — higher = more important."""
+    text = f"{article['title']} {article.get('description', '')}".lower()
+    score = sum(1 for k in AI_KEYWORDS if k.lower() in text)
     score += sum(2 for w in HIGH_IMPACT_WORDS if w.lower() in text)
-
-    # Extra points based on source reliability/significance
     score += SOURCE_WEIGHT.get(article["source"], 1)
-
     return score
 
-def rank_articles(articles):
-    """Sort articles from most to least important"""
+
+# ═══════════════════════════════════════════════════════════════════════════
+# NEWS PIPELINE
+# ═══════════════════════════════════════════════════════════════════════════
+
+def fetch_feed(feed_url: str) -> list:
+    """Download an RSS feed and extract articles."""
+    try:
+        feed = feedparser.parse(feed_url, agent=USER_AGENT)
+        return [
+            {
+                "title": entry.get("title", "No title"),
+                "link": entry.get("link", ""),
+                "description": entry.get("description", ""),
+                "source": feed.feed.get("title", "Unknown"),
+            }
+            for entry in feed.entries[:20]
+        ]
+    except Exception as e:
+        print(f"  ✗ Error fetching {feed_url}: {e}")
+        return []
+
+
+def filter_articles(articles: list) -> list:
+    """Keep only AI-relevant articles."""
+    return [a for a in articles if is_relevant(a["title"], a["description"])]
+
+
+def rank_articles(articles: list) -> list:
+    """Sort articles by importance score (descending)."""
     return sorted(articles, key=score_article, reverse=True)
 
-# ============================================================================
-# STEP 5: DEDUPE - Remove duplicates (same article from multiple sources)
-# ============================================================================
-def dedupe_articles(articles):
-    """
-    Remove articles we've already posted before
-    Think: If I posted "GPT-5 released" yesterday, don't post it again today
-    """
-    new_articles = []
-    for article in articles:
-        if not is_seen(article["title"]):
-            new_articles.append(article)
-            mark_seen(article["title"])
-    return new_articles
 
-# ============================================================================
-# STEP 6: POST TO DISCORD - Send formatted message to webhook
-# ============================================================================
-def post_to_discord(articles):
-    """
-    Send articles to Discord channel via webhook
-    Think: Pinging your study group chat with curated news
-    """
-    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL")
-    
-    if not discord_webhook:
-        print("ERROR: No DISCORD_WEBHOOK_URL found. Set it as environment variable.")
+def dedupe_articles(articles: list) -> list:
+    """Remove articles we've already seen and mark the new ones."""
+    new = []
+    for a in articles:
+        if not is_seen(a["title"]):
+            new.append(a)
+            mark_seen(a["title"])
+    return new
+
+
+def post_to_discord(articles: list):
+    """Send a formatted digest to the Discord webhook."""
+    webhook_url = os.getenv("DISCORD_WEBHOOK_URL")
+    if not webhook_url:
+        print("  ⚠ DISCORD_WEBHOOK_URL not set — skipping Discord post.")
         return
-    
     if not articles:
-        print("No new relevant articles today.")
+        print("  ℹ No new articles to post.")
         return
-    
-    # Create a formatted message
-    message = f"🤖 **AI News Update** - {datetime.now().strftime('%Y-%m-%d')}\n\n"
-    
-    for i, article in enumerate(articles[:15], 1):  # Max 15 per day
-        message += f"{i}. **{article['title']}**\n"
-        message += f"   Source: {article['source']}\n"
-        if article['link']:
-            message += f"   Link: {article['link']}\n"
-        message += "\n"
-    
-    # Send to Discord
+
+    today = datetime.now(IST).strftime("%Y-%m-%d")
+    lines = [f"🤖 **AI News Update** — {today}\n"]
+    for i, a in enumerate(articles[:15], 1):
+        lines.append(f"{i}. **{a['title']}**")
+        lines.append(f"   {a['source']} — {a.get('link', '')}\n")
+
     try:
-        requests.post(discord_webhook, json={"content": message})
-        print(f"✓ Posted {len(articles)} articles to Discord")
+        requests.post(webhook_url, json={"content": "\n".join(lines)}, timeout=10)
+        print(f"  ✓ Posted {min(len(articles), 15)} articles to Discord")
     except Exception as e:
-        print(f"Error posting to Discord: {e}")
+        print(f"  ✗ Discord post failed: {e}")
 
-# ============================================================================
-# STEP 6.5: BUILD WEB PAGE - Save results as an HTML page
-# ============================================================================
-def build_webpage(articles):
-    """
-    Writes news.json for the enhanced frontend to consume.
-    The index.html is a static template in the repo — the bot
-    just updates the data file, not the HTML.
-    """
-    SOURCE_CATEGORY = {
-        "cs.AI updates on arXiv.org": "Research",
-        "Hacker News": "Products",
-        "Ars Technica - All content": "LLMs",
-    }
 
-    clean_articles = []
-    for i, a in enumerate(articles[:40], 1):
-        cat = SOURCE_CATEGORY.get(a["source"], categorize_tool(a["title"], a.get("description", "")))
-        summary = a.get("description", "")
-        if summary:
-            # Strip basic HTML tags from RSS descriptions
-            import re
-            summary = re.sub(r'<[^>]+>', '', summary).strip()[:300]
-        clean_articles.append({
+def build_news_json(articles: list):
+    """Generate news.json for the frontend."""
+    clean = []
+    for i, a in enumerate(articles[:MAX_NEWS_ARTICLES], 1):
+        cat = SOURCE_CATEGORY.get(
+            a["source"], categorize_tool(a["title"], a.get("description", ""))
+        )
+        summary = strip_html(a.get("description", ""))[:300]
+        clean.append({
             "id": i,
             "title": a["title"],
             "url": a["link"],
@@ -241,241 +230,231 @@ def build_webpage(articles):
             "published_at": datetime.now(IST).isoformat(),
         })
 
-    top_pick_ids = [a["id"] for a in clean_articles[:3]]
-
     data = {
         "last_updated": datetime.now(IST).isoformat(),
-        "top_pick_ids": top_pick_ids,
-        "articles": clean_articles,
+        "top_pick_ids": [a["id"] for a in clean[:3]],
+        "articles": clean,
     }
 
     with open("news.json", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
-    print("✓ news.json generated")
+    print(f"  ✓ news.json — {len(clean)} articles")
 
 
+# ═══════════════════════════════════════════════════════════════════════════
+# TOOLS PIPELINE
+# ═══════════════════════════════════════════════════════════════════════════
 
-
-
-TOOL_FEEDS = [
-    "https://www.producthunt.com/feed?category=ai",
-]
-
-TOOL_CATEGORIES = {
-    "Writing": ["writing", "copywriting", "content", "blog", "essay", "grammar"],
-    "Coding": ["code", "coding", "developer", "programming", "IDE", "debug"],
-    "Image": ["image", "photo", "design", "art", "avatar", "graphic"],
-    "Video": ["video", "editing", "animation", "clip"],
-    "Audio": ["audio", "voice", "music", "speech", "podcast"],
-    "Productivity": ["productivity", "workflow", "automation", "task", "notes"],
-    "Research": ["research", "search", "data", "analysis", "summarize"],
-    "Chatbot/Assistant": ["chatbot", "assistant", "agent", "companion"],
-}
-
-def categorize_tool(title, description=""):
-    """
-    Figure out which 'bucket' a tool belongs in based on its name/description
-    Think: Sorting laundry into piles by type
-    """
-    text = (title + " " + description).lower()
-    for category, words in TOOL_CATEGORIES.items():
-        if any(w in text for w in words):
-            return category
-    return "Other"
-
-def fetch_hn_tools():
+def fetch_hn_tools() -> list:
+    """Fetch AI-related Show HN posts from Hacker News Algolia API."""
     tools = []
-    queries = ["AI", "machine learning", "LLM", "GPT"]
-    try:
-        for q in queries:
-            url = f"https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&query={q}&hitsPerPage=20"
-            response = requests.get(url, timeout=10)
-            data = response.json()
-            for hit in data.get("hits", []):
-                title = hit.get("title", "No title")
-                link = hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
-                if not any(t["link"] == link for t in tools): # avoid duplicates
-                    tools.append({"title": title, "link": link, "category": categorize_tool(title), "description": hit.get("story_text", "")[:200] if hit.get("story_text") else "Built and shared on Hacker News."})
-    except Exception as e:
-        print(f"Error fetching HN tools: {e}")
-    return tools
+    seen_links = set()
+    queries = ["AI", "machine learning", "LLM", "GPT", "neural network"]
 
-def fetch_tools():
-    """Get latest AI tools from Product Hunt and sort into categories"""
-    tools = []
-    for feed_url in TOOL_FEEDS:
+    for query in queries:
         try:
-            feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
-            for entry in feed.entries[:50]: # Increased to 50
-                title = entry.get("title", "No title")
-                link = entry.get("link", "")
-                description = entry.get("description", "")
-                
-                # Clean description
-                import re
-                clean_desc = re.sub(r'<[^>]+>', '', description).strip()[:300]
-                
+            url = (
+                f"https://hn.algolia.com/api/v1/search_by_date"
+                f"?tags=show_hn&query={query}&hitsPerPage=20"
+            )
+            resp = requests.get(url, timeout=10)
+            resp.raise_for_status()
+            for hit in resp.json().get("hits", []):
+                title = hit.get("title", "No title")
+                link = hit.get("url") or (
+                    f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
+                )
+                if link in seen_links:
+                    continue
+                seen_links.add(link)
+                desc = strip_html(hit.get("story_text", "") or "")[:200]
                 tools.append({
                     "title": title,
                     "link": link,
-                    "category": categorize_tool(title, clean_desc),
-                    "description": clean_desc
+                    "category": categorize_tool(title, desc),
+                    "description": desc or "Shared on Hacker News.",
                 })
         except Exception as e:
-            print(f"Error fetching tools feed: {e}")
-    
+            print(f"  ✗ HN query '{query}' failed: {e}")
+
+    return tools
+
+
+def fetch_tools() -> list:
+    """Aggregate tools from all tool feeds + Hacker News."""
+    tools = []
+
+    # RSS tool feeds
+    for feed_url in TOOL_FEEDS:
+        try:
+            feed = feedparser.parse(feed_url, agent=USER_AGENT)
+            for entry in feed.entries[:MAX_TOOL_ENTRIES]:
+                title = entry.get("title", "No title")
+                link = entry.get("link", "")
+                desc = strip_html(entry.get("description", ""))[:300]
+                tools.append({
+                    "title": title,
+                    "link": link,
+                    "category": categorize_tool(title, desc),
+                    "description": desc,
+                })
+        except Exception as e:
+            print(f"  ✗ Tool feed error ({feed_url}): {e}")
+
+    # Hacker News tools
     tools.extend(fetch_hn_tools())
-    
-    # Deduplicate tools by link
+
+    # Deduplicate by link
     seen = set()
-    unique_tools = []
+    unique = []
     for t in tools:
         if t["link"] not in seen:
             seen.add(t["link"])
-            unique_tools.append(t)
-            
-    return unique_tools
-    
-def build_tools_page(tools):
-    """
-    Writes tools.json for the enhanced frontend to consume.
-    """
+            unique.append(t)
+    return unique
+
+
+def build_tools_json(tools: list):
+    """Generate tools.json for the frontend."""
     with open("tools.json", "w", encoding="utf-8") as f:
         json.dump(tools, f, ensure_ascii=False, indent=2)
-    print("✓ tools.json generated")
+    print(f"  ✓ tools.json — {len(tools)} tools")
 
-def build_prompts_page():
-    """
-    Generates a curated list of high-quality AI prompts into prompts.json
-    """
-    prompts = [
-        {
-            "title": "Senior Code Reviewer",
-            "category": "Coding",
-            "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements: [Paste Code]"
-        },
-        {
-            "title": "Explain Like I'm 5",
-            "category": "Learning",
-            "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies and avoid jargon."
-        },
-        {
-            "title": "Marketing Copywriter",
-            "category": "Marketing",
-            "description": "Write a highly converting, punchy landing page hero section and 3 feature bullet points for a product that does [Product Description]."
-        },
-        {
-            "title": "Interview Simulator",
-            "category": "Career",
-            "description": "Act as a strict technical interviewer for a [Role] position. Ask me one question at a time and wait for my response before continuing. Evaluate my answers."
-        },
-        {
-            "title": "Midjourney Cinematic Portrait",
-            "category": "Image Generation",
-            "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"
-        },
-        {
-            "title": "Regex Generator",
-            "category": "Coding",
-            "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step."
-        },
-        {
-            "title": "Cold Email Outreach",
-            "category": "Marketing",
-            "description": "Write a concise, engaging cold email to a [Target Audience] offering [Your Service]. Keep it under 150 words and include a clear call to action."
-        },
-        {
-            "title": "Language Translation & Nuance",
-            "category": "Writing",
-            "description": "Translate the following text into [Language]. Provide 3 options ranging from formal to casual, and explain the cultural nuance of each choice: [Text]"
-        },
-        {
-            "title": "UX/UI Design Critic",
-            "category": "Design",
-            "description": "Act as a Lead Product Designer. I will describe a UI flow for my app: [Flow Description]. Critique it for usability, friction points, and accessibility."
-        },
-        {
-            "title": "System Architecture Planner",
-            "category": "Coding",
-            "description": "I need to build a system that does [System Requirements]. Propose a high-level system architecture, including tech stack, database choices, and potential bottlenecks to watch out for."
-        },
-        {
-            "title": "Blog Post Outline",
-            "category": "Writing",
-            "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest keywords to target."
-        },
-        {
-            "title": "Data Analysis Guide",
-            "category": "Research",
-            "description": "I have a dataset containing [Data description]. Give me 5 interesting hypotheses I could test with this data, and suggest which Python libraries I should use."
-        },
-        {
-            "title": "Socratic Teacher",
-            "category": "Learning",
-            "description": "I want to learn about [Topic]. Do not explain it to me directly. Instead, act as a Socratic teacher and ask me guiding questions to help me figure it out myself."
-        },
-        {
-            "title": "API Documentation Generator",
-            "category": "Coding",
-            "description": "Write clear, Markdown-formatted API documentation for a REST endpoint that accepts [Input] and returns [Output]. Include curl examples and error codes."
-        },
-        {
-            "title": "Midjourney Vector Logo",
-            "category": "Image Generation",
-            "description": "Flat vector logo of a [Subject], minimal, geometric, solid background, dribbble style, corporate identity --no shading --ar 1:1"
-        }
-    ]
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PROMPTS LIBRARY
+# ═══════════════════════════════════════════════════════════════════════════
+
+PROMPTS = [
+    # ── Coding ───────────────────────────────────────────────────────
+    {"title": "Senior Code Reviewer",        "category": "Coding",
+     "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements with code examples:\n\n[Paste Code]"},
+    {"title": "Regex Generator",             "category": "Coding",
+     "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step, and provide 3 test examples."},
+    {"title": "System Architecture Planner",  "category": "Coding",
+     "description": "I need to build a system that does [System Requirements]. Propose a high-level architecture diagram, tech stack, database choices, and potential bottlenecks."},
+    {"title": "API Documentation Generator",  "category": "Coding",
+     "description": "Write clear, Markdown-formatted API documentation for a REST endpoint that accepts [Input] and returns [Output]. Include curl examples and error codes."},
+    {"title": "Debug Detective",             "category": "Coding",
+     "description": "I'm getting this error: [Error Message]. Here's the relevant code: [Code]. Walk me through the most likely causes and provide a fix."},
+    {"title": "Git Commit Message Writer",   "category": "Coding",
+     "description": "Write a clear, conventional commit message for the following code change. Follow the format: type(scope): description. Here's the diff:\n\n[Paste Diff]"},
+
+    # ── Writing ──────────────────────────────────────────────────────
+    {"title": "Blog Post Outline",           "category": "Writing",
+     "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest 5 keywords to target."},
+    {"title": "Language Translation & Nuance","category": "Writing",
+     "description": "Translate the following text into [Language]. Provide 3 options (formal, neutral, casual) and explain the cultural nuance of each:\n\n[Text]"},
+    {"title": "Email Rewriter",              "category": "Writing",
+     "description": "Rewrite this email to be more [professional/friendly/concise]. Keep the core message but improve clarity and tone:\n\n[Paste Email]"},
+
+    # ── Marketing ────────────────────────────────────────────────────
+    {"title": "Marketing Copywriter",        "category": "Marketing",
+     "description": "Write a highly converting landing page hero section with a headline, subheadline, and 3 feature bullet points for: [Product Description]."},
+    {"title": "Cold Email Outreach",         "category": "Marketing",
+     "description": "Write a concise, engaging cold email to [Target Audience] offering [Service]. Keep it under 150 words with a clear call to action."},
+    {"title": "Social Media Thread",         "category": "Marketing",
+     "description": "Write a viral Twitter/X thread (8-10 tweets) explaining [Topic] in a way that's educational and shareable. Include a strong hook."},
+
+    # ── Learning ─────────────────────────────────────────────────────
+    {"title": "Explain Like I'm 5",          "category": "Learning",
+     "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies, no jargon, and a fun metaphor."},
+    {"title": "Socratic Teacher",            "category": "Learning",
+     "description": "I want to learn about [Topic]. Don't explain it directly — act as a Socratic teacher. Ask me guiding questions to help me figure it out myself."},
+    {"title": "Interview Simulator",         "category": "Learning",
+     "description": "Act as a strict technical interviewer for a [Role] position at a FAANG company. Ask one question at a time, wait for my answer, then evaluate it."},
+    {"title": "Flashcard Generator",         "category": "Learning",
+     "description": "Create 15 spaced-repetition flashcards (Q&A format) covering the key concepts of [Topic]. Order them from foundational to advanced."},
+
+    # ── Research ─────────────────────────────────────────────────────
+    {"title": "Data Analysis Guide",         "category": "Research",
+     "description": "I have a dataset containing [Data description]. Suggest 5 interesting hypotheses to test and which Python libraries to use for each."},
+    {"title": "Paper Summarizer",            "category": "Research",
+     "description": "Summarize the following research paper in 3 sections: (1) What problem it solves, (2) How it works, (3) Why it matters. Write for a smart non-expert:\n\n[Paste Abstract]"},
+
+    # ── Design ───────────────────────────────────────────────────────
+    {"title": "UX/UI Design Critic",         "category": "Design",
+     "description": "Act as a Lead Product Designer. I'll describe a UI flow: [Flow Description]. Critique it for usability, friction points, and accessibility issues."},
+    {"title": "Color Palette Generator",     "category": "Design",
+     "description": "Generate a cohesive color palette (primary, secondary, accent, background, text) for a [Type of App] with a [Mood] aesthetic. Provide hex codes."},
+
+    # ── Image Generation ─────────────────────────────────────────────
+    {"title": "Cinematic Portrait",          "category": "Image Generation",
+     "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"},
+    {"title": "Vector Logo",                 "category": "Image Generation",
+     "description": "Flat vector logo of a [Subject], minimal, geometric, solid background, dribbble style, corporate identity --no shading --ar 1:1"},
+    {"title": "Isometric Illustration",      "category": "Image Generation",
+     "description": "Isometric 3D illustration of [Scene], pastel colors, clean lines, minimal detail, white background, modern tech style --ar 4:3"},
+
+    # ── Career ───────────────────────────────────────────────────────
+    {"title": "Resume Bullet Rewriter",      "category": "Career",
+     "description": "Rewrite these resume bullet points using the XYZ formula (Accomplished X, as measured by Y, by doing Z). Make them impactful and quantified:\n\n[Paste Bullets]"},
+    {"title": "LinkedIn Post Creator",       "category": "Career",
+     "description": "Write an engaging LinkedIn post about [Topic/Achievement]. Keep it authentic, not salesy. Include a hook, story, and call to engage."},
+]
+
+
+def build_prompts_json():
+    """Generate prompts.json for the frontend."""
     with open("prompts.json", "w", encoding="utf-8") as f:
-        json.dump(prompts, f, ensure_ascii=False, indent=2)
-    print("✓ prompts.json generated")
+        json.dump(PROMPTS, f, ensure_ascii=False, indent=2)
+    print(f"  ✓ prompts.json — {len(PROMPTS)} prompts")
 
-# ============================================================================
-# STEP 7: MAIN - Run everything in order
-# ============================================================================
+
+# ═══════════════════════════════════════════════════════════════════════════
+# MAIN PIPELINE
+# ═══════════════════════════════════════════════════════════════════════════
+
 def main():
-    """Run the entire pipeline"""
-    print("Starting AI News Bot...")
-    
-    # Initialize database
+    """Run the entire scrape → filter → rank → publish pipeline."""
+    print("═" * 60)
+    print("  AI News Bot v2.0")
+    print("═" * 60)
+
+    # 1. Database
     init_db()
-    
-    # Fetch all feeds
+
+    # 2. Fetch news
+    print("\n📰 Fetching news feeds...")
     all_articles = []
-    for feed_url in FEEDS:
-        print(f"Fetching {feed_url}...")
-        articles = fetch_feed(feed_url)
+    for url in NEWS_FEEDS:
+        articles = fetch_feed(url)
         all_articles.extend(articles)
-    
-    print(f"Fetched {len(all_articles)} total articles")
-    
-    # Filter for relevance
+        print(f"  · {url.split('/')[2]:40s} → {len(articles)} entries")
+
+    print(f"\n  Total fetched: {len(all_articles)}")
+
+    # 3. Filter & rank
     relevant = filter_articles(all_articles)
-    print(f"Found {len(relevant)} relevant articles")
-    
-    # Remove duplicates
-    new_articles = dedupe_articles(relevant)
-    print(f"Found {len(new_articles)} new articles")
-    
-    # Rank by importance (most relevant first)
+    print(f"  AI-relevant:   {len(relevant)}")
     relevant = rank_articles(relevant)
+
+    # 4. Dedupe for Discord
+    new_articles = dedupe_articles(relevant)
     new_articles = rank_articles(new_articles)
-    
-    # Post to Discord
+    print(f"  New (unseen):   {len(new_articles)}")
+
+    # 5. Discord
+    print("\n💬 Discord...")
     post_to_discord(new_articles)
-    
-    # Build webpage
-    build_webpage(relevant)
-    
-    # Build tools directory page
-    print("Fetching AI tools...")
+
+    # 6. Build news JSON
+    print("\n📄 Generating data files...")
+    build_news_json(relevant)
+
+    # 7. Build tools JSON
+    print("\n🛠️  Fetching tools...")
     tools = fetch_tools()
-    print(f"Found {len(tools)} tools")
-    build_tools_page(tools)
-    
-    # Build prompts page
-    build_prompts_page()
-    
-    print("Done!")
+    print(f"  Total tools: {len(tools)}")
+    build_tools_json(tools)
+
+    # 8. Build prompts JSON
+    build_prompts_json()
+
+    print("\n" + "═" * 60)
+    print("  ✅ All done!")
+    print("═" * 60)
+
 
 if __name__ == "__main__":
     main()
