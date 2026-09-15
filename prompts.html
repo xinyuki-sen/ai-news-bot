@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI News Digest</title>
-  <meta name="description" content="Daily AI news digest — top stories, research tools, and breakthroughs curated automatically. Refreshes hourly.">
+  <title>Prompt Library — AI News Digest</title>
+  <meta name="description" content="A curated directory of the latest AI tools across coding, image, audio, video, productivity, and more.">
 
   <!-- Open Graph / Social -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="AI News Digest">
-  <meta property="og:description" content="Daily AI news digest — top stories, research, tools, and breakthroughs curated automatically.">
-  <meta property="og:url" content="https://xinyuki-sen.github.io/ai-news-bot/index.html">
+  <meta property="og:title" content="Prompt Library">
+  <meta property="og:description" content="A curated directory of the latest AI tools across coding, image, audio, video, productivity, and more.">
+  <meta property="og:url" content="https://xinyuki-sen.github.io/ai-news-bot/tools.html">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI News Digest">
-  <meta name="twitter:description" content="Daily AI news digest — curated automatically, updated hourly.">
+  <meta name="twitter:title" content="Prompt Library">
+  <meta name="twitter:description" content="Curated AI tools — coding, image, audio, video, productivity, and more.">
 
   <!-- Image favicon -->
   <link rel="icon" href="assets/robot_icon.png">
 
   <style>
-    /* ── CSS Variables (theming) ───────────────────────────────────── */
+    /* ── CSS Variables ──────────────────────────────────────────────── */
     :root {
       --bg:           #0d1117;
       --surface:      #161b22;
@@ -30,8 +30,6 @@
       --text-muted:   #8b949e;
       --accent:       #58a6ff;
       --accent2:      #a371f7;
-      --danger:       #f85149;
-      --success:      #3fb950;
     }
     [data-theme="light"] {
       --bg:           #ffffff;
@@ -45,9 +43,8 @@
       --accent2:      #8250df;
     }
 
-    /* ── Reset ─────────────────────────────────────────────────────── */
+    /* ── Reset ──────────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
@@ -57,7 +54,7 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    /* ── Sidebar ────────────────────────────────────────────────────── */
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
     .sidebar {
       width: 76px;
       background: rgba(22, 27, 34, 0.6);
@@ -75,9 +72,7 @@
       flex-shrink: 0;
       z-index: 10;
     }
-    [data-theme="light"] .sidebar {
-      background: rgba(246, 248, 250, 0.7);
-    }
+    [data-theme="light"] .sidebar { background: rgba(246, 248, 250, 0.7); }
     .sidebar .logo {
       margin-bottom: 18px;
       user-select: none;
@@ -94,16 +89,11 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .logo-img:hover {
-      transform: scale(1.05) rotate(-3deg);
-    }
+    .logo-img:hover { transform: scale(1.05) rotate(-3deg); }
     .sidebar .spacer { flex: 1; }
     .sb-btn {
-      width: 48px;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
       border-radius: 14px;
       font-size: 1.3em;
       background: transparent;
@@ -122,8 +112,7 @@
     .sb-btn[data-tooltip]::after {
       content: attr(data-tooltip);
       position: absolute;
-      left: calc(100% + 10px);
-      top: 50%;
+      left: calc(100% + 10px); top: 50%;
       transform: translateY(-50%);
       background: var(--surface2);
       color: var(--text-strong);
@@ -138,22 +127,9 @@
       z-index: 100;
     }
     .sb-btn[data-tooltip]:hover::after { opacity: 1; }
-    .sb-badge {
-      position: absolute;
-      top: 6px; right: 6px;
-      width: 8px; height: 8px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
 
-    /* ── Main content ───────────────────────────────────────────────── */
-    .main {
-      flex: 1;
-      padding: 30px 40px;
-      min-width: 0;
-      max-width: 900px;
-    }
-
+    /* ── Main ────────────────────────────────────────────────────────── */
+    .main { flex: 1; padding: 30px 40px; min-width: 0; }
     h1 {
       font-size: 1.8em;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
@@ -164,15 +140,12 @@
     }
     .date { color: var(--text-muted); font-size: 0.85em; margin-bottom: 22px; }
 
-    /* ── Topbar / Search ────────────────────────────────────────────── */
-    .topbar { display: flex; gap: 10px; margin-bottom: 24px; align-items: center; }
-    .search-wrap { flex: 1; position: relative; }
+    /* ── Search ─────────────────────────────────────────────────────── */
+    .topbar { margin-bottom: 24px; }
+    .search-wrap { position: relative; max-width: 480px; }
     .search-wrap label {
-      position: absolute;
-      width: 1px; height: 1px;
-      overflow: hidden;
-      clip: rect(0,0,0,0);
-      white-space: nowrap;
+      position: absolute; width: 1px; height: 1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
     }
     .search {
       width: 100%;
@@ -187,12 +160,9 @@
     }
     .search:focus { border-color: var(--accent); }
     .search-icon {
-      position: absolute;
-      left: 12px; top: 50%;
+      position: absolute; left: 12px; top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
-      pointer-events: none;
-      font-size: 0.95em;
+      color: var(--text-muted); pointer-events: none;
     }
     .search::placeholder { color: var(--text-muted); }
 
@@ -222,51 +192,21 @@
     }
     .tab.active .tab-count { background: rgba(0,0,0,0.2); }
 
-    /* ── Top Picks ──────────────────────────────────────────────────── */
-    .top-picks { margin-bottom: 28px; }
-    .top-picks h2 { font-size: 1em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; }
-    .top-card {
-      background: linear-gradient(135deg, var(--surface2), var(--surface));
-      border: 1px solid var(--accent);
-      border-radius: 10px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
-      cursor: pointer;
-      transition: border-color 0.15s, transform 0.15s;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .top-card:hover { border-color: var(--accent2); transform: translateY(-2px); }
-    .top-card .rank {
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.8em;
-      min-width: 24px;
-      padding-top: 2px;
-    }
-    .top-card .tc-title { color: var(--text-strong); font-weight: 600; font-size: 0.93em; line-height: 1.4; }
-    .top-card .tc-meta { color: var(--text-muted); font-size: 0.78em; margin-top: 4px; }
-
-    /* ── Article Grid ───────────────────────────────────────────────── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 16px;
-    }
+    /* ── Grid ───────────────────────────────────────────────────────── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      min-height: 150px;
+      min-height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       overflow: hidden;
+      cursor: pointer;
       position: relative;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card:hover {
       transform: translateY(-4px) scale(1.01);
@@ -275,6 +215,7 @@
       background: linear-gradient(180deg, var(--surface2) 0%, var(--surface) 100%);
     }
     .card.selected { border-color: var(--accent2); box-shadow: 0 4px 20px rgba(163,113,247,0.15); }
+    
     .card-bookmark {
       position: absolute;
       top: 10px; right: 10px;
@@ -291,41 +232,48 @@
     .card:hover .card-bookmark,
     .card-bookmark.bookmarked { opacity: 1; }
     .card-bookmark.bookmarked { color: var(--accent); }
-    .card .card-title {
+    .card a {
       color: var(--text-strong);
+      text-decoration: none;
       font-weight: 600;
       font-size: 0.93em;
-      line-height: 1.45;
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      padding-right: 18px;
+      line-height: 1.45;
     }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 6px; }
+    .card a:hover { color: var(--accent); }
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.78em;
+      line-height: 1.5;
+      margin: 6px 0 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
     .badge {
-      display: inline-block;
       padding: 3px 10px;
       border-radius: 20px;
       background: var(--surface2);
       color: var(--text);
       font-size: 0.72em;
       border: 1px solid var(--border);
-      flex-shrink: 0;
+      width: fit-content;
     }
-    .card-time { color: var(--text-muted); font-size: 0.72em; flex-shrink: 0; }
 
-    /* ── Skeleton Loading ───────────────────────────────────────────── */
+    /* ── Skeleton ───────────────────────────────────────────────────── */
     .skeleton-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
       padding: 16px;
-      min-height: 140px;
+      min-height: 110px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      pointer-events: none;
     }
     .skel {
       background: linear-gradient(90deg, var(--surface2) 25%, var(--border) 50%, var(--surface2) 75%);
@@ -335,35 +283,19 @@
     }
     @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-    /* ── Error State ────────────────────────────────────────────────── */
+    /* ── Error / Empty ──────────────────────────────────────────────── */
     .error-state {
-      text-align: center;
-      padding: 60px 20px;
-      display: none;
+      text-align: center; padding: 60px 20px; display: none;
     }
     .error-state.show { display: block; }
     .error-state .err-icon { font-size: 2.5em; margin-bottom: 12px; }
     .error-state p { color: var(--text-muted); margin-bottom: 16px; }
     .btn-retry {
-      background: var(--accent);
-      color: #0d1117;
-      border: none;
-      border-radius: 8px;
-      padding: 8px 20px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 0.9em;
+      background: var(--accent); color: #0d1117; border: none;
+      border-radius: 8px; padding: 8px 20px; font-weight: 600; cursor: pointer; font-size: 0.9em;
     }
     [data-theme="light"] .btn-retry { color: #fff; }
-
-    /* ── Empty search state ─────────────────────────────────────────── */
-    .empty-state {
-      grid-column: 1/-1;
-      text-align: center;
-      color: var(--text-muted);
-      padding: 60px 0;
-      display: none;
-    }
+    .empty-state { grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 60px 0; display: none; }
     .empty-state.show { display: block; }
 
     /* ── Detail Panel ───────────────────────────────────────────────── */
@@ -382,21 +314,8 @@
     }
     .panel-empty { color: var(--text-muted); font-size: 0.9em; margin-top: 20px; }
     .panel-empty .panel-hint { font-size: 2em; margin-bottom: 10px; }
-    .panel h3 {
-      color: var(--text-strong);
-      font-size: 1.05em;
-      margin-bottom: 10px;
-      line-height: 1.45;
-    }
-    .panel .panel-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 14px;
-    }
-    .panel .panel-src { color: var(--text-muted); font-size: 0.82em; }
-    .panel .panel-time { color: var(--text-muted); font-size: 0.82em; }
+    .panel h3 { color: var(--text-strong); font-size: 1.1em; margin-bottom: 10px; line-height: 1.45; }
+    .panel .panel-meta { margin-bottom: 14px; }
     .panel .panel-cat {
       padding: 2px 10px;
       border-radius: 20px;
@@ -404,6 +323,7 @@
       color: var(--text);
       font-size: 0.75em;
       border: 1px solid var(--border);
+      display: inline-block;
     }
     .panel-summary {
       color: var(--text);
@@ -424,10 +344,10 @@
       font-weight: 600;
       font-size: 0.9em;
       transition: opacity 0.15s;
-      margin-bottom: 10px;
     }
     [data-theme="light"] .panel a.open-btn { color: #fff; }
     .panel a.open-btn:hover { opacity: 0.85; }
+
     .panel .bm-btn {
       display: block;
       width: 100%;
@@ -446,44 +366,22 @@
 
     /* ── Bookmarks overlay ──────────────────────────────────────────── */
     .overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: none;
-      z-index: 50;
-      backdrop-filter: blur(4px);
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: none; z-index: 50; backdrop-filter: blur(4px);
     }
     .overlay.show { display: flex; align-items: center; justify-content: center; }
     .overlay-box {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      width: 480px;
-      max-width: 95vw;
-      max-height: 80vh;
-      overflow-y: auto;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 14px; padding: 28px; width: 480px; max-width: 95vw; max-height: 80vh; overflow-y: auto;
     }
     .overlay-box h2 { color: var(--text-strong); font-size: 1.1em; margin-bottom: 16px; }
-    .bm-item {
-      padding: 12px 0;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-    }
+    .bm-item { padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
     .bm-item:last-child { border-bottom: none; }
     .bm-item:hover .bm-item-title { color: var(--accent); }
     .bm-item-title { color: var(--text-strong); font-size: 0.9em; font-weight: 600; margin-bottom: 4px; }
     .bm-item-meta { color: var(--text-muted); font-size: 0.78em; }
     .bm-empty { color: var(--text-muted); font-size: 0.9em; text-align: center; padding: 30px 0; }
-    .overlay-close {
-      float: right;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.2em;
-      cursor: pointer;
-      padding: 0 0 0 10px;
-    }
+    .overlay-close { float: right; background: none; border: none; color: var(--text-muted); font-size: 1.2em; cursor: pointer; }
 
     /* ── Responsive ─────────────────────────────────────────────────── */
     @media (max-width: 900px) {
@@ -499,64 +397,50 @@
 </head>
 <body>
 
-  <!-- ── Sidebar ─────────────────────────────────────────────────── -->
+  <!-- ── Sidebar ─────────────────────────────────────────────────────── -->
   <nav class="sidebar" aria-label="Main navigation">
     <div class="logo">
       <img src="assets/sidebar_logo.png" alt="AI News Digest Logo" class="logo-img">
     </div>
-
-    <a href="index.html" class="sb-btn active" aria-label="Home — News Digest" data-tooltip="News">🏠</a>
+    <a href="index.html" class="sb-btn" aria-label="Return to News" data-tooltip="Back to News">🏠</a>
     <a href="tools.html" class="sb-btn" aria-label="AI Tools Directory" data-tooltip="Tools">🛠️</a>
-    <a href="prompts.html" class="sb-btn" aria-label="Prompt Library" data-tooltip="Prompts">💬</a>
+    <a href="prompts.html" class="sb-btn active" aria-label="Prompt Library" data-tooltip="Prompts">💬</a>
     <button class="sb-btn" id="btnBookmarks" aria-label="Open bookmarks" data-tooltip="Bookmarks">
       🔖
       <span class="sb-badge" id="bmBadge" style="display:none;" aria-hidden="true"></span>
     </button>
-
     <div class="spacer"></div>
-
     <button class="sb-btn" id="btnTheme" aria-label="Toggle light/dark mode" data-tooltip="Theme">🌙</button>
   </nav>
 
-  <!-- ── Main ──────────────────────────────────────────────────────── -->
-  <main class="main" id="main">
-    <h1>AI News Digest</h1>
+  <!-- ── Main ──────────────────────────────────────────────────────────── -->
+  <main class="main">
+    <a href="index.html" style="display:inline-block; margin-bottom: 12px; color: var(--accent); text-decoration: none; font-size: 0.9em; font-weight: 600;">← Return to Main Page</a>
+    <h1>🛠️ Prompt Library</h1>
     <div class="date" id="dateBar">Loading…</div>
 
-    <!-- Top picks -->
-    <section class="top-picks" id="topPicksSection" aria-label="Editor's top picks" style="display:none;">
-      <h2>⭐ Top Picks</h2>
-      <div id="topPicks"></div>
-    </section>
-
-    <!-- Search -->
     <div class="topbar">
       <div class="search-wrap">
-        <label for="search">Search articles</label>
+        <label for="toolSearch">Search tools</label>
         <span class="search-icon" aria-hidden="true">🔍</span>
-        <input class="search" id="search" type="search" placeholder="Search title, source, or category…" autocomplete="off">
+        <input class="search" id="toolSearch" type="search" placeholder="Search tool name, category, or description…" autocomplete="off">
       </div>
     </div>
 
-    <!-- Category tabs -->
     <div class="tabs" id="tabs" role="tablist" aria-label="Filter by category"></div>
-
-    <!-- Article grid -->
-    <div class="grid" id="grid" role="list" aria-live="polite" aria-label="News articles"></div>
-
-    <!-- Error state -->
+    <div class="grid" id="grid" role="list" aria-live="polite" aria-label="AI Tools"></div>
     <div class="error-state" id="errorState" role="alert">
       <div class="err-icon">⚠️</div>
-      <p>Could not load news. Please check your connection and try again.</p>
+      <p>Could not load tools. Please check your connection and try again.</p>
       <button class="btn-retry" id="btnRetry">Retry</button>
     </div>
   </main>
 
   <!-- ── Detail Panel ───────────────────────────────────────────────── -->
-  <aside class="panel" id="panel" aria-label="Article preview">
+  <aside class="panel" id="panel" aria-label="Tool preview">
     <div class="panel-empty">
       <div class="panel-hint">👈</div>
-      Click an article to preview it here.
+      Click a tool to preview it here.
     </div>
   </aside>
 
@@ -570,18 +454,11 @@
   </div>
 
 <script>
-/* ── State ───────────────────────────────────────────────────────────── */
-let allArticles = [];
-let activeCategory = 'All';
-let selectedId = null;
-let bookmarks = JSON.parse(localStorage.getItem('aind_bookmarks') || '[]');
-
-/* ── Theme ───────────────────────────────────────────────────────────── */
+/* ── Theme ────────────────────────────────────────────────────────────── */
 const savedTheme = localStorage.getItem('aind_theme') || 'dark';
 document.documentElement.setAttribute('data-theme', savedTheme);
 const btnTheme = document.getElementById('btnTheme');
 btnTheme.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
-
 btnTheme.addEventListener('click', () => {
   const cur = document.documentElement.getAttribute('data-theme');
   const next = cur === 'dark' ? 'light' : 'dark';
@@ -590,24 +467,13 @@ btnTheme.addEventListener('click', () => {
   btnTheme.textContent = next === 'dark' ? '🌙' : '☀️';
 });
 
-/* ── Helpers ─────────────────────────────────────────────────────────── */
-function timeAgo(isoString) {
-  const diff = Date.now() - new Date(isoString).getTime();
-  const m = Math.floor(diff / 60000);
-  if (m < 1)  return 'just now';
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
-  const d = Math.floor(h / 24);
-  return `${d}d ago`;
-}
+/* ── State ────────────────────────────────────────────────────────────── */
+let allPrompts = [];
+let activeCategory = 'All';
+let selectedId = null;
+let bookmarks = JSON.parse(localStorage.getItem('aind_prompts_bookmarks') || '[]');
 
-function formatDate(isoString) {
-  return new Date(isoString).toLocaleString('en-IN', {
-    dateStyle: 'medium', timeStyle: 'short'
-  });
-}
-
+/* ── Bookmarks Logic ──────────────────────────────────────────────────── */
 function isBookmarked(id) { return bookmarks.includes(id); }
 
 function toggleBookmark(id) {
@@ -616,24 +482,21 @@ function toggleBookmark(id) {
   } else {
     bookmarks = [...bookmarks, id];
   }
-  localStorage.setItem('aind_bookmarks', JSON.stringify(bookmarks));
+  localStorage.setItem('aind_prompts_bookmarks', JSON.stringify(bookmarks));
   refreshBookmarkUI();
 }
 
 function refreshBookmarkUI() {
   const badge = document.getElementById('bmBadge');
-  badge.style.display = bookmarks.length ? '' : 'none';
+  if(badge) badge.style.display = bookmarks.length ? '' : 'none';
 
-  // Update all bookmark buttons in cards
   document.querySelectorAll('[data-bm-id]').forEach(btn => {
-    const id = +btn.dataset.bmId;
+    const id = btn.dataset.bmId;
     btn.classList.toggle('bookmarked', isBookmarked(id));
     btn.textContent = isBookmarked(id) ? '🔖' : '🔖';
-    btn.style.color = isBookmarked(id) ? 'var(--accent)' : '';
-    btn.setAttribute('aria-label', isBookmarked(id) ? 'Remove bookmark' : 'Bookmark this article');
+    btn.setAttribute('aria-label', isBookmarked(id) ? 'Remove bookmark' : 'Bookmark this tool');
   });
 
-  // Update panel bm button
   const panelBm = document.getElementById('panelBmBtn');
   if (panelBm && selectedId !== null) {
     panelBm.textContent = isBookmarked(selectedId) ? '🔖 Bookmarked' : '🔖 Bookmark';
@@ -642,154 +505,101 @@ function refreshBookmarkUI() {
 }
 
 /* ── Skeleton ─────────────────────────────────────────────────────────── */
-function renderSkeletons(n = 9) {
-  const grid = document.getElementById('grid');
-  grid.innerHTML = Array.from({ length: n }, () => `
+function renderSkeletons(n = 12) {
+  document.getElementById('grid').innerHTML = Array.from({ length: n }, () => `
     <div class="skeleton-card" aria-hidden="true">
-      <div class="skel" style="height:14px; width:90%;"></div>
-      <div class="skel" style="height:14px; width:75%;"></div>
-      <div class="skel" style="height:14px; width:60%;"></div>
+      <div class="skel" style="height:14px; width:70%;"></div>
+      <div class="skel" style="height:12px; width:90%;"></div>
+      <div class="skel" style="height:12px; width:60%;"></div>
       <div style="flex:1;"></div>
       <div class="skel" style="height:22px; width:70px; border-radius:20px;"></div>
     </div>
   `).join('');
 }
 
-/* ── Render articles ─────────────────────────────────────────────────── */
+/* ── Render ───────────────────────────────────────────────────────────── */
 function getFiltered() {
-  const q = document.getElementById('search').value.trim().toLowerCase();
-  return allArticles.filter(a => {
-    const matchCat = activeCategory === 'All' || a.category === activeCategory;
-    const matchQ = !q || a.title.toLowerCase().includes(q) || a.source.toLowerCase().includes(q) || a.category.toLowerCase().includes(q);
+  const q = document.getElementById('toolSearch').value.trim().toLowerCase();
+  return allPrompts.filter(t => {
+    const matchCat = activeCategory === 'All' || t.category === activeCategory;
+    const matchQ = !q ||
+      t.title.toLowerCase().includes(q) ||
+      t.category.toLowerCase().includes(q) ||
+      (t.description || '').toLowerCase().includes(q);
     return matchCat && matchQ;
   });
 }
 
 function renderGrid() {
   const grid = document.getElementById('grid');
-  const articles = getFiltered();
-  const emptyState = document.querySelector('.empty-state');
-
-  if (articles.length === 0) {
-    grid.innerHTML = '<div class="empty-state show">No articles found. Try a different search or category.</div>';
+  const prompts = getFiltered();
+  if (prompts.length === 0) {
+    grid.innerHTML = '<div class="empty-state show">No prompts found. Try a different search or category.</div>';
     return;
   }
+  grid.innerHTML = prompts.map(t => {
+    const _id = btoa(unescape(encodeURIComponent(t.title + t.link))).slice(0, 16);
+    t._id = _id;
+    return `
+      <article class="card ${selectedId === _id ? 'selected' : ''}" role="listitem" tabindex="0" data-id="${_id}">
+        <button
+          class="card-bookmark${isBookmarked(_id) ? ' bookmarked' : ''}"
+          data-bm-id="${_id}"
+          aria-label="${isBookmarked(_id) ? 'Remove bookmark' : 'Bookmark this tool'}"
+          title="${isBookmarked(_id) ? 'Remove bookmark' : 'Bookmark'}"
+        >🔖</button>
+        <div>
+          <div style="color:var(--text-strong); font-weight:600; font-size:0.95em; margin-bottom:4px; padding-right:20px;">${t.title}</div>
+          ${t.description ? `<div class="card-desc">${t.description}</div>` : ''}
+        </div>
+        <span class="badge">${t.category}</span>
+      </article>
+    `;
+  }).join('');
 
-  grid.innerHTML = articles.map(a => `
-    <article
-      class="card${selectedId === a.id ? ' selected' : ''}"
-      role="listitem"
-      tabindex="0"
-      data-id="${a.id}"
-      aria-label="${a.title}"
-    >
-      <button
-        class="card-bookmark${isBookmarked(a.id) ? ' bookmarked' : ''}"
-        data-bm-id="${a.id}"
-        aria-label="${isBookmarked(a.id) ? 'Remove bookmark' : 'Bookmark this article'}"
-        title="${isBookmarked(a.id) ? 'Remove bookmark' : 'Bookmark'}"
-      >🔖</button>
-      <div class="card-title">${a.title}</div>
-      <div class="card-footer">
-        <span class="badge">${a.category}</span>
-        <span class="card-time">${timeAgo(a.published_at)}</span>
-      </div>
-    </article>
-  `).join('');
-
-  // Card click → open panel
   grid.querySelectorAll('.card').forEach(card => {
-    const id = +card.dataset.id;
     card.addEventListener('click', e => {
       if (e.target.classList.contains('card-bookmark')) return;
-      selectedId = id;
-      openPanel(id);
-      grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === id));
+      selectedId = card.dataset.id;
+      openPanel(selectedId);
+      grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', c.dataset.id === selectedId));
     });
     card.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
     });
   });
 
-  // Bookmark button clicks
   grid.querySelectorAll('.card-bookmark').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
-      toggleBookmark(+btn.dataset.bmId);
+      toggleBookmark(btn.dataset.bmId);
     });
   });
 }
 
-/* ── Tabs ─────────────────────────────────────────────────────────────── */
-function renderTabs() {
-  const counts = {};
-  allArticles.forEach(a => { counts[a.category] = (counts[a.category] || 0) + 1; });
-  const cats = ['All', ...Object.keys(counts).sort()];
-
-  const tabs = document.getElementById('tabs');
-  tabs.innerHTML = cats.map(cat => {
-    const count = cat === 'All' ? allArticles.length : counts[cat];
-    return `
-      <button
-        class="tab${activeCategory === cat ? ' active' : ''}"
-        role="tab"
-        aria-selected="${activeCategory === cat}"
-        data-cat="${cat}"
-      >${cat}<span class="tab-count">${count}</span></button>
-    `;
-  }).join('');
-
-  tabs.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      activeCategory = tab.dataset.cat;
-      renderTabs();
-      renderGrid();
-    });
-  });
-}
-
-/* ── Top Picks ────────────────────────────────────────────────────────── */
-function renderTopPicks(topIds) {
-  const picks = topIds.map(id => allArticles.find(a => a.id === id)).filter(Boolean);
-  if (!picks.length) return;
-
-  document.getElementById('topPicksSection').style.display = '';
-  document.getElementById('topPicks').innerHTML = picks.map((a, i) => `
-    <div class="top-card" data-id="${a.id}" tabindex="0" role="button" aria-label="Top pick: ${a.title}">
-      <span class="rank">#${i + 1}</span>
-      <div>
-        <div class="tc-title">${a.title}</div>
-        <div class="tc-meta">${a.source} · ${timeAgo(a.published_at)}</div>
-      </div>
-    </div>
-  `).join('');
-
-  document.getElementById('topPicks').querySelectorAll('.top-card').forEach(card => {
-    const onClick = () => { selectedId = +card.dataset.id; openPanel(selectedId); };
-    card.addEventListener('click', onClick);
-    card.addEventListener('keydown', e => { if (e.key === 'Enter') onClick(); });
-  });
-}
-
-/* ── Panel ────────────────────────────────────────────────────────────── */
 function openPanel(id) {
-  const a = allArticles.find(x => x.id === id);
-  if (!a) return;
-
+  const t = allPrompts.find(x => x._id === id);
+  if (!t) return;
   document.getElementById('panel').innerHTML = `
-    <h3>${a.title}</h3>
+    <h3>${t.title}</h3>
     <div class="panel-meta">
-      <span class="panel-cat">${a.category}</span>
-      <span class="panel-src">📰 ${a.source}</span>
-      <span class="panel-time">🕐 ${timeAgo(a.published_at)}</span>
+      <span class="panel-cat">${t.category}</span>
     </div>
-    <p class="panel-summary">${a.summary || 'No summary available.'}</p>
-    <a class="open-btn" href="${a.url}" target="_blank" rel="noopener noreferrer">Open Article ↗</a>
+    <div class="panel-summary" style="user-select: all; cursor: text;">${t.description || 'No description available.'}</div>
+    <button class="open-btn" id="copyPromptBtn" style="border:none; width:100%; cursor:pointer; font-size:1em; margin-bottom:10px;">📋 Copy Prompt</button>
     <button class="bm-btn${isBookmarked(id) ? ' bookmarked' : ''}" id="panelBmBtn">
       ${isBookmarked(id) ? '🔖 Bookmarked' : '🔖 Bookmark'}
     </button>
-    <p style="color:var(--text-muted); font-size:0.75em; margin-top:14px;">Published: ${formatDate(a.published_at)}</p>
   `;
+
+  document.getElementById('copyPromptBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(t.description).then(() => {
+      document.getElementById('copyPromptBtn').textContent = '✅ Copied!';
+      setTimeout(() => {
+        document.getElementById('copyPromptBtn').textContent = '📋 Copy Prompt';
+      }, 2000);
+    });
+  });
 
   document.getElementById('panelBmBtn').addEventListener('click', () => {
     toggleBookmark(id);
@@ -802,21 +612,21 @@ document.getElementById('btnBookmarks').addEventListener('click', () => {
   const list = document.getElementById('bmList');
 
   if (bookmarks.length === 0) {
-    list.innerHTML = '<div class="bm-empty">No bookmarks yet. Click 🔖 on any article to save it.</div>';
+    list.innerHTML = '<div class="bm-empty">No bookmarks yet. Click 🔖 on any tool to save it.</div>';
   } else {
-    const saved = bookmarks.map(id => allArticles.find(a => a.id === id)).filter(Boolean);
-    list.innerHTML = saved.map(a => `
-      <div class="bm-item" data-id="${a.id}" tabindex="0" role="button" aria-label="${a.title}">
-        <div class="bm-item-title">${a.title}</div>
-        <div class="bm-item-meta">${a.source} · ${a.category} · ${timeAgo(a.published_at)}</div>
+    const saved = bookmarks.map(id => allPrompts.find(t => t._id === id)).filter(Boolean);
+    list.innerHTML = saved.map(t => `
+      <div class="bm-item" data-id="${t._id}" tabindex="0" role="button" aria-label="${t.title}">
+        <div class="bm-item-title">${t.title}</div>
+        <div class="bm-item-meta">${t.category}</div>
       </div>
     `).join('');
     list.querySelectorAll('.bm-item').forEach(item => {
       item.addEventListener('click', () => {
         overlay.classList.remove('show');
-        selectedId = +item.dataset.id;
+        selectedId = item.dataset.id;
         openPanel(selectedId);
-        document.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === selectedId));
+        document.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', c.dataset.id === selectedId));
       });
     });
   }
@@ -830,45 +640,59 @@ document.getElementById('bmOverlay').addEventListener('click', e => {
   if (e.target === e.currentTarget) e.currentTarget.classList.remove('show');
 });
 
+function renderTabs() {
+  const counts = {};
+  allPrompts.forEach(t => { counts[t.category] = (counts[t.category] || 0) + 1; });
+  const cats = ['All', ...Object.keys(counts).sort()];
+
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = cats.map(cat => {
+    const count = cat === 'All' ? allPrompts.length : counts[cat];
+    return `<button class="tab${activeCategory === cat ? ' active' : ''}" role="tab" aria-selected="${activeCategory === cat}" data-cat="${cat}">${cat}<span class="tab-count">${count}</span></button>`;
+  }).join('');
+
+  tabs.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      activeCategory = tab.dataset.cat;
+      renderTabs();
+      renderGrid();
+    });
+  });
+}
+
 /* ── Search ───────────────────────────────────────────────────────────── */
 let searchTimeout;
-document.getElementById('search').addEventListener('input', () => {
+document.getElementById('toolSearch').addEventListener('input', () => {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(renderGrid, 200);
 });
 
-/* ── Fetch + Bootstrap ────────────────────────────────────────────────── */
-async function loadNews() {
+/* ── Load ─────────────────────────────────────────────────────────────── */
+async function loadPrompts() {
   renderSkeletons();
   document.getElementById('errorState').classList.remove('show');
 
   try {
-    const res = await fetch('news.json?v=' + Date.now());
+    const res = await fetch('prompts.json?v=' + Date.now());
     if (!res.ok) throw new Error('HTTP ' + res.status);
-    const data = await res.json();
+    allPrompts = await res.json();
 
-    allArticles = data.articles || [];
-
-    // Date bar
-    const d = new Date(data.last_updated);
+    const now = new Date();
     document.getElementById('dateBar').textContent =
-      `Last updated: ${d.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })} · Refreshes hourly`;
+      `Last updated: ${now.toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}`;
 
-    renderTopPicks(data.top_pick_ids || []);
     renderTabs();
     renderGrid();
     refreshBookmarkUI();
-
   } catch (err) {
-    console.error('Failed to load news:', err);
+    console.error('Failed to load prompts:', err);
     document.getElementById('grid').innerHTML = '';
     document.getElementById('errorState').classList.add('show');
   }
 }
 
-document.getElementById('btnRetry').addEventListener('click', loadNews);
-
-loadNews();
+document.getElementById('btnRetry').addEventListener('click', loadTools);
+loadPrompts();
 </script>
 </body>
 </html>

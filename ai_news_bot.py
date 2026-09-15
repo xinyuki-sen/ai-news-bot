@@ -285,14 +285,17 @@ def categorize_tool(title, description=""):
 
 def fetch_hn_tools():
     tools = []
+    queries = ["AI", "machine learning", "LLM", "GPT"]
     try:
-        url = "https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&query=AI&hitsPerPage=30"
-        response = requests.get(url, timeout=10)
-        data = response.json()
-        for hit in data.get("hits", []):
-            title = hit.get("title", "No title")
-            link = hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
-            tools.append({"title": title, "link": link, "category": categorize_tool(title)})
+        for q in queries:
+            url = f"https://hn.algolia.com/api/v1/search_by_date?tags=show_hn&query={q}&hitsPerPage=20"
+            response = requests.get(url, timeout=10)
+            data = response.json()
+            for hit in data.get("hits", []):
+                title = hit.get("title", "No title")
+                link = hit.get("url") or f"https://news.ycombinator.com/item?id={hit.get('objectID')}"
+                if not any(t["link"] == link for t in tools): # avoid duplicates
+                    tools.append({"title": title, "link": link, "category": categorize_tool(title), "description": hit.get("story_text", "")[:200] if hit.get("story_text") else "Built and shared on Hacker News."})
     except Exception as e:
         print(f"Error fetching HN tools: {e}")
     return tools
@@ -303,28 +306,128 @@ def fetch_tools():
     for feed_url in TOOL_FEEDS:
         try:
             feed = feedparser.parse(feed_url, agent="Mozilla/5.0 (AI-News-Bot/1.0)")
-            for entry in feed.entries[:30]:
+            for entry in feed.entries[:50]: # Increased to 50
                 title = entry.get("title", "No title")
                 link = entry.get("link", "")
                 description = entry.get("description", "")
+                
+                # Clean description
+                import re
+                clean_desc = re.sub(r'<[^>]+>', '', description).strip()[:300]
+                
                 tools.append({
                     "title": title,
                     "link": link,
-                    "category": categorize_tool(title, description)
+                    "category": categorize_tool(title, clean_desc),
+                    "description": clean_desc
                 })
         except Exception as e:
             print(f"Error fetching tools feed: {e}")
+    
     tools.extend(fetch_hn_tools())
-    return tools
+    
+    # Deduplicate tools by link
+    seen = set()
+    unique_tools = []
+    for t in tools:
+        if t["link"] not in seen:
+            seen.add(t["link"])
+            unique_tools.append(t)
+            
+    return unique_tools
     
 def build_tools_page(tools):
     """
     Writes tools.json for the enhanced frontend to consume.
-    The tools.html is a static template in the repo.
     """
     with open("tools.json", "w", encoding="utf-8") as f:
         json.dump(tools, f, ensure_ascii=False, indent=2)
     print("✓ tools.json generated")
+
+def build_prompts_page():
+    """
+    Generates a curated list of high-quality AI prompts into prompts.json
+    """
+    prompts = [
+        {
+            "title": "Senior Code Reviewer",
+            "category": "Coding",
+            "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements: [Paste Code]"
+        },
+        {
+            "title": "Explain Like I'm 5",
+            "category": "Learning",
+            "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies and avoid jargon."
+        },
+        {
+            "title": "Marketing Copywriter",
+            "category": "Marketing",
+            "description": "Write a highly converting, punchy landing page hero section and 3 feature bullet points for a product that does [Product Description]."
+        },
+        {
+            "title": "Interview Simulator",
+            "category": "Career",
+            "description": "Act as a strict technical interviewer for a [Role] position. Ask me one question at a time and wait for my response before continuing. Evaluate my answers."
+        },
+        {
+            "title": "Midjourney Cinematic Portrait",
+            "category": "Image Generation",
+            "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"
+        },
+        {
+            "title": "Regex Generator",
+            "category": "Coding",
+            "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step."
+        },
+        {
+            "title": "Cold Email Outreach",
+            "category": "Marketing",
+            "description": "Write a concise, engaging cold email to a [Target Audience] offering [Your Service]. Keep it under 150 words and include a clear call to action."
+        },
+        {
+            "title": "Language Translation & Nuance",
+            "category": "Writing",
+            "description": "Translate the following text into [Language]. Provide 3 options ranging from formal to casual, and explain the cultural nuance of each choice: [Text]"
+        },
+        {
+            "title": "UX/UI Design Critic",
+            "category": "Design",
+            "description": "Act as a Lead Product Designer. I will describe a UI flow for my app: [Flow Description]. Critique it for usability, friction points, and accessibility."
+        },
+        {
+            "title": "System Architecture Planner",
+            "category": "Coding",
+            "description": "I need to build a system that does [System Requirements]. Propose a high-level system architecture, including tech stack, database choices, and potential bottlenecks to watch out for."
+        },
+        {
+            "title": "Blog Post Outline",
+            "category": "Writing",
+            "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest keywords to target."
+        },
+        {
+            "title": "Data Analysis Guide",
+            "category": "Research",
+            "description": "I have a dataset containing [Data description]. Give me 5 interesting hypotheses I could test with this data, and suggest which Python libraries I should use."
+        },
+        {
+            "title": "Socratic Teacher",
+            "category": "Learning",
+            "description": "I want to learn about [Topic]. Do not explain it to me directly. Instead, act as a Socratic teacher and ask me guiding questions to help me figure it out myself."
+        },
+        {
+            "title": "API Documentation Generator",
+            "category": "Coding",
+            "description": "Write clear, Markdown-formatted API documentation for a REST endpoint that accepts [Input] and returns [Output]. Include curl examples and error codes."
+        },
+        {
+            "title": "Midjourney Vector Logo",
+            "category": "Image Generation",
+            "description": "Flat vector logo of a [Subject], minimal, geometric, solid background, dribbble style, corporate identity --no shading --ar 1:1"
+        }
+    ]
+    with open("prompts.json", "w", encoding="utf-8") as f:
+        json.dump(prompts, f, ensure_ascii=False, indent=2)
+    print("✓ prompts.json generated")
 
 # ============================================================================
 # STEP 7: MAIN - Run everything in order
@@ -368,6 +471,9 @@ def main():
     tools = fetch_tools()
     print(f"Found {len(tools)} tools")
     build_tools_page(tools)
+    
+    # Build prompts page
+    build_prompts_page()
     
     print("Done!")
 
