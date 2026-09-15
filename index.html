@@ -43,17 +43,20 @@
       --accent2:     #7c3aed;
     }
 
-    /* ── Reset ──────────────────────────────────────────────────────── */
+    /* ── Reset & Performance Baseline ──────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--text);
       display: flex;
       min-height: 100vh;
-      transition: background 0.3s, color 0.3s;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
       overflow-x: hidden;
+      touch-action: manipulation;
     }
 
     /* ── Sidebar ────────────────────────────────────────────────────── */
@@ -71,13 +74,15 @@
       height: 100vh;
       flex-shrink: 0;
       z-index: 40;
+      contain: layout paint;
     }
     .sidebar .logo { margin-bottom: 16px; }
     .logo-img {
       width: 40px; height: 40px;
       border-radius: 12px;
       object-fit: cover;
-      transition: transform 0.3s;
+      transform: translateZ(0);
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
     .logo-img:hover { transform: scale(1.08) rotate(-3deg); }
     .sidebar .spacer { flex: 1; }
@@ -90,8 +95,9 @@
       color: var(--text-muted);
       cursor: pointer;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: background-color 0.15s ease, color 0.15s ease;
       position: relative;
+      -webkit-tap-highlight-color: transparent;
     }
     .sb-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .sb-btn:hover, .sb-btn.active { background: var(--surface2); color: var(--accent); }
@@ -104,7 +110,7 @@
       border: 1px solid var(--border);
       padding: 4px 10px; border-radius: 8px;
       font-size: 0.7em; white-space: nowrap;
-      opacity: 0; pointer-events: none; transition: opacity 0.15s; z-index: 100;
+      opacity: 0; pointer-events: none; transition: opacity 0.12s ease; z-index: 100;
     }
     .sb-btn[data-tooltip]:hover::after { opacity: 1; }
     .sb-badge { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
@@ -128,9 +134,10 @@
       border: 1px solid var(--border); border-radius: 12px;
       padding: 10px 14px 10px 40px;
       color: var(--text); font-size: 0.85em; font-family: inherit;
-      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
     }
-    .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,156,255,0.1); }
+    .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,156,255,0.12); }
     .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
     .search-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
     .search::placeholder { color: var(--text-muted); }
@@ -141,7 +148,9 @@
       padding: 5px 14px; border-radius: 20px;
       background: transparent; border: 1px solid var(--border);
       color: var(--text-muted); font-size: 0.75em; font-weight: 500;
-      cursor: pointer; transition: all 0.2s; user-select: none; font-family: inherit;
+      cursor: pointer; transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+      user-select: none; font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
     .tab:hover { border-color: var(--accent); color: var(--text); }
     .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
@@ -154,7 +163,8 @@
     .top-card {
       background: var(--surface); border-radius: var(--radius);
       padding: 14px 16px; margin-bottom: 8px;
-      cursor: pointer; transition: all 0.2s;
+      cursor: pointer; transform: translateZ(0);
+      transition: background-color 0.15s ease, transform 0.15s ease;
       display: flex; align-items: flex-start; gap: 10px;
     }
     .top-card:hover { background: var(--surface2); transform: translateY(-1px); }
@@ -165,33 +175,35 @@
     /* ── Grid ───────────────────────────────────────────────────────── */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
 
-    /* ── Card (borderless, minimal) ─────────────────────────────────── */
+    /* ── Card (GPU-accelerated, butter-smooth) ───────────────────────── */
     .card {
       background: var(--surface);
       border: none;
       border-radius: var(--radius);
       padding: 22px 20px;
       cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex; flex-direction: column; justify-content: space-between;
       min-height: 120px; position: relative;
-      opacity: 0; transform: translateY(12px);
-      animation: fadeUp 0.4s forwards;
+      transform: translate3d(0, 0, 0);
+      will-change: transform, box-shadow;
+      transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.15s ease, box-shadow 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+      contain: content;
     }
     .card:hover {
       background: var(--surface2);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      transform: translateY(-2px);
     }
-    .card.selected { box-shadow: 0 0 0 2px var(--accent2), 0 4px 20px rgba(167,139,250,0.12); }
-    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+    .card.selected { box-shadow: 0 0 0 2px var(--accent2), 0 4px 20px rgba(167,139,250,0.15); }
 
     .card-bookmark {
       position: absolute; top: 12px; right: 12px;
       background: none; border: none; cursor: pointer;
-      color: var(--text-muted); opacity: 0; transition: all 0.15s; padding: 2px;
+      color: var(--text-muted); opacity: 0; transition: opacity 0.12s ease, color 0.12s ease; padding: 4px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .card-bookmark svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .card-bookmark svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; pointer-events: none; }
     .card:hover .card-bookmark, .card-bookmark.bookmarked { opacity: 1; }
     .card-bookmark.bookmarked { color: var(--accent); }
     .card-bookmark.bookmarked svg { fill: var(--accent); }
@@ -234,9 +246,7 @@
     .empty-state.show { display: block; }
 
     /* ── Antigravity-Style Resizable Panel ───────────────────────────── */
-    .panel-backdrop {
-      display: none;
-    }
+    .panel-backdrop { display: none; }
     .panel {
       width: var(--panel-w);
       min-width: 280px;
@@ -249,16 +259,17 @@
       flex-direction: column;
       flex-shrink: 0;
       z-index: 30;
+      contain: layout paint;
     }
     .panel-resizer {
       position: absolute;
-      left: -3px;
+      left: -4px;
       top: 0;
       bottom: 0;
-      width: 6px;
+      width: 8px;
       cursor: col-resize;
       z-index: 50;
-      transition: background 0.15s;
+      transition: background-color 0.12s ease;
     }
     .panel-resizer:hover, .panel-resizer.dragging {
       background: var(--accent);
@@ -270,6 +281,7 @@
       padding: 18px 20px;
       border-bottom: 1px solid var(--border);
       gap: 10px;
+      flex-shrink: 0;
     }
     .panel-header-title {
       font-size: 0.75em;
@@ -281,38 +293,30 @@
       align-items: center;
       gap: 6px;
     }
-    .panel-header-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
     .panel-tool-btn {
       background: transparent;
       border: none;
       color: var(--text-muted);
       cursor: pointer;
-      padding: 6px;
+      padding: 6px 8px;
       border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
+      transition: background-color 0.12s ease, color 0.12s ease;
+      -webkit-tap-highlight-color: transparent;
     }
-    .panel-tool-btn:hover {
+    .panel-tool-btn:hover, .panel-tool-btn:active {
       background: var(--surface2);
       color: var(--text-strong);
     }
-    .panel-tool-btn svg {
-      width: 16px;
-      height: 16px;
-      stroke: currentColor;
-      fill: none;
-      stroke-width: 2;
-    }
+    .panel-tool-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; pointer-events: none; }
     .panel-body {
       flex: 1;
       overflow-y: auto;
       padding: 24px 20px;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
     }
     .panel-empty {
       color: var(--text-muted);
@@ -329,14 +333,15 @@
     .panel a.open-btn {
       display: block; text-align: center; background: var(--accent); color: #fff;
       padding: 10px; border-radius: 10px; text-decoration: none;
-      font-weight: 600; font-size: 0.85em; transition: opacity 0.15s; margin-bottom: 8px;
+      font-weight: 600; font-size: 0.85em; transition: opacity 0.15s ease; margin-bottom: 8px;
     }
-    .panel a.open-btn:hover { opacity: 0.85; }
+    .panel a.open-btn:hover { opacity: 0.88; }
     .panel .bm-btn {
       display: block; width: 100%; text-align: center;
       background: var(--surface2); color: var(--text-muted);
       padding: 8px; border-radius: 10px; border: none;
-      font-size: 0.8em; font-weight: 500; cursor: pointer; transition: color 0.15s; font-family: inherit;
+      font-size: 0.8em; font-weight: 500; cursor: pointer; transition: color 0.15s ease; font-family: inherit;
+      -webkit-tap-highlight-color: transparent;
     }
     .panel .bm-btn:hover { color: var(--accent); }
     .panel .bm-btn.bookmarked { color: var(--accent); }
@@ -347,6 +352,7 @@
     .overlay-box {
       background: var(--surface); border-radius: var(--radius); padding: 28px;
       width: 480px; max-width: 95vw; max-height: 80vh; overflow-y: auto;
+      -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
     }
     .overlay-box h2 { color: var(--text-strong); font-size: 1em; font-weight: 600; margin-bottom: 16px; }
     .bm-item { padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
@@ -357,13 +363,13 @@
     .bm-empty { color: var(--text-muted); font-size: 0.85em; text-align: center; padding: 30px 0; }
     .overlay-close { float: right; background: none; border: none; color: var(--text-muted); font-size: 1.1em; cursor: pointer; }
 
-    /* ── Mobile & Android Compatibility ─────────────────────────────── */
+    /* ── Mobile & Android Compatibility (60/120fps physics) ────────── */
     .mobile-handle { display: none; }
 
     @media (max-width: 768px) {
       body {
         flex-direction: column;
-        padding-bottom: 64px; /* Space for bottom navigation */
+        padding-bottom: 64px;
       }
       .sidebar {
         width: 100%;
@@ -411,7 +417,7 @@
         z-index: 95;
         opacity: 0;
         pointer-events: none;
-        transition: opacity 0.3s;
+        transition: opacity 0.25s ease;
       }
       .panel-backdrop.active {
         opacity: 1;
@@ -428,25 +434,29 @@
         max-width: 100% !important;
         height: 80vh;
         max-height: 85vh;
+        min-height: auto;
         border-radius: 24px 24px 0 0;
         border-top: 1px solid var(--border);
         border-left: none;
         box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
         z-index: 100;
-        transform: translateY(105%);
-        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        transform: translate3d(0, 105%, 0);
+        will-change: transform;
+        transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       }
       .panel.active {
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
       }
       .mobile-handle {
         display: block;
-        width: 38px;
-        height: 4px;
+        width: 44px;
+        height: 5px;
         background: var(--text-muted);
-        opacity: 0.35;
-        border-radius: 4px;
-        margin: 10px auto 0;
+        opacity: 0.4;
+        border-radius: 6px;
+        margin: 12px auto 6px auto;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
       }
     }
   </style>
@@ -534,7 +544,7 @@ let activeCategory = 'All';
 let selectedId = null;
 let bookmarks = JSON.parse(localStorage.getItem('aind_bookmarks') || '[]');
 
-/* ── Panel Width Persistence & Resize Logic ───────────────────────── */
+/* ── Panel Width Persistence & High-FPS Resize Logic ──────────────── */
 const panel = document.getElementById('panel');
 const resizer = document.getElementById('panelResizer');
 const backdrop = document.getElementById('panelBackdrop');
@@ -546,36 +556,45 @@ if (savedPanelWidth && window.innerWidth > 768) {
 }
 
 let isResizing = false;
+let rafId = null;
+
 if (resizer) {
   resizer.addEventListener('mousedown', e => {
     isResizing = true;
     resizer.classList.add('dragging');
     document.body.style.cursor = 'col-resize';
     document.body.style.userSelect = 'none';
-  });
+  }, { passive: true });
+
   document.addEventListener('mousemove', e => {
     if (!isResizing) return;
-    const newWidth = window.innerWidth - e.clientX;
-    if (newWidth >= 280 && newWidth <= 650) {
-      panel.style.width = newWidth + 'px';
-      localStorage.setItem('aind_panel_width', newWidth);
-    }
-  });
+    if (rafId) cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(() => {
+      const newWidth = window.innerWidth - e.clientX;
+      if (newWidth >= 280 && newWidth <= 650) {
+        panel.style.width = newWidth + 'px';
+        localStorage.setItem('aind_panel_width', newWidth);
+      }
+    });
+  }, { passive: true });
+
   document.addEventListener('mouseup', () => {
     if (isResizing) {
       isResizing = false;
       resizer.classList.remove('dragging');
       document.body.style.cursor = '';
       document.body.style.userSelect = '';
+      if (rafId) cancelAnimationFrame(rafId);
     }
-  });
+  }, { passive: true });
 }
 
 function closePanel() {
   panel.classList.remove('active');
   backdrop.classList.remove('active');
   selectedId = null;
-  document.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+  const prevSelected = document.querySelector('.card.selected');
+  if (prevSelected) prevSelected.classList.remove('selected');
   document.getElementById('panelBody').innerHTML = `
     <div class="panel-empty">
       <div class="panel-hint">←</div>
@@ -588,11 +607,9 @@ panelCloseBtn.addEventListener('click', closePanel);
 backdrop.addEventListener('click', closePanel);
 
 const mobileHandle = document.querySelector('.mobile-handle');
-if (mobileHandle) {
-  mobileHandle.addEventListener('click', closePanel);
-}
+if (mobileHandle) mobileHandle.addEventListener('click', closePanel);
 
-// Swipe down to dismiss on mobile
+// Optimized touch swipe down
 let touchStartY = 0;
 panel.addEventListener('touchstart', e => {
   touchStartY = e.touches[0].clientY;
@@ -656,7 +673,8 @@ function refreshBookmarkUI() {
     const id = +btn.dataset.bmId;
     const bm = isBookmarked(id);
     btn.classList.toggle('bookmarked', bm);
-    btn.querySelector('svg').style.fill = bm ? 'var(--accent)' : 'none';
+    const svg = btn.querySelector('svg');
+    if (svg) svg.style.fill = bm ? 'var(--accent)' : 'none';
   });
   const p = document.getElementById('panelBmBtn');
   if (p && selectedId !== null) {
@@ -677,7 +695,7 @@ function renderSkeletons(n = 9) {
   `).join('');
 }
 
-/* ── Render Grid ──────────────────────────────────────────────────── */
+/* ── Fast Grid Rendering with Event Delegation ─────────────────────── */
 function getFiltered() {
   const q = document.getElementById('search').value.trim().toLowerCase();
   return allArticles.filter(a => {
@@ -694,9 +712,10 @@ function renderGrid() {
     grid.innerHTML = '<div class="empty-state show">No articles found.</div>';
     return;
   }
-  grid.innerHTML = articles.map((a, i) => `
-    <article class="card${selectedId === a.id ? ' selected' : ''}" data-id="${a.id}" tabindex="0" style="animation-delay:${i * 0.03}s">
-      <button class="card-bookmark${isBookmarked(a.id) ? ' bookmarked' : ''}" data-bm-id="${a.id}">
+
+  grid.innerHTML = articles.map(a => `
+    <article class="card${selectedId === a.id ? ' selected' : ''}" data-id="${a.id}" tabindex="0">
+      <button class="card-bookmark${isBookmarked(a.id) ? ' bookmarked' : ''}" data-bm-id="${a.id}" aria-label="Bookmark">
         <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
       </button>
       <div class="card-title">${a.title}</div>
@@ -706,21 +725,33 @@ function renderGrid() {
       </div>
     </article>
   `).join('');
-
-  grid.querySelectorAll('.card').forEach(card => {
-    const id = +card.dataset.id;
-    card.addEventListener('click', e => {
-      if (e.target.closest('.card-bookmark')) return;
-      selectedId = id;
-      openPanel(id);
-      grid.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === id));
-    });
-    card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
-  });
-  grid.querySelectorAll('.card-bookmark').forEach(btn => {
-    btn.addEventListener('click', e => { e.stopPropagation(); toggleBookmark(+btn.dataset.bmId); });
-  });
 }
+
+// Single Event Delegation listener for high performance
+const gridElem = document.getElementById('grid');
+gridElem.addEventListener('click', e => {
+  const bmBtn = e.target.closest('.card-bookmark');
+  if (bmBtn) {
+    e.stopPropagation();
+    toggleBookmark(+bmBtn.dataset.bmId);
+    return;
+  }
+  const card = e.target.closest('.card');
+  if (card) {
+    const id = +card.dataset.id;
+    selectedId = id;
+    openPanel(id);
+    document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+  }
+});
+
+gridElem.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const card = e.target.closest('.card');
+    if (card) card.click();
+  }
+});
 
 /* ── Tabs ─────────────────────────────────────────────────────────── */
 function renderTabs() {
@@ -732,10 +763,16 @@ function renderTabs() {
     const count = cat === 'All' ? allArticles.length : counts[cat];
     return `<button class="tab${activeCategory === cat ? ' active' : ''}" data-cat="${cat}">${cat}<span class="tab-count">${count}</span></button>`;
   }).join('');
-  tabs.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => { activeCategory = tab.dataset.cat; renderTabs(); renderGrid(); });
-  });
 }
+
+document.getElementById('tabs').addEventListener('click', e => {
+  const tab = e.target.closest('.tab');
+  if (tab) {
+    activeCategory = tab.dataset.cat;
+    renderTabs();
+    renderGrid();
+  }
+});
 
 /* ── Top Picks ────────────────────────────────────────────────────── */
 function renderTopPicks(ids) {
@@ -751,10 +788,15 @@ function renderTopPicks(ids) {
       </div>
     </div>
   `).join('');
-  document.querySelectorAll('.top-card').forEach(c => {
-    c.addEventListener('click', () => { selectedId = +c.dataset.id; openPanel(selectedId); });
-  });
 }
+
+document.getElementById('topPicks').addEventListener('click', e => {
+  const card = e.target.closest('.top-card');
+  if (card) {
+    selectedId = +card.dataset.id;
+    openPanel(selectedId);
+  }
+});
 
 /* ── Panel ────────────────────────────────────────────────────────── */
 function openPanel(id) {
@@ -793,21 +835,31 @@ document.getElementById('btnBookmarks').addEventListener('click', () => {
         <div class="bm-item-meta">${a.source} · ${a.category}</div>
       </div>
     `).join('');
-    list.querySelectorAll('.bm-item').forEach(item => {
-      item.addEventListener('click', () => {
-        overlay.classList.remove('show');
-        selectedId = +item.dataset.id; openPanel(selectedId);
-        document.querySelectorAll('.card').forEach(c => c.classList.toggle('selected', +c.dataset.id === selectedId));
-      });
-    });
   }
   overlay.classList.add('show');
 });
+
+document.getElementById('bmList').addEventListener('click', e => {
+  const item = e.target.closest('.bm-item');
+  if (item) {
+    document.getElementById('bmOverlay').classList.remove('show');
+    selectedId = +item.dataset.id;
+    openPanel(selectedId);
+    document.querySelectorAll('.card.selected').forEach(c => c.classList.remove('selected'));
+    const targetCard = document.querySelector(`.card[data-id="${selectedId}"]`);
+    if (targetCard) targetCard.classList.add('selected');
+  }
+});
+
 document.getElementById('bmClose').addEventListener('click', () => document.getElementById('bmOverlay').classList.remove('show'));
 document.getElementById('bmOverlay').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.classList.remove('show'); });
 
-/* ── Search ──────────────────────────────────────────────────────── */
-let st; document.getElementById('search').addEventListener('input', () => { clearTimeout(st); st = setTimeout(renderGrid, 200); });
+/* ── Optimized Fast Search ───────────────────────────────────────── */
+let st;
+document.getElementById('search').addEventListener('input', () => {
+  clearTimeout(st);
+  st = setTimeout(renderGrid, 120);
+});
 
 /* ── Load ─────────────────────────────────────────────────────────── */
 async function loadNews() {
