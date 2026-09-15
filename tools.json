@@ -1,8 +1,23 @@
 [
   {
-    "title": "is.team",
-    "link": "https://www.producthunt.com/products/is-team",
-    "category": "Chatbot/Assistant"
+    "title": "Kilo Code for iOS and Android",
+    "link": "https://www.producthunt.com/products/kilocode",
+    "category": "Coding"
+  },
+  {
+    "title": "Anthropologic",
+    "link": "https://www.producthunt.com/products/anthropologic",
+    "category": "Research"
+  },
+  {
+    "title": "FATHER",
+    "link": "https://www.producthunt.com/products/father-web-monitoring",
+    "category": "Other"
+  },
+  {
+    "title": "Multimodal Agents by Sierra",
+    "link": "https://www.producthunt.com/products/sierra",
+    "category": "Audio"
   },
   {
     "title": "Voiskey",
@@ -10,14 +25,9 @@
     "category": "Audio"
   },
   {
-    "title": "Narrative",
-    "link": "https://www.producthunt.com/products/narrative-3",
-    "category": "Video"
-  },
-  {
-    "title": "Kilo Code for iOS and Android",
-    "link": "https://www.producthunt.com/products/kilocode",
-    "category": "Coding"
+    "title": "Buddy AI Access (MCP)",
+    "link": "https://www.producthunt.com/products/buddy",
+    "category": "Chatbot/Assistant"
   },
   {
     "title": "tiun.",
@@ -30,14 +40,9 @@
     "category": "Other"
   },
   {
-    "title": "Fifi",
-    "link": "https://www.producthunt.com/products/fifi-wake-up-call-alarm-clock",
-    "category": "Other"
-  },
-  {
-    "title": "Multimodal Agents by Sierra",
-    "link": "https://www.producthunt.com/products/sierra",
-    "category": "Audio"
+    "title": "Grimo AI",
+    "link": "https://www.producthunt.com/products/grimo-ai",
+    "category": "Productivity"
   },
   {
     "title": "Idlen",
@@ -45,29 +50,14 @@
     "category": "Other"
   },
   {
-    "title": "siift",
-    "link": "https://www.producthunt.com/products/siift",
+    "title": "Payflip",
+    "link": "https://www.producthunt.com/products/payflip",
     "category": "Other"
   },
   {
-    "title": "The Minimalist Entrepreneur Skills",
-    "link": "https://www.producthunt.com/products/the-minimalist-entrepreneur-skills",
-    "category": "Coding"
-  },
-  {
-    "title": "Thoughts for Mac",
-    "link": "https://www.producthunt.com/products/thoughts-for-mac",
-    "category": "Image"
-  },
-  {
-    "title": "Buddy AI Access (MCP)",
-    "link": "https://www.producthunt.com/products/buddy",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Mailyte",
-    "link": "https://www.producthunt.com/products/mailyte",
-    "category": "Other"
+    "title": "PeekPaste",
+    "link": "https://www.producthunt.com/products/lucidbit",
+    "category": "Video"
   },
   {
     "title": "jurniti",
@@ -75,24 +65,19 @@
     "category": "Chatbot/Assistant"
   },
   {
-    "title": "PortAura",
-    "link": "https://www.producthunt.com/products/portaura",
+    "title": "Fifi",
+    "link": "https://www.producthunt.com/products/fifi-wake-up-call-alarm-clock",
     "category": "Other"
   },
   {
-    "title": "FATHER",
-    "link": "https://www.producthunt.com/products/father-web-monitoring",
+    "title": "DynamicLake 2.0",
+    "link": "https://www.producthunt.com/products/dynamiclake",
     "category": "Other"
   },
   {
-    "title": "Grimo AI",
-    "link": "https://www.producthunt.com/products/grimo-ai",
-    "category": "Productivity"
-  },
-  {
-    "title": "Anthropologic",
-    "link": "https://www.producthunt.com/products/anthropologic",
-    "category": "Research"
+    "title": "Mailyte",
+    "link": "https://www.producthunt.com/products/mailyte",
+    "category": "Other"
   },
   {
     "title": "Workshopy.io",
@@ -105,8 +90,53 @@
     "category": "Image"
   },
   {
-    "title": "Payflip",
-    "link": "https://www.producthunt.com/products/payflip",
+    "title": "Narrative",
+    "link": "https://www.producthunt.com/products/narrative-3",
+    "category": "Video"
+  },
+  {
+    "title": "PortAura",
+    "link": "https://www.producthunt.com/products/portaura",
+    "category": "Other"
+  },
+  {
+    "title": "The Minimalist Entrepreneur Skills",
+    "link": "https://www.producthunt.com/products/the-minimalist-entrepreneur-skills",
+    "category": "Coding"
+  },
+  {
+    "title": "OpenAI Agents API",
+    "link": "https://www.producthunt.com/products/openai",
+    "category": "Coding"
+  },
+  {
+    "title": "Axari",
+    "link": "https://www.producthunt.com/products/axari",
+    "category": "Other"
+  },
+  {
+    "title": "siift",
+    "link": "https://www.producthunt.com/products/siift",
+    "category": "Other"
+  },
+  {
+    "title": "is.team",
+    "link": "https://www.producthunt.com/products/is-team",
+    "category": "Chatbot/Assistant"
+  },
+  {
+    "title": "Thoughts for Mac",
+    "link": "https://www.producthunt.com/products/thoughts-for-mac",
+    "category": "Image"
+  },
+  {
+    "title": "Tangerine",
+    "link": "https://www.producthunt.com/products/tangerine-zero-click-file-converter",
+    "category": "Other"
+  },
+  {
+    "title": "Mac Duo",
+    "link": "https://www.producthunt.com/products/mac-duo",
     "category": "Other"
   },
   {
@@ -115,38 +145,63 @@
     "category": "Coding"
   },
   {
-    "title": "PeekPaste",
-    "link": "https://www.producthunt.com/products/lucidbit",
-    "category": "Video"
-  },
-  {
-    "title": "Axari",
-    "link": "https://www.producthunt.com/products/axari",
+    "title": "Deplo",
+    "link": "https://www.producthunt.com/products/deplo-2",
     "category": "Other"
   },
   {
-    "title": "OpenAI Agents API",
-    "link": "https://www.producthunt.com/products/openai",
+    "title": "Show HN: Loss. a tiny satire about AI progress",
+    "link": "https://workatloss.com/",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: EACL is a situated ReBAC authorization library for Datomic and Datahike",
+    "link": "https://github.com/theronic/eacl",
+    "category": "Research"
+  },
+  {
+    "title": "Show HN: Bulkgrid – Search websites and GitHub repositories from your AI agent",
+    "link": "https://bulkgrid.com",
+    "category": "Research"
+  },
+  {
+    "title": "Show HN: Capsule – Single-file web apps that save their data into SQLite",
+    "link": "https://withcapsule.app/",
+    "category": "Research"
+  },
+  {
+    "title": "Show HN: Llmbridge, a C++ LLM gateway with sub-millisecond overhead",
+    "link": "https://github.com/kottos-ai/llmbridge",
+    "category": "Other"
+  },
+  {
+    "title": "Show HN: Prokop – Open-source AI coding workspace with cross-project memory",
+    "link": "https://github.com/capek-dev/prokop",
     "category": "Coding"
   },
   {
-    "title": "Mac Duo",
-    "link": "https://www.producthunt.com/products/mac-duo",
+    "title": "Show HN: Nenya – 0-deps AI gateway redacts secrets before they reach providers",
+    "link": "https://github.com/gumieri/nenya",
     "category": "Other"
   },
   {
-    "title": "DynamicLake 2.0",
-    "link": "https://www.producthunt.com/products/dynamiclake",
+    "title": "Show HN: SubRunGear – Fitness Gear AI Operating System",
+    "link": "https://www.subrungear.com/",
     "category": "Other"
   },
   {
-    "title": "Tangerine",
-    "link": "https://www.producthunt.com/products/tangerine-zero-click-file-converter",
-    "category": "Other"
+    "title": "Show HN: A 24/7 video channel where $5 puts your ad on air in about a minute",
+    "link": "https://letmeshowyou.live",
+    "category": "Video"
   },
   {
-    "title": "Afterglow",
-    "link": "https://www.producthunt.com/products/afterglow-4",
+    "title": "Show HN: Restarted – a 2026 remake of the classic 2015 startup generator",
+    "link": "https://restarted.io/?z=477799172922",
+    "category": "Image"
+  },
+  {
+    "title": "Show HN: LM-Kit One – private AI on your infrastructure",
+    "link": "https://lm-kit.com/products/lm-kit-one/",
     "category": "Other"
   },
   {
@@ -243,60 +298,5 @@
     "title": "Show HN: Vedic Astrology Chart – free D1/D9 birth chart with AI insights",
     "link": "https://vedicastrologychart.org/",
     "category": "Image"
-  },
-  {
-    "title": "Show HN: MCP Harbor – An MCP Registry",
-    "link": "https://ai.mcpharbor.dev/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Rebuno - An open-source runtime for production agents",
-    "link": "https://github.com/rebuno/rebuno",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: AgentDrive – persistent, versioned file storage for AI agents",
-    "link": "https://tokencanopy.com/products/agentdrive",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Nari Qwen3-TTS and Qwen3-ASR – High accuracy, low latency and cost",
-    "link": "https://narilabs.com/blog/nari-labs-leads-coval-voice-ai-benchmarks/",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Local catalog of 3k agent skills with a static risk scan",
-    "link": "https://github.com/xm1k3/ai-community-skills",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Push Notifications for Hacker News",
-    "link": "https://www.hazumi.news",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: Botbin – A zero-login HTML pastebin for AI agents",
-    "link": "http://botbin.io/",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Prmptree – AI email agent with a trust dial, not an on/off switch",
-    "link": "https://www.prmptree.com/",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Self-hosted coffee app for tracking espresso shots, with AI assistance",
-    "link": "https://github.com/michidk/roastbook",
-    "category": "Other"
-  },
-  {
-    "title": "Show HN: I built Otis, a minimal AI agent that runs local models out of the box",
-    "link": "https://triangllabs.ai/otis",
-    "category": "Chatbot/Assistant"
-  },
-  {
-    "title": "Show HN: Vigilator – human-in-the-loop layer for AI agents",
-    "link": "https://vigilator.ai/",
-    "category": "Chatbot/Assistant"
   }
 ]
