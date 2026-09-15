@@ -1,0 +1,77 @@
+[
+  {
+    "title": "Senior Code Reviewer",
+    "category": "Coding",
+    "description": "Act as a senior software engineer. Review this code for performance, security, and maintainability. Suggest concrete improvements: [Paste Code]"
+  },
+  {
+    "title": "Explain Like I'm 5",
+    "category": "Learning",
+    "description": "Explain the concept of [Concept] to me like I am 5 years old. Use simple analogies and avoid jargon."
+  },
+  {
+    "title": "Marketing Copywriter",
+    "category": "Marketing",
+    "description": "Write a highly converting, punchy landing page hero section and 3 feature bullet points for a product that does [Product Description]."
+  },
+  {
+    "title": "Interview Simulator",
+    "category": "Career",
+    "description": "Act as a strict technical interviewer for a [Role] position. Ask me one question at a time and wait for my response before continuing. Evaluate my answers."
+  },
+  {
+    "title": "Midjourney Cinematic Portrait",
+    "category": "Image Generation",
+    "description": "Cinematic portrait photograph of [Subject], shot on 35mm lens, moody lighting, neon cyberpunk city background, depth of field, highly detailed, 8k, photorealistic --ar 16:9"
+  },
+  {
+    "title": "Regex Generator",
+    "category": "Coding",
+    "description": "Write a regular expression that matches [Desired Pattern]. Explain how each part of the regex works step-by-step."
+  },
+  {
+    "title": "Cold Email Outreach",
+    "category": "Marketing",
+    "description": "Write a concise, engaging cold email to a [Target Audience] offering [Your Service]. Keep it under 150 words and include a clear call to action."
+  },
+  {
+    "title": "Language Translation & Nuance",
+    "category": "Writing",
+    "description": "Translate the following text into [Language]. Provide 3 options ranging from formal to casual, and explain the cultural nuance of each choice: [Text]"
+  },
+  {
+    "title": "UX/UI Design Critic",
+    "category": "Design",
+    "description": "Act as a Lead Product Designer. I will describe a UI flow for my app: [Flow Description]. Critique it for usability, friction points, and accessibility."
+  },
+  {
+    "title": "System Architecture Planner",
+    "category": "Coding",
+    "description": "I need to build a system that does [System Requirements]. Propose a high-level system architecture, including tech stack, database choices, and potential bottlenecks to watch out for."
+  },
+  {
+    "title": "Blog Post Outline",
+    "category": "Writing",
+    "description": "Create a comprehensive, SEO-optimized outline for a blog post about [Topic]. Include H2 and H3 headings, and suggest keywords to target."
+  },
+  {
+    "title": "Data Analysis Guide",
+    "category": "Research",
+    "description": "I have a dataset containing [Data description]. Give me 5 interesting hypotheses I could test with this data, and suggest which Python libraries I should use."
+  },
+  {
+    "title": "Socratic Teacher",
+    "category": "Learning",
+    "description": "I want to learn about [Topic]. Do not explain it to me directly. Instead, act as a Socratic teacher and ask me guiding questions to help me figure it out myself."
+  },
+  {
+    "title": "API Documentation Generator",
+    "category": "Coding",
+    "description": "Write clear, Markdown-formatted API documentation for a REST endpoint that accepts [Input] and returns [Output]. Include curl examples and error codes."
+  },
+  {
+    "title": "Midjourney Vector Logo",
+    "category": "Image Generation",
+    "description": "Flat vector logo of a [Subject], minimal, geometric, solid background, dribbble style, corporate identity --no shading --ar 1:1"
+  }
+]

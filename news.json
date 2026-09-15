@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-15T20:12:37.607274+05:30",
+  "last_updated": "2026-09-15T21:28:44.411987+05:30",
   "top_pick_ids": [
     1,
     2,
@@ -13,7 +13,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13559v1 Announce Type: new \nAbstract: Large Language Models (LLMs) with function-calling capabilities are becoming critical for modern agentic AI systems. Nevertheless, current deployments typically route inferences to powerful cloud-based models, incurring significant energy use and carb",
-      "published_at": "2026-09-15T20:12:37.606301+05:30"
+      "published_at": "2026-09-15T21:28:44.410555+05:30"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13457v1 Announce Type: new \nAbstract: Timeseries multimodal large language models (TS-MLLMs) have recently begun leveraging the reasoning capabilities of large language models (LLMs) for question-answering tasks. However, these models often fail to capture dynamic temporal patterns, provi",
-      "published_at": "2026-09-15T20:12:37.606340+05:30"
+      "published_at": "2026-09-15T21:28:44.410602+05:30"
     },
     {
       "id": 3,
@@ -31,7 +31,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "Three weeks back , i posted SHADOW-250M here. It got 360 upvotes, 293 on r/LocalLLaMA and 94 GitHub stars. Thank you. That model was 60 MB, ran around 400 tok/s on CPU and could retrieve records from an archive on disk. What it couldn’t do reliably was reason over what it retrieved or compute. So I ",
-      "published_at": "2026-09-15T20:12:37.606399+05:30"
+      "published_at": "2026-09-15T21:28:44.410695+05:30"
     },
     {
       "id": 4,
@@ -40,7 +40,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13436v1 Announce Type: new \nAbstract: Large Language Model (LLM) agents offer a promising path toward autonomously managing long-term physical tasks without human intervention. However, physical tasks require agents to continuously observe the environment, make consequential actions, and ",
-      "published_at": "2026-09-15T20:12:37.606416+05:30"
+      "published_at": "2026-09-15T21:28:44.410719+05:30"
     },
     {
       "id": 5,
@@ -49,7 +49,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13519v1 Announce Type: new \nAbstract: Molecular design is most effective when generation mirrors the edits chemists actually make: extending a scaffold, replacing a substituent, or decorating a scaffold at a specified attachment site while optimizing molecular properties. Fragment-based m",
-      "published_at": "2026-09-15T20:12:37.606429+05:30"
+      "published_at": "2026-09-15T21:28:44.410738+05:30"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13356v1 Announce Type: new \nAbstract: In this work, we present ZGCM-1, a fully open 7B dense foundation model trained from scratch with extreme data, system, and algorithmic efficiency. ZGCM-1 is founded on a core premise: compact models cannot passively memorize the open web, but can ove",
-      "published_at": "2026-09-15T20:12:37.606440+05:30"
+      "published_at": "2026-09-15T21:28:44.410754+05:30"
     },
     {
       "id": 7,
@@ -67,7 +67,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13422v1 Announce Type: new \nAbstract: LLM judges are increasingly used to evaluate and improve AI-generated outputs, yet their reliability for complex professional work remains unclear. We study this problem through Vibe Patenting, an end-to-end patent-drafting testbed for AI-agent evalua",
-      "published_at": "2026-09-15T20:12:37.606476+05:30"
+      "published_at": "2026-09-15T21:28:44.410798+05:30"
     },
     {
       "id": 8,
@@ -76,7 +76,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13463v1 Announce Type: new \nAbstract: The increasing deployment of AI agents in long-horizon tasks yields massive execution logs. Diagnosing failures within these records is crucial for reliability, as it transforms outcome-level signals into actionable interventions. The sheer scale of t",
-      "published_at": "2026-09-15T20:12:37.606501+05:30"
+      "published_at": "2026-09-15T21:28:44.410831+05:30"
     },
     {
       "id": 9,
@@ -85,7 +85,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13470v1 Announce Type: new \nAbstract: Although large language models (LLMs) have demonstrated remarkable capabilities, their reliance on cloud-scale infrastructure poses fundamental challenges for deployment in agentic pipelines, including latency, privacy, connectivity, and substantial c",
-      "published_at": "2026-09-15T20:12:37.606530+05:30"
+      "published_at": "2026-09-15T21:28:44.410854+05:30"
     },
     {
       "id": 10,
@@ -94,7 +94,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13475v1 Announce Type: new \nAbstract: Existing pipelines for clinical timeline extraction from case reports are evaluated using an expert reference and are limited by imperfect reference annotations and imprecise event alignment. We developed GAVEL, an LLM judge protocol that compares two",
-      "published_at": "2026-09-15T20:12:37.606565+05:30"
+      "published_at": "2026-09-15T21:28:44.410901+05:30"
     },
     {
       "id": 11,
@@ -103,7 +103,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13491v1 Announce Type: new \nAbstract: The strong performance of AI Agents across an impressive variety of tasks is driving an unprecedented investment in agentic infrastructures, however the cost of processing tokens is fast increasing. Web agents automate the execution of web-application",
-      "published_at": "2026-09-15T20:12:37.606579+05:30"
+      "published_at": "2026-09-15T21:28:44.410920+05:30"
     },
     {
       "id": 12,
@@ -112,7 +112,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi 👋 long time lurker  It’s been a few years since the last post about Horse Racing within this sub.  A few years ago I was reading a popular science book and came across the story Bill Benter and the statistical models his team developed for Hong Kong racing.  What stayed with me wasn’t simply the ",
-      "published_at": "2026-09-15T20:12:37.606658+05:30"
+      "published_at": "2026-09-15T21:28:44.411051+05:30"
     },
     {
       "id": 13,
@@ -121,7 +121,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13543v1 Announce Type: new \nAbstract: LLM agents are predominantly benchmarked on short, single-task trajectories, yet real deployments run for hours under contention, surfacing a different class of failures. We use the Clinical Environment Simulator (CES), in which an agent manages an en",
-      "published_at": "2026-09-15T20:12:37.606665+05:30"
+      "published_at": "2026-09-15T21:28:44.411061+05:30"
     },
     {
       "id": 14,
@@ -130,7 +130,7 @@
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "Hi everyone, Inspired by tools like Chessvision.ai, I wanted to take a different architectural approach and build a browser extension (ChessInsights AI) that performs chessboard detection and piece recognition 100% client-side using local inference—with zero image data ever leaving the user's machin",
-      "published_at": "2026-09-15T20:12:37.606706+05:30"
+      "published_at": "2026-09-15T21:28:44.411121+05:30"
     },
     {
       "id": 15,
@@ -139,7 +139,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13406v1 Announce Type: new \nAbstract: When we speak of recursive self-improvement (RSI), are we speaking of a phenomenon, a mechanism, or a prospect? Towards autonomous and evolving intelligence, RSI is being claimed at many scales, while no single framework that formally describes these ",
-      "published_at": "2026-09-15T20:12:37.606725+05:30"
+      "published_at": "2026-09-15T21:28:44.411148+05:30"
     },
     {
       "id": 16,
@@ -148,7 +148,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13466v1 Announce Type: new \nAbstract: Enterprise AI adoption has reached 78% of organizations globally, yet the infrastructure to govern that adoption has not kept pace. This paper identifies and characterizes the attestation deficit, a structural condition in which organizations maintain",
-      "published_at": "2026-09-15T20:12:37.606744+05:30"
+      "published_at": "2026-09-15T21:28:44.411173+05:30"
     },
     {
       "id": 17,
@@ -157,7 +157,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13548v1 Announce Type: new \nAbstract: Web agents can utilize reusable tools to reduce the cost and latency of low-level browser interaction, but automatically discovered tool collections can be large, redundant, and poorly aligned with user demand. We present AutoTailor, a meta-agentic fr",
-      "published_at": "2026-09-15T20:12:37.606779+05:30"
+      "published_at": "2026-09-15T21:28:44.411222+05:30"
     },
     {
       "id": 18,
@@ -166,7 +166,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13552v1 Announce Type: new \nAbstract: Generative AI is increasingly being used informally in Air Traffic Management (ATM) for tasks such as flight plan generation, trajectory interpretation, and constraint checking. Although these tools can reduce workload and accelerate planning, their n",
-      "published_at": "2026-09-15T20:12:37.606805+05:30"
+      "published_at": "2026-09-15T21:28:44.411258+05:30"
     },
     {
       "id": 19,
@@ -175,7 +175,7 @@
       "source": "cs.AI updates on arXiv.org",
       "category": "Research",
       "summary": "arXiv:2609.13566v1 Announce Type: new \nAbstract: Industrial maintenance systems involve multiple interacting assets and shared resources, making it challenging to balance reliability and operational cost using a single decision framework. While recent work has focused on reinforcement learning (RL) ",
-      "published_at": "2026-09-15T20:12:37.606850+05:30"
+      "published_at": "2026-09-15T21:28:44.411318+05:30"
     },
     {
       "id": 20,
@@ -184,7 +184,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "A new paper (I'm not a coauthor BTW -- I just found it interesting) argues, basically, that RSI1 is not on the horizon2, because current (at the time the study was done) agents cannot do open-ended ML research. Specifically, they took some accepted, but unpublished papers from NeurIPS, and tried to ",
-      "published_at": "2026-09-15T20:12:37.606881+05:30"
+      "published_at": "2026-09-15T21:28:44.411359+05:30"
     },
     {
       "id": 21,
@@ -193,7 +193,7 @@
       "source": "Machine Learning",
       "category": "Image",
       "summary": "Hi, For single-GPU training, I’m using Hugging Face SFTTrainer with auto_find_batch_size=True, which automatically reduces the batch size after a CUDA OOM until it finds a batch size that works. I would like to have similar behavior when training on multiple GPUs on a single node using accelerate la",
-      "published_at": "2026-09-15T20:12:37.606905+05:30"
+      "published_at": "2026-09-15T21:28:44.411395+05:30"
     },
     {
       "id": 22,
@@ -202,7 +202,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I have created a VAE model using PyTorch on White Wine dataset. Basically, the main goal is to discover a brand-new white wine recipe. It puts all the wines into a latent space, finds the best part where higher bands are located, and then it makes 100 steps with a step size of 0.5, multiplying by 0.",
-      "published_at": "2026-09-15T20:12:37.606927+05:30"
+      "published_at": "2026-09-15T21:28:44.411424+05:30"
     },
     {
       "id": 23,
@@ -211,7 +211,7 @@
       "source": "Machine Learning",
       "category": "Productivity",
       "summary": "Suppose I create two machine learning models suppose tree and neural network for a task let's suppose regression problem, now suppose I am sending both of this paper to two different journals, now the thing is the baseline models I need to only run once because I have reported same baseline in both ",
-      "published_at": "2026-09-15T20:12:37.606949+05:30"
+      "published_at": "2026-09-15T21:28:44.411454+05:30"
     },
     {
       "id": 24,
@@ -220,7 +220,7 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Ars previewed Mozilla’s report on how cheap open models caught up on capability.",
-      "published_at": "2026-09-15T20:12:37.606955+05:30"
+      "published_at": "2026-09-15T21:28:44.411464+05:30"
     },
     {
       "id": 25,
@@ -229,106 +229,115 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Musk stops attacking Apple over ChatGPT integration but not OpenAI.",
-      "published_at": "2026-09-15T20:12:37.606964+05:30"
+      "published_at": "2026-09-15T21:28:44.411476+05:30"
     },
     {
       "id": 26,
+      "title": "Cartesian – AI 3D Modeling for Design",
+      "url": "https://www.formas.ai/cartesian",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-15T21:28:44.411484+05:30"
+    },
+    {
+      "id": 27,
       "title": "PhD branding question [R]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wfte3b/phd_branding_question_r/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "I'm starting a PhD where I will be doing Graph ML (somewhere along the lines of graph signal processing/ graph deep learning.)  My eventual goal is research scientist at big tech, or whichever company has a strong research division, where I can continue similar AI/ML work. I have concerns about the ",
-      "published_at": "2026-09-15T20:12:37.606980+05:30"
+      "published_at": "2026-09-15T21:28:44.411505+05:30"
     },
     {
-      "id": 27,
+      "id": 28,
       "title": "I trained an 825k-parameter model to generate drawing programs that execute exactly on an RP2040 [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf611v/i_trained_an_825kparameter_model_to_generate/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I’ve been working on a small research project about whether sub-million-parameter models can learn to generate executable drawing programs for constrained hardware. The current system is an 825k-parameter autoregressive transformer which generates ~100 bytes of drawing bytecode rather than pixels. T",
-      "published_at": "2026-09-15T20:12:37.607014+05:30"
+      "published_at": "2026-09-15T21:28:44.411580+05:30"
     },
     {
-      "id": 28,
+      "id": 29,
       "title": "Teach ML! Community service project from Stanford [N]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wbf3ox/teach_ml_community_service_project_from_stanford_n/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hi r/machinelearning. Nice to meet you! My name is Chris Piech and I'm a professor at Stanford University in the AI lab. I built a class called Probability for AI: pai.stanford.edu. It starts Oct 9th and applications are due end of Sept. Its (hopefully) cool for a few reasons:  The plan is to have o",
-      "published_at": "2026-09-15T20:12:37.607033+05:30"
+      "published_at": "2026-09-15T21:28:44.411611+05:30"
     },
     {
-      "id": 29,
+      "id": 30,
       "title": "[D] How do you get preprocessed dataset of a paper [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wgutx6/d_how_do_you_get_preprocessed_dataset_of_a_paper_d/",
       "source": "Machine Learning",
       "category": "Research",
       "summary": "Hi all, I'm trying to reproduce a paper where the reported dataset statistics in Table 1 don't match what I get from the public raw data, even after implementing the preprocessing exactly as described. I've tried all reasonable interpretations of the filtering described in the paper and the closest ",
-      "published_at": "2026-09-15T20:12:37.607076+05:30"
+      "published_at": "2026-09-15T21:28:44.411679+05:30"
     },
     {
-      "id": 30,
+      "id": 31,
       "title": "[Upcoming AMA] Waymo AI Team AMA – Drop Your Questions Early! [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wfesc0/upcoming_ama_waymo_ai_team_ama_drop_your/",
       "source": "Machine Learning",
       "category": "Image",
       "summary": "EDIT: Thanks from the Waymo AI Team!  A huge thank you to the r/MachineLearning community for all the thoughtful, deep-dive questions today.  If you want to dive deeper into our technical research, check out our work athttps://waymo.com/research/, and stay tuned for our next AMA. Thanks again, all! ",
-      "published_at": "2026-09-15T20:12:37.607111+05:30"
+      "published_at": "2026-09-15T21:28:44.411731+05:30"
     },
     {
-      "id": 31,
+      "id": 32,
       "title": "Zachery Lipton: \"CS academia broke the system...perhaps all that it takes for the system to rebuild is for it to burn to the ground\" [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wf4b5g/zachery_lipton_cs_academia_broke_the/",
       "source": "Machine Learning",
       "category": "Other",
       "summary": "Sept 9, 2026 hits an all time daily high of 447 new machine learning papers uploaded to cs.LG (https://arxiv.org/list/cs.LG/recent?skip=0&amp;show=500).  This is many times more papers than what a human being or even a sizeable reading group could feasibly read and digest in a year.  This is precede",
-      "published_at": "2026-09-15T20:12:37.607155+05:30"
+      "published_at": "2026-09-15T21:28:44.411790+05:30"
     },
     {
-      "id": 32,
+      "id": 33,
       "title": "MS MARCO click-translation expansion tables (\"poor man's\" DSSM) [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wg3g03/ms_marco_clicktranslation_expansion_tables_poor/",
       "source": "Machine Learning",
       "category": "Research",
       "summary": "TLDR: I made &quot;poor man’s&quot; DSSM (Deep Structured Semantic Model) — the count-based translation table that can enrich the inverted index for full-text search. This trick can improve baseline BM25. So the idea is the following: - You have supervised pairs (query, relevant document), e.g., MS ",
-      "published_at": "2026-09-15T20:12:37.607205+05:30"
+      "published_at": "2026-09-15T21:28:44.411862+05:30"
     },
     {
-      "id": 33,
+      "id": 34,
       "title": "GPT-6 Astra Changes Everything",
       "url": "https://www.youtube.com/watch?v=eVBJIUxv8N8",
       "source": "Two Minute Papers",
       "category": "Research",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\nLinks / sources:\nHoney sim: search for \"Variational Stokes: A Unified Pressure-Viscosity Solver for Accurate Viscous Liquids\" here: https://cs.uwaterloo.ca/~c2batty/\nhttps://x.com/mindblown_ai/status/2095661874037813",
-      "published_at": "2026-09-15T20:12:37.607243+05:30"
+      "published_at": "2026-09-15T21:28:44.411917+05:30"
     },
     {
-      "id": 34,
+      "id": 35,
       "title": "The Billion Dollar AI Gap Is Collapsing",
       "url": "https://www.youtube.com/watch?v=LBiNcdGNgrg",
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Weights & Biases and sign up for a free demo here: https://wandb.me/papers\n\n📝 The paper and Qwen3.8-Flash-Next are available here:\nhttps://github.com/QwenLM/Qwen3.8-Flash-Next/blob/main/tech_report.pdf\nhttps://qwen.ai/blog?id=qwen3.8-flash-next\n\nSources:\nhttps://x.com/analogalok/status/",
-      "published_at": "2026-09-15T20:12:37.607252+05:30"
+      "published_at": "2026-09-15T21:28:44.411954+05:30"
     },
     {
-      "id": 35,
+      "id": 36,
       "title": "This Small AI Will Change Everything",
       "url": "https://www.youtube.com/watch?v=wMl6c_r0ubw",
       "source": "Two Minute Papers",
       "category": "Coding",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 The Qwen3.8-27b is available here:\nhttps://huggingface.co/Qwen/Qwen3.8-27B\n\nSources:\nhttps://www.reddit.com/r/unsloth/comments/1vogva0/share_your_results_from_qwen3827b/\nhttps://www.reddit.com/r/LocalLLaMA/comments",
-      "published_at": "2026-09-15T20:12:37.607263+05:30"
+      "published_at": "2026-09-15T21:28:44.411972+05:30"
     },
     {
-      "id": 36,
+      "id": 37,
       "title": "OpenAI’s AI Agents Just Crossed A Line",
       "url": "https://www.youtube.com/watch?v=JQ97GiDwPxc",
       "source": "Two Minute Papers",
       "category": "Writing",
       "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers\n\n📝 More reports are available here:\nhttps://openai.com/index/hugging-face-model-evaluation-security-incident/\nhttps://huggingface.co/blog/security-incident-july-2026\nhttps://huggingface.co/blog/agent-intrusion-technic",
-      "published_at": "2026-09-15T20:12:37.607270+05:30"
+      "published_at": "2026-09-15T21:28:44.411983+05:30"
     }
   ]
 }
