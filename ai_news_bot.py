@@ -53,12 +53,14 @@ HIGH_IMPACT_WORDS = [
 
 SOURCE_WEIGHT = {
     "cs.AI updates on arXiv.org": 3,
+    "GitHub Trending AI": 3,
     "Hacker News": 2,
     "Ars Technica - All content": 2,
 }
 
 SOURCE_CATEGORY = {
     "cs.AI updates on arXiv.org": "Research",
+    "GitHub Trending AI": "Open Source",
     "Hacker News": "Products",
     "Ars Technica - All content": "LLMs",
 }
@@ -241,6 +243,45 @@ def build_news_json(articles: list):
     print(f"  ✓ news.json — {len(clean)} articles")
 
 
+def fetch_github_trending_repos() -> list:
+    """Fetch fast-growing, trending AI repositories from GitHub REST API."""
+    repos = []
+    headers = {"User-Agent": USER_AGENT}
+    token = os.getenv("GITHUB_TOKEN")
+    if token:
+        headers["Authorization"] = f"token {token}"
+
+    date_cutoff = (datetime.now(timezone.utc) - timedelta(days=7)).strftime("%Y-%m-%d")
+    url = (
+        f"https://api.github.com/search/repositories"
+        f"?q=topic:ai+pushed:>{date_cutoff}+stars:>20"
+        f"&sort=stars&order=desc&per_page=15"
+    )
+    try:
+        resp = requests.get(url, headers=headers, timeout=10)
+        if resp.status_code == 200:
+            data = resp.json()
+            for item in data.get("items", []):
+                stars = item.get("stargazers_count", 0)
+                star_str = f"{stars/1000:.1f}k" if stars >= 1000 else str(stars)
+                lang = item.get("language") or "Code"
+                desc = strip_html(item.get("description") or "Open-source AI repository.")
+                summary = f"⭐ {star_str} stars · {lang} — {desc}"
+                repos.append({
+                    "title": f"{item.get('full_name', item.get('name'))}",
+                    "link": item.get("html_url", ""),
+                    "description": summary,
+                    "source": "GitHub Trending AI",
+                    "category": "Open Source",
+                })
+            print(f"  ✓ GitHub Trending AI: fetched {len(repos)} repositories")
+        else:
+            print(f"  ✗ GitHub API error: HTTP {resp.status_code}")
+    except Exception as e:
+        print(f"  ✗ GitHub API request failed: {e}")
+    return repos
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 # TOOLS PIPELINE
 # ═══════════════════════════════════════════════════════════════════════════
@@ -303,6 +344,15 @@ def fetch_tools() -> list:
 
     # Hacker News tools
     tools.extend(fetch_hn_tools())
+
+    # GitHub Trending AI Repos as developer tools
+    for repo in fetch_github_trending_repos():
+        tools.append({
+            "title": repo["title"],
+            "link": repo["link"],
+            "category": "Coding",
+            "description": repo["description"],
+        })
 
     # Deduplicate by link
     seen = set()
@@ -421,6 +471,11 @@ def main():
         articles = fetch_feed(url)
         all_articles.extend(articles)
         print(f"  · {url.split('/')[2]:40s} → {len(articles)} entries")
+
+    # Fetch GitHub Trending AI Repositories
+    print("\n⭐ Fetching GitHub Trending AI repositories...")
+    github_repos = fetch_github_trending_repos()
+    all_articles.extend(github_repos)
 
     print(f"\n  Total fetched: {len(all_articles)}")
 

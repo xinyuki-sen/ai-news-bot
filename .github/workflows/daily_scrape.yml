@@ -36,6 +36,7 @@ jobs:
       - name: Run AI News Bot
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python ai_news_bot.py
 
       # Put the bot's output (webpage + data + memory + assets) into their own folder
