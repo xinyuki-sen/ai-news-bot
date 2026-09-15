@@ -191,9 +191,24 @@ if(resizer){
   document.addEventListener('mouseup',()=>{if(isResizing){isResizing=false;resizer.classList.remove('dragging');document.body.style.cursor='';document.body.style.userSelect='';}});
 }
 
-function closePanel(){panel.classList.remove('active');backdrop.classList.remove('active');selectedId=null;document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));}
+function closePanel(){
+  panel.classList.remove('active');
+  backdrop.classList.remove('active');
+  selectedId=null;
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById('panelBody').innerHTML='<div class="panel-empty"><div class="panel-hint">←</div>Click a prompt to preview and copy.</div>';
+}
 panelCloseBtn.addEventListener('click',closePanel);
 backdrop.addEventListener('click',closePanel);
+
+const mobileHandle=document.querySelector('.mobile-handle');
+if(mobileHandle){mobileHandle.addEventListener('click',closePanel);}
+
+let touchStartY=0;
+panel.addEventListener('touchstart',e=>{touchStartY=e.touches[0].clientY;},{passive:true});
+panel.addEventListener('touchmove',e=>{const touchY=e.touches[0].clientY;const diff=touchY-touchStartY;if(diff>60 && document.getElementById('panelBody').scrollTop<=0){closePanel();}},{passive:true});
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closePanel();document.getElementById('bmOverlay').classList.remove('show');}});
 
 const saved=localStorage.getItem('aind_theme')||'dark';
 document.documentElement.setAttribute('data-theme',saved);
