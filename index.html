@@ -947,30 +947,6 @@ document.getElementById('tabs').addEventListener('click', e => {
   }
 });
 
-/* ── Top Picks ────────────────────────────────────────────────────── */
-function renderTopPicks(ids) {
-  const picks = ids.map(id => allArticles.find(a => a.id === id)).filter(Boolean);
-  if (!picks.length) return;
-  document.getElementById('topPicksSection').style.display = '';
-  document.getElementById('topPicks').innerHTML = picks.map((a, i) => `
-    <div class="top-card" data-id="${a.id}" tabindex="0">
-      <span class="rank">#${i+1}</span>
-      <div>
-        <div class="tc-title">${a.title}</div>
-        <div class="tc-meta">${a.source} · ${timeAgo(a.published_at)}</div>
-      </div>
-    </div>
-  `).join('');
-}
-
-document.getElementById('topPicks').addEventListener('click', e => {
-  const card = e.target.closest('.top-card');
-  if (card) {
-    selectedId = +card.dataset.id;
-    openPanel(selectedId);
-  }
-});
-
 /* ── Panel ────────────────────────────────────────────────────────── */
 function openPanel(id) {
   const a = allArticles.find(x => x.id === id);
