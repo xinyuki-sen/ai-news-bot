@@ -48,10 +48,12 @@ jobs:
           cp tools.html site/
           cp prompts.html site/ || true
           cp models.html site/ || true
+          cp concepts.html site/ || true
           cp news.json site/
           cp tools.json site/
           cp prompts.json site/ || true
           cp models.json site/ || true
+          cp concepts.json site/ || true
           cp seen_posts.db site/
 
       # Publish that folder to gh-pages branch ONLY - never touches main

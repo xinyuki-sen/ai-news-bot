@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chrono — AI Core Concepts & Orbit</title>
+  <meta name="description" content="Essential AI concepts, mathematics, and architectural intuitions explained simply for AI students and engineers with an interactive orbital interface.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Chrono — AI Core Concepts & Orbit">
+  <meta property="og:description" content="Master Transformers, Latent Space, Quantization, MoE, RAG, and more with student-friendly analogies and an interactive orbital canvas.">
+  <meta property="og:url" content="https://xinyuki-sen.github.io/chrono/concepts.html">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="icon" href="assets/robot_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:          #0a0e14;
+      --surface:     #12161e;
+      --surface2:    #1a1f2b;
+      --border:      #1e2430;
+      --text:        #b0b8c8;
+      --text-strong: #e2e8f0;
+      --text-muted:  #636d80;
+      --accent:      #6c9cff;
+      --accent2:     #a78bfa;
+      --accent-glow: rgba(108,156,255,0.25);
+      --success:     #34d399;
+      --gold:        #fbbf24;
+      --radius:      16px;
+      --panel-w:     360px;
+    }
+    [data-theme="light"] {
+      --bg:          #f8f9fc;
+      --surface:     #ffffff;
+      --surface2:    #f0f2f5;
+      --border:      #e5e7eb;
+      --text:        #374151;
+      --text-strong: #111827;
+      --text-muted:  #9ca3af;
+      --accent:      #4f7eff;
+      --accent2:     #7c3aed;
+      --accent-glow: rgba(79,126,255,0.18);
+      --success:     #059669;
+      --gold:        #d97706;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 56px; background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column; align-items: center;
+      padding: 12px 0; z-index: 50;
+    }
+    .logo-img { width: 32px; height: 32px; border-radius: 8px; margin-bottom: 20px; }
+    .sb-btn {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); cursor: pointer; text-decoration: none;
+      transition: color 0.15s, background-color 0.15s;
+      position: relative; margin-bottom: 6px; border: none; background: transparent;
+    }
+    .sb-btn:hover { color: var(--text-strong); background: var(--surface2); }
+    .sb-btn.active { color: var(--accent); background: rgba(108,156,255,0.12); }
+    .sb-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sb-badge {
+      position: absolute; top: 4px; right: 4px; width: 7px; height: 7px;
+      background: var(--accent); border-radius: 50%;
+    }
+    .spacer { flex: 1; }
+
+    /* ── Main Content ── */
+    .main {
+      margin-left: 56px;
+      flex: 1;
+      padding: 32px 36px 64px 36px;
+      max-width: 1400px;
+      min-width: 0;
+    }
+
+    .header-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72em; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent);
+      background: rgba(108,156,255,0.1); border: 1px solid rgba(108,156,255,0.25);
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;
+    }
+    h1 {
+      font-size: 2.2em; font-weight: 800; color: var(--text-strong);
+      letter-spacing: -0.03em; margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 0.95em; color: var(--text-muted); line-height: 1.5; margin-bottom: 24px;
+    }
+
+    /* ── Filter & Controls Bar ── */
+    .toolbar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 12px; margin-bottom: 24px;
+    }
+    .tabs {
+      display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-muted); padding: 8px 14px; border-radius: 20px;
+      font-size: 0.82em; font-weight: 600; cursor: pointer; white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .tab:hover { color: var(--text-strong); border-color: rgba(108,156,255,0.4); }
+    .tab.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+    .tab.bm-tab {
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .tab.bm-tab.active {
+      background: var(--gold); border-color: var(--gold); color: #000;
+    }
+
+    .orbit-controls {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .ctrl-btn {
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--text-strong); padding: 7px 13px; border-radius: 12px;
+      font-size: 0.8em; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.15s ease;
+    }
+    .ctrl-btn:hover {
+      background: var(--surface2); border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .ctrl-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .view-toggle {
+      display: flex; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2px;
+    }
+    .view-toggle-btn {
+      background: transparent; border: none; color: var(--text-muted);
+      padding: 6px 10px; border-radius: 10px; font-size: 0.78em; font-weight: 600;
+      cursor: pointer; display: flex; align-items: center; gap: 5px;
+      transition: all 0.15s;
+    }
+    .view-toggle-btn.active {
+      background: var(--surface2); color: var(--text-strong);
+    }
+
+    /* ── Orbital Canvas Container ── */
+    .orbit-section {
+      position: relative;
+      background: radial-gradient(circle at center, rgba(108,156,255,0.08) 0%, rgba(18,22,30,0.9) 65%, var(--surface) 100%);
+      border: 1.5px solid rgba(108,156,255,0.3);
+      border-radius: 24px;
+      padding: 32px 20px;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 48px rgba(0,0,0,0.28);
+      margin-bottom: 32px;
+      contain: layout style;
+    }
+    .orbit-track {
+      position: absolute;
+      border: 1.5px dashed rgba(108,156,255,0.25);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      left: 50%; top: 50%;
+    }
+    .orbit-track-inner {
+      position: absolute;
+      border: 1px dashed rgba(167,139,250,0.15);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      left: 50%; top: 50%;
+    }
+
+    /* ── Central Orb ── */
+    .center-orb {
+      position: relative;
+      z-index: 20;
+      width: 450px;
+      max-width: 92vw;
+      min-height: 450px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, rgba(108,156,255,0.15), var(--surface) 72%);
+      border: 2px solid rgba(108,156,255,0.6);
+      box-shadow: 0 0 55px rgba(108,156,255,0.2), inset 0 0 35px rgba(108,156,255,0.1);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .center-orb::before {
+      content: '';
+      position: absolute; inset: -7px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(108,156,255,0.3);
+      pointer-events: none;
+      animation: pulseGlow 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulseGlow {
+      0% { transform: scale(0.99); opacity: 0.4; }
+      100% { transform: scale(1.02); opacity: 0.85; }
+    }
+
+    .orb-badge-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+    }
+    .orb-category {
+      font-size: 0.68em; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent);
+      background: rgba(108,156,255,0.15); border: 1px solid rgba(108,156,255,0.3);
+      padding: 3px 10px; border-radius: 12px;
+    }
+    .orb-level {
+      font-size: 0.65em; font-weight: 600; color: var(--gold);
+      background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25);
+      padding: 3px 8px; border-radius: 12px;
+    }
+    .orb-title {
+      font-size: 1.38em; font-weight: 800; color: var(--text-strong);
+      line-height: 1.25; margin-bottom: 12px; letter-spacing: -0.02em;
+    }
+    .orb-definition {
+      font-size: 0.84em; color: var(--text-strong); line-height: 1.55;
+      margin-bottom: 14px; max-height: 110px; overflow-y: auto;
+      scrollbar-width: thin;
+    }
+    .orb-analogy-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 0.78em;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 14px;
+      width: 100%;
+    }
+    .orb-analogy-box strong { color: var(--accent); display: block; margin-bottom: 2px; font-size: 0.95em; }
+    .orb-math-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72em;
+      color: var(--accent2);
+      background: rgba(167,139,250,0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .orb-actions {
+      display: flex; gap: 8px; align-items: center; justify-content: center;
+    }
+    .orb-bm-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-strong); padding: 7px 16px; border-radius: 20px;
+      font-size: 0.78em; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .orb-bm-btn:hover { border-color: var(--gold); }
+    .orb-bm-btn.bookmarked {
+      background: rgba(251,191,36,0.15); border-color: var(--gold); color: var(--gold);
+    }
+    .orb-bm-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+    .orb-bm-btn.bookmarked svg { fill: var(--gold); }
+
+    /* ── Orbiting Concept Pills ── */
+    .orbit-container {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .orbit-pill {
+      position: absolute;
+      pointer-events: auto;
+      transform: translate(-50%, -50%);
+      background: var(--surface);
+      border: 1.5px solid rgba(108,156,255,0.35);
+      border-radius: 24px;
+      padding: 8px 16px;
+      font-size: 0.8em;
+      font-weight: 600;
+      color: var(--text-strong);
+      white-space: nowrap;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .orbit-pill:hover {
+      border-color: var(--accent);
+      background: var(--surface2);
+      box-shadow: 0 0 16px var(--accent-glow);
+      z-index: 40 !important;
+    }
+    .orbit-pill.selected {
+      border-color: var(--accent);
+      background: linear-gradient(135deg, rgba(108,156,255,0.25), var(--surface));
+      color: #fff;
+      box-shadow: 0 0 20px var(--accent-glow);
+      z-index: 35 !important;
+    }
+    .pill-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+    }
+    .pill-dot.cat-arch { background: #60a5fa; }
+    .pill-dot.cat-math { background: #f472b6; }
+    .pill-dot.cat-train { background: #34d399; }
+    .pill-dot.cat-sys { background: #fbbf24; }
+    .pill-dot.cat-genai { background: #a78bfa; }
+
+    .pill-star {
+      color: var(--gold); font-size: 0.9em; display: none;
+    }
+    .orbit-pill.is-bookmarked .pill-star { display: inline-block; }
+
+    /* ── Grid View ── */
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .concept-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    .concept-card:hover {
+      border-color: rgba(108,156,255,0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    }
+    .concept-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-glow);
+    }
+    .card-top {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+    }
+    .card-title {
+      font-size: 1.05em; font-weight: 700; color: var(--text-strong); margin-bottom: 8px;
+    }
+    .card-def {
+      font-size: 0.82em; color: var(--text); line-height: 1.55; margin-bottom: 12px;
+    }
+    .card-analogy {
+      background: var(--surface2); border-left: 3px solid var(--accent);
+      padding: 8px 10px; border-radius: 6px; font-size: 0.76em; line-height: 1.45;
+      color: var(--text-muted); margin-bottom: 12px;
+    }
+    .card-analogy strong { color: var(--text-strong); }
+    .card-bm-btn {
+      background: transparent; border: none; color: var(--text-muted);
+      cursor: pointer; padding: 4px; border-radius: 6px; transition: color 0.15s;
+    }
+    .card-bm-btn:hover { color: var(--gold); }
+    .card-bm-btn.bookmarked { color: var(--gold); }
+    .card-bm-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
+    .card-bm-btn.bookmarked svg { fill: var(--gold); }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 0.72em; color: var(--text-muted); margin-top: auto;
+      padding-top: 10px; border-top: 1px solid var(--border);
+    }
+
+    /* ── Command Palette (Universal Ctrl+K) ── */
+    .cmd-palette-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      z-index: 1000; align-items: flex-start; justify-content: center; padding-top: 12vh;
+    }
+    .cmd-palette-backdrop.open { display: flex; }
+    .cmd-palette-modal {
+      background: var(--surface); border: 1px solid rgba(108,156,255,0.3);
+      border-radius: 16px; width: 560px; max-width: 90vw;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+      overflow: hidden;
+    }
+    .cmd-palette-input-row {
+      display: flex; align-items: center; padding: 14px 18px;
+      border-bottom: 1px solid var(--border); gap: 10px;
+    }
+    .cmd-palette-input-row svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; flex-shrink: 0; }
+    .cmd-palette-input {
+      flex: 1; background: transparent; border: none; outline: none;
+      font-size: 0.95em; color: var(--text-strong); font-family: inherit;
+    }
+    .cmd-palette-results {
+      max-height: 380px; overflow-y: auto; padding: 8px;
+    }
+    .cmd-item {
+      padding: 10px 14px; border-radius: 10px; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background 0.1s;
+    }
+    .cmd-item:hover, .cmd-item.active { background: var(--surface2); }
+    .cmd-item-title { font-size: 0.88em; font-weight: 600; color: var(--text-strong); }
+    .cmd-item-meta { font-size: 0.72em; color: var(--text-muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .sidebar {
+        top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 56px;
+        flex-direction: row; justify-content: space-around; padding: 0 12px;
+        border-right: none; border-top: 1px solid var(--border);
+      }
+      .logo-img, .spacer { display: none; }
+      .main { margin-left: 0; padding: 20px 16px 80px 16px; }
+      .orbit-section { min-height: 520px; padding: 16px; }
+      .center-orb {
+        width: 320px; min-height: 320px; padding: 20px 16px;
+      }
+      .orb-title { font-size: 1.1em; }
+      .orb-definition { font-size: 0.78em; max-height: 80px; }
+      .orb-analogy-box { font-size: 0.72em; padding: 6px 8px; }
+      .orbit-pill { padding: 6px 12px; font-size: 0.74em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <nav class="sidebar" aria-label="Main Navigation">
+    <div class="logo"><img src="assets/sidebar_logo.png" alt="Logo" class="logo-img"></div>
+    <a href="index.html" class="sb-btn" data-tooltip="News"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></a>
+    <a href="tools.html" class="sb-btn" data-tooltip="Tools"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></a>
+    <a href="prompts.html" class="sb-btn" data-tooltip="Prompts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
+    <a href="models.html" class="sb-btn" data-tooltip="Models Leaderboard"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10"/><path d="M7 12h6"/></svg></a>
+    <a href="concepts.html" class="sb-btn active" data-tooltip="AI Core Concepts"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-25 12 12)"/></svg></a>
+    <button class="sb-btn" id="btnCmdPalette" data-tooltip="Command Palette (Ctrl+K)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
+    <div class="spacer"></div>
+    <button class="sb-btn" id="btnTheme" data-tooltip="Theme"><svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
+  </nav>
+
+  <!-- ── Main ── -->
+  <main class="main">
+    <div class="header-tag">🪐 Chrono Core Orbit</div>
+    <h1>AI Concepts & Intuitions</h1>
+    <div class="subtitle">Essential foundational ideas and mathematical intuitions every AI student & researcher should know — broken down with plain-English analogies.</div>
+
+    <!-- ── Toolbar ── -->
+    <div class="toolbar">
+      <div class="tabs" id="categoryTabs">
+        <button class="tab active" data-cat="All">All Concepts</button>
+        <button class="tab" data-cat="Architectures">Architectures</button>
+        <button class="tab" data-cat="Math & ML">Math & ML</button>
+        <button class="tab" data-cat="Training & Math">Training</button>
+        <button class="tab" data-cat="Inference & Systems">Inference & Systems</button>
+        <button class="tab" data-cat="Modern GenAI">Modern GenAI</button>
+        <button class="tab bm-tab" data-cat="Bookmarked">★ Bookmarked (<span id="bmCount">0</span>)</button>
+      </div>
+
+      <div class="orbit-controls">
+        <button class="ctrl-btn" id="btnReverse" title="Change spin direction (Clockwise / Counter-Clockwise)">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
+          <span id="spinDirLabel">Spin: CCW ⟲</span>
+        </button>
+        <button class="ctrl-btn" id="btnPause" title="Pause or resume rotation">
+          <svg id="pauseIcon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          <span id="pauseLabel">Pause</span>
+        </button>
+        <div class="view-toggle">
+          <button class="view-toggle-btn active" id="btnViewOrbit">🪐 Orbit</button>
+          <button class="view-toggle-btn" id="btnViewGrid">▦ Grid</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Orbit Interactive Canvas ── -->
+    <section class="orbit-section" id="orbitSection">
+      <div class="orbit-track" id="trackOuter"></div>
+      <div class="orbit-track-inner" id="trackInner"></div>
+
+      <!-- Center Orb -->
+      <div class="center-orb" id="centerOrb">
+        <div class="orb-badge-row">
+          <span class="orb-category" id="orbCategory">Architectures</span>
+          <span class="orb-level" id="orbLevel">Essential</span>
+        </div>
+        <div class="orb-title" id="orbTitle">Transformer & Attention</div>
+        <div class="orb-definition" id="orbDef">Loading concept...</div>
+        <div class="orb-analogy-box" id="orbAnalogyBox">
+          <strong>🎯 Real-World Analogy:</strong>
+          <span id="orbAnalogy">Loading analogy...</span>
+        </div>
+        <div class="orb-math-pill" id="orbMath">Attention(Q, K, V) = softmax(Q·Kᵀ / √d_k) · V</div>
+        <div class="orb-actions">
+          <button class="orb-bm-btn" id="orbBmBtn">
+            <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span id="orbBmText">Keep for Later</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Orbiting Pills Container -->
+      <div class="orbit-container" id="orbitContainer"></div>
+    </section>
+
+    <!-- ── Grid View ── -->
+    <section class="concepts-grid" id="conceptsGrid" style="display:none;"></section>
+  </main>
+
+  <!-- ── Universal Command Palette (Ctrl+K) ── -->
+  <div class="cmd-palette-backdrop" id="cmdPalette">
+    <div class="cmd-palette-modal">
+      <div class="cmd-palette-input-row">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" class="cmd-palette-input" id="cmdInput" placeholder="Search AI concepts, analogies, math... (Esc to close)" autocomplete="off">
+      </div>
+      <div class="cmd-palette-results" id="cmdResults"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ── State & Data ── */
+    let allConcepts = [];
+    let currentCategory = 'All';
+    let selectedConceptId = null;
+    let bookmarks = new Set(JSON.parse(localStorage.getItem('chrono_concept_bookmarks') || '[]'));
+
+    /* Orbital Motion State */
+    let rotationAngle = 0;
+    let rotationSpeed = 0.0035; // radians per frame
+    let isPaused = false;
+    let isHoveringPill = false;
+    let animationFrameId = null;
+
+    /* Category colors */
+    const catClassMap = {
+      'Architectures': 'cat-arch',
+      'Math & ML': 'cat-math',
+      'Training & Math': 'cat-train',
+      'Inference & Systems': 'cat-sys',
+      'Modern GenAI': 'cat-genai'
+    };
+
+    /* ── Theme ── */
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.innerHTML = theme === 'dark'
+          ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+          : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      }
+    }
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(savedTheme);
+    document.getElementById('btnTheme').addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+    });
+
+    /* ── Bookmarking ── */
+    function updateBookmarkCount() {
+      document.getElementById('bmCount').textContent = bookmarks.size;
+    }
+    function toggleBookmark(id) {
+      if (bookmarks.has(id)) {
+        bookmarks.delete(id);
+      } else {
+        bookmarks.add(id);
+      }
+      localStorage.setItem('chrono_concept_bookmarks', JSON.stringify([...bookmarks]));
+      updateBookmarkCount();
+      updateSelectedOrb();
+      updatePillBookmarkVisuals();
+      if (currentCategory === 'Bookmarked') {
+        renderFiltered();
+      }
+    }
+    function updatePillBookmarkVisuals() {
+      document.querySelectorAll('.orbit-pill').forEach(pill => {
+        const id = pill.dataset.id;
+        pill.classList.toggle('is-bookmarked', bookmarks.has(id));
+      });
+      document.querySelectorAll('.card-bm-btn').forEach(btn => {
+        const id = btn.dataset.id;
+        btn.classList.toggle('bookmarked', bookmarks.has(id));
+      });
+    }
+
+    /* ── Fetch Data ── */
+    async function loadConcepts() {
+      try {
+        const res = await fetch('concepts.json?v=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        allConcepts = await res.json();
+        if (allConcepts.length > 0) {
+          selectedConceptId = allConcepts[0].id;
+        }
+        updateBookmarkCount();
+        renderFiltered();
+        startOrbitLoop();
+      } catch (err) {
+        console.error('Failed to load concepts:', err);
+      }
+    }
+
+    /* ── Filtering ── */
+    function getActiveConcepts() {
+      if (currentCategory === 'All') return allConcepts;
+      if (currentCategory === 'Bookmarked') return allConcepts.filter(c => bookmarks.has(c.id));
+      return allConcepts.filter(c => c.category === currentCategory);
+    }
+
+    function renderFiltered() {
+      const active = getActiveConcepts();
+      renderOrbitPills(active);
+      renderGrid(active);
+      if (active.length > 0 && (!selectedConceptId || !active.some(c => c.id === selectedConceptId))) {
+        selectedConceptId = active[0].id;
+      }
+      updateSelectedOrb();
+    }
+
+    /* ── Update Center Orb ── */
+    function updateSelectedOrb() {
+      const concept = allConcepts.find(c => c.id === selectedConceptId);
+      if (!concept) return;
+
+      document.getElementById('orbCategory').textContent = concept.category;
+      document.getElementById('orbLevel').textContent = concept.level;
+      document.getElementById('orbTitle').textContent = concept.name;
+      document.getElementById('orbDef').textContent = concept.simple_definition;
+      document.getElementById('orbAnalogy').textContent = concept.analogy;
+      document.getElementById('orbMath').textContent = concept.math_intuition || concept.why_it_matters;
+
+      const bmBtn = document.getElementById('orbBmBtn');
+      const bmText = document.getElementById('orbBmText');
+      const isBm = bookmarks.has(concept.id);
+      bmBtn.classList.toggle('bookmarked', isBm);
+      bmText.textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
+
+      // Highlight selected pill in orbit
+      document.querySelectorAll('.orbit-pill').forEach(p => {
+        p.classList.toggle('selected', p.dataset.id === concept.id);
+      });
+      document.querySelectorAll('.concept-card').forEach(c => {
+        c.classList.toggle('selected', c.dataset.id === concept.id);
+      });
+    }
+
+    document.getElementById('orbBmBtn').addEventListener('click', () => {
+      if (selectedConceptId) toggleBookmark(selectedConceptId);
+    });
+
+    /* ── Render Orbit Pills ── */
+    function renderOrbitPills(concepts) {
+      const container = document.getElementById('orbitContainer');
+      container.innerHTML = '';
+
+      concepts.forEach((concept) => {
+        const pill = document.createElement('div');
+        pill.className = `orbit-pill ${catClassMap[concept.category] || ''}`;
+        if (concept.id === selectedConceptId) pill.classList.add('selected');
+        if (bookmarks.has(concept.id)) pill.classList.add('is-bookmarked');
+        pill.dataset.id = concept.id;
+
+        pill.innerHTML = `
+          <span class="pill-dot ${catClassMap[concept.category] || ''}"></span>
+          <span>${concept.name}</span>
+          <span class="pill-star">★</span>
+        `;
+
+        pill.addEventListener('mouseenter', () => { isHoveringPill = true; });
+        pill.addEventListener('mouseleave', () => { isHoveringPill = false; });
+        pill.addEventListener('click', () => {
+          selectedConceptId = concept.id;
+          updateSelectedOrb();
+        });
+
+        container.appendChild(pill);
+      });
+
+      updateTrackSize();
+    }
+
+    /* ── Render Grid View ── */
+    function renderGrid(concepts) {
+      const grid = document.getElementById('conceptsGrid');
+      if (!concepts.length) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted);">No concepts found in this category.</div>';
+        return;
+      }
+      grid.innerHTML = concepts.map(c => `
+        <article class="concept-card ${c.id === selectedConceptId ? 'selected' : ''}" data-id="${c.id}">
+          <div class="card-top">
+            <span class="orb-category">${c.category}</span>
+            <button class="card-bm-btn ${bookmarks.has(c.id) ? 'bookmarked' : ''}" data-id="${c.id}" title="Keep for later">
+              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            </button>
+          </div>
+          <div class="card-title">${c.name}</div>
+          <div class="card-def">${c.simple_definition}</div>
+          <div class="card-analogy">
+            <strong>Analogy:</strong> ${c.analogy}
+          </div>
+          <div class="card-footer">
+            <span>${c.level}</span>
+            <span style="font-family: 'JetBrains Mono', monospace;">${c.tags[0] || 'AI'}</span>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.concept-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.card-bm-btn')) return;
+          selectedConceptId = card.dataset.id;
+          updateSelectedOrb();
+        });
+      });
+      grid.querySelectorAll('.card-bm-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleBookmark(btn.dataset.id);
+        });
+      });
+    }
+
+    /* ── Elliptical Orbit Mathematical Animation ── */
+    function updateTrackSize() {
+      const section = document.getElementById('orbitSection');
+      const w = section.clientWidth;
+      const h = section.clientHeight;
+
+      const rx = Math.min(w * 0.44, 460);
+      const ry = Math.min(h * 0.42, 260);
+
+      const trackOuter = document.getElementById('trackOuter');
+      trackOuter.style.width = (rx * 2) + 'px';
+      trackOuter.style.height = (ry * 2) + 'px';
+
+      const trackInner = document.getElementById('trackInner');
+      trackInner.style.width = (rx * 1.5) + 'px';
+      trackInner.style.height = (ry * 1.5) + 'px';
+    }
+
+    window.addEventListener('resize', updateTrackSize);
+
+    function startOrbitLoop() {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+
+      function frame() {
+        if (!isPaused) {
+          const effSpeed = isHoveringPill ? rotationSpeed * 0.2 : rotationSpeed;
+          rotationAngle += effSpeed;
+        }
+
+        const section = document.getElementById('orbitSection');
+        const cx = section.clientWidth / 2;
+        const cy = section.clientHeight / 2;
+
+        const rx = Math.min(section.clientWidth * 0.44, 460);
+        const ry = Math.min(section.clientHeight * 0.42, 260);
+
+        const pills = document.querySelectorAll('.orbit-pill');
+        const total = pills.length;
+
+        pills.forEach((pill, i) => {
+          const theta = rotationAngle + (i * ((2 * Math.PI) / (total || 1)));
+
+          const x = cx + rx * Math.cos(theta);
+          const y = cy + ry * Math.sin(theta);
+
+          // Depth projection: pills in front (sin > 0) are larger and opaque
+          const depth = (Math.sin(theta) + 1) / 2; // 0 (back) to 1 (front)
+          const scale = 0.85 + depth * 0.28;
+          const opacity = 0.55 + depth * 0.45;
+          const zIndex = Math.round(10 + depth * 25);
+
+          pill.style.left = x + 'px';
+          pill.style.top = y + 'px';
+          pill.style.transform = `translate(-50%, -50%) scale(${scale})`;
+          pill.style.opacity = opacity;
+          pill.style.zIndex = zIndex;
+        });
+
+        animationFrameId = requestAnimationFrame(frame);
+      }
+
+      animationFrameId = requestAnimationFrame(frame);
+    }
+
+    /* ── Controls: Spin Direction & Pause ── */
+    const btnReverse = document.getElementById('btnReverse');
+    const spinDirLabel = document.getElementById('spinDirLabel');
+    btnReverse.addEventListener('click', () => {
+      rotationSpeed = -rotationSpeed;
+      spinDirLabel.textContent = rotationSpeed > 0 ? 'Spin: CCW ⟲' : 'Spin: CW ⟳';
+    });
+
+    const btnPause = document.getElementById('btnPause');
+    const pauseLabel = document.getElementById('pauseLabel');
+    const pauseIcon = document.getElementById('pauseIcon');
+    btnPause.addEventListener('click', () => {
+      isPaused = !isPaused;
+      pauseLabel.textContent = isPaused ? 'Resume' : 'Pause';
+      pauseIcon.innerHTML = isPaused
+        ? '<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>'
+        : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+    });
+
+    /* ── Category Tab Switcher ── */
+    document.getElementById('categoryTabs').addEventListener('click', (e) => {
+      const tab = e.target.closest('.tab');
+      if (!tab) return;
+      document.querySelectorAll('#categoryTabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.dataset.cat;
+      renderFiltered();
+    });
+
+    /* ── View Toggle (Orbit vs Grid) ── */
+    const btnViewOrbit = document.getElementById('btnViewOrbit');
+    const btnViewGrid = document.getElementById('btnViewGrid');
+    const orbitSection = document.getElementById('orbitSection');
+    const conceptsGrid = document.getElementById('conceptsGrid');
+
+    btnViewOrbit.addEventListener('click', () => {
+      btnViewOrbit.classList.add('active');
+      btnViewGrid.classList.remove('active');
+      orbitSection.style.display = 'flex';
+      conceptsGrid.style.display = 'none';
+      updateTrackSize();
+    });
+
+    btnViewGrid.addEventListener('click', () => {
+      btnViewGrid.classList.add('active');
+      btnViewOrbit.classList.remove('active');
+      orbitSection.style.display = 'none';
+      conceptsGrid.style.display = 'grid';
+    });
+
+    /* ── Command Palette (Ctrl+K) ── */
+    const cmdPalette = document.getElementById('cmdPalette');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdResults = document.getElementById('cmdResults');
+
+    function openCmdPalette() {
+      cmdPalette.classList.add('open');
+      cmdInput.value = '';
+      renderCmdResults('');
+      cmdInput.focus();
+    }
+    function closeCmdPalette() {
+      cmdPalette.classList.remove('open');
+    }
+    document.getElementById('btnCmdPalette').addEventListener('click', openCmdPalette);
+
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        cmdPalette.classList.contains('open') ? closeCmdPalette() : openCmdPalette();
+      } else if (e.key === 'Escape' && cmdPalette.classList.contains('open')) {
+        closeCmdPalette();
+      }
+    });
+    cmdPalette.addEventListener('click', (e) => {
+      if (e.target === cmdPalette) closeCmdPalette();
+    });
+
+    function renderCmdResults(query) {
+      const q = query.toLowerCase().trim();
+      const matches = allConcepts.filter(c =>
+        !q || c.name.toLowerCase().includes(q) || c.simple_definition.toLowerCase().includes(q) || c.category.toLowerCase().includes(q) || (c.tags && c.tags.some(t => t.toLowerCase().includes(q)))
+      ).slice(0, 8);
+
+      if (!matches.length) {
+        cmdResults.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:0.85em;">No matching concepts found.</div>';
+        return;
+      }
+
+      cmdResults.innerHTML = matches.map(c => `
+        <div class="cmd-item" data-id="${c.id}">
+          <div>
+            <div class="cmd-item-title">${c.name}</div>
+            <div class="cmd-item-meta">${c.category} · ${c.tags.join(', ')}</div>
+          </div>
+          <span style="font-size:0.75em;color:var(--accent);">Select ↵</span>
+        </div>
+      `).join('');
+
+      cmdResults.querySelectorAll('.cmd-item').forEach(item => {
+        item.addEventListener('click', () => {
+          selectedConceptId = item.dataset.id;
+          updateSelectedOrb();
+          closeCmdPalette();
+        });
+      });
+    }
+    cmdInput.addEventListener('input', (e) => renderCmdResults(e.target.value));
+
+    /* Initialize */
+    loadConcepts();
+  </script>
+</body>
+</html>
