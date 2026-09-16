@@ -254,5 +254,133 @@
       "Cosine",
       "Retrieval"
     ]
+  },
+  {
+    "id": "flash_attention",
+    "name": "FlashAttention & IO-Awareness",
+    "category": "Inference & Systems",
+    "level": "Advanced",
+    "simple_definition": "An exact attention algorithm that reorganizes GPU memory access into fast SRAM tiles, avoiding slow HBM read/writes and speeding up attention by 2-4x with zero approximation.",
+    "analogy": "Organizing cooking ingredients on the counter right beside the stove instead of walking back and forth to the pantry for every pinch of salt.",
+    "why_it_matters": "Made training 32K–128K context models computationally feasible on modern GPUs (A100/H100) and powers vLLM and TensorRT-LLM.",
+    "math_intuition": "Tiling Q, K, V blocks in GPU SRAM; uses online softmax renormalization to avoid writing N×N attention matrix to GPU HBM.",
+    "tags": [
+      "GPU",
+      "SRAM",
+      "Attention",
+      "Systems"
+    ]
+  },
+  {
+    "id": "mamba_ssm",
+    "name": "Mamba & State Space Models (SSM)",
+    "category": "Architectures",
+    "level": "Advanced",
+    "simple_definition": "A linear-time alternative to Transformers. It uses selective state-space equations to process sequences in O(N) linear time and constant memory instead of quadratic O(N²).",
+    "analogy": "A tape recorder updating a summary notepad in real-time as an interview progresses, rather than pausing to re-read the entire tape after every single word.",
+    "why_it_matters": "Enables processing million-token sequences at lightning speeds where standard Transformer attention runs out of GPU memory.",
+    "math_intuition": "h'(t) = A·h(t) + B·x(t), y(t) = C·h(t). Discretized using Zero-Order Hold (ZOH) with selective input-dependent parameters B, C, and Δ.",
+    "tags": [
+      "Linear Time",
+      "SSM",
+      "Transformers",
+      "Next-Gen"
+    ]
+  },
+  {
+    "id": "speculative_decoding",
+    "name": "Speculative Decoding",
+    "category": "Inference & Systems",
+    "level": "Advanced",
+    "simple_definition": "Accelerating large model generation by using a tiny draft model to guess the next 4-5 words quickly, which the large model validates in parallel in a single GPU pass.",
+    "analogy": "An eager junior apprentice drafting the email outline in 2 seconds, and the senior director glancing over it to approve or adjust it in one glance.",
+    "why_it_matters": "Achieves 2x–3x faster tokens-per-second generation without losing a single bit of output quality or changing the output distribution.",
+    "math_intuition": "Draft model proposals {x₁...x_k} accepted with probability min(1, P_target(x) / P_draft(x)), preserving exact target model probability distribution.",
+    "tags": [
+      "Inference",
+      "Latency",
+      "Acceleration",
+      "Drafting"
+    ]
+  },
+  {
+    "id": "rope",
+    "name": "RoPE (Rotary Position Embedding)",
+    "category": "Architectures",
+    "level": "Intermediate",
+    "simple_definition": "A position encoding method that rotates vector coordinates in 2D pairs to inject relative token distance directly into attention dot products.",
+    "analogy": "A clock face where the minute hand rotates forward for every second of conversation, letting you measure the exact angle between any two moments.",
+    "why_it_matters": "Used in LLaMA, Mistral, and Gemini. Enables models to extrapolate smoothly to much longer context windows via frequency base scaling (YaRN).",
+    "math_intuition": "R_Θ,m · x_m: 2D orthogonal rotation matrix where angle is proportional to token position m and feature index i.",
+    "tags": [
+      "Position",
+      "RoPE",
+      "Extrapolation",
+      "LLaMA"
+    ]
+  },
+  {
+    "id": "gqa",
+    "name": "GQA (Grouped-Query Attention)",
+    "category": "Architectures",
+    "level": "Intermediate",
+    "simple_definition": "An attention variant where multiple query heads share a single key-value head, drastically reducing the KV cache memory size while maintaining multi-head expressive power.",
+    "analogy": "Four readers sharing one reference index card instead of each reader printing their own identical copy of the card.",
+    "why_it_matters": "Cuts GPU VRAM required for KV cache by up to 8x, allowing servers to handle massive batch sizes and 128k context windows simultaneously.",
+    "math_intuition": "MHA has H_q queries and H_kv=H_q keys/values. GQA sets H_kv = H_q / G, sharing KV pairs across groups of G query heads.",
+    "tags": [
+      "GQA",
+      "KV Cache",
+      "Efficiency",
+      "LLaMA-3"
+    ]
+  },
+  {
+    "id": "bpe_tokenizer",
+    "name": "Byte-Pair Encoding (BPE)",
+    "category": "Training & Math",
+    "level": "Essential",
+    "simple_definition": "A subword tokenization algorithm that iteratively merges the most frequent pairs of characters into single tokens until reaching a target vocabulary size.",
+    "analogy": "Creating shorthand abbreviations for the most common syllables in text, so frequent words like 'learning' become single symbols while rare words are broken into pieces.",
+    "why_it_matters": "Balances vocabulary size against sequence length, preventing out-of-vocabulary (OOV) errors while allowing numbers, code, and multiple languages to be tokenized.",
+    "math_intuition": "Statistical frequency counting: argmax_{(a,b)} Count(a, b), followed by replacing all occurrences with a new token symbol.",
+    "tags": [
+      "Tokenizer",
+      "Vocab",
+      "Subwords",
+      "NLP"
+    ]
+  },
+  {
+    "id": "distillation",
+    "name": "Knowledge Distillation",
+    "category": "Training & Math",
+    "level": "Intermediate",
+    "simple_definition": "Training a compact, lightweight student model to replicate the output logits and reasoning behavior of a massive teacher model.",
+    "analogy": "A master craftsman mentoring an apprentice one-on-one, teaching them their refined instincts in months instead of making them read 10,000 textbooks alone.",
+    "why_it_matters": "Creates ultra-fast models that can run directly on mobile phones or edge devices (e.g. Gemini Nano, Claude Haiku, LLaMA-1B) with near-frontier performance.",
+    "math_intuition": "Loss = α · CE(y_true, y_student) + (1-α) · T² · KL(Softmax(z_teacher / T) || Softmax(z_student / T)).",
+    "tags": [
+      "Compression",
+      "Edge AI",
+      "Student-Teacher",
+      "Efficiency"
+    ]
+  },
+  {
+    "id": "sparse_autoencoders",
+    "name": "Sparse Autoencoders (SAE)",
+    "category": "Modern GenAI",
+    "level": "Advanced",
+    "simple_definition": "An interpretability technique that decomposes polysemantic neural activations into millions of monosemantic features, identifying exact concepts inside black-box models.",
+    "analogy": "A prism that takes blended white sunlight and splits it into individual pure colors, revealing the exact hidden ingredients of a model's thoughts.",
+    "why_it_matters": "Breakthrough in AI safety and mechanistic interpretability (pioneered by Anthropic and OpenAI) allowing researchers to find features for deception, sycophancy, or biology.",
+    "math_intuition": "Reconstruct activation x via hidden features f(x) = ReLU(W_enc · x + b_enc) with L1 sparsity penalty: min ||x - W_dec · f(x)||² + λ ||f(x)||₁.",
+    "tags": [
+      "Interpretability",
+      "Safety",
+      "Mechanistic",
+      "Anthropic"
+    ]
   }
 ]
