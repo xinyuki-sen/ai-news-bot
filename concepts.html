@@ -1326,32 +1326,98 @@
       if (e.target === cmdPalette) closeCmdPalette();
     });
 
+    const cmdActions = [
+      { type: 'action', title: 'Go to News Digest', sub: 'index.html', link: 'index.html', icon: '📰' },
+      { type: 'action', title: 'Go to AI Tools Directory', sub: 'tools.html', link: 'tools.html', icon: '🛠️' },
+      { type: 'action', title: 'Go to Prompt Library', sub: 'prompts.html', link: 'prompts.html', icon: '💬' },
+      { type: 'action', title: 'Go to Models Leaderboard', sub: 'models.html', link: 'models.html', icon: '📊' },
+      { type: 'action', title: 'Go to AI Core Concepts & Orbit', sub: 'concepts.html', link: 'concepts.html', icon: '🪐' },
+      { type: 'action_theme', title: 'Toggle Theme (Dark / Light)', sub: 'Action', icon: '🌓' },
+    ];
+
     function renderCmdResults(query) {
       const q = query.toLowerCase().trim();
-      const matches = allConcepts.filter(c =>
-        !q || c.name.toLowerCase().includes(q) || c.simple_definition.toLowerCase().includes(q) || c.category.toLowerCase().includes(q) || (c.tags && c.tags.some(t => t.toLowerCase().includes(q)))
-      ).slice(0, 8);
+      let resultsHtml = '';
+      let items = [];
 
-      if (!matches.length) {
-        cmdResults.innerHTML = '<div style="padding:16px;text-align:center;color:var(--text-muted);font-size:0.85em;">No matching concepts found.</div>';
-        return;
+      if (!q) {
+        resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">Quick Actions</div>`;
+        cmdActions.forEach((a, i) => {
+          items.push(a);
+          resultsHtml += `
+            <div class="cmd-item" data-action="${a.type}" data-link="${a.link || ''}">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">${a.icon}</div>
+                <div>
+                  <div class="cmd-item-title">${a.title}</div>
+                  <div class="cmd-item-meta">${a.sub}</div>
+                </div>
+              </div>
+              <span style="font-size:0.75em;color:var(--accent);">Go ↵</span>
+            </div>
+          `;
+        });
+      } else {
+        const matchActions = cmdActions.filter(a => a.title.toLowerCase().includes(q) || a.sub.toLowerCase().includes(q));
+        const matches = allConcepts.filter(c =>
+          c.name.toLowerCase().includes(q) || (c.simple_definition && c.simple_definition.toLowerCase().includes(q)) || (c.category && c.category.toLowerCase().includes(q)) || (c.tags && c.tags.some(t => t.toLowerCase().includes(q)))
+        ).slice(0, 8);
+
+        if (matchActions.length) {
+          resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">Quick Actions</div>`;
+          matchActions.forEach(a => {
+            resultsHtml += `
+              <div class="cmd-item" data-action="${a.type}" data-link="${a.link || ''}">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:1.1em;">${a.icon}</div>
+                  <div>
+                    <div class="cmd-item-title">${a.title}</div>
+                    <div class="cmd-item-meta">${a.sub}</div>
+                  </div>
+                </div>
+                <span style="font-size:0.75em;color:var(--accent);">Go ↵</span>
+              </div>
+            `;
+          });
+        }
+
+        if (matches.length) {
+          resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">AI Concepts</div>`;
+          matches.forEach(c => {
+            resultsHtml += `
+              <div class="cmd-item" data-id="${c.id}" data-action="concept">
+                <div>
+                  <div class="cmd-item-title">${c.name}</div>
+                  <div class="cmd-item-meta">${c.category} · ${(c.tags || []).join(', ')}</div>
+                </div>
+                <span style="font-size:0.75em;color:var(--accent);">Select ↵</span>
+              </div>
+            `;
+          });
+        }
+
+        if (!matchActions.length && !matches.length) {
+          resultsHtml = '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:0.85em;">No matching concepts or actions found.</div>';
+        }
       }
 
-      cmdResults.innerHTML = matches.map(c => `
-        <div class="cmd-item" data-id="${c.id}">
-          <div>
-            <div class="cmd-item-title">${c.name}</div>
-            <div class="cmd-item-meta">${c.category} · ${(c.tags || []).join(', ')}</div>
-          </div>
-          <span style="font-size:0.75em;color:var(--accent);">Select ↵</span>
-        </div>
-      `).join('');
+      cmdResults.innerHTML = resultsHtml;
 
       cmdResults.querySelectorAll('.cmd-item').forEach(item => {
         item.addEventListener('click', () => {
-          selectedConceptId = item.dataset.id;
-          updateSelectedOrb();
-          closeCmdPalette();
+          const action = item.dataset.action;
+          if (action === 'action_theme') {
+            const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+            applyTheme(cur === 'dark' ? 'light' : 'dark');
+            closeCmdPalette();
+          } else if (action === 'action') {
+            const link = item.dataset.link;
+            if (link) window.location.href = link;
+          } else if (item.dataset.id) {
+            selectedConceptId = item.dataset.id;
+            updateSelectedOrb();
+            closeCmdPalette();
+          }
         });
       });
     }
