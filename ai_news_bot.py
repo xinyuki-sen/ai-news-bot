@@ -12,6 +12,8 @@ import hashlib
 import re
 import json
 import os
+import tempfile
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone, timedelta
 
 # ── Constants ────────────────────────────────────────────────────────────
@@ -131,6 +133,19 @@ def init_db():
     conn.close()
 
 
+def prune_old_posts(days: int = 60):
+    """Prune posts older than `days` to keep DB fast and compact."""
+    cutoff = (datetime.now(IST) - timedelta(days=days)).isoformat()
+    conn = sqlite3.connect(DB_FILE)
+    cur = conn.cursor()
+    cur.execute("DELETE FROM posts WHERE date_added < ?", (cutoff,))
+    deleted = cur.rowcount
+    conn.commit()
+    conn.close()
+    if deleted > 0:
+        print(f"  ✓ Database maintenance: pruned {deleted} entries older than {days} days")
+
+
 def is_seen(title: str) -> bool:
     """Check if we've already processed this title."""
     post_hash = hashlib.md5(title.encode()).hexdigest()
@@ -163,6 +178,26 @@ def strip_html(text: str) -> str:
     return re.sub(r"<[^>]+>", "", text).strip()
 
 
+def clean_latex(text: str) -> str:
+    """Sanitize raw LaTeX syntax from arXiv abstracts for clean display."""
+    if not text:
+        return ""
+    text = re.sub(r"\$([^\$]+)\$", r"\1", text)
+    text = re.sub(r"\\[a-zA-Z]+\{([^}]*)\}", r"\1", text)
+    text = re.sub(r"\\[a-zA-Z]+", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def atomic_write_json(filepath: str, data):
+    """Write JSON file atomically using a temp file to prevent corruption."""
+    dirname = os.path.dirname(filepath) or "."
+    with tempfile.NamedTemporaryFile("w", dir=dirname, delete=False, encoding="utf-8") as tf:
+        json.dump(data, tf, ensure_ascii=False, indent=2)
+        temp_name = tf.name
+    os.replace(temp_name, filepath)
+
+
 def is_relevant(title: str, description: str = "") -> bool:
     """Check if title/description contains AI keywords."""
     text = f"{title} {description}".lower()
@@ -192,21 +227,47 @@ def score_article(article: dict) -> int:
 # ═══════════════════════════════════════════════════════════════════════════
 
 def fetch_feed(feed_url: str) -> list:
-    """Download an RSS feed and extract articles."""
+    """Download an RSS feed with timeout protection and extract clean articles."""
     try:
-        feed = feedparser.parse(feed_url, agent=USER_AGENT)
-        return [
-            {
-                "title": entry.get("title", "No title"),
+        # Use requests with strict timeout to prevent slow hanging feeds
+        resp = requests.get(feed_url, headers={"User-Agent": USER_AGENT}, timeout=(5, 10))
+        if resp.status_code == 200:
+            feed = feedparser.parse(resp.content)
+        else:
+            feed = feedparser.parse(feed_url, agent=USER_AGENT)
+
+        source_title = feed.feed.get("title", feed_url.split("/")[2] if "/" in feed_url else "Unknown")
+        articles = []
+        for entry in feed.entries[:20]:
+            raw_desc = entry.get("description", "") or entry.get("summary", "")
+            clean_desc = clean_latex(strip_html(raw_desc))
+            articles.append({
+                "title": clean_latex(entry.get("title", "No title")),
                 "link": entry.get("link", ""),
-                "description": entry.get("description", ""),
-                "source": feed.feed.get("title", "Unknown"),
-            }
-            for entry in feed.entries[:20]
-        ]
+                "description": clean_desc,
+                "source": source_title,
+            })
+        return articles
     except Exception as e:
         print(f"  ✗ Error fetching {feed_url}: {e}")
         return []
+
+
+def fetch_all_news_feeds(urls: list, max_workers: int = 6) -> list:
+    """Fetch multiple RSS feeds concurrently using ThreadPoolExecutor."""
+    all_articles = []
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_url = {executor.submit(fetch_feed, url): url for url in urls}
+        for future in as_completed(future_to_url):
+            url = future_to_url[future]
+            try:
+                articles = future.result()
+                all_articles.extend(articles)
+                domain = url.split("/")[2] if len(url.split("/")) > 2 else url
+                print(f"  · {domain:35s} → {len(articles)} entries")
+            except Exception as e:
+                print(f"  ✗ Concurrent fetch failed for {url}: {e}")
+    return all_articles
 
 
 def filter_articles(articles: list) -> list:
@@ -253,7 +314,7 @@ def post_to_discord(articles: list):
 
 
 def build_news_json(articles: list):
-    """Generate news.json for the frontend."""
+    """Generate news.json for the frontend atomically."""
     clean = []
     for i, a in enumerate(articles[:MAX_NEWS_ARTICLES], 1):
         cat = SOURCE_CATEGORY.get(
@@ -276,9 +337,34 @@ def build_news_json(articles: list):
         "articles": clean,
     }
 
-    with open("news.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+    atomic_write_json("news.json", data)
     print(f"  ✓ news.json — {len(clean)} articles")
+
+
+def fetch_hf_trending_models() -> list:
+    """Fetch top trending open AI models from Hugging Face Hub open API."""
+    models = []
+    try:
+        url = "https://huggingface.co/api/models?sort=trendingScore&direction=-1&limit=8"
+        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=8)
+        if resp.status_code == 200:
+            for item in resp.json():
+                model_id = item.get("id", "")
+                downloads = item.get("downloads", 0)
+                likes = item.get("likes", 0)
+                pipeline = item.get("pipeline_tag", "AI Model")
+                summary = f"🔥 Trending on Hugging Face · {likes:,} likes · {downloads:,} downloads · Task: {pipeline}"
+                models.append({
+                    "title": f"HF Model: {model_id}",
+                    "link": f"https://huggingface.co/models/{model_id}",
+                    "description": summary,
+                    "source": "Hugging Face Blog",
+                    "category": "Open Source",
+                })
+            print(f"  ✓ Hugging Face Hub: fetched {len(models)} trending models")
+    except Exception as e:
+        print(f"  ✗ Hugging Face API request failed: {e}")
+    return models
 
 
 def fetch_github_trending_repos() -> list:
@@ -403,9 +489,8 @@ def fetch_tools() -> list:
 
 
 def build_tools_json(tools: list):
-    """Generate tools.json for the frontend."""
-    with open("tools.json", "w", encoding="utf-8") as f:
-        json.dump(tools, f, ensure_ascii=False, indent=2)
+    """Generate tools.json for the frontend atomically."""
+    atomic_write_json("tools.json", tools)
     print(f"  ✓ tools.json — {len(tools)} tools")
 
 
@@ -757,16 +842,14 @@ MODELS_LEADERBOARD = [
 
 
 def build_prompts_json():
-    """Generate prompts.json for the frontend."""
-    with open("prompts.json", "w", encoding="utf-8") as f:
-        json.dump(PROMPTS, f, ensure_ascii=False, indent=2)
+    """Generate prompts.json for the frontend atomically."""
+    atomic_write_json("prompts.json", PROMPTS)
     print(f"  ✓ prompts.json — {len(PROMPTS)} prompts")
 
 
 def build_models_json():
-    """Generate models.json for the frontend leaderboard."""
-    with open("models.json", "w", encoding="utf-8") as f:
-        json.dump(MODELS_LEADERBOARD, f, ensure_ascii=False, indent=2)
+    """Generate models.json for the frontend leaderboard atomically."""
+    atomic_write_json("models.json", MODELS_LEADERBOARD)
     print(f"  ✓ models.json — {len(MODELS_LEADERBOARD)} models")
 
 
@@ -780,52 +863,52 @@ def main():
     print("  Chrono AI v3.0 — Real-Time AI Intelligence Engine")
     print("═" * 60)
 
-    # 1. Database
+    # 1. Database initialization and cleanup
     init_db()
+    prune_old_posts(days=60)
 
-    # 2. Fetch news
-    print("\n📰 Fetching news feeds...")
-    all_articles = []
-    for url in NEWS_FEEDS:
-        articles = fetch_feed(url)
-        all_articles.extend(articles)
-        print(f"  · {url.split('/')[2]:40s} → {len(articles)} entries")
+    # 2. Fetch news feeds concurrently
+    print("\n📰 Fetching news feeds concurrently...")
+    all_articles = fetch_all_news_feeds(NEWS_FEEDS, max_workers=6)
 
-    # Fetch GitHub Trending AI Repositories
+    # 3. Fetch GitHub Trending AI Repositories
     print("\n⭐ Fetching GitHub Trending AI repositories...")
     github_repos = fetch_github_trending_repos()
     all_articles.extend(github_repos)
 
+    # 4. Fetch Hugging Face Trending Models
+    print("\n🤗 Fetching Hugging Face Trending Models...")
+    hf_models = fetch_hf_trending_models()
+    all_articles.extend(hf_models)
+
     print(f"\n  Total fetched: {len(all_articles)}")
 
-    # 3. Filter & rank
+    # 5. Filter & rank
     relevant = filter_articles(all_articles)
     print(f"  AI-relevant:   {len(relevant)}")
     relevant = rank_articles(relevant)
 
-    # 4. Dedupe for Discord
+    # 6. Dedupe for Discord
     new_articles = dedupe_articles(relevant)
     new_articles = rank_articles(new_articles)
     print(f"  New (unseen):   {len(new_articles)}")
 
-    # 5. Discord
+    # 7. Discord
     print("\n💬 Discord...")
     post_to_discord(new_articles)
 
-    # 6. Build news JSON
+    # 8. Build news JSON
     print("\n📄 Generating data files...")
     build_news_json(relevant)
 
-    # 7. Build tools JSON
+    # 9. Build tools JSON
     print("\n🛠️  Fetching tools...")
     tools = fetch_tools()
     print(f"  Total tools: {len(tools)}")
     build_tools_json(tools)
 
-    # 8. Build prompts JSON
+    # 10. Build prompts & models JSON
     build_prompts_json()
-
-    # 9. Build models JSON
     build_models_json()
 
     print("\n" + "═" * 60)

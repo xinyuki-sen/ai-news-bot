@@ -536,6 +536,72 @@
       padding-top: 10px; border-top: 1px solid var(--border);
     }
 
+    /* ── Concept Detail Modal (for Grid View) ── */
+    .concept-modal-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      z-index: 1200; align-items: center; justify-content: center; padding: 20px;
+    }
+    .concept-modal-backdrop.open { display: flex; }
+    .concept-modal {
+      background: var(--surface); border: 1.5px solid rgba(108,156,255,0.45);
+      border-radius: 24px; width: 640px; max-width: 95vw; max-height: 90vh;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 35px var(--accent-glow);
+      overflow-y: auto; animation: popIn 0.2s ease; display: flex; flex-direction: column;
+    }
+    .concept-modal-header {
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      position: sticky; top: 0; background: var(--surface); z-index: 10;
+    }
+    .concept-modal-body {
+      padding: 24px; display: flex; flex-direction: column; gap: 16px;
+    }
+    .concept-modal-footer {
+      padding: 16px 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      position: sticky; bottom: 0; background: var(--surface); z-index: 10; flex-wrap: wrap;
+    }
+    .detail-section-title {
+      font-size: 0.76em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+    }
+    .detail-card-box {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 12px 16px; font-size: 0.85em; line-height: 1.55; color: var(--text-strong);
+    }
+    .detail-card-box.analogy-box {
+      border-left: 3px solid var(--accent);
+    }
+    .detail-card-box.why-box {
+      border-left: 3px solid var(--gold);
+    }
+    .detail-math-box {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78em; color: var(--accent2);
+      background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.28);
+      border-radius: 10px; padding: 10px 14px; white-space: pre-wrap; word-break: break-all;
+    }
+
+    /* Quiz Mode Styles */
+    .quiz-card .card-def, .quiz-card .card-analogy {
+      display: none !important;
+    }
+    .quiz-reveal-btn {
+      display: none; width: 100%; margin: 12px 0; background: var(--surface2);
+      border: 1px dashed var(--accent); color: var(--accent); padding: 8px 12px;
+      border-radius: 10px; font-size: 0.8em; font-weight: 600; cursor: pointer;
+      transition: all 0.15s; text-align: center;
+    }
+    .quiz-card .quiz-reveal-btn {
+      display: block !important;
+    }
+    .quiz-card.revealed .card-def, .quiz-card.revealed .card-analogy {
+      display: block !important;
+    }
+    .quiz-card.revealed .quiz-reveal-btn {
+      display: none !important;
+    }
+
     /* ── API Explorer Modal ── */
     .api-modal-backdrop {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72);
@@ -691,6 +757,9 @@
       </div>
 
       <div class="orbit-controls" id="orbitControls">
+        <button class="ctrl-btn" id="btnToggleQuiz" title="Toggle interactive Flashcard/Quiz mode">
+          <span id="quizBtnLabel">🎴 Quiz Mode</span>
+        </button>
         <button class="ctrl-btn" id="btnRandom" title="Pick a random concept">
           <span>🎲 Surprise Me</span>
         </button>
@@ -770,6 +839,56 @@
     <!-- ── Grid View ── -->
     <section class="concepts-grid" id="conceptsGrid" style="display:none;"></section>
   </main>
+
+  <!-- ── Concept Detail Modal (for Grid View) ── -->
+  <div class="concept-modal-backdrop" id="detailModal">
+    <div class="concept-modal">
+      <div class="concept-modal-header">
+        <div>
+          <div class="orb-badge-row">
+            <span class="orb-category" id="modalCategory">Architectures</span>
+            <span class="orb-level" id="modalLevel">Essential</span>
+          </div>
+          <h2 id="modalTitle" style="font-size:1.35em;font-weight:800;color:var(--text-strong);margin-top:6px;">Transformer & Attention</h2>
+        </div>
+        <button class="api-modal-close" id="btnModalClose">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="concept-modal-body">
+        <div>
+          <div class="detail-section-title">💡 Plain English Explanation</div>
+          <div class="detail-card-box" id="modalDef">Loading definition...</div>
+        </div>
+        <div>
+          <div class="detail-section-title">🎯 Real-World Analogy</div>
+          <div class="detail-card-box analogy-box" id="modalAnalogy">Loading analogy...</div>
+        </div>
+        <div>
+          <div class="detail-section-title">📐 Mathematical Intuition & Formula</div>
+          <div class="detail-math-box" id="modalMath">Loading math...</div>
+        </div>
+        <div>
+          <div class="detail-section-title">⭐ Why AI Students Must Know This</div>
+          <div class="detail-card-box why-box" id="modalWhy">Loading significance...</div>
+        </div>
+      </div>
+      <div class="concept-modal-footer">
+        <div style="display:flex;gap:8px;align-items:center;">
+          <button class="orb-bm-btn" id="modalBmBtn">
+            <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <span id="modalBmText">Keep for Later</span>
+          </button>
+          <button class="orb-speak-btn" id="btnModalSpeak" title="Read concept aloud (Text-to-Speech)">
+            <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+        <button class="ctrl-btn" id="btnModalLaunchOrbit" style="background:linear-gradient(135deg,rgba(108,156,255,0.2),rgba(167,139,250,0.2));border-color:var(--accent);color:var(--text-strong);">
+          <span>🪐 Launch Category 3D Orbit ↵</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- ── API Concept Explorer Modal ── -->
   <div class="api-modal-backdrop" id="apiModal">
@@ -1048,6 +1167,82 @@
     }
 
     /* ── Render Grid View ── */
+    /* ── Quiz Mode & Detail Modal State ── */
+    let isQuizMode = false;
+
+    const btnToggleQuiz = document.getElementById('btnToggleQuiz');
+    const quizBtnLabel = document.getElementById('quizBtnLabel');
+    if (btnToggleQuiz) {
+      btnToggleQuiz.addEventListener('click', () => {
+        isQuizMode = !isQuizMode;
+        quizBtnLabel.textContent = isQuizMode ? '✓ Exit Quiz' : '🎴 Quiz Mode';
+        btnToggleQuiz.classList.toggle('active', isQuizMode);
+        renderGrid(getActiveConcepts());
+      });
+    }
+
+    function openDetailModal(conceptId) {
+      const c = allConcepts.find(item => item.id === conceptId);
+      if (!c) return;
+      selectedConceptId = c.id;
+
+      document.getElementById('modalCategory').textContent = c.category;
+      document.getElementById('modalLevel').textContent = c.level || 'Essential';
+      document.getElementById('modalTitle').textContent = c.name;
+      document.getElementById('modalDef').textContent = c.simple_definition;
+      document.getElementById('modalAnalogy').textContent = c.analogy;
+      document.getElementById('modalMath').textContent = c.math_intuition || 'Mathematical intuition derived in standard AI literature.';
+      document.getElementById('modalWhy').textContent = c.why_it_matters || 'Fundamental machine learning concept.';
+
+      const modalBmBtn = document.getElementById('modalBmBtn');
+      const modalBmText = document.getElementById('modalBmText');
+      const isBm = bookmarks.has(c.id);
+      modalBmBtn.classList.toggle('bookmarked', isBm);
+      modalBmText.textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
+
+      document.getElementById('detailModal').classList.add('open');
+    }
+
+    document.getElementById('btnModalClose').addEventListener('click', () => {
+      document.getElementById('detailModal').classList.remove('open');
+    });
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('detailModal')) {
+        document.getElementById('detailModal').classList.remove('open');
+      }
+    });
+
+    document.getElementById('modalBmBtn').addEventListener('click', () => {
+      if (selectedConceptId) {
+        toggleBookmark(selectedConceptId);
+        const isBm = bookmarks.has(selectedConceptId);
+        document.getElementById('modalBmBtn').classList.toggle('bookmarked', isBm);
+        document.getElementById('modalBmText').textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
+      }
+    });
+
+    document.getElementById('btnModalSpeak').addEventListener('click', () => {
+      const c = allConcepts.find(item => item.id === selectedConceptId);
+      if (!c || !window.speechSynthesis) return;
+      window.speechSynthesis.cancel();
+      const text = `${c.name}. ${c.simple_definition}. Real-world analogy: ${c.analogy}`;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1.0;
+      window.speechSynthesis.speak(utterance);
+    });
+
+    document.getElementById('btnModalLaunchOrbit').addEventListener('click', () => {
+      const c = allConcepts.find(item => item.id === selectedConceptId);
+      if (!c) return;
+      document.getElementById('detailModal').classList.remove('open');
+      currentCategory = c.category;
+      document.querySelectorAll('#categoryTabs .tab').forEach(t => {
+        t.classList.toggle('active', t.dataset.cat === c.category);
+      });
+      renderFiltered();
+    });
+
+    /* ── Render Grid View ── */
     function renderGrid(concepts) {
       const grid = document.getElementById('conceptsGrid');
       if (!concepts.length) {
@@ -1055,7 +1250,7 @@
         return;
       }
       grid.innerHTML = concepts.map(c => `
-        <article class="concept-card ${c.id === selectedConceptId ? 'selected' : ''}" data-id="${c.id}">
+        <article class="concept-card ${c.id === selectedConceptId ? 'selected' : ''} ${isQuizMode ? 'quiz-card' : ''}" data-id="${c.id}">
           <div class="card-top">
             <span class="orb-category">${c.category}</span>
             <button class="card-bm-btn ${bookmarks.has(c.id) ? 'bookmarked' : ''}" data-id="${c.id}" title="Keep for later">
@@ -1063,6 +1258,7 @@
             </button>
           </div>
           <div class="card-title">${c.name}</div>
+          <button class="quiz-reveal-btn" data-id="${c.id}">👁 Reveal Definition & Analogy</button>
           <div class="card-def">${c.simple_definition}</div>
           <div class="card-analogy">
             <strong>Analogy:</strong> ${c.analogy}
@@ -1077,18 +1273,12 @@
       grid.querySelectorAll('.concept-card').forEach(card => {
         card.addEventListener('click', (e) => {
           if (e.target.closest('.card-bm-btn')) return;
-          selectedConceptId = card.dataset.id;
-          const found = allConcepts.find(c => c.id === selectedConceptId);
-          if (found && currentCategory === 'All') {
-            // Launch directly into its specialized category orbit
-            currentCategory = found.category;
-            document.querySelectorAll('#categoryTabs .tab').forEach(t => {
-              t.classList.toggle('active', t.dataset.cat === found.category);
-            });
-            renderFiltered();
-          } else {
-            updateSelectedOrb();
+          if (e.target.closest('.quiz-reveal-btn')) {
+            e.stopPropagation();
+            card.classList.add('revealed');
+            return;
           }
+          openDetailModal(card.dataset.id);
         });
       });
       grid.querySelectorAll('.card-bm-btn').forEach(btn => {
