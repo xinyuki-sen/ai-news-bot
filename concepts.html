@@ -162,6 +162,13 @@
       background: var(--gold); border-color: var(--gold); color: #000;
     }
 
+    .all-concepts-banner {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(108,156,255,0.08); border: 1px dashed rgba(108,156,255,0.3);
+      padding: 7px 14px; border-radius: 12px; font-size: 0.78em; color: var(--accent);
+      font-weight: 500;
+    }
+
     .orbit-controls {
       display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
@@ -679,7 +686,11 @@
         <button class="tab bm-tab" data-cat="Bookmarked">★ Saved (<span id="bmCount">0</span>)</button>
       </div>
 
-      <div class="orbit-controls">
+      <div class="all-concepts-banner" id="allConceptsBanner" style="display:none;">
+        <span>🪐 Select any specialized category above (Training, Architectures, Math, etc.) to launch the 3D Orbit</span>
+      </div>
+
+      <div class="orbit-controls" id="orbitControls">
         <button class="ctrl-btn" id="btnRandom" title="Pick a random concept">
           <span>🎲 Surprise Me</span>
         </button>
@@ -911,6 +922,36 @@
         selectedConceptId = active[0].id;
       }
       updateSelectedOrb();
+
+      const orbitSection = document.getElementById('orbitSection');
+      const conceptsGrid = document.getElementById('conceptsGrid');
+      const orbitControls = document.getElementById('orbitControls');
+      const allConceptsBanner = document.getElementById('allConceptsBanner');
+      const btnViewOrbit = document.getElementById('btnViewOrbit');
+      const btnViewGrid = document.getElementById('btnViewGrid');
+
+      if (currentCategory === 'All') {
+        // In "All Concepts", orbit is NOT present - only specialized tabs have the orbit
+        orbitSection.style.display = 'none';
+        conceptsGrid.style.display = 'grid';
+        if (orbitControls) orbitControls.style.display = 'none';
+        if (allConceptsBanner) allConceptsBanner.style.display = 'inline-flex';
+        if (btnViewOrbit && btnViewGrid) {
+          btnViewOrbit.classList.remove('active');
+          btnViewGrid.classList.add('active');
+        }
+      } else {
+        // Specialized category tabs (Training, Architectures, Math, Inference, etc.) -> Show Orbit
+        orbitSection.style.display = 'flex';
+        conceptsGrid.style.display = 'none';
+        if (orbitControls) orbitControls.style.display = 'flex';
+        if (allConceptsBanner) allConceptsBanner.style.display = 'none';
+        if (btnViewOrbit && btnViewGrid) {
+          btnViewOrbit.classList.add('active');
+          btnViewGrid.classList.remove('active');
+        }
+        updateTrackSize();
+      }
     }
 
     /* ── Update Center Holographic Sphere ── */
@@ -1037,7 +1078,17 @@
         card.addEventListener('click', (e) => {
           if (e.target.closest('.card-bm-btn')) return;
           selectedConceptId = card.dataset.id;
-          updateSelectedOrb();
+          const found = allConcepts.find(c => c.id === selectedConceptId);
+          if (found && currentCategory === 'All') {
+            // Launch directly into its specialized category orbit
+            currentCategory = found.category;
+            document.querySelectorAll('#categoryTabs .tab').forEach(t => {
+              t.classList.toggle('active', t.dataset.cat === found.category);
+            });
+            renderFiltered();
+          } else {
+            updateSelectedOrb();
+          }
         });
       });
       grid.querySelectorAll('.card-bm-btn').forEach(btn => {
