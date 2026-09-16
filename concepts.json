@@ -1,0 +1,258 @@
+[
+  {
+    "id": "transformer",
+    "name": "Transformer & Attention",
+    "category": "Architectures",
+    "level": "Essential",
+    "simple_definition": "The neural network architecture powering modern LLMs. Instead of reading words one-by-one in sequence, it processes the entire sentence at once and uses Self-Attention to calculate how much each word relates to every other word.",
+    "analogy": "Imagine reading a textbook with a highlighter. Instead of reading blindly word-by-word, attention highlights which clues belong together—like connecting the word 'it' back to 'the dog' three sentences earlier.",
+    "why_it_matters": "Before Transformers (2017), models like RNNs forgot the beginning of long texts. Transformers parallelize training on GPUs and handle massive context windows.",
+    "math_intuition": "Attention(Q, K, V) = softmax(Q·Kᵀ / √d_k) · V. Queries look for Keys; when they match, they pull values.",
+    "tags": [
+      "LLM",
+      "Attention",
+      "NLP",
+      "Deep Learning"
+    ]
+  },
+  {
+    "id": "latent_space",
+    "name": "Latent Space & Embeddings",
+    "category": "Math & ML",
+    "level": "Essential",
+    "simple_definition": "A high-dimensional mathematical map where computers convert words, images, or audio into arrays of numbers (vectors). Items with similar meanings end up close together in this space.",
+    "analogy": "Think of a magical 3D library where every book floats. Mystery novels cluster on one side, cookbooks on the other. Distance equals conceptual difference.",
+    "why_it_matters": "Computers cannot read letters; they only calculate numbers. Vector embeddings let machines perform arithmetic on human ideas (e.g. King - Man + Woman ≈ Queen).",
+    "math_intuition": "Words are projected into an n-dimensional space (e.g., 1536 dimensions) where cosine similarity measures semantic closeness.",
+    "tags": [
+      "Vectors",
+      "Embeddings",
+      "Math",
+      "Similarity"
+    ]
+  },
+  {
+    "id": "quantization",
+    "name": "Model Quantization",
+    "category": "Inference & Systems",
+    "level": "Intermediate",
+    "simple_definition": "Compressing an AI model by reducing the numerical precision of its weights—typically converting 16-bit floating point numbers (FP16) down to 8-bit or 4-bit integers (INT8/INT4).",
+    "analogy": "Like converting an uncompressed 50MB RAW image into a crisp 2MB JPEG. You save 90% of the storage and memory with almost no visible loss in quality.",
+    "why_it_matters": "A 70B parameter model in FP16 takes 140GB of VRAM (requiring expensive enterprise GPUs). Quantized to 4-bit, it runs on a single 48GB workstation or consumer PC.",
+    "math_intuition": "Mapping continuous 16-bit floats to discrete small integer bins using a scaling factor: W_quant = round(W / scale) + zero_point.",
+    "tags": [
+      "Hardware",
+      "VRAM",
+      "GGUF",
+      "Optimization"
+    ]
+  },
+  {
+    "id": "moe",
+    "name": "Mixture of Experts (MoE)",
+    "category": "Architectures",
+    "level": "Intermediate",
+    "simple_definition": "An architecture where a large model is split into dozens of smaller specialized sub-networks ('experts'). A router decides which 1 or 2 experts activate for each specific token.",
+    "analogy": "Instead of one person answering every hospital question, a triage receptionist routes cardiology questions to the cardiologist and fracture questions to the radiologist.",
+    "why_it_matters": "Gives you the knowledge capacity of an enormous 600B+ model while only paying the compute cost of a 40B model during generation (used by Mixtral, Grok, and Gemini).",
+    "math_intuition": "y = Σ G(x)ᵢ · Eᵢ(x), where G(x) is a sparse softmax gating network activating only top-k experts.",
+    "tags": [
+      "Scale",
+      "Compute",
+      "Efficiency",
+      "Routing"
+    ]
+  },
+  {
+    "id": "rag",
+    "name": "RAG (Retrieval-Augmented Generation)",
+    "category": "Modern GenAI",
+    "level": "Essential",
+    "simple_definition": "Connecting an LLM to an external search engine or private database so it retrieves real-time facts and injects them into the prompt before generating an answer.",
+    "analogy": "Taking an open-book exam. Instead of relying solely on whatever facts the student memorized months ago, they look up the exact company manual or syllabus before answering.",
+    "why_it_matters": "Drastically slashes hallucinations, avoids expensive model retraining for new data, and keeps company proprietary information private.",
+    "math_intuition": "Query vector Q retrieves top-K documents via k-Nearest Neighbors; context is prepended: Prompt = Context + Q.",
+    "tags": [
+      "Search",
+      "Vector DB",
+      "Accuracy",
+      "Enterprise"
+    ]
+  },
+  {
+    "id": "lora",
+    "name": "LoRA & PEFT Fine-Tuning",
+    "category": "Training & Math",
+    "level": "Intermediate",
+    "simple_definition": "Low-Rank Adaptation (LoRA) freezes the original massive neural network and only trains tiny adapter matrices inserted into specific layers, reducing trainable weights by over 99%.",
+    "analogy": "Adding transparent sticky notes with corrections into an encyclopedia instead of republishing and printing the entire multi-volume book from scratch.",
+    "why_it_matters": "Allows college researchers and indie developers to fine-tune giant models on a single consumer GPU instead of renting a cluster of 8x H100s.",
+    "math_intuition": "Decomposing weight update ΔW of size d×k into two low-rank matrices B(d×r) and A(r×k) where rank r << min(d, k).",
+    "tags": [
+      "Fine-Tuning",
+      "Low-Rank",
+      "Adapters",
+      "GPU"
+    ]
+  },
+  {
+    "id": "kv_cache",
+    "name": "KV Cache (Key-Value Cache)",
+    "category": "Inference & Systems",
+    "level": "Advanced",
+    "simple_definition": "A memory optimization technique that stores previously computed Key and Value matrices of past tokens during text generation, avoiding re-calculating attention over the whole prompt.",
+    "analogy": "Taking meeting notes as you talk. When someone says a new sentence, you just append it, rather than listening to the entire recording of the meeting from minute one.",
+    "why_it_matters": "Without KV Cache, generating a 1,000-token response would require O(N²) quadratic calculations. KV cache makes inference O(N) linear in time.",
+    "math_intuition": "Past K and V vectors are held in GPU VRAM buffer; each new token only needs 1 row of Q multiplied against cached K and V.",
+    "tags": [
+      "Memory",
+      "Inference",
+      "Speed",
+      "Attention"
+    ]
+  },
+  {
+    "id": "temperature",
+    "name": "Temperature & Top-p (Nucleus)",
+    "category": "Modern GenAI",
+    "level": "Essential",
+    "simple_definition": "Sampling hyperparameters that determine how predictable or creative an LLM's next token choice will be. Low temp picks the most likely word; high temp explores rarer words.",
+    "analogy": "A spice slider on a recipe. At 0.0, the chef strictly follows the exact traditional dish. At 1.0, the chef tosses in adventurous, exotic spices.",
+    "why_it_matters": "For code or math, you want temperature near 0 for accuracy. For storytelling or brainstorming, you want temperature 0.7–0.9 for creative variety.",
+    "math_intuition": "Softmax logits are divided by T: P(w) = exp(z_i / T) / Σ exp(z_j / T). As T→0, distribution sharpens into argmax.",
+    "tags": [
+      "Sampling",
+      "Hyperparameters",
+      "Prompting",
+      "Logits"
+    ]
+  },
+  {
+    "id": "rlhf_dpo",
+    "name": "RLHF & DPO Alignment",
+    "category": "Training & Math",
+    "level": "Intermediate",
+    "simple_definition": "Techniques used after pretraining to teach raw language models to be helpful, polite, harmless, and follow instructions based on human ratings (Direct Preference Optimization).",
+    "analogy": "A driving instructor sitting next to a teen driver giving praise for gentle stops and pointing out reckless swerving, shaping their natural habits into safe driving.",
+    "why_it_matters": "A raw pretrained LLM just predicts the next internet word (including scams, profanity, and rambling). Alignment turns it into a helpful conversational assistant like Claude or ChatGPT.",
+    "math_intuition": "DPO bypasses complex reinforcement learning by directly optimizing the implicit reward: max log σ(β log(π_θ(y_w|x) / π_ref(y_w|x)) - β log(π_θ(y_l|x) / π_ref(y_l|x))).",
+    "tags": [
+      "Safety",
+      "Alignment",
+      "Reinforcement Learning",
+      "Preference"
+    ]
+  },
+  {
+    "id": "chain_of_thought",
+    "name": "Chain-of-Thought (CoT)",
+    "category": "Modern GenAI",
+    "level": "Essential",
+    "simple_definition": "Prompting or training models to generate intermediate reasoning tokens step-by-step before producing their final conclusion, mimicking human deliberate thinking.",
+    "analogy": "Writing down your rough work in the margins of a math exam instead of trying to multiply 4-digit numbers entirely in your head.",
+    "why_it_matters": "Standard LLMs allocate the same amount of compute to '2+2' as they do to a complex quantum theorem. CoT (and reasoning models like OpenAI o1/o3) scale compute at test-time.",
+    "math_intuition": "Decomposing P(Answer | Question) into Σ P(Answer | Thought, Question) · P(Thought | Question).",
+    "tags": [
+      "Reasoning",
+      "Prompt Engineering",
+      "Test-Time Compute",
+      "Logic"
+    ]
+  },
+  {
+    "id": "diffusion_models",
+    "name": "Diffusion Models",
+    "category": "Architectures",
+    "level": "Intermediate",
+    "simple_definition": "Generative models (used in Midjourney, Stable Diffusion, and Sora) that learn to generate images/videos by progressively removing gaussian noise from an image step-by-step.",
+    "analogy": "A sculptor starting with a messy block of marble and progressively chiseling away tiny rough grains until a detailed masterpiece emerges.",
+    "why_it_matters": "Replaced GANs (Generative Adversarial Networks) because diffusion is far more stable to train and creates photorealistic imagery without mode collapse.",
+    "math_intuition": "Forward process adds noise: q(x_t | x_{t-1}). Neural network learns reverse conditional distribution p_θ(x_{t-1} | x_t) to predict and subtract noise.",
+    "tags": [
+      "Computer Vision",
+      "Generative AI",
+      "Image Generation",
+      "Noise"
+    ]
+  },
+  {
+    "id": "gradient_descent",
+    "name": "Gradient Descent & Backprop",
+    "category": "Math & ML",
+    "level": "Essential",
+    "simple_definition": "The foundational optimization algorithm of all deep learning. Backpropagation calculates the error gradient with calculus chain-rule, and gradient descent adjusts weights to minimize loss.",
+    "analogy": "A hiker lost in dense fog on a mountain trying to find the valley floor by taking small steps in whichever direction slopes steepest downward.",
+    "why_it_matters": "Every modern AI system—from tiny perceptrons to frontier LLMs—learns by calculating these gradients millions of times over billions of tokens.",
+    "math_intuition": "Weight update rule: W_{t+1} = W_t - η · ∇L(W_t), where η is the learning rate and ∇L is the partial derivative vector.",
+    "tags": [
+      "Optimization",
+      "Calculus",
+      "Backpropagation",
+      "Fundamentals"
+    ]
+  },
+  {
+    "id": "overfitting",
+    "name": "Overfitting vs Generalization",
+    "category": "Math & ML",
+    "level": "Essential",
+    "simple_definition": "When a model memorizes the training data including random noise, performing perfectly on training examples but failing miserably on unseen test data.",
+    "analogy": "A student who memorizes the exact answer numbers of yesterday's practice test, but fails the real exam because the numbers changed slightly.",
+    "why_it_matters": "The ultimate goal of machine learning is generalization to the real world, prevented via dropout, weight decay, data augmentation, and early stopping.",
+    "math_intuition": "The Bias-Variance Tradeoff: Total Error = Bias² + Variance + Irreducible Noise. High variance corresponds to overfitting.",
+    "tags": [
+      "Evaluation",
+      "Generalization",
+      "Regularization",
+      "Core ML"
+    ]
+  },
+  {
+    "id": "context_window",
+    "name": "Context Window & Needle-in-a-Haystack",
+    "category": "Inference & Systems",
+    "level": "Essential",
+    "simple_definition": "The maximum number of tokens an LLM can read and hold in its attention buffer simultaneously in a single prompt session.",
+    "analogy": "The physical surface area of your desk. A 4K context desk only fits a single essay; a 1M context desk fits an entire 10-volume encyclopedia.",
+    "why_it_matters": "Long context allows analyzing full codebases, books, and financial reports, but models can suffer from 'lost in the middle' where they overlook facts buried in long text.",
+    "math_intuition": "Standard attention memory scales O(N²) without sparse or flash attention; RoPE (Rotary Position Embeddings) scales context length.",
+    "tags": [
+      "Tokens",
+      "Memory",
+      "RoPE",
+      "Needle In Haystack"
+    ]
+  },
+  {
+    "id": "agentic_workflows",
+    "name": "AI Agents & Function Calling",
+    "category": "Modern GenAI",
+    "level": "Intermediate",
+    "simple_definition": "Systems where an LLM is given tools (calculators, web browsers, bash terminals, APIs) and operates in a loop: perceive → plan → execute tool → evaluate output → finish.",
+    "analogy": "Transitioning from an encyclopedia that can only recite facts to hiring a capable intern who can browse Google, execute code, and write reports autonomously.",
+    "why_it_matters": "Moves AI from passive chatbots to active autonomous problem solvers capable of building software, analyzing stocks, and operating complex systems.",
+    "math_intuition": "ReAct framework: Thought → Action → Observation loop until stopping condition 'Final Answer' is reached.",
+    "tags": [
+      "Autonomous",
+      "Function Calling",
+      "ReAct",
+      "Tools"
+    ]
+  },
+  {
+    "id": "cosine_similarity",
+    "name": "Cosine Similarity",
+    "category": "Math & ML",
+    "level": "Essential",
+    "simple_definition": "A metric that measures the cosine of the angle between two vectors, checking whether they point in roughly the same direction regardless of their vector magnitude.",
+    "analogy": "Two people pointing their fingers across a room. If both point toward the same window, their angle is 0° (similarity = 1.0), even if one person's arm is longer.",
+    "why_it_matters": "The core mathematical operation used by vector search engines, semantic caching, recommendation systems, and RAG retrieval pipelines.",
+    "math_intuition": "cos(θ) = (A · B) / (||A|| · ||B||) = Σ(AᵢBᵢ) / (√ΣAᵢ² · √ΣBᵢ²). Range: -1 (opposite) to +1 (identical direction).",
+    "tags": [
+      "Linear Algebra",
+      "Vector Search",
+      "Cosine",
+      "Retrieval"
+    ]
+  }
+]
