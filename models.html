@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Chrono — AI Models Leaderboard</title>
-  <meta name="description" content="Frontier AI models comparison leaderboard — Arena Elo, SWE-bench coding scores, context windows, and API pricing.">
+  <title>Chrono — AI Models & Agent Thinking Playbook</title>
+  <meta name="description" content="Frontier AI models and agent thinking playbook — reasoning modes, thinking token budgets, max output capacities, and cost-efficiency matrices.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Chrono — AI Models Leaderboard">
-  <meta property="og:description" content="Compare frontier AI foundation models on coding benchmarks, reasoning, context size, and token pricing.">
-  <meta property="og:url" content="https://xinyuki-sen.github.io/ai-news-bot/models.html">
+  <meta property="og:title" content="Chrono — AI Models & Agent Thinking Playbook">
+  <meta property="og:description" content="Compare frontier reasoning models, thinking modes, token output limits, and optimal agent use cases across OpenAI, Anthropic, Google, and DeepSeek.">
+  <meta property="og:url" content="https://xinyuki-sen.github.io/chrono/models.html">
   <meta name="theme-color" content="#0a0e14">
   <link rel="icon" href="assets/robot_icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    /* ── Variables ──────────────────────────────────────────────────── */
     :root {
       --bg:          #0a0e14;
       --surface:     #12161e;
@@ -27,27 +26,28 @@
       --text-muted:  #636d80;
       --accent:      #6c9cff;
       --accent2:     #a78bfa;
+      --accent-glow: rgba(108,156,255,0.22);
       --success:     #34d399;
-      --warning:     #fbbf24;
+      --gold:        #fbbf24;
       --radius:      16px;
-      --panel-w:     380px;
+      --panel-w:     390px;
     }
     [data-theme="light"] {
       --bg:          #f8f9fc;
       --surface:     #ffffff;
       --surface2:    #f0f2f5;
       --surface3:    #e5e7eb;
-      --border:      #e5e7eb;
+      --border:      #e2e8f0;
       --text:        #374151;
       --text-strong: #111827;
       --text-muted:  #9ca3af;
       --accent:      #4f7eff;
       --accent2:     #7c3aed;
-      --success:     #10b981;
-      --warning:     #d97706;
+      --accent-glow: rgba(79,126,255,0.18);
+      --success:     #059669;
+      --gold:        #d97706;
     }
 
-    /* ── Reset & Baseline ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
     body {
@@ -57,1065 +57,877 @@
       display: flex;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
       overflow-x: hidden;
-      touch-action: manipulation;
     }
 
-    /* ── Sidebar ────────────────────────────────────────────────────── */
+    /* ── Sidebar ── */
     .sidebar {
-      width: 72px;
-      background: var(--surface);
+      position: fixed; top: 0; left: 0; bottom: 0;
+      width: 56px; background: var(--surface);
       border-right: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 20px 0;
-      gap: 8px;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      flex-shrink: 0;
-      z-index: 40;
-      contain: layout paint;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 12px 0; z-index: 50;
     }
-    .sidebar .logo { margin-bottom: 16px; }
-    .logo-img {
-      width: 40px; height: 40px;
-      border-radius: 12px;
-      object-fit: cover;
-      transform: translateZ(0);
-      transition: transform .2s cubic-bezier(0.2,0.8,0.2,1);
-    }
-    .logo-img:hover { transform: scale(1.08) rotate(-3deg); }
-    .sidebar .spacer { flex: 1; }
+    .logo-img { width: 32px; height: 32px; border-radius: 8px; margin-bottom: 20px; }
     .sb-btn {
-      width: 42px; height: 42px;
+      width: 40px; height: 40px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      border-radius: 12px;
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      text-decoration: none;
-      transition: background-color .15s ease, color .15s ease;
-      position: relative;
-      -webkit-tap-highlight-color: transparent;
+      color: var(--text-muted); cursor: pointer; text-decoration: none;
+      transition: color 0.15s, background-color 0.15s;
+      position: relative; margin-bottom: 6px; border: none; background: transparent;
     }
-    .sb-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .sb-btn:hover, .sb-btn.active { background: var(--surface2); color: var(--accent); }
-    .sb-btn[data-tooltip]::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      left: calc(100% + 10px); top: 50%;
-      transform: translateY(-50%);
-      background: var(--surface2); color: var(--text-strong);
-      border: 1px solid var(--border);
-      padding: 4px 10px; border-radius: 8px;
-      font-size: .7em; white-space: nowrap;
-      opacity: 0; pointer-events: none; transition: opacity .12s ease; z-index: 100;
+    .sb-btn:hover { color: var(--text-strong); background: var(--surface2); }
+    .sb-btn.active { color: var(--accent); background: rgba(108,156,255,0.12); }
+    .sb-btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sb-badge {
+      position: absolute; top: 4px; right: 4px; width: 7px; height: 7px;
+      background: var(--accent); border-radius: 50%;
     }
-    .sb-btn[data-tooltip]:hover::after { opacity: 1; }
-    .sb-badge { position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+    .spacer { flex: 1; }
 
-    /* ── Main ───────────────────────────────────────────────────────── */
-    .main { flex: 1; padding: 36px 40px; min-width: 0; }
+    /* ── Main Content ── */
+    .main {
+      margin-left: 56px;
+      flex: 1;
+      padding: 32px 36px 64px 36px;
+      max-width: 1440px;
+      min-width: 0;
+    }
+
+    .header-top {
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
+    }
+    .header-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.72em; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--accent);
+      background: rgba(108,156,255,0.1); border: 1px solid rgba(108,156,255,0.25);
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 10px;
+    }
     h1 {
-      font-size: 1.6em; font-weight: 700; letter-spacing: -.02em;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; margin-bottom: 4px;
+      font-size: 2.2em; font-weight: 800; color: var(--text-strong);
+      letter-spacing: -0.03em; margin-bottom: 6px;
     }
-    .date { color: var(--text-muted); font-size: .8em; margin-bottom: 24px; font-weight: 400; }
+    .subtitle {
+      font-size: 0.92em; color: var(--text-muted); line-height: 1.5; max-width: 860px;
+    }
 
-    /* ── Topbar ─────────────────────────────────────────────────────── */
-    .topbar { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-    .search-wrap { flex: 1; min-width: 200px; position: relative; }
-    .search-wrap label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
-    .search {
-      width: 100%; background: var(--surface);
-      border: 1px solid var(--border); border-radius: 12px;
-      padding: 10px 80px 10px 40px;
-      color: var(--text); font-size: .85em; font-family: inherit;
-      outline: none; transition: border-color .15s ease, box-shadow .15s ease;
-      -webkit-tap-highlight-color: transparent;
+    /* ── Interactive Agent Advisor Banner ── */
+    .advisor-card {
+      background: linear-gradient(135deg, rgba(108,156,255,0.08) 0%, rgba(167,139,250,0.06) 100%), var(--surface);
+      border: 1.5px solid rgba(108,156,255,0.35);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,156,255,.12); }
-    .search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
-    .search-icon svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .search-shortcut {
-      position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
-      font-size: .7em; background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text-muted); padding: 2px 6px; border-radius: 6px; pointer-events: none;
+    .advisor-header {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px;
     }
-    .sort-wrap { display: flex; align-items: center; gap: 8px; }
-    .sort-select {
-      background: var(--surface); border: 1px solid var(--border);
-      color: var(--text); padding: 9px 12px; border-radius: 12px;
-      font-size: .8em; font-family: inherit; outline: none; cursor: pointer;
+    .advisor-title {
+      font-size: 1.08em; font-weight: 800; color: var(--text-strong); display: flex; align-items: center; gap: 8px;
     }
-    .sort-select:focus { border-color: var(--accent); }
-
-    /* ── Tabs ───────────────────────────────────────────────────────── */
-    .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 24px; }
-    .tab {
-      padding: 5px 14px; border-radius: 20px; background: transparent;
-      border: 1px solid var(--border); color: var(--text-muted);
-      font-size: .75em; font-weight: 500; cursor: pointer;
-      transition: background-color .15s ease, color .15s ease, border-color .15s ease;
-      user-select: none; font-family: inherit; -webkit-tap-highlight-color: transparent;
+    .advisor-title svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 2; }
+    .advisor-badge {
+      font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent2); background: rgba(167,139,250,0.14); border: 1px solid rgba(167,139,250,0.3);
+      padding: 4px 10px; border-radius: 12px;
     }
-    .tab:hover { border-color: var(--accent); color: var(--text); }
-    .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); font-weight: 600; }
-    .tab-count { display: inline-block; background: rgba(255,255,255,.15); border-radius: 10px; padding: 0 6px; font-size: .85em; margin-left: 4px; }
-    .tab.active .tab-count { background: rgba(255,255,255,.25); }
-
-    /* ── Leaderboard Grid ───────────────────────────────────────────── */
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; }
-    .card {
-      background: var(--surface); border: none; border-radius: var(--radius);
-      padding: 20px; cursor: pointer; display: flex; flex-direction: column;
-      justify-content: space-between; position: relative;
-      transform: translate3d(0,0,0); will-change: transform, box-shadow;
-      transition: transform .18s cubic-bezier(0.2,0.8,0.2,1), background-color .15s ease, box-shadow .18s ease;
-      -webkit-tap-highlight-color: transparent; contain: content;
+    .advisor-select-wrap {
+      display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;
     }
-    .card:hover { background: var(--surface2); box-shadow: 0 8px 24px rgba(0,0,0,.2); transform: translateY(-2px); }
-    .card.selected { box-shadow: 0 0 0 2px var(--accent2), 0 4px 20px rgba(167,139,250,.15); }
-
-    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-    .card-provider { font-size: .7em; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--text-muted); }
-    .card-badge {
-      font-size: .65em; font-weight: 600; padding: 2px 8px; border-radius: 12px;
-      background: var(--surface2); color: var(--accent); border: 1px solid rgba(108,156,255,0.2);
+    .advisor-select {
+      flex: 1; min-width: 280px; background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text-strong); padding: 10px 14px; border-radius: 12px;
+      font-size: 0.88em; font-weight: 600; outline: none; cursor: pointer;
     }
-    .card-badge.open-weight { background: rgba(52, 211, 153, 0.12); color: var(--success); border-color: rgba(52, 211, 153, 0.3); }
-
-    .card-title { font-size: 1.05em; font-weight: 700; color: var(--text-strong); line-height: 1.35; margin-bottom: 14px; }
+    .advisor-select:focus { border-color: var(--accent); }
     
+    .advisor-result-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 16px;
+    }
+    .advisor-stat-item {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .advisor-stat-lbl {
+      font-size: 0.68em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);
+    }
+    .advisor-stat-val {
+      font-size: 0.95em; font-weight: 700; color: var(--text-strong);
+    }
+    .advisor-stat-val.accent { color: var(--accent); }
+    .advisor-stat-val.success { color: var(--success); }
+    .advisor-stat-val.gold { color: var(--gold); }
+    .advisor-why {
+      grid-column: 1 / -1; margin-top: 6px; padding-top: 10px; border-top: 1px dashed var(--border);
+      font-size: 0.82em; line-height: 1.5; color: var(--text);
+    }
+
+    /* ── Playbook Thinking Modes Quick Guide ── */
+    .modes-guide {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 28px;
+    }
+    .mode-card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .mode-card:hover { border-color: rgba(108,156,255,0.4); transform: translateY(-2px); }
+    .mode-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .mode-card-title { font-size: 0.95em; font-weight: 700; color: var(--text-strong); display: flex; align-items: center; gap: 6px; }
+    .mode-tag { font-size: 0.68em; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+    .mode-tag.fast { background: rgba(52,211,153,0.12); color: var(--success); border: 1px solid rgba(52,211,153,0.25); }
+    .mode-tag.mid { background: rgba(108,156,255,0.12); color: var(--accent); border: 1px solid rgba(108,156,255,0.25); }
+    .mode-tag.deep { background: rgba(167,139,250,0.14); color: var(--accent2); border: 1px solid rgba(167,139,250,0.3); }
+    .mode-card-desc { font-size: 0.8em; color: var(--text); line-height: 1.5; margin-bottom: 10px; }
+    .mode-card-when { font-size: 0.74em; color: var(--text-muted); line-height: 1.4; border-left: 2px solid var(--accent); padding-left: 8px; }
+
+    /* ── Toolbar & Filter ── */
+    .toolbar {
+      display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px;
+    }
+    .tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text-muted);
+      padding: 8px 16px; border-radius: 20px; font-size: 0.82em; font-weight: 600; cursor: pointer; white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .tab:hover { color: var(--text-strong); border-color: rgba(108,156,255,0.4); }
+    .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); box-shadow: 0 4px 12px var(--accent-glow); }
+    
+    .filter-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .search-box { flex: 1; min-width: 260px; max-width: 440px; position: relative; }
+    .search-box input {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px 14px 10px 38px; color: var(--text-strong);
+      font-size: 0.88em; outline: none; transition: border-color 0.15s;
+    }
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+    .sort-select {
+      background: var(--surface); border: 1px solid var(--border); color: var(--text-strong);
+      padding: 10px 14px; border-radius: 12px; font-size: 0.82em; font-weight: 600; outline: none; cursor: pointer;
+    }
+
+    /* ── Models Grid ── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 22px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .card:hover {
+      border-color: rgba(108,156,255,0.6); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+    }
+    .card.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-glow); }
+
+    .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .card-provider { font-size: 0.7em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+    .card-thinking-badge {
+      font-size: 0.65em; font-weight: 700; padding: 3px 8px; border-radius: 10px;
+      background: rgba(167,139,250,0.12); color: var(--accent2); border: 1px solid rgba(167,139,250,0.28);
+    }
+    .card-title { font-size: 1.15em; font-weight: 800; color: var(--text-strong); margin-bottom: 12px; line-height: 1.3; }
+
     .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
     .stat-box { background: var(--surface2); padding: 8px 10px; border-radius: 10px; border: 1px solid var(--border); }
-    .stat-box .lbl { font-size: .65em; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 2px; }
-    .stat-box .val { font-size: .85em; font-weight: 700; color: var(--text-strong); }
+    .stat-box .lbl { font-size: 0.65em; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 2px; }
+    .stat-box .val { font-size: 0.88em; font-weight: 700; color: var(--text-strong); }
     .stat-box .val.accent { color: var(--accent); }
     .stat-box .val.success { color: var(--success); }
 
-    .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--border); font-size: .75em; color: var(--text-muted); }
-    .card-footer .pricing-tag { font-weight: 600; color: var(--text-strong); }
-
-    .card-bookmark {
-      position: absolute; top: 14px; right: 14px; background: none;
-      border: none; cursor: pointer; color: var(--text-muted); opacity: 0;
-      transition: opacity .12s ease, color .12s ease; padding: 4px;
-      -webkit-tap-highlight-color: transparent;
+    .card-when-box {
+      font-size: 0.78em; color: var(--text); line-height: 1.45; background: var(--surface2);
+      border-left: 3px solid var(--accent); padding: 8px 10px; border-radius: 8px; margin-bottom: 14px;
     }
-    .card-bookmark svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; pointer-events: none; }
-    .card:hover .card-bookmark, .card-bookmark.bookmarked { opacity: 1; }
-    .card-bookmark.bookmarked { color: var(--accent); }
+    .card-when-box strong { color: var(--text-strong); }
 
-    /* ── Antigravity Resizable Panel ────────────────────────────────── */
+    .card-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 10px; border-top: 1px solid var(--border); font-size: 0.75em; color: var(--text-muted);
+    }
+    .pricing-tag { font-weight: 700; color: var(--text-strong); }
+
+    /* ── Antigravity Resizable Panel ── */
     .panel {
-      width: var(--panel-w); min-width: 280px; max-width: 650px;
+      width: var(--panel-w); min-width: 300px; max-width: 650px;
       background: var(--surface); border-left: 1px solid var(--border);
-      display: flex; flex-direction: column; position: relative;
-      min-height: 100vh; flex-shrink: 0; z-index: 30;
-      contain: layout paint;
+      display: flex; flex-direction: column; position: fixed; right: 0; top: 0; bottom: 0;
+      z-index: 60; transform: translateX(100%); transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-    .panel-resizer {
-      position: absolute; left: -4px; top: 0; bottom: 0; width: 8px;
-      cursor: col-resize; z-index: 50; transition: background-color .12s ease;
-    }
-    .panel-resizer:hover, .panel-resizer.dragging { background: var(--accent); }
+    .panel.active { transform: translateX(0); }
+    .panel-resizer { position: absolute; left: -4px; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 50; }
     .panel-header {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 18px 20px; border-bottom: 1px solid var(--border); gap: 10px; flex-shrink: 0;
+      padding: 18px 20px; border-bottom: 1px solid var(--border); flex-shrink: 0;
     }
-    .panel-header-title {
-      font-size: .75em; font-weight: 600; color: var(--text-muted);
-      text-transform: uppercase; letter-spacing: .08em; display: flex; align-items: center; gap: 6px;
-    }
-    .panel-tool-btn {
-      background: transparent; border: none; color: var(--text-muted); cursor: pointer;
-      padding: 6px 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center;
-      transition: background-color .12s ease, color .12s ease; -webkit-tap-highlight-color: transparent;
-    }
-    .panel-tool-btn:hover { background: var(--surface2); color: var(--text-strong); }
-    .panel-tool-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .panel-body {
-      flex: 1; overflow-y: auto; padding: 24px 20px;
-      -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
-    }
-    .panel-empty { color: var(--text-muted); font-size: .85em; text-align: center; margin-top: 40px; }
-    .panel-empty .panel-hint { font-size: 1.8em; margin-bottom: 10px; opacity: .3; }
+    .panel-header-title { font-size: 0.78em; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; display: flex; align-items: center; gap: 6px; }
+    .panel-close-btn { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; border-radius: 6px; }
+    .panel-close-btn svg { width: 18px; height: 18px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .panel-body { flex: 1; overflow-y: auto; padding: 22px 20px; }
 
-    /* Model Detail inside Panel */
-    .model-detail-header { margin-bottom: 18px; }
-    .model-detail-provider { font-size: .75em; font-weight: 600; text-transform: uppercase; color: var(--accent); letter-spacing: .05em; margin-bottom: 4px; }
-    .model-detail-name { font-size: 1.25em; font-weight: 700; color: var(--text-strong); line-height: 1.3; margin-bottom: 8px; }
-    .model-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-    .model-tag { font-size: .7em; padding: 3px 8px; border-radius: 12px; background: var(--surface2); color: var(--text-muted); }
+    .panel-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 55;
+    }
+    .panel-backdrop.active { display: block; }
 
-    .bench-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
-    .bench-title { font-size: .75em; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
-    .bench-bar-item { margin-bottom: 10px; }
-    .bench-bar-item:last-child { margin-bottom: 0; }
-    .bench-bar-label { display: flex; justify-content: space-between; font-size: .75em; margin-bottom: 4px; color: var(--text-strong); }
-    .bench-bar-bg { height: 6px; background: var(--surface3); border-radius: 3px; overflow: hidden; }
-    .bench-bar-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+    /* Model Detail in Panel */
+    .detail-heading { margin-bottom: 16px; }
+    .detail-provider { font-size: 0.72em; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 0.06em; margin-bottom: 4px; }
+    .detail-name { font-size: 1.3em; font-weight: 800; color: var(--text-strong); line-height: 1.25; margin-bottom: 8px; }
+    
+    .panel-section-title { font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin: 18px 0 8px 0; }
+    .panel-card-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 12px; font-size: 0.82em; line-height: 1.5; color: var(--text); }
+    .panel-card-box.thinking-box { border-left: 3px solid var(--accent2); }
+    .panel-card-box.when-box { border-left: 3px solid var(--accent); }
 
-    .spec-table { width: 100%; border-collapse: collapse; margin-bottom: 18px; font-size: .8em; }
+    .spec-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.82em; }
     .spec-table tr { border-bottom: 1px solid var(--border); }
     .spec-table td { padding: 8px 0; }
-    .spec-table td:first-child { color: var(--text-muted); width: 45%; }
-    .spec-table td:last-child { color: var(--text-strong); font-weight: 600; text-align: right; }
+    .spec-table td:first-child { color: var(--text-muted); width: 48%; }
+    .spec-table td:last-child { color: var(--text-strong); font-weight: 700; text-align: right; }
 
-    /* Token Calculator */
-    .calc-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 18px; }
-    .calc-title { font-size: .75em; font-weight: 600; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-    .calc-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-    .calc-field label { display: block; font-size: .65em; color: var(--text-muted); margin-bottom: 3px; }
-    .calc-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; color: var(--text-strong); font-size: .8em; outline: none; }
-    .calc-result { display: flex; justify-content: space-between; align-items: center; padding-top: 8px; border-top: 1px dashed var(--border); font-size: .8em; }
-    .calc-cost { font-size: 1.1em; font-weight: 700; color: var(--success); }
+    /* Interactive Live Token Calculator */
+    .calc-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 14px; padding: 16px; margin-top: 16px; }
+    .calc-title { font-size: 0.78em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-strong); margin-bottom: 12px; display: flex; align-items: center; gap: 6px; }
+    .calc-row { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+    .calc-row label { font-size: 0.72em; color: var(--text-muted); font-weight: 600; display: flex; justify-content: space-between; }
+    .calc-row input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+    .calc-total-box { display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px dashed var(--border); margin-top: 10px; }
+    .calc-cost { font-size: 1.2em; font-weight: 800; color: var(--success); }
 
-    .panel-strengths { font-size: .8em; line-height: 1.6; color: var(--text); margin-bottom: 20px; border-left: 2px solid var(--accent); padding-left: 12px; }
-    
-    .panel a.open-btn {
-      display: block; text-align: center; background: var(--accent); color: #fff;
-      padding: 10px; border-radius: 10px; text-decoration: none; font-weight: 600;
-      font-size: .85em; transition: opacity .15s ease; margin-bottom: 8px;
+    /* ── Universal Ctrl+K Command Palette ── */
+    .cmd-palette-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      z-index: 1300; align-items: flex-start; justify-content: center; padding-top: 12vh;
     }
-    .panel a.open-btn:hover { opacity: .88; }
-
-    .panel .bm-btn {
-      display: block; width: 100%; text-align: center; background: var(--surface2);
-      color: var(--text-muted); padding: 8px; border-radius: 10px; border: none;
-      font-size: .8em; font-weight: 500; cursor: pointer; transition: color .15s ease;
-      font-family: inherit; -webkit-tap-highlight-color: transparent;
+    .cmd-palette-backdrop.open { display: flex; }
+    .cmd-palette-modal {
+      background: var(--surface); border: 1px solid rgba(108,156,255,0.3);
+      border-radius: 16px; width: 560px; max-width: 90vw; box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden;
     }
-    .panel .bm-btn:hover, .panel .bm-btn.bookmarked { color: var(--accent); }
+    .cmd-palette-input-row { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--border); gap: 10px; }
+    .cmd-palette-input-row svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; flex-shrink: 0; }
+    .cmd-palette-input { flex: 1; background: transparent; border: none; outline: none; font-size: 0.95em; color: var(--text-strong); font-family: inherit; }
+    .cmd-palette-results { max-height: 380px; overflow-y: auto; padding: 8px; }
+    .cmd-item { padding: 10px 14px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: background 0.1s; }
+    .cmd-item:hover, .cmd-item.active { background: var(--surface2); }
+    .cmd-item-title { font-size: 0.88em; font-weight: 600; color: var(--text-strong); }
+    .cmd-item-meta { font-size: 0.72em; color: var(--text-muted); }
 
-    /* ── Bookmarks & Command Palette Overlay ────────────────────────── */
-    .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.65); display: none; z-index: 120; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
-    .overlay.active { display: flex; }
-    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; width: 100%; max-width: 540px; max-height: 80vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.4); }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid var(--border); }
-    .modal-header h3 { color: var(--text-strong); font-size: 1em; font-weight: 600; }
-    .modal-body { flex: 1; overflow-y: auto; padding: 16px 20px; }
-    .modal-close { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 4px; }
-    .modal-close svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-    /* Command Palette Specific */
-    .cmd-palette-input-wrap { display: flex; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--border); gap: 10px; }
-    .cmd-palette-input-wrap svg { width: 18px; height: 18px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
-    .cmd-palette-input { flex: 1; background: transparent; border: none; color: var(--text-strong); font-size: 1em; outline: none; font-family: inherit; }
-    .cmd-badge { font-size: .65em; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); padding: 2px 6px; border-radius: 6px; }
-    .cmd-results { max-height: 380px; overflow-y: auto; padding: 8px; }
-    .cmd-group-title { font-size: .65em; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); padding: 8px 10px 4px 10px; }
-    .cmd-item { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border-radius: 10px; cursor: pointer; transition: background-color .1s; gap: 10px; color: var(--text); text-decoration: none; }
-    .cmd-item:hover, .cmd-item.selected { background: var(--surface2); color: var(--text-strong); }
-    .cmd-item-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
-    .cmd-item-icon { width: 28px; height: 28px; border-radius: 8px; background: var(--surface3); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .cmd-item-icon svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .cmd-item-text { min-width: 0; }
-    .cmd-item-title { font-size: .85em; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-strong); }
-    .cmd-item-sub { font-size: .7em; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cmd-item-tag { font-size: .65em; padding: 2px 6px; border-radius: 6px; background: var(--surface3); color: var(--text-muted); flex-shrink: 0; }
-
-    /* ── Mobile Layout (< 768px) ────────────────────────────────────── */
     @media (max-width: 768px) {
-      body { flex-direction: column; padding-bottom: 70px; }
-      .sidebar {
-        position: fixed; bottom: 0; top: auto; left: 0; right: 0; width: 100%; height: 56px;
-        flex-direction: row; justify-content: space-around; padding: 0 16px; border-top: 1px solid var(--border);
-        border-right: none; background: rgba(18,22,30,.94); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); z-index: 90;
-      }
-      [data-theme="light"] .sidebar { background: rgba(255,255,255,.96); }
-      .sidebar .logo, .sidebar .spacer { display: none; }
-      .sb-btn { width: 44px; height: 44px; }
-      .sb-btn[data-tooltip]::after { display: none; }
-      .main { padding: 24px 16px 32px 16px; max-width: 100%; }
-      .grid { grid-template-columns: 1fr; gap: 10px; }
-
-      .panel-resizer { display: none; }
-      .panel-backdrop {
-        display: block; position: fixed; inset: 0; background: rgba(0,0,0,.65);
-        backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 95;
-        opacity: 0; pointer-events: none; transition: opacity .25s ease;
-      }
-      .panel-backdrop.active { opacity: 1; pointer-events: auto; }
-      .panel {
-        position: fixed; bottom: 0; top: auto; left: 0; right: 0; width: 100% !important;
-        min-width: 100% !important; max-width: 100% !important; height: 82vh; max-height: 85vh;
-        min-height: auto; border-radius: 24px 24px 0 0; border-top: 1px solid var(--border);
-        border-left: none; box-shadow: 0 -10px 40px rgba(0,0,0,.5); z-index: 100;
-        transform: translate3d(0, 105%, 0); will-change: transform;
-        transition: transform .28s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .panel.active { transform: translate3d(0, 0, 0); }
-      .mobile-handle {
-        display: block; width: 36px; height: 4px; background: var(--text-muted);
-        border-radius: 2px; margin: 10px auto 0 auto; opacity: .4; cursor: pointer; flex-shrink: 0;
-      }
+      .sidebar { top: auto; bottom: 0; left: 0; right: 0; width: 100%; height: 56px; flex-direction: row; justify-content: space-around; padding: 0 12px; border-right: none; border-top: 1px solid var(--border); }
+      .logo-img, .spacer { display: none; }
+      .main { margin-left: 0; padding: 20px 16px 80px 16px; }
+      .panel { width: 100%; max-width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Sidebar ─────────────────────────────────────────────────────── -->
+  <!-- ── Navigation ── -->
   <nav class="sidebar" aria-label="Main Navigation">
-    <div class="logo">
-      <a href="index.html"><img src="assets/sidebar_logo.png" alt="AI News" class="logo-img"></a>
-    </div>
+    <div class="logo"><img src="assets/sidebar_logo.png" alt="Logo" class="logo-img"></div>
     <a href="index.html" class="sb-btn" data-tooltip="News"><svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></a>
     <a href="tools.html" class="sb-btn" data-tooltip="Tools"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></a>
     <a href="prompts.html" class="sb-btn" data-tooltip="Prompts"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
-    <a href="models.html" class="sb-btn active" data-tooltip="Models Leaderboard"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10"/><path d="M7 12h6"/></svg></a>
+    <a href="models.html" class="sb-btn active" data-tooltip="AI Models & Thinking Playbook"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h10"/><path d="M7 12h6"/></svg></a>
     <a href="concepts.html" class="sb-btn" data-tooltip="AI Core Concepts"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="5" transform="rotate(-25 12 12)"/></svg></a>
     <button class="sb-btn" id="btnCmdPalette" data-tooltip="Command Palette (Ctrl+K)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button>
-    <button class="sb-btn" id="btnBookmarks" data-tooltip="Bookmarks"><svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="sb-badge" id="bmBadge" style="display:none;"></span></button>
     <div class="spacer"></div>
     <button class="sb-btn" id="btnTheme" data-tooltip="Theme"><svg id="themeIcon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button>
   </nav>
 
-  <!-- ── Main ───────────────────────────────────────────────────────── -->
+  <!-- ── Main ── -->
   <main class="main">
-    <h1>AI Models Leaderboard</h1>
-    <div class="date" id="dateBar">LMSYS Arena Elo · SWE-bench Coding · Context Windows · Token Pricing</div>
-
-    <div class="topbar">
-      <div class="search-wrap">
-        <label for="search">Search models</label>
-        <span class="search-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
-        <input class="search" id="search" type="search" placeholder="Search models or providers…" autocomplete="off">
-        <span class="search-shortcut">⌘K</span>
+    <div class="header-top">
+      <div>
+        <div class="header-tag">🧠 Frontier Intelligence & Reasoning Guide</div>
+        <h1>AI Models & Agent Thinking Playbook</h1>
+        <div class="subtitle">Complete playbook of reasoning models, thinking token budgets, max output capacities, and cost-efficiency matrices for AI agents & engineers.</div>
       </div>
-      <div class="sort-wrap">
+    </div>
+
+    <!-- ── Interactive Agent Thinking & Cost Advisor ── -->
+    <section class="advisor-card">
+      <div class="advisor-header">
+        <div class="advisor-title">
+          <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          <span>🎯 Interactive Agent Thinking & Cost Advisor</span>
+        </div>
+        <span class="advisor-badge">Efficiency Optimization</span>
+      </div>
+
+      <div class="advisor-select-wrap">
+        <label for="advisorScenarioSelect" style="font-size:0.78em;font-weight:700;color:var(--text-muted);text-transform:uppercase;">Select Agent Task / Scenario:</label>
+        <select class="advisor-select" id="advisorScenarioSelect">
+          <option value="coding_agent">🚀 Full-Stack Autonomous Coding Agent (Multi-File Refactor)</option>
+          <option value="math_logic">🧩 Hard Math, Algorithm Proofs & Competitive Logic</option>
+          <option value="fast_router">⚡ High-Throughput Agent Router / Data Extractor</option>
+          <option value="huge_context">🔍 1M+ Token Massive Codebase / Video Digestion</option>
+          <option value="self_hosted">🔒 Self-Hosted Privacy-Preserving Reasoning Agent</option>
+          <option value="voice_chat">💬 Real-Time Multimodal Voice & Chat Assistant</option>
+          <option value="quick_code">💻 IDE Inline Code Autocomplete & Fill-in-Middle</option>
+        </select>
+      </div>
+
+      <div class="advisor-result-grid" id="advisorResultGrid">
+        <!-- Dynamically rendered by JS -->
+      </div>
+    </section>
+
+    <!-- ── Thinking Modes Playbook ── -->
+    <div class="modes-guide">
+      <div class="mode-card">
+        <div class="mode-card-header">
+          <div class="mode-card-title">⚡ Standard Direct Mode</div>
+          <span class="mode-tag fast">0 Thinking Tokens</span>
+        </div>
+        <div class="mode-card-desc">Direct streaming token generation without internal chain-of-thought. Sub-second latency and minimal token cost.</div>
+        <div class="mode-card-when"><strong>When to use:</strong> Fast agent dispatch, simple translations, text extraction, customer support bots, and UI copy.</div>
+      </div>
+
+      <div class="mode-card">
+        <div class="mode-card-header">
+          <div class="mode-card-title">🔍 Moderate Thinking</div>
+          <span class="mode-tag mid">1K – 8K Budget</span>
+        </div>
+        <div class="mode-card-desc">Allocates a calibrated chain-of-thought budget to verify edge cases before generating the final answer.</div>
+        <div class="mode-card-when"><strong>When to use:</strong> Unit testing, single-file bug hunts, technical doc synthesis, and API integration logic.</div>
+      </div>
+
+      <div class="mode-card">
+        <div class="mode-card-header">
+          <div class="mode-card-title">🧠 Max Deep Thinking</div>
+          <span class="mode-tag deep">16K – 128K Budget</span>
+        </div>
+        <div class="mode-card-desc">Exhaustive reasoning tree with self-correction, backtracking, and deep architectural planning before writing code.</div>
+        <div class="mode-card-when"><strong>When to use:</strong> Complex repo refactors, formal mathematical proofs, cryptographic audits, and autonomous agent loops.</div>
+      </div>
+    </div>
+
+    <!-- ── Toolbar ── -->
+    <div class="toolbar">
+      <div class="tabs" id="categoryTabs">
+        <button class="tab active" data-cat="All">All Models (<span id="totalCount">0</span>)</button>
+        <button class="tab" data-cat="Reasoning & Agentic">Reasoning & Agentic</button>
+        <button class="tab" data-cat="Fast & Lightweight">Fast & Lightweight</button>
+        <button class="tab" data-cat="Coding & Agents">Coding & Agents</button>
+        <button class="tab" data-cat="Open Weights">Open Weights</button>
+        <button class="tab" data-cat="Bookmarked">★ Saved (<span id="bmCount">0</span>)</button>
+      </div>
+
+      <div class="filter-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="modelSearchInput" placeholder="Search models, providers, thinking modes..." autocomplete="off">
+        </div>
         <select class="sort-select" id="sortSelect">
-          <option value="elo">Sort by Arena Elo (Highest)</option>
-          <option value="swe">Sort by SWE-bench (Coding)</option>
-          <option value="math">Sort by Math / Reasoning</option>
-          <option value="price_low">Sort by Input Price (Lowest)</option>
-          <option value="price_high">Sort by Input Price (Highest)</option>
+          <option value="elo">Sort by Arena Elo (Top Intelligence)</option>
+          <option value="swe">Sort by SWE-bench (Coding Capability)</option>
+          <option value="price_low">Sort by Price: Low to High</option>
+          <option value="context">Sort by Context Window (Max Tokens)</option>
         </select>
       </div>
     </div>
 
-    <div class="tabs" id="tabs" role="tablist"></div>
-    <div class="grid" id="grid" role="list"></div>
+    <!-- ── Models Grid ── -->
+    <div class="grid" id="modelsGrid"></div>
   </main>
 
-  <!-- ── Mobile Backdrop ───────────────────────────────────────────── -->
+  <!-- ── Panel Backdrop & Drawer ── -->
   <div class="panel-backdrop" id="panelBackdrop"></div>
 
-  <!-- ── Resizable Antigravity Detail Panel ──────────────────────────── -->
   <aside class="panel" id="panel">
-    <div class="panel-resizer" id="panelResizer" title="Drag to resize"></div>
-    <div class="mobile-handle"></div>
+    <div class="panel-resizer" id="panelResizer"></div>
     <div class="panel-header">
       <div class="panel-header-title">
-        <svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
-        <span>Model Details</span>
+        <svg style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+        <span>Model & Thinking Specs</span>
       </div>
-      <div class="panel-header-actions">
-        <button class="panel-tool-btn" id="panelCloseBtn" title="Close panel">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
+      <button class="panel-close-btn" id="panelCloseBtn">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
     </div>
-    <div class="panel-body" id="panelBody">
-      <div class="panel-empty">
-        <div class="panel-hint">📊</div>
-        <p>Select a model to view full benchmarks, context limits, and token pricing calculator.</p>
-      </div>
-    </div>
+    <div class="panel-body" id="panelBody"></div>
   </aside>
 
-  <!-- ── Universal Command Palette Modal ────────────────────────────── -->
-  <div class="overlay" id="cmdOverlay" role="dialog" aria-modal="true">
-    <div class="modal" style="max-width: 580px;">
-      <div class="cmd-palette-input-wrap">
+  <!-- ── Universal Ctrl+K Command Palette ── -->
+  <div class="cmd-palette-backdrop" id="cmdPalette">
+    <div class="cmd-palette-modal">
+      <div class="cmd-palette-input-row">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" class="cmd-palette-input" id="cmdInput" placeholder="Type a command or search news, tools, prompts, models…" autocomplete="off">
-        <span class="cmd-badge">ESC</span>
+        <input type="text" class="cmd-palette-input" id="cmdInput" placeholder="Search models, thinking modes, tools, news... (Esc to close)" autocomplete="off">
       </div>
-      <div class="cmd-results" id="cmdResults"></div>
-    </div>
-  </div>
-
-  <!-- ── Bookmarks Overlay ─────────────────────────────────────────── -->
-  <div class="overlay" id="bmOverlay" role="dialog" aria-modal="true">
-    <div class="modal">
-      <div class="modal-header">
-        <h3>Saved Bookmarks</h3>
-        <button class="modal-close" id="bmClose"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-      </div>
-      <div class="modal-body" id="bmList"></div>
+      <div class="cmd-palette-results" id="cmdResults"></div>
     </div>
   </div>
 
   <script>
-    /* ── State ─────────────────────────────────────────────────────── */
+    /* ── State & Data ── */
     let allModels = [];
-    let activeCat = 'All';
-    let searchQuery = '';
-    let sortMode = 'elo';
-    let selectedModel = null;
-    let bookmarks = JSON.parse(localStorage.getItem('ainews_bm_models') || '[]');
+    let currentCategory = 'All';
+    let selectedModelId = null;
+    let bookmarks = new Set(JSON.parse(localStorage.getItem('chrono_model_bookmarks') || '[]'));
 
-    /* ── DOM References ────────────────────────────────────────────── */
-    const grid = document.getElementById('grid');
-    const tabsContainer = document.getElementById('tabs');
-    const searchInput = document.getElementById('search');
-    const sortSelect = document.getElementById('sortSelect');
-    const panel = document.getElementById('panel');
-    const panelBody = document.getElementById('panelBody');
-    const panelCloseBtn = document.getElementById('panelCloseBtn');
-    const panelBackdrop = document.getElementById('panelBackdrop');
-    const panelResizer = document.getElementById('panelResizer');
-    const btnBookmarks = document.getElementById('btnBookmarks');
-    const bmBadge = document.getElementById('bmBadge');
-    const bmOverlay = document.getElementById('bmOverlay');
-    const bmClose = document.getElementById('bmClose');
-    const bmList = document.getElementById('bmList');
-    const btnTheme = document.getElementById('btnTheme');
-    const themeIcon = document.getElementById('themeIcon');
-    const btnCmdPalette = document.getElementById('btnCmdPalette');
-    const cmdOverlay = document.getElementById('cmdOverlay');
-    const cmdInput = document.getElementById('cmdInput');
-    const cmdResults = document.getElementById('cmdResults');
-
-    /* ── Theme ─────────────────────────────────────────────────────── */
-    function initTheme() {
-      const saved = localStorage.getItem('ainews_theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', saved);
-      updateThemeIcon(saved);
-    }
-    function toggleTheme() {
-      const cur = document.documentElement.getAttribute('data-theme');
-      const next = cur === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('ainews_theme', next);
-      updateThemeIcon(next);
-    }
-    function updateThemeIcon(theme) {
-      if (theme === 'light') {
-        themeIcon.innerHTML = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
-      } else {
-        themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    /* ── Advisor Scenarios Knowledge Base ── */
+    const ADVISOR_SCENARIOS = {
+      coding_agent: {
+        model_id: "claude-3-7-sonnet",
+        name: "Claude 3.7 Sonnet",
+        mode: "Extended Thinking Mode (8,000 – 32,000 Tokens)",
+        max_output: "128,000 tokens",
+        cost_est: "$0.04 – $0.25 / agent step",
+        efficiency: "9.9 / 10",
+        rationale: "World #1 on SWE-bench (70.3%). Dynamic thinking budget gives the agent time to construct complete file diffs without hallucinating function signatures."
+      },
+      math_logic: {
+        model_id: "openai-o3-mini",
+        name: "OpenAI o3-mini",
+        mode: "Reasoning Effort: High (max tokens allocated)",
+        max_output: "100,000 tokens",
+        cost_est: "$0.01 – $0.05 / proof",
+        efficiency: "9.8 / 10",
+        rationale: "Top-tier 96.8% AIME score at 1/4 the cost of o1. Fast latency with deep mathematical chain-of-thought verification."
+      },
+      fast_router: {
+        model_id: "gemini-2-5-flash",
+        name: "Gemini 2.5 Flash",
+        mode: "Standard Fast Direct Mode (0 Thinking Tokens)",
+        max_output: "64,000 tokens",
+        cost_est: "< $0.001 / 10 calls",
+        efficiency: "9.9 / 10",
+        rationale: "Sub-200ms TTFT latency with extreme cost efficiency ($0.075/1M input tokens). Ideal for routing, parsing, and structured extraction."
+      },
+      huge_context: {
+        model_id: "gemini-2-0-pro",
+        name: "Gemini 2.0 Pro Experimental",
+        mode: "Adaptive Thinking with 2M Working Memory",
+        max_output: "64,000 tokens",
+        cost_est: "$0.10 – $0.50 / full repo dump",
+        efficiency: "9.4 / 10",
+        rationale: "Can ingest 100+ codebase files or multi-hour video transcripts in a single context window without needing chunking."
+      },
+      self_hosted: {
+        model_id: "deepseek-r1",
+        name: "DeepSeek R1",
+        mode: "Pure RL Self-Correction Chain-of-Thought",
+        max_output: "32,000 tokens",
+        cost_est: "$0.00 (Self-Hosted) or $0.55/1M API",
+        efficiency: "9.7 / 10",
+        rationale: "Open-weights MIT license. Full visibility into reasoning tokens, perfect for privacy-constrained enterprise deployments."
+      },
+      voice_chat: {
+        model_id: "gpt-4o",
+        name: "GPT-4o (Omni)",
+        mode: "Standard Direct Low-Latency Streaming",
+        max_output: "16,384 tokens",
+        cost_est: "$0.005 – $0.02 / conversation turn",
+        efficiency: "9.2 / 10",
+        rationale: "Native audio/vision modal processing with warm conversational tone and rapid response generation."
+      },
+      quick_code: {
+        model_id: "qwen-2-5-coder-32b",
+        name: "Qwen 2.5 Coder 32B",
+        mode: "Standard Fill-in-the-Middle (FIM)",
+        max_output: "8,192 tokens",
+        cost_est: "$0.20 / 1M tokens",
+        efficiency: "9.6 / 10",
+        rationale: "Open weights, runs locally on RTX 3090/4090 GPUs. Zero latency autocomplete directly in VS Code / Neovim."
       }
-    }
-    btnTheme.addEventListener('click', toggleTheme);
-    initTheme();
+    };
 
-    /* ── Fetch Data ────────────────────────────────────────────────── */
-    async function loadData() {
-      try {
-        const res = await fetch('models.json');
-        if (!res.ok) throw new Error('Fetch failed');
-        allModels = await res.json();
-      } catch (e) {
-        console.warn('Falling back to local models structure', e);
-      }
-      renderTabs();
-      renderGrid();
-      updateBmBadge();
-    }
-
-    /* ── Sorting & Filtering ───────────────────────────────────────── */
-    function getFilteredModels() {
-      return allModels.filter(m => {
-        const matchCat = activeCat === 'All' || m.category === activeCat || (activeCat === 'Open Weights' && m.is_open);
-        const query = searchQuery.toLowerCase();
-        const matchSearch = !query || 
-          m.name.toLowerCase().includes(query) || 
-          m.provider.toLowerCase().includes(query) || 
-          m.strengths.toLowerCase().includes(query);
-        return matchCat && matchSearch;
-      }).sort((a, b) => {
-        if (sortMode === 'elo') return b.arena_elo - a.arena_elo;
-        if (sortMode === 'swe') return b.swe_bench - a.swe_bench;
-        if (sortMode === 'math') return b.math_score - a.math_score;
-        if (sortMode === 'price_low') return a.price_input - b.price_input;
-        if (sortMode === 'price_high') return b.price_input - a.price_input;
-        return 0;
-      });
+    /* ── Render Advisor Box ── */
+    function renderAdvisor(scenarioKey) {
+      const s = ADVISOR_SCENARIOS[scenarioKey] || ADVISOR_SCENARIOS.coding_agent;
+      const grid = document.getElementById('advisorResultGrid');
+      grid.innerHTML = `
+        <div class="advisor-stat-item">
+          <span class="advisor-stat-lbl">Recommended Model</span>
+          <span class="advisor-stat-val accent">${s.name}</span>
+        </div>
+        <div class="advisor-stat-item">
+          <span class="advisor-stat-lbl">Optimal Thinking Mode</span>
+          <span class="advisor-stat-val gold">${s.mode}</span>
+        </div>
+        <div class="advisor-stat-item">
+          <span class="advisor-stat-lbl">Max Output Capacity</span>
+          <span class="advisor-stat-val">${s.max_output}</span>
+        </div>
+        <div class="advisor-stat-item">
+          <span class="advisor-stat-lbl">Est. Cost / Step</span>
+          <span class="advisor-stat-val success">${s.cost_est}</span>
+        </div>
+        <div class="advisor-why">
+          <strong>💡 Why this mode:</strong> ${s.rationale}
+        </div>
+      `;
     }
 
-    /* ── Tabs ──────────────────────────────────────────────────────── */
-    function renderTabs() {
-      const cats = ['All', 'Reasoning', 'Coding', 'Open Weights', 'Vision / Multimodal', 'Fast & Lightweight'];
-      tabsContainer.innerHTML = cats.map(cat => {
-        let count = 0;
-        if (cat === 'All') count = allModels.length;
-        else if (cat === 'Open Weights') count = allModels.filter(m => m.is_open).length;
-        else count = allModels.filter(m => m.category === cat).length;
-        const activeClass = cat === activeCat ? 'active' : '';
-        return `<button class="tab ${activeClass}" data-cat="${cat}">${cat} <span class="tab-count">${count}</span></button>`;
-      }).join('');
-    }
-
-    tabsContainer.addEventListener('click', e => {
-      const tab = e.target.closest('.tab');
-      if (!tab) return;
-      activeCat = tab.dataset.cat;
-      renderTabs();
-      renderGrid();
+    document.getElementById('advisorScenarioSelect').addEventListener('change', (e) => {
+      renderAdvisor(e.target.value);
     });
 
-    /* ── Grid Rendering ────────────────────────────────────────────── */
-    function renderGrid() {
-      const models = getFilteredModels();
+    /* ── Theme ── */
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const icon = document.getElementById('themeIcon');
+      if (icon) {
+        icon.innerHTML = theme === 'dark'
+          ? '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>'
+          : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+      }
+    }
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(savedTheme);
+    document.getElementById('btnTheme').addEventListener('click', () => {
+      const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+    });
+
+    /* ── Load Models ── */
+    async function loadModels() {
+      try {
+        const res = await fetch('models.json?v=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        allModels = await res.json();
+        document.getElementById('totalCount').textContent = allModels.length;
+        document.getElementById('bmCount').textContent = bookmarks.size;
+        renderAdvisor('coding_agent');
+        renderFiltered();
+      } catch (err) {
+        console.error('Failed loading models:', err);
+      }
+    }
+
+    /* ── Filtering & Sorting ── */
+    function getActiveModels() {
+      const q = document.getElementById('modelSearchInput').value.trim().toLowerCase();
+      const sort = document.getElementById('sortSelect').value;
+
+      let list = allModels;
+      if (currentCategory === 'Bookmarked') {
+        list = allModels.filter(m => bookmarks.has(m.id));
+      } else if (currentCategory !== 'All') {
+        list = allModels.filter(m => m.category.toLowerCase().includes(currentCategory.toLowerCase()) || (m.is_open && currentCategory === 'Open Weights'));
+      }
+
+      if (q) {
+        list = list.filter(m =>
+          m.name.toLowerCase().includes(q) ||
+          m.provider.toLowerCase().includes(q) ||
+          (m.thinking_mode && m.thinking_mode.toLowerCase().includes(q)) ||
+          (m.when_to_use && m.when_to_use.toLowerCase().includes(q))
+        );
+      }
+
+      // Sort
+      list = [...list].sort((a, b) => {
+        if (sort === 'elo') return (b.arena_elo || 0) - (a.arena_elo || 0);
+        if (sort === 'swe') return (b.swe_bench || 0) - (a.swe_bench || 0);
+        if (sort === 'price_low') return (a.price_input || 0) - (b.price_input || 0);
+        if (sort === 'context') return (b.context_tokens || 0) - (a.context_tokens || 0);
+        return 0;
+      });
+
+      return list;
+    }
+
+    function renderFiltered() {
+      const models = getActiveModels();
+      const grid = document.getElementById('modelsGrid');
       if (!models.length) {
-        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted)">No models matching your criteria.</div>';
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;color:var(--text-muted)">No models matching your criteria.</div>';
         return;
       }
 
-      grid.innerHTML = models.map(m => {
-        const isBm = bookmarks.some(b => b.id === m.id);
-        const isSel = selectedModel && selectedModel.id === m.id;
-        const badgeClass = m.is_open ? 'card-badge open-weight' : 'card-badge';
-        const badgeLabel = m.is_open ? 'Open Weights' : m.category;
-        
-        return `
-          <div class="card ${isSel ? 'selected' : ''}" data-id="${m.id}" role="listitem">
-            <button class="card-bookmark ${isBm ? 'bookmarked' : ''}" data-id="${m.id}" title="${isBm ? 'Remove Bookmark' : 'Bookmark'}">
-              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            </button>
-            <div class="card-top">
-              <span class="card-provider">${m.provider}</span>
-              <span class="${badgeClass}">${badgeLabel}</span>
+      grid.innerHTML = models.map(m => `
+        <article class="card ${m.id === selectedModelId ? 'selected' : ''}" data-id="${m.id}">
+          <div class="card-top">
+            <span class="card-provider">${m.provider}</span>
+            <span class="card-thinking-badge">${m.is_open ? 'Open Weights' : 'Proprietary'}</span>
+          </div>
+          <div class="card-title">${m.name}</div>
+          
+          <div class="stats-row">
+            <div class="stat-box">
+              <div class="lbl">SWE-bench Coding</div>
+              <div class="val accent">${m.swe_bench ? m.swe_bench + '%' : 'N/A'}</div>
             </div>
-            <div class="card-title">${m.name}</div>
-            
-            <div class="stats-row">
-              <div class="stat-box">
-                <div class="lbl">Arena Elo</div>
-                <div class="val accent">${m.arena_elo}</div>
-              </div>
-              <div class="stat-box">
-                <div class="lbl">SWE-bench</div>
-                <div class="val success">${m.swe_bench}%</div>
-              </div>
-            </div>
-
-            <div class="card-footer">
-              <span>Context: <strong>${m.context_window}</strong></span>
-              <span class="pricing-tag">$${m.price_input} / $${m.price_output}</span>
+            <div class="stat-box">
+              <div class="lbl">Math Score</div>
+              <div class="val success">${m.math_score ? m.math_score + '%' : 'N/A'}</div>
             </div>
           </div>
-        `;
-      }).join('');
+
+          <div class="card-when-box">
+            <strong>🧠 Thinking & Mode:</strong> ${m.thinking_mode || 'Standard Direct'}
+          </div>
+
+          <div class="card-footer">
+            <span>Ctx: ${m.context_window} · Out: ${m.max_output_tokens || '8K'}</span>
+            <span class="pricing-tag">$${m.price_input}/M in</span>
+          </div>
+        </article>
+      `).join('');
+
+      grid.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+          openModelPanel(card.dataset.id);
+        });
+      });
     }
 
-    /* ── Detail Panel ──────────────────────────────────────────────── */
-    function selectModel(m) {
-      selectedModel = m;
-      const isBm = bookmarks.some(b => b.id === m.id);
+    document.getElementById('modelSearchInput').addEventListener('input', renderFiltered);
+    document.getElementById('sortSelect').addEventListener('change', renderFiltered);
 
-      panelBody.innerHTML = `
-        <div class="model-detail-header">
-          <div class="model-detail-provider">${m.provider}</div>
-          <div class="model-detail-name">${m.name}</div>
-          <div class="model-tags">
-            <span class="model-tag">${m.category}</span>
-            <span class="model-tag">${m.license_type}</span>
-            <span class="model-tag">${m.multimodal ? 'Multimodal' : 'Text-Only'}</span>
-            <span class="model-tag">Rel: ${m.release_date}</span>
+    /* ── Category Tabs ── */
+    document.getElementById('categoryTabs').addEventListener('click', (e) => {
+      const tab = e.target.closest('.tab');
+      if (!tab) return;
+      document.querySelectorAll('#categoryTabs .tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentCategory = tab.dataset.cat;
+      renderFiltered();
+    });
+
+    /* ── Model Panel & Token Calculator ── */
+    const panel = document.getElementById('panel');
+    const panelBackdrop = document.getElementById('panelBackdrop');
+    const panelCloseBtn = document.getElementById('panelCloseBtn');
+
+    function openModelPanel(id) {
+      const m = allModels.find(item => item.id === id);
+      if (!m) return;
+      selectedModelId = m.id;
+
+      const isBm = bookmarks.has(m.id);
+
+      document.getElementById('panelBody').innerHTML = `
+        <div class="detail-heading">
+          <div class="detail-provider">${m.provider}</div>
+          <div class="detail-name">${m.name}</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="card-thinking-badge">${m.category}</span>
+            <span class="card-thinking-badge">${m.license_type}</span>
           </div>
         </div>
 
-        <div class="bench-card">
-          <div class="bench-title">Key Benchmark Scores</div>
-          
-          <div class="bench-bar-item">
-            <div class="bench-bar-label">
-              <span>LMSYS Chatbot Arena Elo</span>
-              <strong>${m.arena_elo}</strong>
-            </div>
-            <div class="bench-bar-bg"><div class="bench-bar-fill" style="width: ${((m.arena_elo - 1200) / 220) * 100}%"></div></div>
-          </div>
-
-          <div class="bench-bar-item">
-            <div class="bench-bar-label">
-              <span>SWE-bench Verified (Coding)</span>
-              <strong>${m.swe_bench}%</strong>
-            </div>
-            <div class="bench-bar-bg"><div class="bench-bar-fill" style="width: ${m.swe_bench}%"></div></div>
-          </div>
-
-          <div class="bench-bar-item">
-            <div class="bench-bar-label">
-              <span>MATH / Reasoning Score</span>
-              <strong>${m.math_score}%</strong>
-            </div>
-            <div class="bench-bar-bg"><div class="bench-bar-fill" style="width: ${m.math_score}%"></div></div>
-          </div>
+        <div class="panel-section-title">🧠 Thinking Mode & Strategy</div>
+        <div class="panel-card-box thinking-box">
+          ${m.thinking_mode || 'Standard direct token streaming with zero thinking latency.'}
         </div>
 
+        <div class="panel-section-title">🎯 When to Use at Peak Efficiency</div>
+        <div class="panel-card-box when-box">
+          ${m.when_to_use || m.strengths}
+        </div>
+
+        <div class="panel-section-title">📊 Key Architecture & Token Specs</div>
         <table class="spec-table">
           <tr><td>Context Window</td><td>${m.context_window}</td></tr>
-          <tr><td>Input Price</td><td>$${m.price_input} / 1M tokens</td></tr>
-          <tr><td>Output Price</td><td>$${m.price_output} / 1M tokens</td></tr>
-          <tr><td>License / Weights</td><td>${m.is_open ? 'Open Weights' : 'API Only'}</td></tr>
+          <tr><td>Max Output Capacity</td><td>${m.max_output_tokens || '8,192 tokens'}</td></tr>
+          <tr><td>Arena Elo Rating</td><td>${m.arena_elo || 'N/A'}</td></tr>
+          <tr><td>SWE-bench Verified</td><td>${m.swe_bench ? m.swe_bench + '%' : 'N/A'}</td></tr>
+          <tr><td>Input Token Price</td><td>$${m.price_input} / 1M tokens</td></tr>
+          <tr><td>Output Token Price</td><td>$${m.price_output} / 1M tokens</td></tr>
+          <tr><td>Efficiency Score</td><td><span style="color:var(--success);font-weight:800;">${m.efficiency_rating || '9.5 / 10'}</span></td></tr>
         </table>
 
-        <!-- Token Calculator -->
+        <!-- Interactive Live Token Calculator -->
         <div class="calc-box">
           <div class="calc-title">
-            <svg style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
-            <span>Token Cost Estimator</span>
+            <svg style="width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg>
+            <span>Live Token Cost Calculator</span>
           </div>
-          <div class="calc-inputs">
-            <div class="calc-field">
-              <label>Input (Tokens)</label>
-              <input type="number" id="calcInputTok" value="100000" step="10000">
-            </div>
-            <div class="calc-field">
-              <label>Output (Tokens)</label>
-              <input type="number" id="calcOutputTok" value="20000" step="5000">
-            </div>
+          <div class="calc-row">
+            <label>Input Tokens: <span id="calcInVal">10,000</span></label>
+            <input type="range" id="calcInSlider" min="1000" max="200000" step="1000" value="10000">
           </div>
-          <div class="calc-result">
-            <span>Estimated Cost:</span>
-            <span class="calc-cost" id="calcCostVal">$0.00</span>
+          <div class="calc-row">
+            <label>Output + Thinking Tokens: <span id="calcOutVal">4,000</span></label>
+            <input type="range" id="calcOutSlider" min="500" max="64000" step="500" value="4000">
+          </div>
+          <div class="calc-total-box">
+            <span style="font-size:0.75em;color:var(--text-muted);">Estimated Query Cost:</span>
+            <span class="calc-cost" id="calcTotalCost">$0.09</span>
           </div>
         </div>
 
-        <div class="panel-strengths">${m.strengths}</div>
-
-        <a href="${m.link}" target="_blank" rel="noopener noreferrer" class="open-btn">Launch API / Docs ↗</a>
-        <button class="bm-btn ${isBm ? 'bookmarked' : ''}" id="panelBmBtn">
-          ${isBm ? '★ In Bookmarks' : '☆ Save to Bookmarks'}
-        </button>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:8px;">
+          <a href="${m.link}" target="_blank" rel="noopener" style="display:block;text-align:center;background:var(--accent);color:#fff;padding:12px;border-radius:12px;text-decoration:none;font-weight:700;font-size:0.85em;">Official Provider Playground ↗</a>
+          <button id="panelBmBtn" style="background:var(--surface2);border:1px solid var(--border);color:var(--text-strong);padding:10px;border-radius:12px;cursor:pointer;font-weight:600;font-size:0.82em;">
+            ${isBm ? '★ Saved in Bookmarks' : '☆ Save Model to Bookmarks'}
+          </button>
+        </div>
       `;
 
-      // Recalculate cost
-      updateCostEstimate(m);
-      document.getElementById('calcInputTok').addEventListener('input', () => updateCostEstimate(m));
-      document.getElementById('calcOutputTok').addEventListener('input', () => updateCostEstimate(m));
+      panel.classList.add('active');
+      panelBackdrop.classList.add('active');
 
+      // Hook up calculator
+      const inSlider = document.getElementById('calcInSlider');
+      const outSlider = document.getElementById('calcOutSlider');
+      const inVal = document.getElementById('calcInVal');
+      const outVal = document.getElementById('calcOutVal');
+      const totalCost = document.getElementById('calcTotalCost');
+
+      function updateCalc() {
+        const inTokens = +inSlider.value;
+        const outTokens = +outSlider.value;
+        inVal.textContent = inTokens.toLocaleString();
+        outVal.textContent = outTokens.toLocaleString();
+        const cost = ((inTokens / 1000000) * m.price_input) + ((outTokens / 1000000) * m.price_output);
+        totalCost.textContent = '$' + cost.toFixed(4);
+      }
+      inSlider.addEventListener('input', updateCalc);
+      outSlider.addEventListener('input', updateCalc);
+      updateCalc();
+
+      // Hook bookmark
       document.getElementById('panelBmBtn').addEventListener('click', () => {
-        toggleBookmark(m);
-        selectModel(m);
+        if (bookmarks.has(m.id)) bookmarks.delete(m.id);
+        else bookmarks.add(m.id);
+        localStorage.setItem('chrono_model_bookmarks', JSON.stringify([...bookmarks]));
+        document.getElementById('bmCount').textContent = bookmarks.size;
+        openModelPanel(m.id);
+        renderFiltered();
       });
-
-      openMobilePanel();
-      renderGrid();
-    }
-
-    function updateCostEstimate(m) {
-      const inTok = parseFloat(document.getElementById('calcInputTok')?.value || 0);
-      const outTok = parseFloat(document.getElementById('calcOutputTok')?.value || 0);
-      const cost = ((inTok / 1000000) * m.price_input) + ((outTok / 1000000) * m.price_output);
-      const el = document.getElementById('calcCostVal');
-      if (el) el.textContent = '$' + cost.toFixed(4);
     }
 
     function closePanel() {
-      selectedModel = null;
       panel.classList.remove('active');
       panelBackdrop.classList.remove('active');
-      panelBody.innerHTML = `
-        <div class="panel-empty">
-          <div class="panel-hint">📊</div>
-          <p>Select a model to view full benchmarks, context limits, and token pricing calculator.</p>
-        </div>
-      `;
-      renderGrid();
     }
-
-    function openMobilePanel() {
-      if (window.innerWidth <= 768) {
-        panel.classList.add('active');
-        panelBackdrop.classList.add('active');
-      }
-    }
-
     panelCloseBtn.addEventListener('click', closePanel);
     panelBackdrop.addEventListener('click', closePanel);
-    document.querySelector('.mobile-handle')?.addEventListener('click', closePanel);
 
-    /* ── Event Delegation for Grid ─────────────────────────────────── */
-    grid.addEventListener('click', e => {
-      const bmBtn = e.target.closest('.card-bookmark');
-      if (bmBtn) {
-        e.stopPropagation();
-        const id = bmBtn.dataset.id;
-        const m = allModels.find(x => x.id === id);
-        if (m) toggleBookmark(m);
-        return;
-      }
-      const card = e.target.closest('.card');
-      if (card) {
-        const id = card.dataset.id;
-        const m = allModels.find(x => x.id === id);
-        if (m) selectModel(m);
-      }
-    });
-
-    /* ── Search & Sort Listeners ───────────────────────────────────── */
-    searchInput.addEventListener('input', e => {
-      searchQuery = e.target.value;
-      renderGrid();
-    });
-    sortSelect.addEventListener('change', e => {
-      sortMode = e.target.value;
-      renderGrid();
-    });
-
-    /* ── Bookmarks Management ──────────────────────────────────────── */
-    function toggleBookmark(m) {
-      const idx = bookmarks.findIndex(b => b.id === m.id);
-      if (idx > -1) {
-        bookmarks.splice(idx, 1);
-      } else {
-        bookmarks.push(m);
-      }
-      localStorage.setItem('ainews_bm_models', JSON.stringify(bookmarks));
-      updateBmBadge();
-      renderGrid();
-    }
-    function updateBmBadge() {
-      if (bookmarks.length > 0) {
-        bmBadge.style.display = 'block';
-      } else {
-        bmBadge.style.display = 'none';
-      }
-    }
-
-    btnBookmarks.addEventListener('click', () => {
-      if (!bookmarks.length) {
-        bmList.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:20px;">No saved models yet.</p>';
-      } else {
-        bmList.innerHTML = bookmarks.map(m => `
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);">
-            <div>
-              <div style="font-weight:600;color:var(--text-strong);">${m.name}</div>
-              <div style="font-size:0.75em;color:var(--text-muted);">${m.provider} · Elo ${m.arena_elo}</div>
-            </div>
-            <button class="panel-tool-btn" data-remove-id="${m.id}" title="Remove">✕</button>
-          </div>
-        `).join('');
-      }
-      bmOverlay.classList.add('active');
-    });
-
-    bmClose.addEventListener('click', () => bmOverlay.classList.remove('active'));
-    bmOverlay.addEventListener('click', e => { if (e.target === bmOverlay) bmOverlay.classList.remove('active'); });
-    bmList.addEventListener('click', e => {
-      const btn = e.target.closest('[data-remove-id]');
-      if (!btn) return;
-      const id = btn.dataset.removeId;
-      const m = allModels.find(x => x.id === id);
-      if (m) toggleBookmark(m);
-      btnBookmarks.click();
-    });
-
-    /* ── Panel Resizing (Desktop) ──────────────────────────────────── */
-    let isResizing = false;
-    let rAF = null;
-    panelResizer.addEventListener('mousedown', e => {
-      isResizing = true;
-      panelResizer.classList.add('dragging');
-      document.body.style.cursor = 'col-resize';
-      document.body.style.userSelect = 'none';
-    });
-    window.addEventListener('mousemove', e => {
-      if (!isResizing) return;
-      if (rAF) cancelAnimationFrame(rAF);
-      rAF = requestAnimationFrame(() => {
-        const newW = window.innerWidth - e.clientX;
-        if (newW >= 280 && newW <= 650) {
-          panel.style.width = newW + 'px';
-          localStorage.setItem('ainews_panel_w', newW);
-        }
-      });
-    }, { passive: true });
-    window.addEventListener('mouseup', () => {
-      if (!isResizing) return;
-      isResizing = false;
-      panelResizer.classList.remove('dragging');
-      document.body.style.cursor = '';
-      document.body.style.userSelect = '';
-    });
-
-    const savedW = localStorage.getItem('ainews_panel_w');
-    if (savedW && window.innerWidth > 768) {
-      panel.style.width = savedW + 'px';
-    }
-
-    /* ── Universal Command Palette Logic ───────────────────────────── */
-    let cmdData = { news: [], tools: [], prompts: [], models: [], concepts: [] };
-    let cmdDataLoaded = false;
-    let activeCmdIndex = 0;
-
-    async function ensureCmdData() {
-      if (cmdDataLoaded) return;
-      try {
-        const [nRes, tRes, pRes, mRes, cRes] = await Promise.all([
-          fetch('news.json').catch(() => null),
-          fetch('tools.json').catch(() => null),
-          fetch('prompts.json').catch(() => null),
-          fetch('models.json').catch(() => null),
-          fetch('concepts.json').catch(() => null)
-        ]);
-        if (nRes && nRes.ok) { const d = await nRes.json(); cmdData.news = d.articles || []; }
-        if (tRes && tRes.ok) cmdData.tools = await tRes.json();
-        if (pRes && pRes.ok) cmdData.prompts = await pRes.json();
-        if (mRes && mRes.ok) cmdData.models = await mRes.json();
-        if (cRes && cRes.ok) cmdData.concepts = await cRes.json();
-        cmdDataLoaded = true;
-      } catch (e) {
-        console.warn('Failed loading cmd palette data', e);
-      }
-    }
+    /* ── Command Palette (Ctrl+K) ── */
+    const cmdPalette = document.getElementById('cmdPalette');
+    const cmdInput = document.getElementById('cmdInput');
+    const cmdResults = document.getElementById('cmdResults');
 
     function openCmdPalette() {
-      cmdOverlay.classList.add('active');
+      cmdPalette.classList.add('open');
       cmdInput.value = '';
-      ensureCmdData().then(() => renderCmdResults(''));
-      setTimeout(() => cmdInput.focus(), 50);
+      renderCmdResults('');
+      cmdInput.focus();
     }
+    function closeCmdPalette() { cmdPalette.classList.remove('open'); }
+    document.getElementById('btnCmdPalette').addEventListener('click', openCmdPalette);
 
-    function closeCmdPalette() {
-      cmdOverlay.classList.remove('active');
-    }
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        cmdPalette.classList.contains('open') ? closeCmdPalette() : openCmdPalette();
+      } else if (e.key === 'Escape') {
+        if (cmdPalette.classList.contains('open')) closeCmdPalette();
+        if (panel.classList.contains('active')) closePanel();
+      }
+    });
+    cmdPalette.addEventListener('click', (e) => {
+      if (e.target === cmdPalette) closeCmdPalette();
+    });
+
+    const cmdActions = [
+      { type: 'action', title: 'Go to News Digest', sub: 'index.html', link: 'index.html', icon: '📰' },
+      { type: 'action', title: 'Go to AI Tools Directory', sub: 'tools.html', link: 'tools.html', icon: '🛠️' },
+      { type: 'action', title: 'Go to Prompt Library', sub: 'prompts.html', link: 'prompts.html', icon: '💬' },
+      { type: 'action', title: 'Go to AI Models & Thinking Playbook', sub: 'models.html', link: 'models.html', icon: '🧠' },
+      { type: 'action', title: 'Go to AI Core Concepts', sub: 'concepts.html', link: 'concepts.html', icon: '📚' },
+      { type: 'action_theme', title: 'Toggle Theme (Dark / Light)', sub: 'Action', icon: '🌓' },
+    ];
 
     function renderCmdResults(query) {
       const q = query.toLowerCase().trim();
       let resultsHtml = '';
-      let items = [];
-
-      // Default Navigation Actions
-      const actions = [
-        { type: 'action', title: 'Go to News Digest', sub: 'index.html', link: 'index.html', icon: '📰' },
-        { type: 'action', title: 'Go to AI Tools Directory', sub: 'tools.html', link: 'tools.html', icon: '🛠️' },
-        { type: 'action', title: 'Go to Prompt Library', sub: 'prompts.html', link: 'prompts.html', icon: '💬' },
-        { type: 'action', title: 'Go to Models Leaderboard', sub: 'models.html', link: 'models.html', icon: '📊' },
-        { type: 'action', title: 'Go to AI Core Concepts & Orbit', sub: 'concepts.html', link: 'concepts.html', icon: '🪐' },
-        { type: 'action_theme', title: 'Toggle Theme (Dark / Light)', sub: 'Action', icon: '🌓' },
-      ];
 
       if (!q) {
-        resultsHtml += `<div class="cmd-group-title">Quick Actions</div>`;
-        actions.forEach((a, i) => {
-          items.push(a);
+        resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">Quick Actions</div>`;
+        cmdActions.forEach((a) => {
           resultsHtml += `
-            <div class="cmd-item ${i === 0 ? 'selected' : ''}" data-cmd-idx="${i}" data-action="${a.type}" data-link="${a.link || ''}">
-              <div class="cmd-item-left">
-                <div class="cmd-item-icon">${a.icon}</div>
-                <div class="cmd-item-text">
+            <div class="cmd-item" data-action="${a.type}" data-link="${a.link || ''}">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <div style="font-size:1.1em;">${a.icon}</div>
+                <div>
                   <div class="cmd-item-title">${a.title}</div>
-                  <div class="cmd-item-sub">${a.sub}</div>
+                  <div class="cmd-item-meta">${a.sub}</div>
                 </div>
               </div>
-              <span class="cmd-item-tag">Action</span>
+              <span style="font-size:0.75em;color:var(--accent);">Go ↵</span>
             </div>
           `;
         });
       } else {
-        // Filter across datasets
-        const matchActions = actions.filter(a => a.title.toLowerCase().includes(q) || a.sub.toLowerCase().includes(q));
-        const matchConcepts = (cmdData.concepts || []).filter(c => c.name.toLowerCase().includes(q) || (c.simple_definition && c.simple_definition.toLowerCase().includes(q)) || (c.category && c.category.toLowerCase().includes(q))).slice(0, 4);
-        const matchModels = (cmdData.models.length ? cmdData.models : allModels).filter(m => m.name.toLowerCase().includes(q) || m.provider.toLowerCase().includes(q)).slice(0, 4);
-        const matchNews = cmdData.news.filter(n => n.title.toLowerCase().includes(q)).slice(0, 4);
-        const matchTools = cmdData.tools.filter(t => t.title.toLowerCase().includes(q) || (t.category && t.category.toLowerCase().includes(q))).slice(0, 4);
-        const matchPrompts = cmdData.prompts.filter(p => p.title.toLowerCase().includes(q)).slice(0, 4);
+        const matchActions = cmdActions.filter(a => a.title.toLowerCase().includes(q) || a.sub.toLowerCase().includes(q));
+        const matches = allModels.filter(m =>
+          m.name.toLowerCase().includes(q) || m.provider.toLowerCase().includes(q) || (m.thinking_mode && m.thinking_mode.toLowerCase().includes(q))
+        ).slice(0, 8);
 
         if (matchActions.length) {
-          resultsHtml += `<div class="cmd-group-title">Quick Actions</div>`;
+          resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">Quick Actions</div>`;
           matchActions.forEach(a => {
-            const idx = items.length;
-            items.push(a);
             resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="${a.type}" data-link="${a.link || ''}">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">${a.icon}</div>
-                  <div class="cmd-item-text">
+              <div class="cmd-item" data-action="${a.type}" data-link="${a.link || ''}">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:1.1em;">${a.icon}</div>
+                  <div>
                     <div class="cmd-item-title">${a.title}</div>
-                    <div class="cmd-item-sub">${a.sub}</div>
+                    <div class="cmd-item-meta">${a.sub}</div>
                   </div>
                 </div>
-                <span class="cmd-item-tag">Action</span>
+                <span style="font-size:0.75em;color:var(--accent);">Go ↵</span>
               </div>
             `;
           });
         }
 
-        if (matchConcepts.length) {
-          resultsHtml += `<div class="cmd-group-title">AI Core Concepts & Orbit</div>`;
-          matchConcepts.forEach(c => {
-            const idx = items.length;
-            items.push({ type: 'concept', data: c });
+        if (matches.length) {
+          resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">AI Models</div>`;
+          matches.forEach(m => {
             resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="link" data-link="concepts.html">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">🪐</div>
-                  <div class="cmd-item-text">
-                    <div class="cmd-item-title">${c.name}</div>
-                    <div class="cmd-item-sub">${c.category} · ${c.level || 'Concept'}</div>
-                  </div>
+              <div class="cmd-item" data-id="${m.id}" data-action="model">
+                <div>
+                  <div class="cmd-item-title">${m.name}</div>
+                  <div class="cmd-item-meta">${m.provider} · ${m.thinking_mode || m.category}</div>
                 </div>
-                <span class="cmd-item-tag">Concept</span>
+                <span style="font-size:0.75em;color:var(--accent);">Inspect ↵</span>
               </div>
             `;
           });
         }
 
-        if (matchModels.length) {
-          resultsHtml += `<div class="cmd-group-title">AI Models</div>`;
-          matchModels.forEach(m => {
-            const idx = items.length;
-            items.push({ type: 'model', data: m });
-            resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="model" data-id="${m.id}">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">📊</div>
-                  <div class="cmd-item-text">
-                    <div class="cmd-item-title">${m.name}</div>
-                    <div class="cmd-item-sub">${m.provider} · Elo ${m.arena_elo}</div>
-                  </div>
-                </div>
-                <span class="cmd-item-tag">Model</span>
-              </div>
-            `;
-          });
-        }
-
-        if (matchNews.length) {
-          resultsHtml += `<div class="cmd-group-title">News Articles</div>`;
-          matchNews.forEach(n => {
-            const idx = items.length;
-            items.push({ type: 'news', data: n });
-            resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="link" data-link="${n.link}">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">📰</div>
-                  <div class="cmd-item-text">
-                    <div class="cmd-item-title">${n.title}</div>
-                    <div class="cmd-item-sub">${n.source}</div>
-                  </div>
-                </div>
-                <span class="cmd-item-tag">News</span>
-              </div>
-            `;
-          });
-        }
-
-        if (matchTools.length) {
-          resultsHtml += `<div class="cmd-group-title">AI Tools</div>`;
-          matchTools.forEach(t => {
-            const idx = items.length;
-            items.push({ type: 'tool', data: t });
-            resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="link" data-link="${t.link}">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">🛠️</div>
-                  <div class="cmd-item-text">
-                    <div class="cmd-item-title">${t.title}</div>
-                    <div class="cmd-item-sub">${t.category || 'Tool'}</div>
-                  </div>
-                </div>
-                <span class="cmd-item-tag">Tool</span>
-              </div>
-            `;
-          });
-        }
-
-        if (matchPrompts.length) {
-          resultsHtml += `<div class="cmd-group-title">Prompts</div>`;
-          matchPrompts.forEach(p => {
-            const idx = items.length;
-            items.push({ type: 'prompt', data: p });
-            resultsHtml += `
-              <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="prompt" data-title="${p.title}">
-                <div class="cmd-item-left">
-                  <div class="cmd-item-icon">💬</div>
-                  <div class="cmd-item-text">
-                    <div class="cmd-item-title">${p.title}</div>
-                    <div class="cmd-item-sub">${p.category}</div>
-                  </div>
-                </div>
-                <span class="cmd-item-tag">Prompt</span>
-              </div>
-            `;
-          });
-        }
-
-        if (!items.length) {
-          resultsHtml = `<div style="text-align:center;padding:30px;color:var(--text-muted);font-size:0.85em;">No results found for "${query}"</div>`;
+        if (!matchActions.length && !matches.length) {
+          resultsHtml = '<div style="padding:24px;text-align:center;color:var(--text-muted);font-size:0.85em;">No matching models or actions found.</div>';
         }
       }
 
       cmdResults.innerHTML = resultsHtml;
-      activeCmdIndex = 0;
+
+      cmdResults.querySelectorAll('.cmd-item').forEach(item => {
+        item.addEventListener('click', () => {
+          const action = item.dataset.action;
+          if (action === 'action_theme') {
+            const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+            applyTheme(cur === 'dark' ? 'light' : 'dark');
+            closeCmdPalette();
+          } else if (action === 'action') {
+            const link = item.dataset.link;
+            if (link) window.location.href = link;
+          } else if (item.dataset.id) {
+            openModelPanel(item.dataset.id);
+            closeCmdPalette();
+          }
+        });
+      });
     }
+    cmdInput.addEventListener('input', (e) => renderCmdResults(e.target.value));
 
-    cmdInput.addEventListener('input', e => renderCmdResults(e.target.value));
-
-    // Keyboard Shortcuts for Command Palette
-    window.addEventListener('keydown', e => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (cmdOverlay.classList.contains('active')) closeCmdPalette();
-        else openCmdPalette();
-        return;
-      }
-      if (e.key === 'Escape') {
-        if (cmdOverlay.classList.contains('active')) { closeCmdPalette(); return; }
-        if (bmOverlay.classList.contains('active')) { bmOverlay.classList.remove('active'); return; }
-        if (panel.classList.contains('active')) { closePanel(); return; }
-      }
-      if (cmdOverlay.classList.contains('active')) {
-        const items = cmdResults.querySelectorAll('.cmd-item');
-        if (!items.length) return;
-
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          items[activeCmdIndex]?.classList.remove('selected');
-          activeCmdIndex = (activeCmdIndex + 1) % items.length;
-          items[activeCmdIndex]?.classList.add('selected');
-          items[activeCmdIndex]?.scrollIntoView({ block: 'nearest' });
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          items[activeCmdIndex]?.classList.remove('selected');
-          activeCmdIndex = (activeCmdIndex - 1 + items.length) % items.length;
-          items[activeCmdIndex]?.classList.add('selected');
-          items[activeCmdIndex]?.scrollIntoView({ block: 'nearest' });
-        } else if (e.key === 'Enter') {
-          e.preventDefault();
-          items[activeCmdIndex]?.click();
-        }
-      }
-    });
-
-    btnCmdPalette.addEventListener('click', openCmdPalette);
-    cmdOverlay.addEventListener('click', e => { if (e.target === cmdOverlay) closeCmdPalette(); });
-
-    cmdResults.addEventListener('click', e => {
-      const item = e.target.closest('.cmd-item');
-      if (!item) return;
-      const action = item.dataset.action;
-      if (action === 'action_theme') {
-        toggleTheme();
-        closeCmdPalette();
-      } else if (action === 'link' || action === 'action') {
-        const link = item.dataset.link;
-        if (link) window.location.href = link;
-      } else if (action === 'model') {
-        const id = item.dataset.id;
-        const m = allModels.find(x => x.id === id);
-        if (m) selectModel(m);
-        closeCmdPalette();
-      } else if (action === 'prompt') {
-        window.location.href = 'prompts.html';
-      }
-    });
-
-    // Start
-    loadData();
+    /* Initialize */
+    loadModels();
   </script>
 </body>
 </html>
