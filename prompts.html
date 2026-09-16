@@ -330,7 +330,7 @@ document.getElementById('bmOverlay').addEventListener('click',e=>{if(e.target===
 let st;document.getElementById('promptSearch').addEventListener('input',()=>{clearTimeout(st);st=setTimeout(renderGrid,120);});
 
 /* ── Universal Command Palette Logic ───────────────────────────── */
-let cmdData = { news: [], tools: [], prompts: [], models: [] };
+let cmdData = { news: [], tools: [], prompts: [], models: [], concepts: [] };
 let cmdDataLoaded = false;
 let activeCmdIndex = 0;
 const cmdOverlay = document.getElementById('cmdOverlay');
@@ -341,16 +341,18 @@ const btnCmdPalette = document.getElementById('btnCmdPalette');
 async function ensureCmdData() {
   if (cmdDataLoaded) return;
   try {
-    const [nRes, tRes, pRes, mRes] = await Promise.all([
+    const [nRes, tRes, pRes, mRes, cRes] = await Promise.all([
       fetch('news.json').catch(() => null),
       fetch('tools.json').catch(() => null),
       fetch('prompts.json').catch(() => null),
-      fetch('models.json').catch(() => null)
+      fetch('models.json').catch(() => null),
+      fetch('concepts.json').catch(() => null)
     ]);
     if (nRes && nRes.ok) { const d = await nRes.json(); cmdData.news = d.articles || []; }
     if (tRes && tRes.ok) cmdData.tools = await tRes.json();
     if (pRes && pRes.ok) cmdData.prompts = await pRes.json();
     if (mRes && mRes.ok) cmdData.models = await mRes.json();
+    if (cRes && cRes.ok) cmdData.concepts = await cRes.json();
     cmdDataLoaded = true;
   } catch (e) {
     console.warn('Failed loading cmd palette data', e);
@@ -378,6 +380,7 @@ function renderCmdResults(query) {
     { type: 'action', title: 'Go to AI Tools Directory', sub: 'tools.html', link: 'tools.html', icon: '🛠️' },
     { type: 'action', title: 'Go to Prompt Library', sub: 'prompts.html', link: 'prompts.html', icon: '💬' },
     { type: 'action', title: 'Go to Models Leaderboard', sub: 'models.html', link: 'models.html', icon: '📊' },
+    { type: 'action', title: 'Go to AI Core Concepts & Orbit', sub: 'concepts.html', link: 'concepts.html', icon: '🪐' },
     { type: 'action_theme', title: 'Toggle Theme (Dark / Light)', sub: 'Action', icon: '🌓' },
   ];
 
@@ -399,10 +402,52 @@ function renderCmdResults(query) {
       `;
     });
   } else {
+    const matchActions = actions.filter(a => a.title.toLowerCase().includes(q) || a.sub.toLowerCase().includes(q));
+    const matchConcepts = (cmdData.concepts || []).filter(c => c.name.toLowerCase().includes(q) || (c.simple_definition && c.simple_definition.toLowerCase().includes(q)) || (c.category && c.category.toLowerCase().includes(q))).slice(0, 4);
     const matchPrompts = (cmdData.prompts.length ? cmdData.prompts : allPrompts).filter(p => p.title.toLowerCase().includes(q) || (p.category && p.category.toLowerCase().includes(q))).slice(0, 4);
     const matchModels = cmdData.models.filter(m => m.name.toLowerCase().includes(q) || m.provider.toLowerCase().includes(q)).slice(0, 4);
     const matchNews = cmdData.news.filter(n => n.title.toLowerCase().includes(q)).slice(0, 4);
     const matchTools = cmdData.tools.filter(t => t.title.toLowerCase().includes(q) || (t.category && t.category.toLowerCase().includes(q))).slice(0, 4);
+
+    if (matchActions.length) {
+      resultsHtml += `<div class="cmd-group-title">Quick Actions</div>`;
+      matchActions.forEach(a => {
+        const idx = items.length;
+        items.push(a);
+        resultsHtml += `
+          <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="${a.type}" data-link="${a.link || ''}">
+            <div class="cmd-item-left">
+              <div class="cmd-item-icon">${a.icon}</div>
+              <div class="cmd-item-text">
+                <div class="cmd-item-title">${a.title}</div>
+                <div class="cmd-item-sub">${a.sub}</div>
+              </div>
+            </div>
+            <span class="cmd-item-tag">Action</span>
+          </div>
+        `;
+      });
+    }
+
+    if (matchConcepts.length) {
+      resultsHtml += `<div class="cmd-group-title">AI Core Concepts & Orbit</div>`;
+      matchConcepts.forEach(c => {
+        const idx = items.length;
+        items.push({ type: 'concept', data: c });
+        resultsHtml += `
+          <div class="cmd-item ${idx === 0 ? 'selected' : ''}" data-cmd-idx="${idx}" data-action="link" data-link="concepts.html">
+            <div class="cmd-item-left">
+              <div class="cmd-item-icon">🪐</div>
+              <div class="cmd-item-text">
+                <div class="cmd-item-title">${c.name}</div>
+                <div class="cmd-item-sub">${c.category} · ${c.level || 'Concept'}</div>
+              </div>
+            </div>
+            <span class="cmd-item-tag">Concept</span>
+          </div>
+        `;
+      });
+    }
 
     if (matchPrompts.length) {
       resultsHtml += `<div class="cmd-group-title">Prompts</div>`;
