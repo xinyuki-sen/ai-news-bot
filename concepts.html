@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Chrono — AI Core Concepts & Orbit</title>
-  <meta name="description" content="Essential AI concepts, mathematics, and architectural intuitions explained simply for AI students and engineers with an interactive orbital interface and live API concept expansion.">
+  <title>Chrono — AI Core Concepts & Curriculum</title>
+  <meta name="description" content="Essential AI concepts, mathematics, and architectural intuitions explained simply for AI students and engineers with live API concept expansion.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Chrono — AI Core Concepts & Orbit">
-  <meta property="og:description" content="Master Transformers, Latent Space, Quantization, MoE, RAG, and more with student-friendly analogies and an interactive orbital canvas.">
+  <meta property="og:title" content="Chrono — AI Core Concepts & Curriculum">
+  <meta property="og:description" content="Master Transformers, Latent Space, Quantization, MoE, RAG, and more with student-friendly analogies and live knowledge expansion.">
   <meta property="og:url" content="https://xinyuki-sen.github.io/chrono/concepts.html">
   <meta name="theme-color" content="#0a0e14">
   <link rel="icon" href="assets/robot_icon.png">
@@ -27,7 +27,7 @@
       --text-muted:  #636d80;
       --accent:      #6c9cff;
       --accent2:     #a78bfa;
-      --accent-glow: rgba(108,156,255,0.3);
+      --accent-glow: rgba(108,156,255,0.25);
       --success:     #34d399;
       --gold:        #fbbf24;
       --radius:      16px;
@@ -44,7 +44,7 @@
       --text-muted:  #9ca3af;
       --accent:      #4f7eff;
       --accent2:     #7c3aed;
-      --accent-glow: rgba(79,126,255,0.22);
+      --accent-glow: rgba(79,126,255,0.18);
       --success:     #059669;
       --gold:        #d97706;
     }
@@ -96,7 +96,7 @@
     }
 
     .header-top {
-      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;
+      display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 24px;
     }
     .header-tag {
       display: inline-flex; align-items: center; gap: 6px;
@@ -116,9 +116,9 @@
       background: linear-gradient(135deg, rgba(108,156,255,0.15), rgba(167,139,250,0.15));
       border: 1.5px solid rgba(108,156,255,0.4);
       color: var(--text-strong);
-      padding: 10px 16px;
+      padding: 10px 18px;
       border-radius: 14px;
-      font-size: 0.82em;
+      font-size: 0.84em;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
@@ -134,10 +134,9 @@
     }
     .api-badge-btn svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2; }
 
-    /* ── Filter & Controls Bar ── */
+    /* ── Controls & Filter Bar ── */
     .toolbar {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-      gap: 12px; margin-bottom: 24px;
+      display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px;
     }
     .tabs {
       display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px;
@@ -146,7 +145,7 @@
     .tabs::-webkit-scrollbar { display: none; }
     .tab {
       background: var(--surface); border: 1px solid var(--border);
-      color: var(--text-muted); padding: 8px 14px; border-radius: 20px;
+      color: var(--text-muted); padding: 8px 16px; border-radius: 20px;
       font-size: 0.82em; font-weight: 600; cursor: pointer; white-space: nowrap;
       transition: all 0.15s ease;
     }
@@ -162,20 +161,29 @@
       background: var(--gold); border-color: var(--gold); color: #000;
     }
 
-    .all-concepts-banner {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(108,156,255,0.08); border: 1px dashed rgba(108,156,255,0.3);
-      padding: 7px 14px; border-radius: 12px; font-size: 0.78em; color: var(--accent);
-      font-weight: 500;
+    .action-row {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
     }
-
-    .orbit-controls {
+    .search-box {
+      flex: 1; min-width: 260px; max-width: 480px; position: relative;
+    }
+    .search-box input {
+      width: 100%; background: var(--surface); border: 1px solid var(--border);
+      border-radius: 12px; padding: 10px 14px 10px 38px; color: var(--text-strong);
+      font-size: 0.88em; outline: none; transition: border-color 0.15s;
+    }
+    .search-box input:focus { border-color: var(--accent); }
+    .search-box svg {
+      position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+      width: 16px; height: 16px; stroke: var(--text-muted); fill: none; stroke-width: 2;
+    }
+    .action-btns {
       display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
     }
     .ctrl-btn {
       background: var(--surface); border: 1px solid var(--border);
-      color: var(--text-strong); padding: 7px 13px; border-radius: 12px;
-      font-size: 0.8em; font-weight: 600; cursor: pointer;
+      color: var(--text-strong); padding: 8px 14px; border-radius: 12px;
+      font-size: 0.82em; font-weight: 600; cursor: pointer;
       display: inline-flex; align-items: center; gap: 6px;
       transition: all 0.15s ease;
     }
@@ -183,403 +191,87 @@
       background: var(--surface2); border-color: var(--accent);
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    .ctrl-btn svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .view-toggle {
-      display: flex; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 12px; padding: 2px;
-    }
-    .view-toggle-btn {
-      background: transparent; border: none; color: var(--text-muted);
-      padding: 6px 10px; border-radius: 10px; font-size: 0.78em; font-weight: 600;
-      cursor: pointer; display: flex; align-items: center; gap: 5px;
-      transition: all 0.15s;
-    }
-    .view-toggle-btn.active {
-      background: var(--surface2); color: var(--text-strong);
+    .ctrl-btn.active {
+      background: rgba(108,156,255,0.18); border-color: var(--accent); color: var(--accent);
     }
 
-    /* ── Orbital Canvas Container ── */
-    .orbit-section {
-      position: relative;
-      background: radial-gradient(circle at 50% 45%, rgba(108,156,255,0.1) 0%, rgba(18,22,30,0.92) 60%, var(--surface) 100%);
-      border: 1.5px solid rgba(108,156,255,0.3);
-      border-radius: 28px;
-      padding: 40px 20px;
-      min-height: 680px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.35);
-      margin-bottom: 32px;
-      contain: layout style;
-    }
-    .orbit-track {
-      position: absolute;
-      border: 1.5px dashed rgba(108,156,255,0.22);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      left: 50%; top: 50%;
-    }
-    .orbit-track-inner {
-      position: absolute;
-      border: 1px dashed rgba(167,139,250,0.14);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      left: 50%; top: 50%;
-    }
-
-    /* ── High-Tech 3D Holographic Sphere ── */
-    .sphere-wrapper {
-      position: relative;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Rotating Outer Neon Ring */
-    .sphere-halo-ring {
-      position: absolute;
-      width: 510px;
-      height: 510px;
-      border-radius: 50%;
-      border: 1.5px dashed rgba(108,156,255,0.45);
-      box-shadow: 0 0 30px rgba(108,156,255,0.15), inset 0 0 25px rgba(108,156,255,0.1);
-      animation: spinHalo 24s linear infinite;
-      pointer-events: none;
-    }
-    .sphere-halo-ring-2 {
-      position: absolute;
-      width: 476px;
-      height: 476px;
-      border-radius: 50%;
-      border: 1px dotted rgba(167,139,250,0.3);
-      animation: spinHaloRev 18s linear infinite;
-      pointer-events: none;
-    }
-    @keyframes spinHalo {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes spinHaloRev {
-      from { transform: rotate(360deg); }
-      to { transform: rotate(0deg); }
-    }
-
-    .center-orb {
-      position: relative;
-      width: 440px;
-      max-width: 90vw;
-      min-height: 440px;
-      border-radius: 50%;
-      /* 3D Glass Sphere Shading */
-      background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.15) 0%, rgba(108,156,255,0.14) 22%, rgba(18,22,30,0.85) 60%, #0d1117 95%);
-      border: 2px solid rgba(108,156,255,0.65);
-      box-shadow:
-        0 0 50px rgba(108,156,255,0.3),
-        inset 0 12px 28px rgba(255,255,255,0.2),
-        inset 0 -15px 35px rgba(108,156,255,0.25),
-        inset 0 0 60px rgba(0,0,0,0.85);
-      padding: 36px 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      contain: layout style;
-    }
-    .center-orb:hover {
-      box-shadow:
-        0 0 70px rgba(108,156,255,0.45),
-        inset 0 14px 32px rgba(255,255,255,0.25),
-        inset 0 -18px 40px rgba(108,156,255,0.32);
-    }
-    /* Specular light glint on top-left */
-    .center-orb::after {
-      content: '';
-      position: absolute;
-      top: 24px;
-      left: 55px;
-      width: 80px;
-      height: 38px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 100%);
-      transform: rotate(-35deg);
-      pointer-events: none;
-      filter: blur(2px);
-    }
-
-    .orb-badge-row {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 8px; z-index: 2;
-    }
-    .orb-category {
-      font-size: 0.68em; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 0.08em; color: var(--accent);
-      background: rgba(108,156,255,0.18); border: 1px solid rgba(108,156,255,0.4);
-      padding: 3px 10px; border-radius: 12px;
-      backdrop-filter: blur(4px);
-    }
-    .orb-level {
-      font-size: 0.65em; font-weight: 600; color: var(--gold);
-      background: rgba(251,191,36,0.14); border: 1px solid rgba(251,191,36,0.3);
-      padding: 3px 8px; border-radius: 12px;
-    }
-    .orb-title {
-      font-size: 1.35em; font-weight: 800;
-      background: linear-gradient(135deg, #ffffff 30%, #b8d0ff 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      line-height: 1.25; margin-bottom: 10px; letter-spacing: -0.02em; z-index: 2;
-    }
-
-    /* Sphere Segmented Tabs */
-    .orb-nav {
-      display: flex; gap: 4px; background: rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 16px; padding: 2px; margin-bottom: 10px; z-index: 2;
-    }
-    .orb-nav-btn {
-      background: transparent; border: none; color: var(--text-muted);
-      padding: 4px 10px; border-radius: 12px; font-size: 0.72em; font-weight: 600;
-      cursor: pointer; transition: all 0.15s;
-    }
-    .orb-nav-btn.active {
-      background: rgba(108,156,255,0.25); color: #fff; border: 1px solid rgba(108,156,255,0.35);
-    }
-
-    .orb-body-container {
-      width: 100%; min-height: 130px; display: flex; flex-direction: column; justify-content: center; z-index: 2;
-    }
-    .orb-definition {
-      font-size: 0.82em; color: var(--text-strong); line-height: 1.5;
-      margin-bottom: 8px; max-height: 75px; overflow-y: auto; scrollbar-width: none;
-    }
-    .orb-analogy-box {
-      background: rgba(26,31,43,0.75);
-      border-left: 3px solid var(--accent);
-      border-radius: 8px;
-      padding: 8px 12px;
-      text-align: left;
-      font-size: 0.76em;
-      line-height: 1.45;
-      color: var(--text);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .orb-analogy-box strong { color: var(--accent); display: block; margin-bottom: 2px; font-size: 0.95em; }
-
-    .orb-math-card {
-      display: none;
-      text-align: left;
-      width: 100%;
-    }
-    .orb-math-pill {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72em;
-      color: var(--accent2);
-      background: rgba(167,139,250,0.15);
-      border: 1px solid rgba(167,139,250,0.3);
-      padding: 6px 10px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-    .orb-why-box {
-      font-size: 0.75em; color: var(--text); line-height: 1.45;
-      background: rgba(26,31,43,0.7); padding: 8px 10px; border-radius: 8px;
-      border-left: 3px solid var(--gold);
-    }
-    .orb-why-box strong { color: var(--gold); display: block; margin-bottom: 2px; }
-
-    .orb-actions {
-      display: flex; gap: 8px; align-items: center; justify-content: center; z-index: 2; margin-top: 6px;
-    }
-    .orb-bm-btn {
-      background: rgba(26,31,43,0.85); border: 1.5px solid rgba(108,156,255,0.3);
-      color: var(--text-strong); padding: 6px 14px; border-radius: 20px;
-      font-size: 0.76em; font-weight: 600; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 6px;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .orb-bm-btn:hover { border-color: var(--gold); transform: scale(1.03); }
-    .orb-bm-btn.bookmarked {
-      background: rgba(251,191,36,0.18); border-color: var(--gold); color: var(--gold);
-      box-shadow: 0 0 14px rgba(251,191,36,0.3);
-    }
-    .orb-bm-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
-    .orb-bm-btn.bookmarked svg { fill: var(--gold); }
-
-    .orb-speak-btn {
-      background: rgba(26,31,43,0.85); border: 1px solid var(--border);
-      color: var(--text-muted); width: 32px; height: 32px; border-radius: 50%;
-      display: inline-flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.15s;
-    }
-    .orb-speak-btn:hover { color: var(--accent); border-color: var(--accent); }
-    .orb-speak-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
-
-    /* ── Orbiting Concept Pills ── */
-    .orbit-container {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-    .orbit-pill {
-      position: absolute;
-      pointer-events: auto;
-      transform: translate(-50%, -50%);
-      background: rgba(18,22,30,0.92);
-      border: 1.5px solid rgba(108,156,255,0.35);
-      border-radius: 24px;
-      padding: 8px 16px;
-      font-size: 0.78em;
-      font-weight: 600;
-      color: var(--text-strong);
-      white-space: nowrap;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-      transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s, color 0.2s;
-      user-select: none;
-      -webkit-user-select: none;
-      backdrop-filter: blur(8px);
-    }
-    .orbit-pill:hover {
-      border-color: var(--accent);
-      background: var(--surface2);
-      box-shadow: 0 0 20px var(--accent-glow);
-      z-index: 40 !important;
-    }
-    .orbit-pill.selected {
-      border-color: var(--accent);
-      background: linear-gradient(135deg, rgba(108,156,255,0.3), var(--surface));
-      color: #fff;
-      box-shadow: 0 0 24px var(--accent-glow), inset 0 0 10px rgba(108,156,255,0.2);
-      z-index: 35 !important;
-    }
-    .pill-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-    }
-    .pill-dot.cat-arch { background: #60a5fa; }
-    .pill-dot.cat-math { background: #f472b6; }
-    .pill-dot.cat-train { background: #34d399; }
-    .pill-dot.cat-sys { background: #fbbf24; }
-    .pill-dot.cat-genai { background: #a78bfa; }
-    .pill-dot.cat-api { background: #38bdf8; box-shadow: 0 0 8px #38bdf8; }
-
-    .pill-star {
-      color: var(--gold); font-size: 0.9em; display: none;
-    }
-    .orbit-pill.is-bookmarked .pill-star { display: inline-block; }
-
-    /* ── Grid View ── */
+    /* ── Concepts Grid ── */
     .concepts-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
     }
     .concept-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.2s ease;
+      transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
       cursor: pointer;
       position: relative;
     }
     .concept-card:hover {
-      border-color: rgba(108,156,255,0.5);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      border-color: rgba(108,156,255,0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.22);
     }
     .concept-card.selected {
       border-color: var(--accent);
       box-shadow: 0 0 0 2px var(--accent-glow);
     }
     .card-top {
-      display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
     }
+    .card-badges {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .badge-cat {
+      font-size: 0.7em; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--accent);
+      background: rgba(108,156,255,0.12); border: 1px solid rgba(108,156,255,0.3);
+      padding: 3px 9px; border-radius: 12px;
+    }
+    .badge-level {
+      font-size: 0.68em; font-weight: 600; color: var(--gold);
+      background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.28);
+      padding: 3px 8px; border-radius: 12px;
+    }
+    .card-actions {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card-icon-btn {
+      background: transparent; border: none; color: var(--text-muted);
+      cursor: pointer; padding: 4px; border-radius: 6px; transition: color 0.15s, transform 0.15s;
+    }
+    .card-icon-btn:hover { color: var(--text-strong); transform: scale(1.1); }
+    .card-icon-btn.bookmarked { color: var(--gold); }
+    .card-icon-btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .card-icon-btn.bookmarked svg { fill: var(--gold); }
+
     .card-title {
-      font-size: 1.05em; font-weight: 700; color: var(--text-strong); margin-bottom: 8px;
+      font-size: 1.12em; font-weight: 800; color: var(--text-strong);
+      margin-bottom: 10px; line-height: 1.35; letter-spacing: -0.01em;
     }
     .card-def {
-      font-size: 0.82em; color: var(--text); line-height: 1.55; margin-bottom: 12px;
+      font-size: 0.84em; color: var(--text); line-height: 1.55; margin-bottom: 14px;
     }
     .card-analogy {
       background: var(--surface2); border-left: 3px solid var(--accent);
-      padding: 8px 10px; border-radius: 6px; font-size: 0.76em; line-height: 1.45;
-      color: var(--text-muted); margin-bottom: 12px;
+      padding: 10px 12px; border-radius: 8px; font-size: 0.78em; line-height: 1.45;
+      color: var(--text-muted); margin-bottom: 14px;
     }
-    .card-analogy strong { color: var(--text-strong); }
-    .card-bm-btn {
-      background: transparent; border: none; color: var(--text-muted);
-      cursor: pointer; padding: 4px; border-radius: 6px; transition: color 0.15s;
-    }
-    .card-bm-btn:hover { color: var(--gold); }
-    .card-bm-btn.bookmarked { color: var(--gold); }
-    .card-bm-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
-    .card-bm-btn.bookmarked svg { fill: var(--gold); }
+    .card-analogy strong { color: var(--accent); display: block; margin-bottom: 2px; }
+
     .card-footer {
       display: flex; align-items: center; justify-content: space-between;
-      font-size: 0.72em; color: var(--text-muted); margin-top: auto;
-      padding-top: 10px; border-top: 1px solid var(--border);
+      font-size: 0.74em; color: var(--text-muted); margin-top: auto;
+      padding-top: 12px; border-top: 1px solid var(--border);
     }
-
-    /* ── Concept Detail Modal (for Grid View) ── */
-    .concept-modal-backdrop {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78);
-      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-      z-index: 1200; align-items: center; justify-content: center; padding: 20px;
-    }
-    .concept-modal-backdrop.open { display: flex; }
-    .concept-modal {
-      background: var(--surface); border: 1.5px solid rgba(108,156,255,0.45);
-      border-radius: 24px; width: 640px; max-width: 95vw; max-height: 90vh;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 35px var(--accent-glow);
-      overflow-y: auto; animation: popIn 0.2s ease; display: flex; flex-direction: column;
-    }
-    .concept-modal-header {
-      padding: 20px 24px; border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: flex-start;
-      position: sticky; top: 0; background: var(--surface); z-index: 10;
-    }
-    .concept-modal-body {
-      padding: 24px; display: flex; flex-direction: column; gap: 16px;
-    }
-    .concept-modal-footer {
-      padding: 16px 24px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center; gap: 10px;
-      position: sticky; bottom: 0; background: var(--surface); z-index: 10; flex-wrap: wrap;
-    }
-    .detail-section-title {
-      font-size: 0.76em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-      color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
-    }
-    .detail-card-box {
-      background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
-      padding: 12px 16px; font-size: 0.85em; line-height: 1.55; color: var(--text-strong);
-    }
-    .detail-card-box.analogy-box {
-      border-left: 3px solid var(--accent);
-    }
-    .detail-card-box.why-box {
-      border-left: 3px solid var(--gold);
-    }
-    .detail-math-box {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.78em; color: var(--accent2);
-      background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.28);
-      border-radius: 10px; padding: 10px 14px; white-space: pre-wrap; word-break: break-all;
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.9em; color: var(--accent2);
     }
 
     /* Quiz Mode Styles */
@@ -588,48 +280,62 @@
     }
     .quiz-reveal-btn {
       display: none; width: 100%; margin: 12px 0; background: var(--surface2);
-      border: 1px dashed var(--accent); color: var(--accent); padding: 8px 12px;
-      border-radius: 10px; font-size: 0.8em; font-weight: 600; cursor: pointer;
+      border: 1px dashed var(--accent); color: var(--accent); padding: 10px 12px;
+      border-radius: 10px; font-size: 0.82em; font-weight: 600; cursor: pointer;
       transition: all 0.15s; text-align: center;
     }
-    .quiz-card .quiz-reveal-btn {
-      display: block !important;
-    }
-    .quiz-card.revealed .card-def, .quiz-card.revealed .card-analogy {
-      display: block !important;
-    }
-    .quiz-card.revealed .quiz-reveal-btn {
-      display: none !important;
-    }
+    .quiz-card .quiz-reveal-btn { display: block !important; }
+    .quiz-card.revealed .card-def, .quiz-card.revealed .card-analogy { display: block !important; }
+    .quiz-card.revealed .quiz-reveal-btn { display: none !important; }
 
-    /* ── API Explorer Modal ── */
-    .api-modal-backdrop {
-      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.72);
+    /* ── Detail Breakdown Modal ── */
+    .modal-backdrop {
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.78);
       backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
       z-index: 1200; align-items: center; justify-content: center; padding: 20px;
     }
-    .api-modal-backdrop.open { display: flex; }
-    .api-modal {
-      background: var(--surface); border: 1.5px solid rgba(108,156,255,0.4);
-      border-radius: 20px; width: 540px; max-width: 95vw;
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      background: var(--surface); border: 1.5px solid rgba(108,156,255,0.45);
+      border-radius: 22px; width: 620px; max-width: 95vw; max-height: 90vh;
       box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 35px var(--accent-glow);
-      overflow: hidden; animation: popIn 0.2s ease;
+      overflow-y: auto; animation: popIn 0.2s ease; display: flex; flex-direction: column;
     }
     @keyframes popIn {
       from { transform: scale(0.95); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
-    .api-modal-header {
-      padding: 18px 22px; border-bottom: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
+    .modal-header {
+      padding: 20px 24px; border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: flex-start;
+      position: sticky; top: 0; background: var(--surface); z-index: 10;
     }
-    .api-modal-header h3 { font-size: 1.1em; font-weight: 700; color: var(--text-strong); display: flex; align-items: center; gap: 8px; }
-    .api-modal-close { background: none; border: none; color: var(--text-muted); cursor: pointer; }
-    .api-modal-close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
-    .api-modal-body { padding: 22px; }
-    .api-input-wrap {
-      display: flex; gap: 8px; margin-bottom: 16px;
+    .modal-close { background: none; border: none; color: var(--text-muted); cursor: pointer; }
+    .modal-close svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; fill: none; }
+    .modal-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    .modal-footer {
+      padding: 16px 24px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      position: sticky; bottom: 0; background: var(--surface); z-index: 10;
     }
+    .detail-label {
+      font-size: 0.76em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--accent); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+    }
+    .detail-content {
+      background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
+      padding: 12px 16px; font-size: 0.86em; line-height: 1.55; color: var(--text-strong);
+    }
+    .detail-content.analogy { border-left: 3px solid var(--accent); }
+    .detail-content.why { border-left: 3px solid var(--gold); }
+    .detail-math {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78em; color: var(--accent2);
+      background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.28);
+      border-radius: 10px; padding: 12px 14px; white-space: pre-wrap; word-break: break-all;
+    }
+
+    /* ── API Explorer Modal ── */
+    .api-input-wrap { display: flex; gap: 8px; margin-bottom: 16px; }
     .api-input {
       flex: 1; background: var(--surface2); border: 1px solid var(--border);
       color: var(--text-strong); padding: 12px 16px; border-radius: 12px;
@@ -642,9 +348,7 @@
       cursor: pointer; transition: opacity 0.15s;
     }
     .api-fetch-btn:hover { opacity: 0.9; }
-    .api-quick-tags {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px;
-    }
+    .api-quick-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
     .api-tag-btn {
       background: var(--surface2); border: 1px solid var(--border);
       color: var(--text-muted); padding: 5px 10px; border-radius: 16px;
@@ -653,21 +357,20 @@
     .api-tag-btn:hover { color: var(--accent); border-color: var(--accent); }
     .api-result-box {
       background: var(--surface2); border: 1px solid var(--border); border-radius: 12px;
-      padding: 14px; min-height: 90px; font-size: 0.82em; line-height: 1.5; color: var(--text);
+      padding: 14px; min-height: 90px; font-size: 0.84em; line-height: 1.5; color: var(--text);
     }
 
-    /* ── Command Palette (Universal Ctrl+K) ── */
+    /* ── Universal Ctrl+K Command Palette ── */
     .cmd-palette-backdrop {
       display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65);
       backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
-      z-index: 1000; align-items: flex-start; justify-content: center; padding-top: 12vh;
+      z-index: 1300; align-items: flex-start; justify-content: center; padding-top: 12vh;
     }
     .cmd-palette-backdrop.open { display: flex; }
     .cmd-palette-modal {
       background: var(--surface); border: 1px solid rgba(108,156,255,0.3);
       border-radius: 16px; width: 560px; max-width: 90vw;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
-      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6); overflow: hidden;
     }
     .cmd-palette-input-row {
       display: flex; align-items: center; padding: 14px 18px;
@@ -678,9 +381,7 @@
       flex: 1; background: transparent; border: none; outline: none;
       font-size: 0.95em; color: var(--text-strong); font-family: inherit;
     }
-    .cmd-palette-results {
-      max-height: 380px; overflow-y: auto; padding: 8px;
-    }
+    .cmd-palette-results { max-height: 380px; overflow-y: auto; padding: 8px; }
     .cmd-item {
       padding: 10px 14px; border-radius: 10px; cursor: pointer;
       display: flex; align-items: center; justify-content: space-between;
@@ -699,15 +400,7 @@
       }
       .logo-img, .spacer { display: none; }
       .main { margin-left: 0; padding: 20px 16px 80px 16px; }
-      .orbit-section { min-height: 560px; padding: 16px; }
-      .sphere-halo-ring, .sphere-halo-ring-2 { display: none; }
-      .center-orb {
-        width: 320px; min-height: 320px; padding: 20px 16px;
-      }
-      .orb-title { font-size: 1.1em; }
-      .orb-definition { font-size: 0.76em; max-height: 70px; }
-      .orb-analogy-box { font-size: 0.72em; padding: 6px 8px; }
-      .orbit-pill { padding: 6px 12px; font-size: 0.74em; }
+      .concepts-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -730,11 +423,11 @@
   <main class="main">
     <div class="header-top">
       <div>
-        <div class="header-tag">🪐 Chrono Core Orbit · Expanded Curriculum</div>
+        <div class="header-tag">📚 AI Core Concepts · Complete Curriculum</div>
         <h1>AI Concepts & Intuitions</h1>
-        <div class="subtitle">Curated foundational concepts and mathematical models every AI student & researcher should know — broken down into simple analogies.</div>
+        <div class="subtitle">Essential frontier concepts, mathematics, and architectural intuitions explained simply for AI students & researchers.</div>
       </div>
-      <button class="api-badge-btn" id="btnOpenApiModal" title="Query live definitions via API">
+      <button class="api-badge-btn" id="btnOpenApiModal" title="Query live definitions via Wikipedia API">
         <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         <span>+ Explore Any Term via API</span>
       </button>
@@ -752,160 +445,90 @@
         <button class="tab bm-tab" data-cat="Bookmarked">★ Saved (<span id="bmCount">0</span>)</button>
       </div>
 
-      <div class="all-concepts-banner" id="allConceptsBanner" style="display:none;">
-        <span>🪐 Select any specialized category above (Training, Architectures, Math, etc.) to launch the 3D Orbit</span>
-      </div>
-
-      <div class="orbit-controls" id="orbitControls">
-        <button class="ctrl-btn" id="btnToggleQuiz" title="Toggle interactive Flashcard/Quiz mode">
-          <span id="quizBtnLabel">🎴 Quiz Mode</span>
-        </button>
-        <button class="ctrl-btn" id="btnRandom" title="Pick a random concept">
-          <span>🎲 Surprise Me</span>
-        </button>
-        <button class="ctrl-btn" id="btnReverse" title="Change spin direction (Clockwise / Counter-Clockwise)">
-          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg>
-          <span id="spinDirLabel">Spin: CCW ⟲</span>
-        </button>
-        <button class="ctrl-btn" id="btnPause" title="Pause or resume rotation">
-          <svg id="pauseIcon" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-          <span id="pauseLabel">Pause</span>
-        </button>
-        <div class="view-toggle">
-          <button class="view-toggle-btn active" id="btnViewOrbit">🪐 Orbit</button>
-          <button class="view-toggle-btn" id="btnViewGrid">▦ Grid</button>
+      <div class="action-row">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="conceptSearchInput" placeholder="Search concepts, analogies, math formulas..." autocomplete="off">
+        </div>
+        <div class="action-btns">
+          <button class="ctrl-btn" id="btnToggleQuiz" title="Toggle interactive Flashcard/Quiz mode">
+            <span id="quizBtnLabel">🎴 Quiz Mode</span>
+          </button>
+          <button class="ctrl-btn" id="btnRandom" title="Highlight a random concept">
+            <span>🎲 Surprise Me</span>
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- ── Orbit Interactive Canvas ── -->
-    <section class="orbit-section" id="orbitSection">
-      <div class="orbit-track" id="trackOuter"></div>
-      <div class="orbit-track-inner" id="trackInner"></div>
-
-      <!-- High-Tech 3D Holographic Sphere -->
-      <div class="sphere-wrapper">
-        <div class="sphere-halo-ring"></div>
-        <div class="sphere-halo-ring-2"></div>
-
-        <div class="center-orb" id="centerOrb">
-          <div class="orb-badge-row">
-            <span class="orb-category" id="orbCategory">Architectures</span>
-            <span class="orb-level" id="orbLevel">Essential</span>
-          </div>
-          
-          <div class="orb-title" id="orbTitle">Transformer & Attention</div>
-
-          <!-- Segmented Tab Switcher inside Sphere -->
-          <div class="orb-nav">
-            <button class="orb-nav-btn active" id="btnOrbTabDef">💡 Plain English</button>
-            <button class="orb-nav-btn" id="btnOrbTabMath">📐 Math & Why</button>
-          </div>
-
-          <!-- Body Card: Meaning & Analogy -->
-          <div class="orb-body-container" id="orbDefCard">
-            <div class="orb-definition" id="orbDef">Loading concept...</div>
-            <div class="orb-analogy-box">
-              <strong>🎯 Real-World Analogy:</strong>
-              <span id="orbAnalogy">Loading analogy...</span>
-            </div>
-          </div>
-
-          <!-- Body Card: Math & Why -->
-          <div class="orb-body-container" id="orbMathCard" style="display:none;">
-            <div class="orb-math-pill" id="orbMath">Loading formula...</div>
-            <div class="orb-why-box">
-              <strong>⭐ Why AI Students Must Know This:</strong>
-              <span id="orbWhy">Loading significance...</span>
-            </div>
-          </div>
-
-          <div class="orb-actions">
-            <button class="orb-bm-btn" id="orbBmBtn">
-              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-              <span id="orbBmText">Keep for Later</span>
-            </button>
-            <button class="orb-speak-btn" id="btnSpeak" title="Read concept aloud (Text-to-Speech)">
-              <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Orbiting Pills Container -->
-      <div class="orbit-container" id="orbitContainer"></div>
-    </section>
-
-    <!-- ── Grid View ── -->
-    <section class="concepts-grid" id="conceptsGrid" style="display:none;"></section>
+    <!-- ── Concepts Card Grid ── -->
+    <section class="concepts-grid" id="conceptsGrid"></section>
   </main>
 
-  <!-- ── Concept Detail Modal (for Grid View) ── -->
-  <div class="concept-modal-backdrop" id="detailModal">
-    <div class="concept-modal">
-      <div class="concept-modal-header">
+  <!-- ── Concept Detail Breakdown Modal ── -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal-box">
+      <div class="modal-header">
         <div>
-          <div class="orb-badge-row">
-            <span class="orb-category" id="modalCategory">Architectures</span>
-            <span class="orb-level" id="modalLevel">Essential</span>
+          <div class="card-badges" style="margin-bottom:6px;">
+            <span class="badge-cat" id="modalCategory">Architectures</span>
+            <span class="badge-level" id="modalLevel">Essential</span>
           </div>
-          <h2 id="modalTitle" style="font-size:1.35em;font-weight:800;color:var(--text-strong);margin-top:6px;">Transformer & Attention</h2>
+          <h2 id="modalTitle" style="font-size:1.35em;font-weight:800;color:var(--text-strong);">Transformer & Attention</h2>
         </div>
-        <button class="api-modal-close" id="btnModalClose">
+        <button class="modal-close" id="btnModalClose">
           <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-      <div class="concept-modal-body">
+      <div class="modal-body">
         <div>
-          <div class="detail-section-title">💡 Plain English Explanation</div>
-          <div class="detail-card-box" id="modalDef">Loading definition...</div>
+          <div class="detail-label">💡 Plain English Explanation</div>
+          <div class="detail-content" id="modalDef">Loading definition...</div>
         </div>
         <div>
-          <div class="detail-section-title">🎯 Real-World Analogy</div>
-          <div class="detail-card-box analogy-box" id="modalAnalogy">Loading analogy...</div>
+          <div class="detail-label">🎯 Real-World Analogy</div>
+          <div class="detail-content analogy" id="modalAnalogy">Loading analogy...</div>
         </div>
         <div>
-          <div class="detail-section-title">📐 Mathematical Intuition & Formula</div>
-          <div class="detail-math-box" id="modalMath">Loading math...</div>
+          <div class="detail-label">📐 Mathematical Intuition & Formula</div>
+          <div class="detail-math" id="modalMath">Loading math...</div>
         </div>
         <div>
-          <div class="detail-section-title">⭐ Why AI Students Must Know This</div>
-          <div class="detail-card-box why-box" id="modalWhy">Loading significance...</div>
+          <div class="detail-label">⭐ Why AI Students Must Know This</div>
+          <div class="detail-content why" id="modalWhy">Loading significance...</div>
         </div>
       </div>
-      <div class="concept-modal-footer">
+      <div class="modal-footer">
         <div style="display:flex;gap:8px;align-items:center;">
-          <button class="orb-bm-btn" id="modalBmBtn">
-            <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          <button class="ctrl-btn" id="modalBmBtn">
+            <svg style="width:16px;height:16px;" viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
             <span id="modalBmText">Keep for Later</span>
           </button>
-          <button class="orb-speak-btn" id="btnModalSpeak" title="Read concept aloud (Text-to-Speech)">
-            <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          <button class="ctrl-btn" id="btnModalSpeak" title="Read concept aloud (Text-to-Speech)">
+            <svg style="width:16px;height:16px;" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            <span>Read Aloud</span>
           </button>
         </div>
-        <button class="ctrl-btn" id="btnModalLaunchOrbit" style="background:linear-gradient(135deg,rgba(108,156,255,0.2),rgba(167,139,250,0.2));border-color:var(--accent);color:var(--text-strong);">
-          <span>🪐 Launch Category 3D Orbit ↵</span>
-        </button>
       </div>
     </div>
   </div>
 
   <!-- ── API Concept Explorer Modal ── -->
-  <div class="api-modal-backdrop" id="apiModal">
-    <div class="api-modal">
-      <div class="api-modal-header">
-        <h3>
+  <div class="modal-backdrop" id="apiModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size:1.15em;font-weight:800;color:var(--text-strong);display:flex;align-items:center;gap:8px;">
           <svg style="width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           API Concept Explorer
         </h3>
-        <button class="api-modal-close" id="btnApiClose">
+        <button class="modal-close" id="btnApiClose">
           <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
       </div>
-      <div class="api-modal-body">
-        <p style="font-size:0.84em;color:var(--text-muted);margin-bottom:12px;">Type any AI model, term, or technique to fetch its live verified definition via API and inject it right into the orbit:</p>
+      <div class="modal-body">
+        <p style="font-size:0.84em;color:var(--text-muted);margin-bottom:12px;">Type any AI term, architecture, or technique to fetch its live verified definition via the Wikipedia REST API:</p>
         <div class="api-input-wrap">
-          <input type="text" class="api-input" id="apiSearchInput" placeholder="e.g. DeepSeek, KANs, Perplexity, AdamW..." autocomplete="off">
+          <input type="text" class="api-input" id="apiSearchInput" placeholder="e.g. DeepSeek, KANs, Perplexity, AdamW, Diffusion..." autocomplete="off">
           <button class="api-fetch-btn" id="btnApiFetch">Fetch API</button>
         </div>
         <div class="api-quick-tags">
@@ -914,7 +537,7 @@
           <button class="api-tag-btn" data-term="Stochastic gradient descent">SGD</button>
           <button class="api-tag-btn" data-term="Convolutional neural network">CNN</button>
           <button class="api-tag-btn" data-term="Generative adversarial network">GANs</button>
-          <button class="api-tag-btn" data-term="Recurrent neural network">RNNs</button>
+          <button class="api-tag-btn" data-term="Diffusion model">Diffusion</button>
         </div>
         <div class="api-result-box" id="apiResultBox">
           <em>Enter a concept name or click one of the quick suggestions above.</em>
@@ -939,25 +562,9 @@
     let allConcepts = [];
     let currentCategory = 'All';
     let selectedConceptId = null;
+    let isQuizMode = false;
     let bookmarks = new Set(JSON.parse(localStorage.getItem('chrono_concept_bookmarks') || '[]'));
     let customApiConcepts = JSON.parse(localStorage.getItem('chrono_custom_api_concepts') || '[]');
-
-    /* Orbital Motion State */
-    let rotationAngle = 0;
-    let rotationSpeed = 0.0032; // radians per frame
-    let isPaused = false;
-    let isHoveringPill = false;
-    let animationFrameId = null;
-
-    /* Category colors */
-    const catClassMap = {
-      'Architectures': 'cat-arch',
-      'Math & ML': 'cat-math',
-      'Training & Math': 'cat-train',
-      'Inference & Systems': 'cat-sys',
-      'Modern GenAI': 'cat-genai',
-      'API Expanded': 'cat-api'
-    };
 
     /* ── Theme ── */
     function applyTheme(theme) {
@@ -989,21 +596,7 @@
       }
       localStorage.setItem('chrono_concept_bookmarks', JSON.stringify([...bookmarks]));
       updateBookmarkCount();
-      updateSelectedOrb();
-      updatePillBookmarkVisuals();
-      if (currentCategory === 'Bookmarked') {
-        renderFiltered();
-      }
-    }
-    function updatePillBookmarkVisuals() {
-      document.querySelectorAll('.orbit-pill').forEach(pill => {
-        const id = pill.dataset.id;
-        pill.classList.toggle('is-bookmarked', bookmarks.has(id));
-      });
-      document.querySelectorAll('.card-bm-btn').forEach(btn => {
-        const id = btn.dataset.id;
-        btn.classList.toggle('bookmarked', bookmarks.has(id));
-      });
+      renderFiltered();
     }
 
     /* ── Fetch Data ── */
@@ -1015,172 +608,116 @@
         allConcepts = [...baseConcepts, ...customApiConcepts];
         
         document.getElementById('totalCount').textContent = allConcepts.length;
-        if (allConcepts.length > 0) {
-          selectedConceptId = allConcepts[0].id;
-        }
         updateBookmarkCount();
         renderFiltered();
-        startOrbitLoop();
       } catch (err) {
         console.error('Failed to load concepts:', err);
       }
     }
 
-    /* ── Filtering ── */
+    /* ── Filtering & Search ── */
     function getActiveConcepts() {
-      if (currentCategory === 'All') return allConcepts;
-      if (currentCategory === 'Bookmarked') return allConcepts.filter(c => bookmarks.has(c.id));
-      return allConcepts.filter(c => c.category === currentCategory);
+      const query = document.getElementById('conceptSearchInput').value.trim().toLowerCase();
+      let list = allConcepts;
+      if (currentCategory === 'Bookmarked') {
+        list = allConcepts.filter(c => bookmarks.has(c.id));
+      } else if (currentCategory !== 'All') {
+        list = allConcepts.filter(c => c.category === currentCategory);
+      }
+
+      if (query) {
+        list = list.filter(c => 
+          c.name.toLowerCase().includes(query) ||
+          (c.simple_definition && c.simple_definition.toLowerCase().includes(query)) ||
+          (c.analogy && c.analogy.toLowerCase().includes(query)) ||
+          (c.tags && c.tags.some(t => t.toLowerCase().includes(query)))
+        );
+      }
+      return list;
     }
 
     function renderFiltered() {
       const active = getActiveConcepts();
-      renderOrbitPills(active);
       renderGrid(active);
-      if (active.length > 0 && (!selectedConceptId || !active.some(c => c.id === selectedConceptId))) {
-        selectedConceptId = active[0].id;
-      }
-      updateSelectedOrb();
-
-      const orbitSection = document.getElementById('orbitSection');
-      const conceptsGrid = document.getElementById('conceptsGrid');
-      const orbitControls = document.getElementById('orbitControls');
-      const allConceptsBanner = document.getElementById('allConceptsBanner');
-      const btnViewOrbit = document.getElementById('btnViewOrbit');
-      const btnViewGrid = document.getElementById('btnViewGrid');
-
-      if (currentCategory === 'All') {
-        // In "All Concepts", orbit is NOT present - only specialized tabs have the orbit
-        orbitSection.style.display = 'none';
-        conceptsGrid.style.display = 'grid';
-        if (orbitControls) orbitControls.style.display = 'none';
-        if (allConceptsBanner) allConceptsBanner.style.display = 'inline-flex';
-        if (btnViewOrbit && btnViewGrid) {
-          btnViewOrbit.classList.remove('active');
-          btnViewGrid.classList.add('active');
-        }
-      } else {
-        // Specialized category tabs (Training, Architectures, Math, Inference, etc.) -> Show Orbit
-        orbitSection.style.display = 'flex';
-        conceptsGrid.style.display = 'none';
-        if (orbitControls) orbitControls.style.display = 'flex';
-        if (allConceptsBanner) allConceptsBanner.style.display = 'none';
-        if (btnViewOrbit && btnViewGrid) {
-          btnViewOrbit.classList.add('active');
-          btnViewGrid.classList.remove('active');
-        }
-        updateTrackSize();
-      }
     }
 
-    /* ── Update Center Holographic Sphere ── */
-    function updateSelectedOrb() {
-      const concept = allConcepts.find(c => c.id === selectedConceptId);
-      if (!concept) return;
+    document.getElementById('conceptSearchInput').addEventListener('input', renderFiltered);
 
-      document.getElementById('orbCategory').textContent = concept.category;
-      document.getElementById('orbLevel').textContent = concept.level || 'Intermediate';
-      document.getElementById('orbTitle').textContent = concept.name;
-      document.getElementById('orbDef').textContent = concept.simple_definition;
-      document.getElementById('orbAnalogy').textContent = concept.analogy;
-      document.getElementById('orbMath').textContent = concept.math_intuition || 'Mathematical model defined in academic literature.';
-      document.getElementById('orbWhy').textContent = concept.why_it_matters || 'Core fundamental theory in machine intelligence.';
+    /* ── Render Grid View ── */
+    function renderGrid(concepts) {
+      const grid = document.getElementById('conceptsGrid');
+      if (!concepts.length) {
+        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 60px 20px; color:var(--text-muted); font-size: 0.95em;">No matching concepts found. Try searching another term or query the live API above.</div>';
+        return;
+      }
+      grid.innerHTML = concepts.map(c => `
+        <article class="concept-card ${c.id === selectedConceptId ? 'selected' : ''} ${isQuizMode ? 'quiz-card' : ''}" data-id="${c.id}">
+          <div class="card-top">
+            <div class="card-badges">
+              <span class="badge-cat">${c.category}</span>
+              <span class="badge-level">${c.level || 'Core'}</span>
+            </div>
+            <div class="card-actions">
+              <button class="card-icon-btn speak-btn" data-id="${c.id}" title="Read aloud">
+                <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+              </button>
+              <button class="card-icon-btn bm-btn ${bookmarks.has(c.id) ? 'bookmarked' : ''}" data-id="${c.id}" title="Save concept">
+                <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="card-title">${c.name}</div>
+          <button class="quiz-reveal-btn" data-id="${c.id}">👁 Reveal Definition & Analogy</button>
+          <div class="card-def">${c.simple_definition}</div>
+          <div class="card-analogy">
+            <strong>🎯 Analogy:</strong> ${c.analogy}
+          </div>
+          <div class="card-footer">
+            <span style="color:var(--text-muted)">Click card for math formula & deep dive ↗</span>
+            <span class="card-tag">${c.tags ? c.tags[0] : 'AI'}</span>
+          </div>
+        </article>
+      `).join('');
 
-      const bmBtn = document.getElementById('orbBmBtn');
-      const bmText = document.getElementById('orbBmText');
-      const isBm = bookmarks.has(concept.id);
-      bmBtn.classList.toggle('bookmarked', isBm);
-      bmText.textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
-
-      // Highlight selected pill in orbit
-      document.querySelectorAll('.orbit-pill').forEach(p => {
-        p.classList.toggle('selected', p.dataset.id === concept.id);
+      grid.querySelectorAll('.concept-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('.card-icon-btn')) return;
+          if (e.target.closest('.quiz-reveal-btn')) {
+            e.stopPropagation();
+            card.classList.add('revealed');
+            return;
+          }
+          openDetailModal(card.dataset.id);
+        });
       });
-      document.querySelectorAll('.concept-card').forEach(c => {
-        c.classList.toggle('selected', c.dataset.id === concept.id);
+
+      grid.querySelectorAll('.bm-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleBookmark(btn.dataset.id);
+        });
+      });
+
+      grid.querySelectorAll('.speak-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          speakConcept(btn.dataset.id);
+        });
       });
     }
 
-    document.getElementById('orbBmBtn').addEventListener('click', () => {
-      if (selectedConceptId) toggleBookmark(selectedConceptId);
-    });
-
-    /* Sphere Internal Tab Switcher */
-    const btnOrbTabDef = document.getElementById('btnOrbTabDef');
-    const btnOrbTabMath = document.getElementById('btnOrbTabMath');
-    const orbDefCard = document.getElementById('orbDefCard');
-    const orbMathCard = document.getElementById('orbMathCard');
-
-    btnOrbTabDef.addEventListener('click', () => {
-      btnOrbTabDef.classList.add('active');
-      btnOrbTabMath.classList.remove('active');
-      orbDefCard.style.display = 'flex';
-      orbMathCard.style.display = 'none';
-    });
-    btnOrbTabMath.addEventListener('click', () => {
-      btnOrbTabMath.classList.add('active');
-      btnOrbTabDef.classList.remove('active');
-      orbDefCard.style.display = 'none';
-      orbMathCard.style.display = 'block';
-    });
-
-    /* Text-to-Speech */
-    document.getElementById('btnSpeak').addEventListener('click', () => {
-      const concept = allConcepts.find(c => c.id === selectedConceptId);
-      if (!concept || !window.speechSynthesis) return;
+    /* ── Speech Synthesis ── */
+    function speakConcept(id) {
+      const c = allConcepts.find(item => item.id === id);
+      if (!c || !window.speechSynthesis) return;
       window.speechSynthesis.cancel();
-      const text = `${concept.name}. ${concept.simple_definition}. For analogy: ${concept.analogy}`;
+      const text = `${c.name}. ${c.simple_definition}. For analogy: ${c.analogy}`;
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.rate = 1.0;
       window.speechSynthesis.speak(utterance);
-    });
-
-    /* ── Render Orbit Pills ── */
-    function renderOrbitPills(concepts) {
-      const container = document.getElementById('orbitContainer');
-      container.innerHTML = '';
-
-      concepts.forEach((concept) => {
-        const pill = document.createElement('div');
-        pill.className = `orbit-pill ${catClassMap[concept.category] || ''}`;
-        if (concept.id === selectedConceptId) pill.classList.add('selected');
-        if (bookmarks.has(concept.id)) pill.classList.add('is-bookmarked');
-        pill.dataset.id = concept.id;
-
-        pill.innerHTML = `
-          <span class="pill-dot ${catClassMap[concept.category] || ''}"></span>
-          <span>${concept.name}</span>
-          <span class="pill-star">★</span>
-        `;
-
-        pill.addEventListener('mouseenter', () => { isHoveringPill = true; });
-        pill.addEventListener('mouseleave', () => { isHoveringPill = false; });
-        pill.addEventListener('click', () => {
-          selectedConceptId = concept.id;
-          updateSelectedOrb();
-        });
-
-        container.appendChild(pill);
-      });
-
-      updateTrackSize();
     }
 
-    /* ── Render Grid View ── */
-    /* ── Quiz Mode & Detail Modal State ── */
-    let isQuizMode = false;
-
-    const btnToggleQuiz = document.getElementById('btnToggleQuiz');
-    const quizBtnLabel = document.getElementById('quizBtnLabel');
-    if (btnToggleQuiz) {
-      btnToggleQuiz.addEventListener('click', () => {
-        isQuizMode = !isQuizMode;
-        quizBtnLabel.textContent = isQuizMode ? '✓ Exit Quiz' : '🎴 Quiz Mode';
-        btnToggleQuiz.classList.toggle('active', isQuizMode);
-        renderGrid(getActiveConcepts());
-      });
-    }
-
+    /* ── Detail Modal ── */
     function openDetailModal(conceptId) {
       const c = allConcepts.find(item => item.id === conceptId);
       if (!c) return;
@@ -1197,8 +734,8 @@
       const modalBmBtn = document.getElementById('modalBmBtn');
       const modalBmText = document.getElementById('modalBmText');
       const isBm = bookmarks.has(c.id);
-      modalBmBtn.classList.toggle('bookmarked', isBm);
-      modalBmText.textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
+      modalBmBtn.classList.toggle('active', isBm);
+      modalBmText.textContent = isBm ? '★ Saved to Bookmarks' : '☆ Keep for Later';
 
       document.getElementById('detailModal').classList.add('open');
     }
@@ -1216,172 +753,34 @@
       if (selectedConceptId) {
         toggleBookmark(selectedConceptId);
         const isBm = bookmarks.has(selectedConceptId);
-        document.getElementById('modalBmBtn').classList.toggle('bookmarked', isBm);
-        document.getElementById('modalBmText').textContent = isBm ? 'Saved to Bookmarks' : 'Keep for Later';
+        document.getElementById('modalBmBtn').classList.toggle('active', isBm);
+        document.getElementById('modalBmText').textContent = isBm ? '★ Saved to Bookmarks' : '☆ Keep for Later';
       }
     });
 
     document.getElementById('btnModalSpeak').addEventListener('click', () => {
-      const c = allConcepts.find(item => item.id === selectedConceptId);
-      if (!c || !window.speechSynthesis) return;
-      window.speechSynthesis.cancel();
-      const text = `${c.name}. ${c.simple_definition}. Real-world analogy: ${c.analogy}`;
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 1.0;
-      window.speechSynthesis.speak(utterance);
+      if (selectedConceptId) speakConcept(selectedConceptId);
     });
 
-    document.getElementById('btnModalLaunchOrbit').addEventListener('click', () => {
-      const c = allConcepts.find(item => item.id === selectedConceptId);
-      if (!c) return;
-      document.getElementById('detailModal').classList.remove('open');
-      currentCategory = c.category;
-      document.querySelectorAll('#categoryTabs .tab').forEach(t => {
-        t.classList.toggle('active', t.dataset.cat === c.category);
-      });
+    /* ── Quiz Mode Toggle ── */
+    const btnToggleQuiz = document.getElementById('btnToggleQuiz');
+    const quizBtnLabel = document.getElementById('quizBtnLabel');
+    btnToggleQuiz.addEventListener('click', () => {
+      isQuizMode = !isQuizMode;
+      quizBtnLabel.textContent = isQuizMode ? '✓ Exit Quiz Mode' : '🎴 Quiz Mode';
+      btnToggleQuiz.classList.toggle('active', isQuizMode);
       renderFiltered();
     });
 
-    /* ── Render Grid View ── */
-    function renderGrid(concepts) {
-      const grid = document.getElementById('conceptsGrid');
-      if (!concepts.length) {
-        grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center; padding: 40px; color:var(--text-muted);">No concepts found in this category.</div>';
-        return;
-      }
-      grid.innerHTML = concepts.map(c => `
-        <article class="concept-card ${c.id === selectedConceptId ? 'selected' : ''} ${isQuizMode ? 'quiz-card' : ''}" data-id="${c.id}">
-          <div class="card-top">
-            <span class="orb-category">${c.category}</span>
-            <button class="card-bm-btn ${bookmarks.has(c.id) ? 'bookmarked' : ''}" data-id="${c.id}" title="Keep for later">
-              <svg viewBox="0 0 24 24"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-            </button>
-          </div>
-          <div class="card-title">${c.name}</div>
-          <button class="quiz-reveal-btn" data-id="${c.id}">👁 Reveal Definition & Analogy</button>
-          <div class="card-def">${c.simple_definition}</div>
-          <div class="card-analogy">
-            <strong>Analogy:</strong> ${c.analogy}
-          </div>
-          <div class="card-footer">
-            <span>${c.level || 'Core'}</span>
-            <span style="font-family: 'JetBrains Mono', monospace;">${c.tags ? c.tags[0] : 'AI'}</span>
-          </div>
-        </article>
-      `).join('');
-
-      grid.querySelectorAll('.concept-card').forEach(card => {
-        card.addEventListener('click', (e) => {
-          if (e.target.closest('.card-bm-btn')) return;
-          if (e.target.closest('.quiz-reveal-btn')) {
-            e.stopPropagation();
-            card.classList.add('revealed');
-            return;
-          }
-          openDetailModal(card.dataset.id);
-        });
-      });
-      grid.querySelectorAll('.card-bm-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          toggleBookmark(btn.dataset.id);
-        });
-      });
-    }
-
-    /* ── Elliptical Orbit Mathematical Animation ── */
-    function updateTrackSize() {
-      const section = document.getElementById('orbitSection');
-      const w = section.clientWidth;
-      const h = section.clientHeight;
-
-      const rx = Math.min(w * 0.45, 480);
-      const ry = Math.min(h * 0.44, 275);
-
-      const trackOuter = document.getElementById('trackOuter');
-      trackOuter.style.width = (rx * 2) + 'px';
-      trackOuter.style.height = (ry * 2) + 'px';
-
-      const trackInner = document.getElementById('trackInner');
-      trackInner.style.width = (rx * 1.5) + 'px';
-      trackInner.style.height = (ry * 1.5) + 'px';
-    }
-
-    window.addEventListener('resize', updateTrackSize);
-
-    function startOrbitLoop() {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
-
-      function frame() {
-        if (!isPaused) {
-          const effSpeed = isHoveringPill ? rotationSpeed * 0.2 : rotationSpeed;
-          rotationAngle += effSpeed;
-        }
-
-        const section = document.getElementById('orbitSection');
-        const cx = section.clientWidth / 2;
-        const cy = section.clientHeight / 2;
-
-        const rx = Math.min(section.clientWidth * 0.45, 480);
-        const ry = Math.min(section.clientHeight * 0.44, 275);
-
-        const pills = document.querySelectorAll('.orbit-pill');
-        const total = pills.length;
-
-        pills.forEach((pill, i) => {
-          const theta = rotationAngle + (i * ((2 * Math.PI) / (total || 1)));
-
-          const x = cx + rx * Math.cos(theta);
-          const y = cy + ry * Math.sin(theta);
-
-          // 3D Depth projection: pills in front (sin > 0) are larger and opaque
-          const depth = (Math.sin(theta) + 1) / 2; // 0 (back) to 1 (front)
-          const scale = 0.85 + depth * 0.28;
-          const opacity = 0.55 + depth * 0.45;
-          const zIndex = Math.round(10 + depth * 25);
-
-          pill.style.left = x + 'px';
-          pill.style.top = y + 'px';
-          pill.style.transform = `translate(-50%, -50%) scale(${scale})`;
-          pill.style.opacity = opacity;
-          pill.style.zIndex = zIndex;
-        });
-
-        animationFrameId = requestAnimationFrame(frame);
-      }
-
-      animationFrameId = requestAnimationFrame(frame);
-    }
-
-    /* ── Controls: Spin Direction & Pause ── */
-    const btnReverse = document.getElementById('btnReverse');
-    const spinDirLabel = document.getElementById('spinDirLabel');
-    btnReverse.addEventListener('click', () => {
-      rotationSpeed = -rotationSpeed;
-      spinDirLabel.textContent = rotationSpeed > 0 ? 'Spin: CCW ⟲' : 'Spin: CW ⟳';
-    });
-
-    const btnPause = document.getElementById('btnPause');
-    const pauseLabel = document.getElementById('pauseLabel');
-    const pauseIcon = document.getElementById('pauseIcon');
-    btnPause.addEventListener('click', () => {
-      isPaused = !isPaused;
-      pauseLabel.textContent = isPaused ? 'Resume' : 'Pause';
-      pauseIcon.innerHTML = isPaused
-        ? '<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>'
-        : '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
-    });
-
-    /* Surprise Me Random Concept */
+    /* ── Surprise Me (Random Concept) ── */
     document.getElementById('btnRandom').addEventListener('click', () => {
       const active = getActiveConcepts();
       if (!active.length) return;
       const rand = active[Math.floor(Math.random() * active.length)];
-      selectedConceptId = rand.id;
-      updateSelectedOrb();
+      openDetailModal(rand.id);
     });
 
-    /* ── Category Tab Switcher ── */
+    /* ── Category Tabs ── */
     document.getElementById('categoryTabs').addEventListener('click', (e) => {
       const tab = e.target.closest('.tab');
       if (!tab) return;
@@ -1391,28 +790,7 @@
       renderFiltered();
     });
 
-    /* ── View Toggle (Orbit vs Grid) ── */
-    const btnViewOrbit = document.getElementById('btnViewOrbit');
-    const btnViewGrid = document.getElementById('btnViewGrid');
-    const orbitSection = document.getElementById('orbitSection');
-    const conceptsGrid = document.getElementById('conceptsGrid');
-
-    btnViewOrbit.addEventListener('click', () => {
-      btnViewOrbit.classList.add('active');
-      btnViewGrid.classList.remove('active');
-      orbitSection.style.display = 'flex';
-      conceptsGrid.style.display = 'none';
-      updateTrackSize();
-    });
-
-    btnViewGrid.addEventListener('click', () => {
-      btnViewGrid.classList.add('active');
-      btnViewOrbit.classList.remove('active');
-      orbitSection.style.display = 'none';
-      conceptsGrid.style.display = 'grid';
-    });
-
-    /* ── API Explorer Modal & Live Fetch ── */
+    /* ── Wikipedia REST API Explorer ── */
     const apiModal = document.getElementById('apiModal');
     const btnOpenApiModal = document.getElementById('btnOpenApiModal');
     const btnApiClose = document.getElementById('btnApiClose');
@@ -1445,29 +823,27 @@
         const newConcept = {
           id: 'api_' + Date.now(),
           name: data.title,
-          category: 'API Expanded',
+          category: 'Modern GenAI',
           level: 'Community',
           simple_definition: data.extract || 'No definition available.',
-          analogy: `Think of ${data.title} in computing as a fundamental modular building block that enables intelligent behavior and automated reasoning.`,
+          analogy: `Think of ${data.title} as a fundamental modular building block in intelligent computing systems.`,
           why_it_matters: `Frequently referenced in modern machine learning research papers and industry architectures.`,
           math_intuition: `Formally referenced in peer-reviewed machine learning literature (${data.title}).`,
-          tags: ['API', 'Live Knowledge', 'Explorer']
+          tags: ['API', 'Live Knowledge']
         };
 
-        // Add to local state & persist
         customApiConcepts.unshift(newConcept);
-        localStorage.setItem('chrono_custom_api_concepts', JSON.stringify(customApiConcepts.slice(0, 20)));
+        localStorage.setItem('chrono_custom_api_concepts', JSON.stringify(customApiConcepts.slice(0, 25)));
         allConcepts.unshift(newConcept);
 
         document.getElementById('totalCount').textContent = allConcepts.length;
-        selectedConceptId = newConcept.id;
         renderFiltered();
 
         apiResultBox.innerHTML = `
-          <div style="color:var(--success);font-weight:700;margin-bottom:6px;">✓ Successfully Injected into Orbit!</div>
-          <div style="font-weight:600;color:var(--text-strong);">${data.title}</div>
-          <div style="font-size:0.9em;color:var(--text);">${data.extract}</div>
-          <button style="margin-top:10px;background:var(--accent);color:#fff;border:none;padding:6px 12px;border-radius:8px;cursor:pointer;font-size:0.8em;font-weight:600;" onclick="document.getElementById('apiModal').classList.remove('open')">View in Orbit ↵</button>
+          <div style="color:var(--success);font-weight:700;margin-bottom:6px;">✓ Successfully Injected into Curriculum!</div>
+          <div style="font-weight:700;color:var(--text-strong);margin-bottom:4px;">${data.title}</div>
+          <div style="font-size:0.88em;color:var(--text);margin-bottom:10px;">${data.extract}</div>
+          <button class="ctrl-btn" style="background:var(--accent);color:#fff;" onclick="document.getElementById('apiModal').classList.remove('open'); openDetailModal('${newConcept.id}');">View Breakdown ↵</button>
         `;
       } catch (err) {
         apiResultBox.innerHTML = `
@@ -1499,17 +875,17 @@
       renderCmdResults('');
       cmdInput.focus();
     }
-    function closeCmdPalette() {
-      cmdPalette.classList.remove('open');
-    }
+    function closeCmdPalette() { cmdPalette.classList.remove('open'); }
     document.getElementById('btnCmdPalette').addEventListener('click', openCmdPalette);
 
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         cmdPalette.classList.contains('open') ? closeCmdPalette() : openCmdPalette();
-      } else if (e.key === 'Escape' && cmdPalette.classList.contains('open')) {
-        closeCmdPalette();
+      } else if (e.key === 'Escape') {
+        if (cmdPalette.classList.contains('open')) closeCmdPalette();
+        if (detailModal.classList.contains('open')) detailModal.classList.remove('open');
+        if (apiModal.classList.contains('open')) apiModal.classList.remove('open');
       }
     });
     cmdPalette.addEventListener('click', (e) => {
@@ -1521,19 +897,17 @@
       { type: 'action', title: 'Go to AI Tools Directory', sub: 'tools.html', link: 'tools.html', icon: '🛠️' },
       { type: 'action', title: 'Go to Prompt Library', sub: 'prompts.html', link: 'prompts.html', icon: '💬' },
       { type: 'action', title: 'Go to Models Leaderboard', sub: 'models.html', link: 'models.html', icon: '📊' },
-      { type: 'action', title: 'Go to AI Core Concepts & Orbit', sub: 'concepts.html', link: 'concepts.html', icon: '🪐' },
+      { type: 'action', title: 'Go to AI Core Concepts', sub: 'concepts.html', link: 'concepts.html', icon: '📚' },
       { type: 'action_theme', title: 'Toggle Theme (Dark / Light)', sub: 'Action', icon: '🌓' },
     ];
 
     function renderCmdResults(query) {
       const q = query.toLowerCase().trim();
       let resultsHtml = '';
-      let items = [];
 
       if (!q) {
         resultsHtml += `<div class="cmd-group-title" style="font-size:0.68em;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);padding:8px 10px 4px 10px;">Quick Actions</div>`;
-        cmdActions.forEach((a, i) => {
-          items.push(a);
+        cmdActions.forEach((a) => {
           resultsHtml += `
             <div class="cmd-item" data-action="${a.type}" data-link="${a.link || ''}">
               <div style="display:flex;align-items:center;gap:10px;">
@@ -1550,7 +924,7 @@
       } else {
         const matchActions = cmdActions.filter(a => a.title.toLowerCase().includes(q) || a.sub.toLowerCase().includes(q));
         const matches = allConcepts.filter(c =>
-          c.name.toLowerCase().includes(q) || (c.simple_definition && c.simple_definition.toLowerCase().includes(q)) || (c.category && c.category.toLowerCase().includes(q)) || (c.tags && c.tags.some(t => t.toLowerCase().includes(q)))
+          c.name.toLowerCase().includes(q) || (c.simple_definition && c.simple_definition.toLowerCase().includes(q)) || (c.category && c.category.toLowerCase().includes(q))
         ).slice(0, 8);
 
         if (matchActions.length) {
@@ -1580,7 +954,7 @@
                   <div class="cmd-item-title">${c.name}</div>
                   <div class="cmd-item-meta">${c.category} · ${(c.tags || []).join(', ')}</div>
                 </div>
-                <span style="font-size:0.75em;color:var(--accent);">Select ↵</span>
+                <span style="font-size:0.75em;color:var(--accent);">Open ↵</span>
               </div>
             `;
           });
@@ -1604,8 +978,7 @@
             const link = item.dataset.link;
             if (link) window.location.href = link;
           } else if (item.dataset.id) {
-            selectedConceptId = item.dataset.id;
-            updateSelectedOrb();
+            openDetailModal(item.dataset.id);
             closeCmdPalette();
           }
         });
