@@ -1,63 +1,9 @@
 [
   {
-    "title": "Convo",
-    "link": "https://www.producthunt.com/products/convo-7",
-    "category": "Chatbot/Assistant",
-    "description": "The AI copilot for people who sell\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "PhraseVault 3.0",
-    "link": "https://www.producthunt.com/products/phrasevault",
-    "category": "Other",
-    "description": "Now lock one sensitive phrase at a time with a PIN\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "CreatorHat",
-    "link": "https://www.producthunt.com/products/creatorhat",
-    "category": "Video",
-    "description": "YouTube SEO tools for Safari featuring Apple Intelligence\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Jottoo",
-    "link": "https://www.producthunt.com/products/jottoo",
-    "category": "Productivity",
-    "description": "AI meeting notes that turn into tracked tasks\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Project Feed",
-    "link": "https://www.producthunt.com/products/project-feed",
-    "category": "Other",
-    "description": "Project management with built-in file review\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "PeakHour 6",
-    "link": "https://www.producthunt.com/products/peak-hour",
-    "category": "Other",
-    "description": "Real-time network monitor for Mac w/ detailed WiFi insights\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
     "title": "Twigg",
     "link": "https://www.producthunt.com/products/twigg",
     "category": "Other",
     "description": "The context layer you never have to build\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "CAT ME app",
-    "link": "https://www.producthunt.com/products/cat-me-app",
-    "category": "Other",
-    "description": "See yourself or your friends as cats\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "flat.social",
-    "link": "https://www.producthunt.com/products/flat-social",
-    "category": "Other",
-    "description": "Absurdly delightful 3D spaces where remote teams hang out\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Weave Router 2.0",
-    "link": "https://www.producthunt.com/products/weave",
-    "category": "Coding",
-    "description": "Subscription aware coding agent router\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "Thread",
@@ -72,22 +18,16 @@
     "description": "Expand ideas, concepts, and plans across limitless boards\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
+    "title": "CAT ME app",
+    "link": "https://www.producthunt.com/products/cat-me-app",
+    "category": "Other",
+    "description": "See yourself or your friends as cats\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
     "title": "Toki Coordination",
     "link": "https://www.producthunt.com/products/toki-ai",
     "category": "Chatbot/Assistant",
     "description": "Your personal assistant to schedule + follow up on meetings\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Appwrite 2.0",
-    "link": "https://www.producthunt.com/products/appwrite",
-    "category": "Coding",
-    "description": "The open-source cloud for agents and developers\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "ZeroClick",
-    "link": "https://www.producthunt.com/products/zeroclick",
-    "category": "Chatbot/Assistant",
-    "description": "Sell your product to AI agents\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "Gemini 3.8 & 3.8 Live Extended Thinking",
@@ -96,10 +36,70 @@
     "description": "Our most advanced Gemini Audio models yet\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
+    "title": "Appwrite 2.0",
+    "link": "https://www.producthunt.com/products/appwrite",
+    "category": "Coding",
+    "description": "The open-source cloud for agents and developers\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Weave Router 2.0",
+    "link": "https://www.producthunt.com/products/weave",
+    "category": "Coding",
+    "description": "Subscription aware coding agent router\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "ZeroClick",
+    "link": "https://www.producthunt.com/products/zeroclick",
+    "category": "Chatbot/Assistant",
+    "description": "Sell your product to AI agents\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
     "title": "Fide Island",
     "link": "https://www.producthunt.com/products/fide-island",
     "category": "Coding",
     "description": "Media, Notes, on-device translation + more in your Notch\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "PhraseVault 3.0",
+    "link": "https://www.producthunt.com/products/phrasevault",
+    "category": "Other",
+    "description": "Now lock one sensitive phrase at a time with a PIN\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "CreatorHat",
+    "link": "https://www.producthunt.com/products/creatorhat",
+    "category": "Video",
+    "description": "YouTube SEO tools for Safari featuring Apple Intelligence\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "PeakHour 6",
+    "link": "https://www.producthunt.com/products/peak-hour",
+    "category": "Other",
+    "description": "Real-time network monitor for Mac w/ detailed WiFi insights\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Project Feed",
+    "link": "https://www.producthunt.com/products/project-feed",
+    "category": "Other",
+    "description": "Project management with built-in file review\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Convo",
+    "link": "https://www.producthunt.com/products/convo-7",
+    "category": "Chatbot/Assistant",
+    "description": "The AI copilot for people who sell\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Jottoo",
+    "link": "https://www.producthunt.com/products/jottoo",
+    "category": "Productivity",
+    "description": "AI meeting notes that turn into tracked tasks\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "flat.social",
+    "link": "https://www.producthunt.com/products/flat-social",
+    "category": "Other",
+    "description": "Absurdly delightful 3D spaces where remote teams hang out\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "DynamicLake 2.0",
@@ -108,10 +108,10 @@
     "description": "Dynamic Island for Mac with 3rd Live Activities and more\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Mailyte",
-    "link": "https://www.producthunt.com/products/mailyte",
-    "category": "Other",
-    "description": "Email for your team, your app, and your customers.\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "is.team",
+    "link": "https://www.producthunt.com/products/is-team",
+    "category": "Chatbot/Assistant",
+    "description": "Your AI agent joins the board like a teammate\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "Kodro",
@@ -126,100 +126,10 @@
     "description": "AI-first video editor, just describe edits & refine in chat\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Buddy AI Access (MCP)",
-    "link": "https://www.producthunt.com/products/buddy",
-    "category": "Chatbot/Assistant",
-    "description": "Your agent needs more than your repo\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "tiun.",
-    "link": "https://www.producthunt.com/products/tiun-2",
-    "category": "Other",
-    "description": "Auth, billing, and payments for AI builders\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "OpenAI Agents API",
-    "link": "https://www.producthunt.com/products/openai",
-    "category": "Coding",
-    "description": "Cloud agents, run on OpenAI's Codex harness\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Voiskey",
-    "link": "https://www.producthunt.com/products/voiskey",
-    "category": "Audio",
-    "description": "AI voice typing that sounds right in every app\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "The Minimalist Entrepreneur Skills",
-    "link": "https://www.producthunt.com/products/the-minimalist-entrepreneur-skills",
-    "category": "Coding",
-    "description": "Book playbook as Claude Code slash skills\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Payflip",
-    "link": "https://www.producthunt.com/products/payflip",
-    "category": "Other",
-    "description": "Pay anyone you can name. No IBAN, no wallet address.\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Anthropologic",
-    "link": "https://www.producthunt.com/products/anthropologic",
-    "category": "Research",
-    "description": "The zero distance consumer research platform.\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "siift",
-    "link": "https://www.producthunt.com/products/siift",
-    "category": "Other",
-    "description": "Turn AI noise into better business decisions\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Kilo Code for iOS and Android",
-    "link": "https://www.producthunt.com/products/kilocode",
-    "category": "Coding",
-    "description": "Start coding agents, control sessions, review PRs. Anywhere.\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Fifi",
-    "link": "https://www.producthunt.com/products/fifi-wake-up-call-alarm-clock",
-    "category": "Other",
-    "description": "An alarm that calls you, and reads you your day\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Idlen",
-    "link": "https://www.producthunt.com/products/idlen",
-    "category": "Coding",
-    "description": "Earn while you work with AI in any IDE or browser\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
     "title": "Portfolio Frame",
     "link": "https://www.producthunt.com/products/portfolio-frame",
     "category": "Image",
     "description": "Frame, annotate, and export screenshots that look designed\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "Axari",
-    "link": "https://www.producthunt.com/products/axari",
-    "category": "Other",
-    "description": "Assign your security busywork to your AI twin\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "PeekPaste",
-    "link": "https://www.producthunt.com/products/lucidbit",
-    "category": "Video",
-    "description": "Your clipboard, within reach\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "FATHER",
-    "link": "https://www.producthunt.com/products/father-web-monitoring",
-    "category": "Other",
-    "description": "A Mac dashboard for site traffic, deploys, uptime, and SEO\n          \n          \n            Discussion\n            |\n            Link"
-  },
-  {
-    "title": "is.team",
-    "link": "https://www.producthunt.com/products/is-team",
-    "category": "Chatbot/Assistant",
-    "description": "Your AI agent joins the board like a teammate\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "PortAura",
@@ -228,10 +138,10 @@
     "description": "See what’s listening on your Mac\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Grimo AI",
-    "link": "https://www.producthunt.com/products/grimo-ai",
-    "category": "Productivity",
-    "description": "Say it once and all tasks, calendar and notes are sorted\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "Kilo Code for iOS and Android",
+    "link": "https://www.producthunt.com/products/kilocode",
+    "category": "Coding",
+    "description": "Start coding agents, control sessions, review PRs. Anywhere.\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "jurniti",
@@ -240,10 +150,40 @@
     "description": "Always-on AI agents in Firecracker microVMs\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Thoughts for Mac",
-    "link": "https://www.producthunt.com/products/thoughts-for-mac",
-    "category": "Image",
-    "description": "Capture notes from your menubar using text, images or voice\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "Fifi",
+    "link": "https://www.producthunt.com/products/fifi-wake-up-call-alarm-clock",
+    "category": "Other",
+    "description": "An alarm that calls you, and reads you your day\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Mailyte",
+    "link": "https://www.producthunt.com/products/mailyte",
+    "category": "Other",
+    "description": "Email for your team, your app, and your customers.\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Grimo AI",
+    "link": "https://www.producthunt.com/products/grimo-ai",
+    "category": "Productivity",
+    "description": "Say it once and all tasks, calendar and notes are sorted\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Voiskey",
+    "link": "https://www.producthunt.com/products/voiskey",
+    "category": "Audio",
+    "description": "AI voice typing that sounds right in every app\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Proofrr",
+    "link": "https://www.producthunt.com/products/proofrr",
+    "category": "Other",
+    "description": "One workspace for creative feedback, reviews, and approvals\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Idlen",
+    "link": "https://www.producthunt.com/products/idlen",
+    "category": "Coding",
+    "description": "Earn while you work with AI in any IDE or browser\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "Multimodal Agents by Sierra",
@@ -252,10 +192,70 @@
     "description": "AI agents that switch between voice, text, and visuals\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Proofrr",
-    "link": "https://www.producthunt.com/products/proofrr",
+    "title": "The Minimalist Entrepreneur Skills",
+    "link": "https://www.producthunt.com/products/the-minimalist-entrepreneur-skills",
+    "category": "Coding",
+    "description": "Book playbook as Claude Code slash skills\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "FATHER",
+    "link": "https://www.producthunt.com/products/father-web-monitoring",
     "category": "Other",
-    "description": "One workspace for creative feedback, reviews, and approvals\n          \n          \n            Discussion\n            |\n            Link"
+    "description": "A Mac dashboard for site traffic, deploys, uptime, and SEO\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Thoughts for Mac",
+    "link": "https://www.producthunt.com/products/thoughts-for-mac",
+    "category": "Image",
+    "description": "Capture notes from your menubar using text, images or voice\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "PeekPaste",
+    "link": "https://www.producthunt.com/products/lucidbit",
+    "category": "Video",
+    "description": "Your clipboard, within reach\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Axari",
+    "link": "https://www.producthunt.com/products/axari",
+    "category": "Other",
+    "description": "Assign your security busywork to your AI twin\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Anthropologic",
+    "link": "https://www.producthunt.com/products/anthropologic",
+    "category": "Research",
+    "description": "The zero distance consumer research platform.\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "OpenAI Agents API",
+    "link": "https://www.producthunt.com/products/openai",
+    "category": "Coding",
+    "description": "Cloud agents, run on OpenAI's Codex harness\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "siift",
+    "link": "https://www.producthunt.com/products/siift",
+    "category": "Other",
+    "description": "Turn AI noise into better business decisions\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "tiun.",
+    "link": "https://www.producthunt.com/products/tiun-2",
+    "category": "Other",
+    "description": "Auth, billing, and payments for AI builders\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Buddy AI Access (MCP)",
+    "link": "https://www.producthunt.com/products/buddy",
+    "category": "Chatbot/Assistant",
+    "description": "Your agent needs more than your repo\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Payflip",
+    "link": "https://www.producthunt.com/products/payflip",
+    "category": "Other",
+    "description": "Pay anyone you can name. No IBAN, no wallet address.\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
     "title": "Tangerine",
@@ -282,22 +282,28 @@
     "description": "Make your WordPress site visible to AI\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "AppZapper 3000",
-    "link": "https://www.producthunt.com/products/appzapper",
-    "category": "Other",
-    "description": "The uninstaller Apple forgot.\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "Naoma AI Demo Agent V2",
+    "link": "https://www.producthunt.com/products/naoma",
+    "category": "Chatbot/Assistant",
+    "description": "Turns website traffic into booked, qualified meetings\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Oats",
-    "link": "https://www.producthunt.com/products/oats-2",
-    "category": "Other",
-    "description": "Free, open-source, and on device meeting notetaker\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "appdesigns",
+    "link": "https://www.producthunt.com/products/appdesigns",
+    "category": "Image",
+    "description": "Design amazing appstore screenshots for free\n          \n          \n            Discussion\n            |\n            Link"
   },
   {
-    "title": "Afterglow",
-    "link": "https://www.producthunt.com/products/afterglow-4",
-    "category": "Other",
-    "description": "Run classic After Dark screen savers on modern macOS\n          \n          \n            Discussion\n            |\n            Link"
+    "title": "Web Search Agents by Nimble",
+    "link": "https://www.producthunt.com/products/nimbleway",
+    "category": "Research",
+    "description": "Self-learning agents automate web research + retrieval\n          \n          \n            Discussion\n            |\n            Link"
+  },
+  {
+    "title": "Show HN: Hacker News, a little more focused",
+    "link": "https://hn-tags.beehivesoftware.xyz/?tags=programming",
+    "category": "Coding",
+    "description": "I love AI and LLMs as much as the next person, but sometimes I just want to browse stories about, say programming. So I built this for myself and figured I will share it here as well.Each story gets u"
   },
   {
     "title": "Show HN: Fivetran CLI is released to Beta",
@@ -412,12 +418,6 @@
     "link": "https://www.inwom.com/",
     "category": "Chatbot/Assistant",
     "description": "I don&#x27;t trust OpenAI, Anthropic, Google, or any other AI lab to be responsible for protecting my systems from the systems they&#x27;re building, yesterday it was Hugging Face unintentionally, tom"
-  },
-  {
-    "title": "Show HN: SeasonMap – when to travel where? visualized with climate data",
-    "link": "https://seasonmap.app",
-    "category": "Coding",
-    "description": "Author here. I&#x27;m trying to visit every country and I&#x27;ve been to 158 so far.Before I decide where to travel, I&#x27;d ask a local friend which season to avoid, or open up dozens of browser ta"
   },
   {
     "title": "Show HN: Remind Cards – an offline-first flashcard app with AI generation",
@@ -570,6 +570,12 @@
     "description": "Shared on Hacker News."
   },
   {
+    "title": "Show HN: SeasonMap – when to travel where? visualized with climate data",
+    "link": "https://seasonmap.app",
+    "category": "Coding",
+    "description": "Author here. I&#x27;m trying to visit every country and I&#x27;ve been to 158 so far.Before I decide where to travel, I&#x27;d ask a local friend which season to avoid, or open up dozens of browser ta"
+  },
+  {
     "title": "Show HN: OmnisBench, a re-gradable, open LLM routing benchmark on fresh tasks",
     "link": "https://github.com/Fortitude-Group/OmnisBench",
     "category": "Productivity",
@@ -624,10 +630,10 @@
     "description": "I play chess casually and usually struggle to figure out why Lichess analysis say my move is a blunder. Almost all the analysis tools will just suggest the best variant for a position, and you will ha"
   },
   {
-    "title": "Show HN: Agenttik – work on multiple projects in parallel with AI agents",
-    "link": "https://github.com/pausan/agenttik",
-    "category": "Chatbot/Assistant",
-    "description": "Hi! I&#x27;ve been reading HN daily for almost 16 years. Really glad this community\nexist. This is my first Show HN, so I hope you find this tool useful&#x2F;interesting.During my summer holidays I st"
+    "title": "Show HN: DroidPutter – Run Cardputer Apps on Android via USB OTG",
+    "link": "https://github.com/fcavalcantirj/droidputter",
+    "category": "Other",
+    "description": "Shared on Hacker News."
   },
   {
     "title": "Show HN: OpenCode Mentor - An anti-vibecoding, programming mentor configuration",
@@ -670,12 +676,6 @@
     "link": "https://github.com/rccmb/oracle",
     "category": "Chatbot/Assistant",
     "description": "Shared on Hacker News."
-  },
-  {
-    "title": "Show HN: Play subway surfer inside your Claude Code terminal",
-    "link": "https://github.com/lucastononro/cc-subway",
-    "category": "Coding",
-    "description": "Brain-rotting while vibing lol"
   },
   {
     "title": "Show HN: Threshyr – An offline automatic time tracker with on-device AI",
@@ -819,7 +819,7 @@
     "title": "n8n-io/n8n",
     "link": "https://github.com/n8n-io/n8n",
     "category": "Coding",
-    "description": "⭐ 204.6k stars · TypeScript — Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
+    "description": "⭐ 204.7k stars · TypeScript — Fair-code workflow automation platform with native AI capabilities. Combine visual building with custom code, self-host or cloud, 400+ integrations."
   },
   {
     "title": "Significant-Gravitas/AutoGPT",
@@ -885,6 +885,6 @@
     "title": "JuliusBrussee/caveman",
     "link": "https://github.com/JuliusBrussee/caveman",
     "category": "Coding",
-    "description": "⭐ 106.0k stars · Go — 🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
+    "description": "⭐ 106.1k stars · Go — 🪨 why use many token when few token do trick. Viral skill + proxy for coding agents that cuts 65% of tokens by talking like a caveman."
   }
 ]
