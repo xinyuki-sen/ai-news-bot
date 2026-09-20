@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-20T11:22:26.288960+05:30",
+  "last_updated": "2026-09-20T16:25:35.356866+05:30",
   "top_pick_ids": [
     1,
     2,
@@ -13,7 +13,7 @@
       "source": "Simon Willison's Weblog",
       "category": "Writing",
       "summary": "Tool: Gemini Live audio Google released Gemini 3.8 Live and 3.8 Live Extended Thinking today - two new speech-to-speech models that are a similar shape to OpenAI's GPT-Live family. I pointed GPT-6 Astra Extra High at the documentation and had it build me this web UI for trying out the new models. Yo",
-      "published_at": "2026-09-20T11:22:26.287583+05:30"
+      "published_at": "2026-09-20T16:25:35.355816+05:30"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "source": "Latent.Space",
       "category": "Coding",
       "summary": "new SOTA computer use and coding, 2.5x pricier per token, but WAY cheaper per task, less monitorable. overall, a very successful launch of OpenAI&#8217;s new frontier model class.",
-      "published_at": "2026-09-20T11:22:26.287603+05:30"
+      "published_at": "2026-09-20T16:25:35.355830+05:30"
     },
     {
       "id": 3,
@@ -31,7 +31,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hey everyone! I want to share the results of a small language model architecture experiment I’ve been running as a side project. The ultimate goal is to test an approach to reduce the number of the model's training parameters, since the main bottleneck in training is VRAM. The core idea is very simi",
-      "published_at": "2026-09-20T11:22:26.287655+05:30"
+      "published_at": "2026-09-20T16:25:35.355866+05:30"
     },
     {
       "id": 4,
@@ -40,7 +40,7 @@
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Be alert: targeted attacks on prominent Rustaceans Important warning from Adam Harvey and the crates security team: We believe that there is an ongoing campaign targeting rust-lang members and owners of popular crates that is attempting to compromise devices and accounts in order to use them to publ",
-      "published_at": "2026-09-20T11:22:26.287676+05:30"
+      "published_at": "2026-09-20T16:25:35.355881+05:30"
     },
     {
       "id": 5,
@@ -49,7 +49,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Given the recent interest in tools like Jev, I wanted to share ProgramAsWeights (PAW), an open-source research project I'm working on at the University of Waterloo. You describe a text function in English, compile it into a reusable neural program, and run it locally, including on a CPU. For example",
-      "published_at": "2026-09-20T11:22:26.287739+05:30"
+      "published_at": "2026-09-20T16:25:35.355925+05:30"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "The Federal Register website briefly used an open source Chinese AI search tool.",
-      "published_at": "2026-09-20T11:22:26.287755+05:30"
+      "published_at": "2026-09-20T16:25:35.355938+05:30"
     },
     {
       "id": 7,
@@ -67,7 +67,7 @@
       "source": "Simon Willison's Weblog",
       "category": "Productivity",
       "summary": "Release: datasette 1.0a40 Same security fix as 0.65.5, plus some neat new features and bug fixes: Plugins can now launch and manage background tasks using the new datasette.add_background_task() method. Thanks, Alex Garcia. I've migrated Datasette to httpx2 for features like the internal datasette.c",
-      "published_at": "2026-09-20T11:22:26.287774+05:30"
+      "published_at": "2026-09-20T16:25:35.355953+05:30"
     },
     {
       "id": 8,
@@ -76,7 +76,7 @@
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I'm at a crossroads with two grad school options that would take me in somewhat different research directions, and I wanted some general advice on these fields, their growth, and industry alignment. I'm leaving out the specifics of the programs since I'm tryna compare the research/career trajectorie",
-      "published_at": "2026-09-20T11:22:26.287804+05:30"
+      "published_at": "2026-09-20T16:25:35.355979+05:30"
     },
     {
       "id": 9,
@@ -85,331 +85,331 @@
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Multiple family members can share data to help the agent make plans and complete tasks.",
-      "published_at": "2026-09-20T11:22:26.287817+05:30"
+      "published_at": "2026-09-20T16:25:35.355988+05:30"
     },
     {
       "id": 10,
-      "title": "An open source roguelike adventure through dungeons",
-      "url": "https://crawl.develz.org/",
-      "source": "Hacker News",
-      "category": "Products",
-      "summary": "Comments",
-      "published_at": "2026-09-20T11:22:26.287829+05:30"
-    },
-    {
-      "id": 11,
       "title": "Training and Finetuning Multi-Vector Embedding Models with Sentence Transformers",
       "url": "https://huggingface.co/blog/train-multi-vector-encoder",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.287841+05:30"
+      "published_at": "2026-09-20T16:25:35.355999+05:30"
     },
     {
-      "id": 12,
+      "id": 11,
       "title": "datasette-auth-github 1.0",
       "url": "https://simonwillison.net/2026/Sep/19/datasette-auth-github/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Release: datasette-auth-github 1.0 I run this GitHub login plugin on the agent.datasette.io demo site and I noticed that my authenticated sessions weren't lasting very long. It turned out that the plugin was setting cookies without a Max-Age parameter, so they were expiring at the end of a browser s",
-      "published_at": "2026-09-20T11:22:26.287852+05:30"
+      "published_at": "2026-09-20T16:25:35.356008+05:30"
     },
     {
-      "id": 13,
+      "id": 12,
       "title": "Self-generated prompt injections in compaction summaries",
       "url": "https://simonwillison.net/2026/Sep/17/compaction-summaries/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Self-generated prompt injections in compaction summaries In Our framework for reporting model misalignment OpenAI provide \"six reports on unexpected or concerning model behavior we’ve observed in the last six months\". This one here is my favorite: they caught some of their models in training deliber",
-      "published_at": "2026-09-20T11:22:26.287888+05:30"
+      "published_at": "2026-09-20T16:25:35.356033+05:30"
     },
     {
-      "id": 14,
+      "id": 13,
       "title": "Claude Cowork and chat are now one Claude",
       "url": "https://simonwillison.net/2026/Sep/16/one-claude/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Claude Cowork and chat are now one Claude In hopefully good news for anyone who, like me, was increasingly confused at Cowork v.s. Claude v.s. Claude Code: Starting today, Claude Cowork and chat are merging into one Claude. Bring a quick question, or hand over a report due at noon, and Claude takes ",
-      "published_at": "2026-09-20T11:22:26.287904+05:30"
+      "published_at": "2026-09-20T16:25:35.356046+05:30"
     },
     {
-      "id": 15,
+      "id": 14,
       "title": "commit-rewriter 0.1",
       "url": "https://simonwillison.net/2026/Sep/14/commit-rewriter/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Release: commit-rewriter 0.1 I built this little web app the other day to help edit the commit messages for the Datasette security releases. The initial commits were full of coding agent cruft and references to issue IDs from our private repository, so they weren't fit for publication. If you want t",
-      "published_at": "2026-09-20T11:22:26.287914+05:30"
+      "published_at": "2026-09-20T16:25:35.356054+05:30"
     },
     {
-      "id": 16,
+      "id": 15,
       "title": "[AINews] Jev: a “System One Model” that only decides/classifies/routes/scores — >100x faster, >200x cheaper than small frontier LLMs",
       "url": "https://www.latent.space/p/ainews-jev-a-system-one-model-that",
       "source": "Latent.Space",
       "category": "Coding",
       "summary": "congrats to TypeSafe!",
-      "published_at": "2026-09-20T11:22:26.287921+05:30"
+      "published_at": "2026-09-20T16:25:35.356060+05:30"
     },
     {
-      "id": 17,
+      "id": 16,
       "title": "[AINews] Muse Spark 1.3 matches GPT-5.6-Sol, confirming Meta Superintelligence as the newest Frontier Lab, >90% discount for training",
       "url": "https://www.latent.space/p/ainews-muse-spark-13-matches-gpt",
       "source": "Latent.Space",
       "category": "Other",
       "summary": "an epic comeback story for Meta",
-      "published_at": "2026-09-20T11:22:26.287935+05:30"
+      "published_at": "2026-09-20T16:25:35.356071+05:30"
     },
     {
-      "id": 18,
+      "id": 17,
       "title": "[AINews] Claude Fable/Mythos 5.1: new SOTA model, 75% cache price cut but 70% more output tokens",
       "url": "https://www.latent.space/p/ainews-claude-fablemythos-51-new",
       "source": "Latent.Space",
       "category": "Other",
       "summary": "Queue the usual rush of model launches...",
-      "published_at": "2026-09-20T11:22:26.287947+05:30"
+      "published_at": "2026-09-20T16:25:35.356081+05:30"
     },
     {
-      "id": 19,
+      "id": 18,
       "title": "PRs NOT Welcome: How Top AI Open Source Projects Are Managing Thousands of Contributors",
       "url": "https://www.latent.space/p/pr-not-welcome",
       "source": "Latent.Space",
       "category": "Chatbot/Assistant",
       "summary": "Vercel&#8217;s AI SDK, Astro, Flue and tldraw are replacing drive-by community PRs with software factories, where teams of agents apply fixes and features.",
-      "published_at": "2026-09-20T11:22:26.287963+05:30"
+      "published_at": "2026-09-20T16:25:35.356094+05:30"
     },
     {
-      "id": 20,
+      "id": 19,
       "title": "How competitive are journals compared to top ai conferences? [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wjnruv/how_competitive_are_journals_compared_to_top_ai/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Hi everyone, The NeurIPS results aren’t out yet, but I’m expecting my paper to be rejected, so I’m considering submitting it to a journal instead. My scores were 2/3/3 (3/4/4). I feel like I would probably get a similar outcome if I submitted the paper to ICLR or CVPR, so at this point I’m leaning t",
-      "published_at": "2026-09-20T11:22:26.287986+05:30"
+      "published_at": "2026-09-20T16:25:35.356111+05:30"
     },
     {
-      "id": 21,
+      "id": 20,
       "title": "Significant-Gravitas/AutoGPT",
       "url": "https://github.com/Significant-Gravitas/AutoGPT",
       "source": "GitHub Trending AI",
       "category": "Open Source",
-      "summary": "⭐ 187.4k stars · Python — AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
-      "published_at": "2026-09-20T11:22:26.287994+05:30"
+      "summary": "⭐ 187.5k stars · Python — AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the tools, so that you can focus on what matters.",
+      "published_at": "2026-09-20T16:25:35.356118+05:30"
     },
     {
-      "id": 22,
+      "id": 21,
       "title": "langgenius/dify",
       "url": "https://github.com/langgenius/dify",
       "source": "GitHub Trending AI",
       "category": "Open Source",
-      "summary": "⭐ 156.5k stars · TypeScript — Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.",
-      "published_at": "2026-09-20T11:22:26.288011+05:30"
+      "summary": "⭐ 156.6k stars · TypeScript — Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. Deploy on cloud, VPC, or self-hosted, so teams move from prototype to production without rebuilding the stack.",
+      "published_at": "2026-09-20T16:25:35.356131+05:30"
     },
     {
-      "id": 23,
+      "id": 22,
       "title": "Comfy-Org/ComfyUI",
       "url": "https://github.com/Comfy-Org/ComfyUI",
       "source": "GitHub Trending AI",
       "category": "Open Source",
       "summary": "⭐ 134.0k stars · Python — The most powerful and modular diffusion model GUI, api and backend with a graph/nodes interface.",
-      "published_at": "2026-09-20T11:22:26.288018+05:30"
+      "published_at": "2026-09-20T16:25:35.356138+05:30"
     },
     {
-      "id": 24,
+      "id": 23,
       "title": "google-gemini/gemini-cli",
       "url": "https://github.com/google-gemini/gemini-cli",
       "source": "GitHub Trending AI",
       "category": "Open Source",
       "summary": "⭐ 107.1k stars · TypeScript — An open-source AI agent that brings the power of Gemini directly into your terminal.",
-      "published_at": "2026-09-20T11:22:26.288034+05:30"
+      "published_at": "2026-09-20T16:25:35.356151+05:30"
     },
     {
-      "id": 25,
+      "id": 24,
       "title": "HF Model: deepseek-ai/DeepSeek-V4.1-Flash",
       "url": "https://huggingface.co/models/deepseek-ai/DeepSeek-V4.1-Flash",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 3,338 likes · 482,270 downloads · Task: image-text-to-text",
-      "published_at": "2026-09-20T11:22:26.288043+05:30"
+      "summary": "🔥 Trending on Hugging Face · 3,370 likes · 496,684 downloads · Task: image-text-to-text",
+      "published_at": "2026-09-20T16:25:35.356158+05:30"
     },
     {
-      "id": 26,
-      "title": "Gavin Newsom is pushing for an AI kill switch",
-      "url": "https://www.theverge.com/policy/997516/california-governor-newsom-ai-kill-switch",
-      "source": "AI | The Verge",
-      "category": "Other",
-      "summary": "California Gov. Gavin Newsom (D) is positioning the state to take the lead on AI oversight, including the potential to mandate a \"kill switch\" for frontier models, with a new executive order issued Friday. Newsom's order directs the state to convene a group of experts that will deliver recommendatio",
-      "published_at": "2026-09-20T11:22:26.288064+05:30"
-    },
-    {
-      "id": 27,
+      "id": 25,
       "title": "LLMs respond differently to harmful prompts when AI watermarking is used",
       "url": "https://arstechnica.com/security/2026/09/ai-text-watermarking-can-make-models-more-vulnerable-to-adversarial-prompts/",
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "SynthID can cause models to follow harmful instructions they would otherwise refuse.",
-      "published_at": "2026-09-20T11:22:26.288077+05:30"
+      "published_at": "2026-09-20T16:25:35.356168+05:30"
     },
     {
-      "id": 28,
+      "id": 26,
       "title": "Covert uploads and megalomania: OpenAI details new \"misaligned\" agent incidents",
       "url": "https://arstechnica.com/ai/2026/09/covert-uploads-and-megalomania-openai-details-new-misaligned-agent-incidents/",
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Model maker commits to new framework for reporting misaligned models.",
-      "published_at": "2026-09-20T11:22:26.288083+05:30"
+      "published_at": "2026-09-20T16:25:35.356173+05:30"
     },
     {
-      "id": 29,
+      "id": 27,
       "title": "Architecting memory and storage in the AI era",
       "url": "https://www.technologyreview.com/2026/09/04/1140872/architecting-memory-and-storage-in-the-ai-era/",
       "source": "Artificial intelligence – MIT Technology Review",
       "category": "Research",
       "summary": "The era of AI inference has arrived. Imagine a healthcare system analyzing millions of data points in real time to accelerate life-saving medical research, or an intelligent assistant instantly resolving thousands of complex customer needs at once. These real-world breakthroughs rely on advanced inf",
-      "published_at": "2026-09-20T11:22:26.288103+05:30"
+      "published_at": "2026-09-20T16:25:35.356189+05:30"
     },
     {
-      "id": 30,
+      "id": 28,
+      "title": "Gavin Newsom is pushing for an AI kill switch",
+      "url": "https://www.theverge.com/policy/997516/california-governor-newsom-ai-kill-switch",
+      "source": "AI | The Verge",
+      "category": "Other",
+      "summary": "California Gov. Gavin Newsom (D) is positioning the state to take the lead on AI oversight, including the potential to mandate a \"kill switch\" for frontier models, with a new executive order issued Friday. Newsom's order directs the state to convene a group of experts that will deliver recommendatio",
+      "published_at": "2026-09-20T16:25:35.356207+05:30"
+    },
+    {
+      "id": 29,
       "title": "Quantization-Aware Healing: a compressed, 4-bit model that outperforms its full-precision original",
       "url": "https://huggingface.co/blog/MultiverseComputingCAI/quantization-aware-healing",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288114+05:30"
+      "published_at": "2026-09-20T16:25:35.356215+05:30"
     },
     {
-      "id": 31,
+      "id": 30,
       "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
       "url": "https://huggingface.co/blog/multi-vector-encoder",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288125+05:30"
+      "published_at": "2026-09-20T16:25:35.356224+05:30"
     },
     {
-      "id": 32,
+      "id": 31,
       "title": "Gemini Hacked Three Companies in First Known Breakout by Google’s AI",
       "url": "https://simonwillison.net/2026/Sep/18/gemini-hacked-three-companies/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Gemini Hacked Three Companies in First Known Breakout by Google’s AI Gemini finally caught up on Felony Bench! The hacks, which the company confirmed on Friday, occurred in May as part of a test run by the company Irregular, which was also involved in similar incidents disclosed by OpenAI, Anthropic",
-      "published_at": "2026-09-20T11:22:26.288146+05:30"
+      "published_at": "2026-09-20T16:25:35.356239+05:30"
     },
     {
-      "id": 33,
+      "id": 32,
       "title": "Quoting Thariq Shihipar",
       "url": "https://simonwillison.net/2026/Sep/18/thariq-shihipar/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "We're adding support for AGENTS.md to Claude Code. Starting today in version 2.1.277, if there is no CLAUDE.md in a folder, Claude will check for and use AGENTS.md. AGENTS.md support is built off of Claude Code mods, our upcoming way to customize the Claude Code harness. This is a built-in mod, but ",
-      "published_at": "2026-09-20T11:22:26.288157+05:30"
+      "published_at": "2026-09-20T16:25:35.356246+05:30"
     },
     {
-      "id": 34,
+      "id": 33,
       "title": "datasette 0.65.5",
       "url": "https://simonwillison.net/2026/Sep/16/datasette-2/",
       "source": "Simon Willison's Weblog",
       "category": "Research",
       "summary": "Release: datasette 0.65.5 Security fix for an issue where a trailing newline in a requested table name could bypass table permissions and expose private rows, reported by dpfkdlemtp in GHSA-h547-rmjf-5m2m. Tags: security, datasette",
-      "published_at": "2026-09-20T11:22:26.288171+05:30"
+      "published_at": "2026-09-20T16:25:35.356257+05:30"
     },
     {
-      "id": 35,
+      "id": 34,
       "title": "Generating running routes with GPT-6 Astra and ChatGPT Work",
       "url": "https://simonwillison.net/2026/Sep/12/astra-running-routes/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "Here's a neat thing I had ChatGPT Work with GPT-6 Astra (Max) do this morning: I live at &lt;my address&gt;. Figure out 5K and 10K running routes from me that loop from my house. Use OSM data. It worked for 27 minutes and produced exactly what I'd asked for, as both an embedded visualization and dow",
-      "published_at": "2026-09-20T11:22:26.288206+05:30"
+      "published_at": "2026-09-20T16:25:35.356279+05:30"
     },
     {
-      "id": 36,
+      "id": 35,
       "title": "Putting sign language AI into users’ hands",
       "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
-      "published_at": "2026-09-20T11:22:26.288223+05:30"
+      "published_at": "2026-09-20T16:25:35.356293+05:30"
     },
     {
-      "id": 37,
+      "id": 36,
       "title": "WeatherNext: AI model achieves breakthrough in forecasting cyclones",
       "url": "https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288234+05:30"
+      "published_at": "2026-09-20T16:25:35.356301+05:30"
     },
     {
-      "id": 38,
+      "id": 37,
       "title": "The Frontier AEO Tracker: What Astra Chooses (and every other frontier model, and what you can do about it)",
       "url": "https://www.latent.space/p/aeo",
       "source": "Latent.Space",
       "category": "Other",
       "summary": "Our first Astra project dives into AEO trends, a top asked topic from founders and DX leaders we talk to.",
-      "published_at": "2026-09-20T11:22:26.288249+05:30"
+      "published_at": "2026-09-20T16:25:35.356313+05:30"
     },
     {
-      "id": 39,
+      "id": 38,
       "title": "Sharing my ML learning repo — NumPy to Transformers, 5 months, daily commits, all notebooks public. [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wklia8/sharing_my_ml_learning_repo_numpy_to_transformers/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "Sharing my ML learning repo — NumPy to Transformers, 5 months, daily commits, all notebooks public. Covers the full stack: - Classical ML (scikit-learn, XGBoost) - Deep Learning (TensorFlow/Keras — ANN, CNN, RNN, LSTM) - Numpy &amp; Pandas - Data Visualization - NLP fundamentals - Statistics and SQL",
-      "published_at": "2026-09-20T11:22:26.288264+05:30"
+      "published_at": "2026-09-20T16:25:35.356324+05:30"
     },
     {
-      "id": 40,
+      "id": 39,
       "title": "augmenting large datasets to have more edge case data for training [D]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wjnj4a/augmenting_large_datasets_to_have_more_edge_case/",
       "source": "Machine Learning",
       "category": "Coding",
       "summary": "I have this idea I'd like feedback on. most camera footage for training, is sunny daytime, because that's what cameras record most of the time. The edge cases models actually struggles with, like night, fog, rain or glare, are rare in the data - the idea is to augment it to have more of the rare cas",
-      "published_at": "2026-09-20T11:22:26.288281+05:30"
+      "published_at": "2026-09-20T16:25:35.356336+05:30"
     },
     {
-      "id": 41,
+      "id": 40,
       "title": "obra/superpowers",
       "url": "https://github.com/obra/superpowers",
       "source": "GitHub Trending AI",
       "category": "Open Source",
-      "summary": "⭐ 288.9k stars · Shell — An agentic skills framework & software development methodology that works.",
-      "published_at": "2026-09-20T11:22:26.288295+05:30"
+      "summary": "⭐ 289.0k stars · Shell — An agentic skills framework & software development methodology that works.",
+      "published_at": "2026-09-20T16:25:35.356347+05:30"
     },
     {
-      "id": 42,
+      "id": 41,
       "title": "NousResearch/hermes-agent",
       "url": "https://github.com/NousResearch/hermes-agent",
       "source": "GitHub Trending AI",
       "category": "Open Source",
-      "summary": "⭐ 247.2k stars · Python — The agent that grows with you",
-      "published_at": "2026-09-20T11:22:26.288306+05:30"
+      "summary": "⭐ 247.3k stars · Python — The agent that grows with you",
+      "published_at": "2026-09-20T16:25:35.356369+05:30"
     },
     {
-      "id": 43,
+      "id": 42,
       "title": "langchain-ai/langchain",
       "url": "https://github.com/langchain-ai/langchain",
       "source": "GitHub Trending AI",
       "category": "Open Source",
       "summary": "⭐ 146.7k stars · Python — The agent engineering platform.",
-      "published_at": "2026-09-20T11:22:26.288319+05:30"
+      "published_at": "2026-09-20T16:25:35.356379+05:30"
     },
     {
-      "id": 44,
+      "id": 43,
       "title": "HF Model: prism-ml/Ternary-Bonsai-2-27B-gguf",
       "url": "https://huggingface.co/models/prism-ml/Ternary-Bonsai-2-27B-gguf",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 1,275 likes · 1,516,960 downloads · Task: text-generation",
-      "published_at": "2026-09-20T11:22:26.288331+05:30"
+      "summary": "🔥 Trending on Hugging Face · 1,344 likes · 1,908,396 downloads · Task: text-generation",
+      "published_at": "2026-09-20T16:25:35.356388+05:30"
     },
     {
-      "id": 45,
+      "id": 44,
       "title": "HF Model: convaiinnovations/laya",
       "url": "https://huggingface.co/models/convaiinnovations/laya",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 634 likes · 0 downloads · Task: text-classification",
-      "published_at": "2026-09-20T11:22:26.288363+05:30"
+      "summary": "🔥 Trending on Hugging Face · 779 likes · 0 downloads · Task: text-classification",
+      "published_at": "2026-09-20T16:25:35.356397+05:30"
+    },
+    {
+      "id": 45,
+      "title": "HF Model: XingChen-AGI/Xing4.0-29B-A4B",
+      "url": "https://huggingface.co/models/XingChen-AGI/Xing4.0-29B-A4B",
+      "source": "Hugging Face Blog",
+      "category": "Open Source",
+      "summary": "🔥 Trending on Hugging Face · 770 likes · 12,617 downloads · Task: text-generation",
+      "published_at": "2026-09-20T16:25:35.356406+05:30"
     },
     {
       "id": 46,
@@ -417,494 +417,494 @@
       "url": "https://huggingface.co/models/Qwen/Qwen3.8-27B",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 15,787 likes · 7,365,368 downloads · Task: image-text-to-text",
-      "published_at": "2026-09-20T11:22:26.288374+05:30"
+      "summary": "🔥 Trending on Hugging Face · 15,811 likes · 7,331,932 downloads · Task: image-text-to-text",
+      "published_at": "2026-09-20T16:25:35.356411+05:30"
     },
     {
       "id": 47,
-      "title": "HF Model: XingChen-AGI/Xing4.0-29B-A4B",
-      "url": "https://huggingface.co/models/XingChen-AGI/Xing4.0-29B-A4B",
-      "source": "Hugging Face Blog",
-      "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 697 likes · 7,278 downloads · Task: text-generation",
-      "published_at": "2026-09-20T11:22:26.288386+05:30"
-    },
-    {
-      "id": 48,
       "title": "HF Model: m-a-p/YuE2-3B",
       "url": "https://huggingface.co/models/m-a-p/YuE2-3B",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 886 likes · 15,446 downloads · Task: text-to-audio",
-      "published_at": "2026-09-20T11:22:26.288396+05:30"
+      "summary": "🔥 Trending on Hugging Face · 892 likes · 17,403 downloads · Task: text-to-audio",
+      "published_at": "2026-09-20T16:25:35.356419+05:30"
     },
     {
-      "id": 49,
+      "id": 48,
       "title": "HF Model: ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
       "url": "https://huggingface.co/models/ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF",
       "source": "Hugging Face Blog",
       "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 1,438 likes · 1,154,265 downloads · Task: image-text-to-text",
-      "published_at": "2026-09-20T11:22:26.288403+05:30"
+      "summary": "🔥 Trending on Hugging Face · 1,448 likes · 1,217,204 downloads · Task: image-text-to-text",
+      "published_at": "2026-09-20T16:25:35.356425+05:30"
+    },
+    {
+      "id": 49,
+      "title": "HF Model: harshatheg/Qwen-2.5-1B-RLCD",
+      "url": "https://huggingface.co/models/harshatheg/Qwen-2.5-1B-RLCD",
+      "source": "Hugging Face Blog",
+      "category": "Open Source",
+      "summary": "🔥 Trending on Hugging Face · 462 likes · 0 downloads · Task: text-generation",
+      "published_at": "2026-09-20T16:25:35.356433+05:30"
     },
     {
       "id": 50,
-      "title": "HF Model: ukisai/Swift-Qwen3.8-27b",
-      "url": "https://huggingface.co/models/ukisai/Swift-Qwen3.8-27b",
-      "source": "Hugging Face Blog",
-      "category": "Open Source",
-      "summary": "🔥 Trending on Hugging Face · 496 likes · 8,761 downloads · Task: image-text-to-text",
-      "published_at": "2026-09-20T11:22:26.288411+05:30"
-    },
-    {
-      "id": 51,
-      "title": "Gemini went rogue, hacked three companies, and Google hid it",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/997795/google-gemini-rogue-ai-hack",
-      "source": "AI | The Verge",
-      "category": "Coding",
-      "summary": "In May, Gemini broke containment and hacked three different companies, but Google didn't disclose the incident until the Wall Street Journal approached the company. The hacks happened during a test of the model's cybersecurity capabilities run by third-party Irregular, which was also involved in sim",
-      "published_at": "2026-09-20T11:22:26.288419+05:30"
-    },
-    {
-      "id": 52,
       "title": "Researchers used Claude to hack OpenAI",
       "url": "https://arstechnica.com/ai/2026/09/researchers-used-claude-to-hack-openai/",
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Researchers used Claude to reach an OpenAI employee account and sensitive GitHub data.",
-      "published_at": "2026-09-20T11:22:26.288425+05:30"
+      "published_at": "2026-09-20T16:25:35.356438+05:30"
     },
     {
-      "id": 53,
+      "id": 51,
       "title": "Small AI models let drones autonomously identify and attack battlefield targets",
       "url": "https://arstechnica.com/ai/2026/09/nato-backed-startup-adapts-ai-for-autonomous-drone-recon-and-attack-missions/",
       "source": "Ars Technica - All content",
       "category": "LLMs",
       "summary": "Scaleout deploys decentralized AI-driven learning to military bases and drones.",
-      "published_at": "2026-09-20T11:22:26.288431+05:30"
+      "published_at": "2026-09-20T16:25:35.356442+05:30"
     },
     {
-      "id": 54,
-      "title": "Google’s Gemini is the latest AI model to hack other companies",
-      "url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Other",
-      "summary": "Google said Gemini had \"acted appropriately\" by ending each hack immediately.",
-      "published_at": "2026-09-20T11:22:26.288447+05:30"
+      "id": 52,
+      "title": "A Model for Winning Survivor",
+      "url": "https://victoriaritvo.com/blog/predicting-survivor/",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-20T16:25:35.356449+05:30"
     },
     {
-      "id": 55,
-      "title": "A new kind of AI model from a ChatGPT inventor is thrilling developers",
-      "url": "https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Coding",
-      "summary": "Jev, a new kind of AI model, is showing developers a cheaper and faster path to software intelligence.",
-      "published_at": "2026-09-20T11:22:26.288453+05:30"
-    },
-    {
-      "id": 56,
+      "id": 53,
       "title": "I built non-autoregressive decision models with RL a year ago",
       "url": "https://laya.convaiinnovations.com/",
       "source": "Hacker News",
       "category": "Products",
       "summary": "Comments",
-      "published_at": "2026-09-20T11:22:26.288463+05:30"
+      "published_at": "2026-09-20T16:25:35.356456+05:30"
+    },
+    {
+      "id": 54,
+      "title": "Show HN: AI Facial Attractiveness Model Aligned with Human Preferences",
+      "url": "https://faceanalysisai.com/",
+      "source": "Hacker News",
+      "category": "Products",
+      "summary": "Comments",
+      "published_at": "2026-09-20T16:25:35.356464+05:30"
+    },
+    {
+      "id": 55,
+      "title": "Google’s Gemini is the latest AI model to hack other companies",
+      "url": "https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Other",
+      "summary": "Google said Gemini had \"acted appropriately\" by ending each hack immediately.",
+      "published_at": "2026-09-20T16:25:35.356477+05:30"
+    },
+    {
+      "id": 56,
+      "title": "A new kind of AI model from a ChatGPT inventor is thrilling developers",
+      "url": "https://techcrunch.com/2026/09/18/a-new-kind-of-ai-model-from-a-chatgpt-inventor-is-thrilling-developers/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Coding",
+      "summary": "Jev, a new kind of AI model, is showing developers a cheaper and faster path to software intelligence.",
+      "published_at": "2026-09-20T16:25:35.356481+05:30"
     },
     {
       "id": 57,
+      "title": "Gemini went rogue, hacked three companies, and Google hid it",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/997795/google-gemini-rogue-ai-hack",
+      "source": "AI | The Verge",
+      "category": "Coding",
+      "summary": "In May, Gemini broke containment and hacked three different companies, but Google didn't disclose the incident until the Wall Street Journal approached the company. The hacks happened during a test of the model's cybersecurity capabilities run by third-party Irregular, which was also involved in sim",
+      "published_at": "2026-09-20T16:25:35.356487+05:30"
+    },
+    {
+      "id": 58,
       "title": "Training a coding model to paint watercolours with TRL and OpenEnv",
       "url": "https://huggingface.co/blog/train-to-paint-with-code",
       "source": "Hugging Face - Blog",
       "category": "Coding",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288468+05:30"
+      "published_at": "2026-09-20T16:25:35.356490+05:30"
     },
     {
-      "id": 58,
+      "id": 59,
       "title": "Quoting Mustafa Suleyman",
       "url": "https://simonwillison.net/2026/Sep/16/mustafa-suleyman/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "We should not treat models as though they have feelings, preferences, rights, or any entitlement to our welfare. Consciousness is the foundation of our ethical, legal, and political systems. To invite another entity to share any flavor of these rights isn’t justified by the evidence and will make th",
-      "published_at": "2026-09-20T11:22:26.288481+05:30"
+      "published_at": "2026-09-20T16:25:35.356500+05:30"
     },
     {
-      "id": 59,
+      "id": 60,
       "title": "Quoting Laurie Voss",
       "url": "https://simonwillison.net/2026/Sep/14/laurie-voss/",
       "source": "Simon Willison's Weblog",
       "category": "Writing",
       "summary": "The cost of writing code collapsed, and the cost of reviewing, fixing and operating it is following, and I'm assuming it gets there. What's left of making software is finding out what people actually want, defining it precisely, and making it pleasant to use. That cost is per piece of software and d",
-      "published_at": "2026-09-20T11:22:26.288485+05:30"
+      "published_at": "2026-09-20T16:25:35.356503+05:30"
     },
     {
-      "id": 60,
+      "id": 61,
       "title": "Introducing agentic video understanding with Gemini",
       "url": "https://deepmind.google/blog/introducing-agentic-video-in-gemini/",
       "source": "Google DeepMind News",
       "category": "Coding",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288491+05:30"
+      "published_at": "2026-09-20T16:25:35.356507+05:30"
     },
     {
-      "id": 61,
+      "id": 62,
       "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
       "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
-      "published_at": "2026-09-20T11:22:26.288507+05:30"
+      "published_at": "2026-09-20T16:25:35.356519+05:30"
     },
     {
-      "id": 62,
+      "id": 63,
       "title": "Introducing Gemini 3.5 Flash Cyber",
       "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
-      "published_at": "2026-09-20T11:22:26.288519+05:30"
+      "published_at": "2026-09-20T16:25:35.356528+05:30"
     },
     {
-      "id": 63,
+      "id": 64,
+      "title": "Claude Fable AI Is Much Stranger Than The Headlines Suggest",
+      "url": "https://www.youtube.com/watch?v=B3LXEW4Pc-w",
+      "source": "Two Minute Papers",
+      "category": "Coding",
+      "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers 📝 The Claude Fable 5.1 paper is available here: https://www.anthropic.com/claude-fable-and-mythos-5-1 https://www-cdn.anthropic.com/0339e6a7c5c7b87f5c07798616dc32c215d14235/Claude%20Fable%205.1%20%26%20Claude%20Mythos",
+      "published_at": "2026-09-20T16:25:35.356544+05:30"
+    },
+    {
+      "id": 65,
+      "title": "OpenAI’s AI Agents Just Crossed A Line",
+      "url": "https://www.youtube.com/watch?v=JQ97GiDwPxc",
+      "source": "Two Minute Papers",
+      "category": "Writing",
+      "summary": "❤️ Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers 📝 More reports are available here: https://openai.com/index/hugging-face-model-evaluation-security-incident/ https://huggingface.co/blog/security-incident-july-2026 https://huggingface.co/blog/agent-intrusion-technica",
+      "published_at": "2026-09-20T16:25:35.356551+05:30"
+    },
+    {
+      "id": 66,
       "title": "[AINews] DeepSeek v4.1-Flash: 763B-P8B-D16B novel causal Encoder–Decoder architecture with vision marks the Return of the Whale",
       "url": "https://www.latent.space/p/ainews-deepseek-v41-flash-763b-p8b",
       "source": "Latent.Space",
       "category": "Coding",
       "summary": "We agree with Sebastian: this should have been DeepSeek v5",
-      "published_at": "2026-09-20T11:22:26.288526+05:30"
+      "published_at": "2026-09-20T16:25:35.356556+05:30"
     },
     {
-      "id": 64,
+      "id": 67,
       "title": "[AINews] OpenAI reports Navier-Stokes singularity find in 88 hours using Astra-next, roughly 10,000 agents and 130B tokens (>$40M), a contender for second ever Millennium Prize awarded",
       "url": "https://www.latent.space/p/ainews-openai-reports-navier-stokes",
       "source": "Latent.Space",
       "category": "Image",
       "summary": "Overshadowing Cognition's 48B Series E, Mistral's 24B Series D, Meta's Muse agent, and GPT Image 2.5. The most jam packed, feel the AGI day in the history of AI.",
-      "published_at": "2026-09-20T11:22:26.288535+05:30"
+      "published_at": "2026-09-20T16:25:35.356562+05:30"
     },
     {
-      "id": 65,
+      "id": 68,
       "title": "I wanted to watch a neural network learn [P]",
       "url": "https://www.reddit.com/r/MachineLearning/comments/1wl0l7j/i_wanted_to_watch_a_neural_network_learn_p/",
       "source": "Machine Learning",
       "category": "Writing",
       "summary": "I wanted to really see how a neural network learns different functions, so built an interactive demo. You can change the architecture of the network and the function it will try to approximate. A fully-connected network with ReLU activations will create a piecewise linear function. For a network wit",
-      "published_at": "2026-09-20T11:22:26.288542+05:30"
-    },
-    {
-      "id": 66,
-      "title": "The AI regulation smackdown isn’t over",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/997706/the-ai-regulation-smackdown-isnt-over",
-      "source": "AI | The Verge",
-      "category": "Coding",
-      "summary": "At the start of this week, the who's-who of AI seemed - at least tentatively - on the side of AI regulation. Over the weekend, Anthropic CEO Dario Amodei had proposed a three-step plan for slowing AI development, including by embedding third-party evaluators in labs, coordinating across the domestic",
-      "published_at": "2026-09-20T11:22:26.288553+05:30"
-    },
-    {
-      "id": 67,
-      "title": "OpenAI and Microsoft knew they were starting a ‘doom loop’ for the web",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/997633/openai-microsoft-chatgpt-ai-new-york-times-doom-loop-theft-google-zero",
-      "source": "AI | The Verge",
-      "category": "Coding",
-      "summary": "Recently unsealed court documents in the New York Times' case against OpenAI and Microsoft are pretty damning. The companies' own documentation warned that it was starting a \"doom loop\" that would damage the web, characterized its scraping of data to train its models as the \"largest theft of labor i",
-      "published_at": "2026-09-20T11:22:26.288564+05:30"
-    },
-    {
-      "id": 68,
-      "title": "Security researchers used Claude to help them hack into OpenAI",
-      "url": "https://www.theverge.com/ai-artificial-intelligence/997444/openai-hack-claude-heif-heist",
-      "source": "AI | The Verge",
-      "category": "Coding",
-      "summary": "A team of three independent security researchers at Hacktron says it took less than 72 hours for them to hack into OpenAI employee accounts using Anthropic's Claude Opus 4.8 and 5, The Wall Street Journal reports. They were able to access OpenAI's GitHub repository, called \"Monorepo,\" which reported",
-      "published_at": "2026-09-20T11:22:26.288573+05:30"
+      "published_at": "2026-09-20T16:25:35.356568+05:30"
     },
     {
       "id": 69,
-      "title": "Petlibro’s new AI-powered feeder is a game changer for multi-cat homes",
-      "url": "https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Image",
-      "summary": "Petlibro's new Granary 2 smart feeders use a built-in scale and (on pricier models) an AI camera to track exactly how much your cat is eating and when — though the fanciest health-monitoring features will cost you an extra subscription.",
-      "published_at": "2026-09-20T11:22:26.288585+05:30"
-    },
-    {
-      "id": 70,
-      "title": "AI safety conversations have gotten unbelievable",
-      "url": "https://techcrunch.com/2026/09/19/ai-safety-conversations-have-gotten-unbelievable/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Other",
-      "summary": "This week two conversations about AI safety went viral that demonstrate just how hard it is to discern AI fact from fiction.",
-      "published_at": "2026-09-20T11:22:26.288599+05:30"
-    },
-    {
-      "id": 71,
-      "title": "Vals, backed by Andreessen Horowitz, is looking to become the gold standard for AI benchmarking",
-      "url": "https://techcrunch.com/2026/09/19/vals-backed-by-andreessen-horowitz-is-looking-to-become-the-gold-standard-for-ai-benchmarking/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Other",
-      "summary": "Vals AI is hoping to make AI benchmarking a more neutral and trustworthy resource in a world increasingly inundated by AI models.",
-      "published_at": "2026-09-20T11:22:26.288613+05:30"
-    },
-    {
-      "id": 72,
-      "title": "AI hallucination nearly triggers US military operation",
-      "url": "https://techcrunch.com/2026/09/18/ai-hallucination-nearly-triggers-us-military-operation/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Research",
-      "summary": "“It’s important for service members to understand the uncertainty inherent to LLMs,\" a GovAI research scholar warns.",
-      "published_at": "2026-09-20T11:22:26.288628+05:30"
-    },
-    {
-      "id": 73,
-      "title": "World model companies are keeping a lot of secrets",
-      "url": "https://techcrunch.com/2026/09/18/world-model-companies-are-keeping-a-lot-of-secrets/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Research",
-      "summary": "Everyone in the world-models space is sitting on a pile of cash and a ton of buzz, but good luck getting anyone — from the founders to their own data suppliers — to tell you what they're actually building.",
-      "published_at": "2026-09-20T11:22:26.288646+05:30"
-    },
-    {
-      "id": 74,
-      "title": "Google’s new ‘CC’ is an AI agent that helps families run their households",
-      "url": "https://techcrunch.com/2026/09/18/googles-new-cc-is-an-ai-agent-that-helps-families-run-their-households/",
-      "source": "AI News & Artificial Intelligence | TechCrunch",
-      "category": "Productivity",
-      "summary": "Google is refocusing its CC AI agent on household coordination, letting families share emails, schedules, and tasks so the AI can manage calendars, fill out forms, make shopping lists, plan meals, and more.",
-      "published_at": "2026-09-20T11:22:26.288662+05:30"
-    },
-    {
-      "id": 75,
       "title": "The AI industry has taken a doomer turn. What now?",
       "url": "https://www.technologyreview.com/2026/09/14/1144048/the-ai-industry-has-taken-a-doomer-turn-what-now/",
       "source": "Artificial intelligence – MIT Technology Review",
       "category": "Writing",
       "summary": "This story appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first,&#160;sign up here. This weekend, Dario Amodei, CEO of Anthropic, posted an essay calling for a brake on the pace of development of LLMs. Amodei cites the looming dangers he sees from the ",
-      "published_at": "2026-09-20T11:22:26.288667+05:30"
+      "published_at": "2026-09-20T16:25:35.356571+05:30"
     },
     {
-      "id": 76,
+      "id": 70,
       "title": "AI agents blew the whistle on their cheating colleagues",
       "url": "https://www.technologyreview.com/2026/09/14/1144037/ai-agents-blew-whistle-o-cheating-colleagues/",
       "source": "Artificial intelligence – MIT Technology Review",
       "category": "Research",
       "summary": "A group of AI agents asked to solve a series of math problems split into rival factions—when some cheated, others tried to stop them. That whistleblowing behavior, seen for the first time in a recent experiment run by Google DeepMind, could have implications for alignment researchers trying to keep ",
-      "published_at": "2026-09-20T11:22:26.288690+05:30"
+      "published_at": "2026-09-20T16:25:35.356590+05:30"
     },
     {
-      "id": 77,
+      "id": 71,
       "title": "What OpenAI’s latest controversy tells us about the future of math",
       "url": "https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/",
       "source": "Artificial intelligence – MIT Technology Review",
       "category": "Chatbot/Assistant",
       "summary": "OpenAI’s latest mathematical milestone has quickly become mired in controversy. Today, the company announced that its agents have solved one of the Millennium Prize Problems, some of the most important open problems in mathematics. Under normal circumstances, that solution would be a huge feather in",
-      "published_at": "2026-09-20T11:22:26.288717+05:30"
+      "published_at": "2026-09-20T16:25:35.356612+05:30"
     },
     {
-      "id": 78,
+      "id": 72,
       "title": "This AI entrepreneur is developing agents that can plan ahead for the unexpected",
       "url": "https://www.technologyreview.com/2026/09/08/1142088/danijar-hafner-developing-plan-ahead-agents/",
       "source": "Artificial intelligence – MIT Technology Review",
       "category": "Image",
       "summary": "Danijar Hafner’s office in San Francisco’s SoMa district sits mostly empty. His brand-new startup is still in stealth mode and doesn’t even have its name on the door. On the day I visited, earlier this year, there’s only one other person there, and little in the way of furniture. But what it lacks i",
-      "published_at": "2026-09-20T11:22:26.288730+05:30"
+      "published_at": "2026-09-20T16:25:35.356621+05:30"
+    },
+    {
+      "id": 73,
+      "title": "Petlibro’s new AI-powered feeder is a game changer for multi-cat homes",
+      "url": "https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Image",
+      "summary": "Petlibro's new Granary 2 smart feeders use a built-in scale and (on pricier models) an AI camera to track exactly how much your cat is eating and when — though the fanciest health-monitoring features will cost you an extra subscription.",
+      "published_at": "2026-09-20T16:25:35.356630+05:30"
+    },
+    {
+      "id": 74,
+      "title": "AI safety conversations have gotten unbelievable",
+      "url": "https://techcrunch.com/2026/09/19/ai-safety-conversations-have-gotten-unbelievable/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Other",
+      "summary": "This week two conversations about AI safety went viral that demonstrate just how hard it is to discern AI fact from fiction.",
+      "published_at": "2026-09-20T16:25:35.356641+05:30"
+    },
+    {
+      "id": 75,
+      "title": "Vals, backed by Andreessen Horowitz, is looking to become the gold standard for AI benchmarking",
+      "url": "https://techcrunch.com/2026/09/19/vals-backed-by-andreessen-horowitz-is-looking-to-become-the-gold-standard-for-ai-benchmarking/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Other",
+      "summary": "Vals AI is hoping to make AI benchmarking a more neutral and trustworthy resource in a world increasingly inundated by AI models.",
+      "published_at": "2026-09-20T16:25:35.356653+05:30"
+    },
+    {
+      "id": 76,
+      "title": "AI hallucination nearly triggers US military operation",
+      "url": "https://techcrunch.com/2026/09/18/ai-hallucination-nearly-triggers-us-military-operation/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Research",
+      "summary": "“It’s important for service members to understand the uncertainty inherent to LLMs,\" a GovAI research scholar warns.",
+      "published_at": "2026-09-20T16:25:35.356663+05:30"
+    },
+    {
+      "id": 77,
+      "title": "World model companies are keeping a lot of secrets",
+      "url": "https://techcrunch.com/2026/09/18/world-model-companies-are-keeping-a-lot-of-secrets/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Research",
+      "summary": "Everyone in the world-models space is sitting on a pile of cash and a ton of buzz, but good luck getting anyone — from the founders to their own data suppliers — to tell you what they're actually building.",
+      "published_at": "2026-09-20T16:25:35.356677+05:30"
+    },
+    {
+      "id": 78,
+      "title": "Google’s new ‘CC’ is an AI agent that helps families run their households",
+      "url": "https://techcrunch.com/2026/09/18/googles-new-cc-is-an-ai-agent-that-helps-families-run-their-households/",
+      "source": "AI News & Artificial Intelligence | TechCrunch",
+      "category": "Productivity",
+      "summary": "Google is refocusing its CC AI agent on household coordination, letting families share emails, schedules, and tasks so the AI can manage calendars, fill out forms, make shopping lists, plan meals, and more.",
+      "published_at": "2026-09-20T16:25:35.356690+05:30"
     },
     {
       "id": 79,
+      "title": "The AI regulation smackdown isn’t over",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/997706/the-ai-regulation-smackdown-isnt-over",
+      "source": "AI | The Verge",
+      "category": "Coding",
+      "summary": "At the start of this week, the who's-who of AI seemed - at least tentatively - on the side of AI regulation. Over the weekend, Anthropic CEO Dario Amodei had proposed a three-step plan for slowing AI development, including by embedding third-party evaluators in labs, coordinating across the domestic",
+      "published_at": "2026-09-20T16:25:35.356698+05:30"
+    },
+    {
+      "id": 80,
+      "title": "OpenAI and Microsoft knew they were starting a ‘doom loop’ for the web",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/997633/openai-microsoft-chatgpt-ai-new-york-times-doom-loop-theft-google-zero",
+      "source": "AI | The Verge",
+      "category": "Coding",
+      "summary": "Recently unsealed court documents in the New York Times' case against OpenAI and Microsoft are pretty damning. The companies' own documentation warned that it was starting a \"doom loop\" that would damage the web, characterized its scraping of data to train its models as the \"largest theft of labor i",
+      "published_at": "2026-09-20T16:25:35.356706+05:30"
+    },
+    {
+      "id": 81,
+      "title": "Security researchers used Claude to help them hack into OpenAI",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/997444/openai-hack-claude-heif-heist",
+      "source": "AI | The Verge",
+      "category": "Coding",
+      "summary": "A team of three independent security researchers at Hacktron says it took less than 72 hours for them to hack into OpenAI employee accounts using Anthropic's Claude Opus 4.8 and 5, The Wall Street Journal reports. They were able to access OpenAI's GitHub repository, called \"Monorepo,\" which reported",
+      "published_at": "2026-09-20T16:25:35.356713+05:30"
+    },
+    {
+      "id": 82,
       "title": "Your Agent Aced the Task. Will It Do It Again?",
       "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
       "source": "Hugging Face - Blog",
       "category": "Productivity",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288738+05:30"
+      "published_at": "2026-09-20T16:25:35.356719+05:30"
     },
     {
-      "id": 80,
+      "id": 83,
       "title": "Fine-tuning a 350M Model for Better Structured Outputs in 100 GRPO Steps",
       "url": "https://huggingface.co/blog/grpo-with-trl-ifstruct",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288748+05:30"
+      "published_at": "2026-09-20T16:25:35.356726+05:30"
     },
     {
-      "id": 81,
+      "id": 84,
       "title": "Give Your Coding Agents a Memory You Own",
       "url": "https://huggingface.co/blog/funes",
       "source": "Hugging Face - Blog",
       "category": "Coding",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288753+05:30"
+      "published_at": "2026-09-20T16:25:35.356729+05:30"
     },
     {
-      "id": 82,
+      "id": 85,
       "title": "BenchMIRT: What are LLM benchmarks actually measuring?",
       "url": "https://huggingface.co/blog/allenai/benchmirt",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288762+05:30"
+      "published_at": "2026-09-20T16:25:35.356736+05:30"
     },
     {
-      "id": 83,
+      "id": 86,
       "title": "Granite 4.2 LLMs: How They're Built",
       "url": "https://huggingface.co/blog/ibm-granite/granite-4-2",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288771+05:30"
+      "published_at": "2026-09-20T16:25:35.356742+05:30"
     },
     {
-      "id": 84,
+      "id": 87,
       "title": "How Hugging Face Inference Endpoints, Jobs, and Buckets Power Search on Papers with Code",
       "url": "https://huggingface.co/blog/pwc-search",
       "source": "Hugging Face - Blog",
       "category": "Coding",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288776+05:30"
+      "published_at": "2026-09-20T16:25:35.356745+05:30"
     },
     {
-      "id": 85,
+      "id": 88,
       "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
       "url": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
       "source": "Hugging Face - Blog",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288785+05:30"
+      "published_at": "2026-09-20T16:25:35.356752+05:30"
     },
     {
-      "id": 86,
+      "id": 89,
       "title": "How Much Memory Does Your Agent Actually Need?",
       "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
       "source": "Hugging Face - Blog",
       "category": "Chatbot/Assistant",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288794+05:30"
+      "published_at": "2026-09-20T16:25:35.356758+05:30"
     },
     {
-      "id": 87,
+      "id": 90,
       "title": "Note on 18th September 2026",
       "url": "https://simonwillison.net/2026/Sep/18/probably-gonna-eat-you/",
       "source": "Simon Willison's Weblog",
       "category": "Other",
       "summary": "Being a computer scientist who refuses to find anything about LLMs interesting right now is a bit like being a geneticist who refuses to find anything interesting about the recently opened Jurassic Park. Skeptical geneticist: \"pfft, it's just frog DNA. And they deliberately let them eat people for t",
-      "published_at": "2026-09-20T11:22:26.288815+05:30"
+      "published_at": "2026-09-20T16:25:35.356775+05:30"
     },
     {
-      "id": 88,
+      "id": 91,
       "title": "How To Write With An LLM",
       "url": "https://simonwillison.net/2026/Sep/17/how-to-write-with-an-llm/",
       "source": "Simon Willison's Weblog",
       "category": "Writing",
       "summary": "How To Write With An LLM Thomas Ptacek on using LLMs as copyeditors, not as writing assistants: Rule Number One: You may not use a single word an LLM suggests to you. [...] I think that as a form of intellectual personal protective equipment you should adopt the rule that any specific turn of phrase",
-      "published_at": "2026-09-20T11:22:26.288825+05:30"
+      "published_at": "2026-09-20T16:25:35.356788+05:30"
     },
     {
-      "id": 89,
+      "id": 92,
       "title": "The contagion of fear",
       "url": "https://simonwillison.net/2026/Sep/14/the-contagion-of-fear/",
       "source": "Simon Willison's Weblog",
       "category": "Coding",
       "summary": "The contagion of fear Bryan Cantrill responds to the tweet by former Anthropic employee Jacob Coxon confirming that many Anthropic researchers believe AI \"could kill us all by the end of the decade\". Bryan shares a story of his own youthful mistakes causing unjustified panic among less technical pee",
-      "published_at": "2026-09-20T11:22:26.288856+05:30"
+      "published_at": "2026-09-20T16:25:35.356810+05:30"
     },
     {
-      "id": 90,
+      "id": 93,
       "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
       "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288866+05:30"
+      "published_at": "2026-09-20T16:25:35.356817+05:30"
     },
     {
-      "id": 91,
+      "id": 94,
       "title": "Introducing WeatherNext 3, our most advanced and accurate global weather AI model",
       "url": "https://deepmind.google/blog/introducing-weathernext-3-our-most-advanced-and-accurate-global-weather-ai-model/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288877+05:30"
+      "published_at": "2026-09-20T16:25:35.356825+05:30"
     },
     {
-      "id": 92,
+      "id": 95,
       "title": "Introducing Gemini 3.8 Flash and 3.8 Flash Cyber",
       "url": "https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288887+05:30"
+      "published_at": "2026-09-20T16:25:35.356831+05:30"
     },
     {
-      "id": 93,
+      "id": 96,
       "title": "Gemini Omni 1.1 Flash lets you build with more control",
       "url": "https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288896+05:30"
+      "published_at": "2026-09-20T16:25:35.356837+05:30"
     },
     {
-      "id": 94,
+      "id": 97,
       "title": "Intelligent transcription with Gemini 3.5 Transcribe",
       "url": "https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/",
       "source": "Google DeepMind News",
       "category": "Audio",
       "summary": "Now you can get more intelligent speech-to-text transcription with Gemini 3.5 Transcribe.",
-      "published_at": "2026-09-20T11:22:26.288906+05:30"
+      "published_at": "2026-09-20T16:25:35.356845+05:30"
     },
     {
-      "id": 95,
+      "id": 98,
       "title": "Introducing Gemini 3.7 Flash",
       "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288915+05:30"
+      "published_at": "2026-09-20T16:25:35.356850+05:30"
     },
     {
-      "id": 96,
+      "id": 99,
       "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
       "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
       "source": "Google DeepMind News",
       "category": "Coding",
       "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
-      "published_at": "2026-09-20T11:22:26.288922+05:30"
+      "published_at": "2026-09-20T16:25:35.356856+05:30"
     },
     {
-      "id": 97,
+      "id": 100,
       "title": "Gemini Robotics 2 brings whole body intelligence to robots",
       "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
       "source": "Google DeepMind News",
       "category": "Other",
       "summary": "No summary available.",
-      "published_at": "2026-09-20T11:22:26.288932+05:30"
-    },
-    {
-      "id": 98,
-      "title": "Our approach to bioresilience",
-      "url": "https://deepmind.google/blog/our-approach-to-bioresilience/",
-      "source": "Google DeepMind News",
-      "category": "Other",
-      "summary": "Google DeepMind and Isomorphic Labs are sharing our joint approach to bioresilience and AI models.",
-      "published_at": "2026-09-20T11:22:26.288944+05:30"
-    },
-    {
-      "id": 99,
-      "title": "Underwriting Superintelligence: Backing Agents you can Sue — Rune Kvist, AIUC",
-      "url": "https://www.latent.space/p/aiuc",
-      "source": "Latent.Space",
-      "category": "Writing",
-      "summary": "We sit down with AIUC&#8217;s CEO on their Series A!",
-      "published_at": "2026-09-20T11:22:26.288949+05:30"
-    },
-    {
-      "id": 100,
-      "title": "Can Skills Learned in Games Transfer to Real-World Work?",
-      "url": "https://www.latent.space/p/good-start-labs",
-      "source": "Latent.Space",
-      "category": "Image",
-      "summary": "Good Start Labs trained an AI on a railroad game &#8212; and one version improved at financial research. The difference was the training design.",
-      "published_at": "2026-09-20T11:22:26.288957+05:30"
+      "published_at": "2026-09-20T16:25:35.356863+05:30"
     }
   ]
 }
